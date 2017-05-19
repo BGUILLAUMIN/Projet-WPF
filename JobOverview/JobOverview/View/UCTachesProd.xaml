@@ -4,30 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:JobOverview.View"
-             xmlns:dico="clr-namespace:JobOverview.Dico"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
 
-    <DockPanel Background="White">
-        <DockPanel.Resources>
-            <Style TargetType="Button">
-                <Setter Property="Height" Value="30"/>
-                <Setter Property="Width" Value="30"/>
-            </Style>
-
-            <Style TargetType="ComboBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Height" Value="30"/>
-            </Style>
-        </DockPanel.Resources>
-
+    <DockPanel>
+       
         <!--#region Expander-->
         <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right">
             <DockPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                    <Button/>
-                    <Button/>
-                    <Button/>
+                    <Button Style="{StaticResource ButtonStyle}"/>
+                    <Button Style="{StaticResource ButtonStyle}"/>
+                    <Button Style="{StaticResource ButtonStyle}"/>
                 </StackPanel>
                 <Separator Height="10" Opacity="0" DockPanel.Dock="Top"/>
 
@@ -72,14 +60,14 @@
             <DockPanel DockPanel.Dock="Bottom">
                     <CheckBox IsChecked="False" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     <Label Content="Taches terminées" VerticalAlignment="Center" />
-                    <Button Content="XML" Width="100" HorizontalAlignment="Right"/>
+                    <Button Content="XML" Width="100" HorizontalAlignment="Right" Margin="0,0,0,5"/>
                 </DockPanel>
   
             
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                <ComboBox Margin="15,5,5,5"/>
-                <ComboBox Margin="5"/>
-                <ComboBox Margin="5"/>
+                <ComboBox Margin="15,5,5,5" Style="{StaticResource ComboBoxStyle}"/>
+                <ComboBox Margin="5" Style="{StaticResource ComboBoxStyle}"/>
+                <ComboBox Margin="5" Style="{StaticResource ComboBoxStyle}"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="10" DockPanel.Dock="Top">
                 <StackPanel Orientation="Horizontal">

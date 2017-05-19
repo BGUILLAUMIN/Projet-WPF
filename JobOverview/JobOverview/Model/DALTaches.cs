@@ -8,6 +8,6 @@ namespace JobOverview.Model
 {
     class DALTaches
     {
-        public static 
+
     }
 }
