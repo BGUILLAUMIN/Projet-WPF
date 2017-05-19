@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="JobOverview.View.UCTachesProd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:JobOverview.View"
+             xmlns:dico="clr-namespace:JobOverview.Dico"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="500">
+
+    <DockPanel Background="White">
+        <DockPanel.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Width" Value="30"/>
+            </Style>
+
+            <Style TargetType="ComboBox">
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+        </DockPanel.Resources>
+
+        <!--#region Expander-->
+        <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <Button/>
+                    <Button/>
+                    <Button/>
+                </StackPanel>
+                <Separator Height="10" Opacity="0" DockPanel.Dock="Top"/>
+
+                <Grid DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                        <TextBlock Text="IdTache"/>
+                        <!--Il faudra mettre un stringFormat pour avoir le texte N° "IdTache"-->
+                    </StackPanel>
+
+
+                    <TextBlock Text="Date de création : " Grid.Row="1"/>
+                    <TextBlock Text="La date de création" Grid.Row="2"/>
+                    <TextBlock Text="Date Durée Prévue : " Grid.Row="3"/>
+                    <TextBlock Text="La Durée Prévue" Grid.Row="4"/>
+                    <TextBlock Text="Module : " Grid.Row="5"/>
+                    <TextBlock Text="Libelle du module" Grid.Row="6"/>
+                    <TextBlock Text="Description" Grid.Row="7"/>
+
+                </Grid>
+
+                <TextBox TextWrapping="Wrap"/>
+            </DockPanel>
+        </Expander>
+        <!--#endregion-->
+
+        <DockPanel>
+
+            <DockPanel DockPanel.Dock="Bottom">
+                    <CheckBox IsChecked="False" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Label Content="Taches terminées" VerticalAlignment="Center" />
+                    <Button Content="XML" Width="100" HorizontalAlignment="Right"/>
+                </DockPanel>
+  
+            
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <ComboBox Margin="15,5,5,5"/>
+                <ComboBox Margin="5"/>
+                <ComboBox Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10" DockPanel.Dock="Top">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Temps de travail restant global :" MinWidth="175"/>
+                    <TextBlock Text="92 h"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Temps de travail réalisé global :" MinWidth="175"/>
+                    <TextBlock Text="102 h"/>
+                </StackPanel>
+            </StackPanel>
+            
+            <ListView Margin="10"/>
+            
+       
+        </DockPanel>
+
+
+      
+
+    </DockPanel>
+</UserControl>
