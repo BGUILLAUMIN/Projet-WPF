@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\
 JobOverview
 none
 false
 DEBUG;TRACE
-D:\Exercices\Projet-WPF\JobOverview\JobOverview\App.xaml
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\App.xaml
 5-846277817
 
-231959953317
-16431947579
+23613432622
+16-1056561203
 View\MainWindow.xaml;View\UCButtonsBar.xaml;View\UCLogin.xaml;View\ModalWindow.xaml;View\UCTachesProd.xaml;
 
-True
+False
 
