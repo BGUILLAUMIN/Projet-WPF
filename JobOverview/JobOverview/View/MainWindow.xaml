@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		  xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:JobOverview"
+        xmlns:v="clr-namespace:JobOverview.View"
         mc:Ignorable="d"
        Title="Job Overview" Height="600" Width="800" WindowStartupLocation="CenterScreen">
 	<Window.Resources>
@@ -55,8 +56,8 @@
 		<ContentControl Grid.Column="1" Margin="10,0,0,0" Content="{Binding Path=VMCourante}"/>-->
     <Grid>
         <TabControl TabStripPlacement="Top" >
-            <TabItem Header="Taches Production" Padding="30,0,30,0"Command="{Binding Cmd}">
-
+            <TabItem Header="Taches Production" Padding="30,0,30,0">
+                <v:UCTachesProd/>
 
             </TabItem>
             <TabItem Header="Taches Annexes" Padding="30,0,30,0">

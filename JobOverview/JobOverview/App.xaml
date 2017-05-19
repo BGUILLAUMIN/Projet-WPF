@@ -11,7 +11,9 @@
         <DataTemplate DataType="{x:Type vm:VMLogin}">
             <vw:UCLogin/>
         </DataTemplate>
-
+        <DataTemplate DataType="{x:Type vm:VMTachesProd}">
+            <vw:UCTachesProd/>
+        </DataTemplate>
         <Style x:Key="ButtonStyle">
             <Setter Property="Button.Height" Value="30"/>
             <Setter Property="Button.Width" Value="30"/>

@@ -10,7 +10,6 @@
 //------------------------------------------------------------------------------
 
 using FontAwesome.Sharp;
-using JobOverview;
 using JobOverview.View;
 using System;
 using System.Diagnostics;
