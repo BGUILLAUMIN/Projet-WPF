@@ -32,3 +32,4 @@ D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupComp
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.lref
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
