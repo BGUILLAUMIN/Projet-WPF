@@ -5,18 +5,22 @@
 				xmlns:vw="clr-namespace:JobOverview.View"
 				xmlns:vm="clr-namespace:JobOverview.ViewModel"
              StartupUri="View/MainWindow.xaml"
-             xmlns:dico="clr-namespace:JobOverview.Dico">
+             xmlns:dico="clr-namespace:JobOverview">
     
 	<Application.Resources>
         <DataTemplate DataType="{x:Type vm:VMLogin}">
             <vw:UCLogin/>
         </DataTemplate>
 
-        <ResourceDictionary x:Key="Styles">
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="DicoStyles"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <Style x:Key="ButtonStyle">
+            <Setter Property="Button.Height" Value="30"/>
+            <Setter Property="Button.Width" Value="30"/>
+        </Style>
+
+        <Style x:Key="ComboBoxStyle">
+            <Setter Property="ComboBox.Width" Value="100"/>
+            <Setter Property="ComboBox.Height" Value="30"/>
+        </Style>
         
-	</Application.Resources>
+    </Application.Resources>
 </Application>
