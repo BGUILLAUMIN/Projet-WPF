@@ -11,6 +11,7 @@ namespace JobOverview.Entity
         public string Login { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
+        public string Manager { get; set; }
         public string CodeMetier { get; set; }
 
         // Activités liées au métier de la personne
