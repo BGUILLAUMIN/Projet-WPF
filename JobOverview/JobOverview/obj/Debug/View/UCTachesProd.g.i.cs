@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using JobOverview.Dico.DicoStyles;
+using JobOverview.Dico;
 using JobOverview.View;
 using System;
 using System.Diagnostics;

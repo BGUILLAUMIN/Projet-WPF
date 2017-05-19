@@ -30,3 +30,4 @@ D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.g.cs
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.cache
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.lref
+D:\Exercices\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
