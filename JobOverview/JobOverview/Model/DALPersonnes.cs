@@ -11,14 +11,16 @@ namespace JobOverview.Model
 {
     public class DALPersonnes
     {
-
+        /// <summary>
+        /// Récupère la liste des personnes depuis la base de
+        /// données pour compléter la liste dans la fenêtre d'identification.
+        /// </summary>
+        /// <returns></returns>
         public static List<Personne> GetPersonnes()
         {
             var listPersonnes = new List<Personne>();
 
-            string req = @"select Login, Nom, Prenom, Manager CodeEquipe 
-                            from jo.Personne";
-
+            string req = @"select Login, Nom, Prenom, CodeEquipe, Manager from jo.Personne";
 
             using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
@@ -38,19 +40,15 @@ namespace JobOverview.Model
                             pers.Nom = (string)reader["Nom"];
                             pers.Prenom = (string)reader["Prenom"];
                             pers.CodeMetier = (string)reader["CodeEquipe"];
-                           //TODO ajouter Manager
-                           //TODO enlever méthode dans le diagramme de classe
-                           //TODO mettre commentaire GEtPersone
+                            pers.Manager = (string)reader["Manager"];
 
+                            //TODO enlever méthode dans le diagramme de classe
                             listPersonnes.Add(pers);
                         }
                     }
                 }
             }
-
             return listPersonnes;
-
-            
         }
     }
 }
