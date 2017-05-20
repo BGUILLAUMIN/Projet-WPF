@@ -17,13 +17,7 @@
         <DataTemplate DataType="{x:Type vm:VMTachesAnnexe}">
             <vw:UCTachesAnnexe/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:VMSaisieTemps}">
-            <vw:UCSaisieTemps/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:VMAPropos}">
-            <vw:UCAPropos/>
-        </DataTemplate>
-        
+
         <Style x:Key="ButtonStyle">
             <Setter Property="Button.Height" Value="30"/>
             <Setter Property="Button.Width" Value="30"/>
