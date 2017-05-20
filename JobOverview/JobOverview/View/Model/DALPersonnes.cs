@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using JobOverview.Properties;
 using System.Xml.Serialization;
 using System.IO;
+using System.Data;
 
 namespace JobOverview.Model
 {
@@ -42,7 +43,7 @@ namespace JobOverview.Model
                             pers.Nom = (string)reader["Nom"];
                             pers.Prenom = (string)reader["Prenom"];
                             pers.CodeMetier = (string)reader["CodeEquipe"];
-                            if(reader["Manager"] != DBNull.Value)
+                            if (reader["Manager"] != DBNull.Value)
                                 pers.Manager = (string)reader["Manager"];
 
                             //TODO enlever méthode dans le diagramme de classe
@@ -52,6 +53,57 @@ namespace JobOverview.Model
                 }
             }
             return listPersonnes;
+        }
+
+        public static List<Personne> GetPersonnesFromUser(string login)
+        {
+            List<Personne> Personnes = new List<Personne>();
+            string req = @"select p2.Login, p2.Nom, p2.Prenom, M.CodeMetier ,M.Libelle, E.CodeEquipe, E.Nom as NomEquipe
+                            from jo.Personne p1
+                            inner join jo.Personne p2 on p1.Login = p2.Manager
+                            inner join jo.Metier M on p2.CodeMetier = M.CodeMetier 
+                            inner join jo.Equipe E on p2.CodeEquipe = E.CodeEquipe 
+                            where p1.Login = @Login and p1.CodeEquipe = p2.CodeEquipe
+                            union
+                            select P.Login, P.Nom, P.Prenom, M.CodeMetier ,M.Libelle, E.CodeEquipe, E.Nom as NomEquipe
+                            from jo.Personne P
+                            inner join jo.Metier M on P.CodeMetier = M.CodeMetier
+                            inner join jo.Equipe E on P.CodeEquipe = E.CodeEquipe  
+                            where login = @Login";
+
+            var param = new SqlParameter("@Login", DbType.String);
+            param.Value = login;
+
+            using (SqlConnection connect = new SqlConnection(Properties.Settings.Default.ConnectionJobOverview))
+            {
+                var command = new SqlCommand(req, connect);
+                command.Parameters.Add(param);
+                connect.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        GetPersonnesFromUserFromDataReader(Personnes, reader);
+                    }
+                }
+            }
+            return Personnes;
+
+        }
+        private static void GetPersonnesFromUserFromDataReader(List<Personne> Personnes ,SqlDataReader reader)
+        {
+            //Aucun de ses champs n'est nullable
+            Personne p = new Personne();
+            p.Login = (string)reader["Login"];
+            p.Nom = (string)reader["Nom"];
+            p.Prenom = (string)reader["Prenom"];
+            p.CodeEquipe = (string)reader["CodeEquipe"];
+            p.NomEquipe = (string)reader["NomEquipe"];
+            p.CodeMetier = (string)reader["CodeMetier"];
+            p.LibelleMetier = (string)reader["Libelle"];
+
+            Personnes.Add(p);
         }
     }
 }

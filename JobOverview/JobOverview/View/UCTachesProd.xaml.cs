@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using JobOverview.ViewModel;
 
 namespace JobOverview.View
 {
@@ -23,6 +24,7 @@ namespace JobOverview.View
         public UCTachesProd()
         {
             InitializeComponent();
+            DataContext = new VMTachesProd();
         }
     }
 }

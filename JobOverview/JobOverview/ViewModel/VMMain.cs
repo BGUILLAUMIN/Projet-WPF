@@ -43,7 +43,7 @@ namespace JobOverview.ViewModel
             get
             {
                 if (_vmCourante == null)
-                    _vmCourante = new VMLogin();
+                    _vmCourante = new VMMain();
                 return _vmCourante;
             }
             set
