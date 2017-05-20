@@ -12,18 +12,43 @@
 
         <!--#region Expander Ajout de Taches Annexe-->
         <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right">
+            <Expander.ToolTip>
+                <ToolTip>
+                    <TextBlock>Déplier fiche de détails.</TextBlock>
+                </ToolTip>
+            </Expander.ToolTip>
             <DockPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                     <Button Style="{StaticResource ButtonStyle}">
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Ajouter une tâche annexe.</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
                         <fa:IconBlock Icon="PlusCircle"/>
                     </Button>
                     <Button Style="{StaticResource ButtonStyle}">
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Supprimer tâche.</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
                         <fa:IconBlock Icon="Times"/>
                     </Button>
                     <Button Style="{StaticResource ButtonStyle}">
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Annuler.</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
                         <fa:IconBlock Icon="Undo"/>
                     </Button>
                     <Button Style="{StaticResource ButtonStyle}">
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Enregistrer.</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
                         <fa:IconBlock Icon="FloppyO"/>
                     </Button>
                 </StackPanel>
@@ -44,9 +69,21 @@
                         <RowDefinition Height="20"/>
                     </Grid.RowDefinitions>
 
-                    <ComboBox Grid.Row="0"/>
+                    <ComboBox Grid.Row="0">
+                        <ComboBox.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Liste des personnes.</TextBlock>
+                            </ToolTip>
+                        </ComboBox.ToolTip>
+                    </ComboBox>
 
-                    <ComboBox Grid.Row="2"/>
+                    <ComboBox Grid.Row="2">
+                        <ComboBox.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Liste des activités.</TextBlock>
+                            </ToolTip>
+                        </ComboBox.ToolTip>
+                    </ComboBox>
 
                                      
                     <TextBlock Text="Libellé : " Grid.Row="3"/>
@@ -68,6 +105,11 @@
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right">
                 <TextBlock Text="Filtre : " VerticalAlignment="Center"/>
                 <ComboBox Margin="5" Style="{StaticResource ComboBoxStyle}">
+                    <ComboBox.ToolTip>
+                        <ToolTip>
+                            <TextBlock>Choisir les options de filtrage.</TextBlock>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
                     <ComboBoxItem Content="Personne"/>
                     <ComboBoxItem Content="Activité"/>
                 </ComboBox>
