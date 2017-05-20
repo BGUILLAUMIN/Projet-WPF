@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JobOverview.View"
         mc:Ignorable="d"
-        Title="Dialog" Height="150" Width="300" SizeToContent="WidthAndHeight"
+        Title="Identification" Height="150" Width="300" SizeToContent="WidthAndHeight"
 		  WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
 	<Window.Resources>
 		<Style TargetType="Button">
@@ -14,11 +14,11 @@
 		</Style>
 	</Window.Resources>
 	<DockPanel Margin="10">
-		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
 						Height="40" HorizontalAlignment="Right">
-			<Button Name="btnOK" Content="OK" IsDefault="True"/>
-			<Button Content="Annuler" IsCancel="True"/>
-		</StackPanel>
-		<ContentControl Name="ccPrinc"/>
-	</DockPanel>
+            <Button Name="btnOK" Content="OK" IsDefault="True"/>
+            <Button Content="Annuler" IsCancel="True"/>
+        </StackPanel>
+        <ContentControl Name="ccPrinc"/>
+    </DockPanel>
 </Window>

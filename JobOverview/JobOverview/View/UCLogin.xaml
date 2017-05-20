@@ -8,7 +8,10 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Orientation="Horizontal" MinHeight="100" >
 		<Label Content="Utilisateur" VerticalAlignment="Center" Margin="10"/>
-		<ComboBox Height="30" Width="200" 
-					 ItemsSource="{Binding Path=Personnes}" SelectedIndex="0"/>
+        <ComboBox Name="cbxUtilisateur" Height="30" Width="200" ItemsSource="{Binding Path=Personnes}"
+                  DisplayMemberPath="NomComplet"
+                  SelectedValuePath="Login" SelectedIndex="0" >
+            
+        </ComboBox>
 	</StackPanel>
 </UserControl>

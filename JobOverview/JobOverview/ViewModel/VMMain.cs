@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using JobOverview.Model;
 
 namespace JobOverview.ViewModel
 {
@@ -35,6 +36,7 @@ namespace JobOverview.ViewModel
         //}
 
         //#endregion
+
         private ViewModelBase _vmCourante;
         public ViewModelBase VMCourante
         {
@@ -57,7 +59,6 @@ namespace JobOverview.ViewModel
             {
                 if (_CmdTachesProd == null)
                     _CmdTachesProd = new RelayCommand(ActionMenuTachesProd);
-
                 return _CmdTachesProd;
             }
         }
