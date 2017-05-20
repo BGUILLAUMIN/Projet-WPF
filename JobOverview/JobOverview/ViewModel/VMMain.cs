@@ -60,7 +60,7 @@ namespace JobOverview.ViewModel
                 return _CmdTachesProd;
             }
         }
-        private void ActionMenuTachesProd(object obj)
+        private void ActionMenuTachesProd()
         {
             VMCourante = new VMTachesProd();
         }
