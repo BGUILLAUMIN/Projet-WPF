@@ -14,7 +14,7 @@
         <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right">
             <Expander.ToolTip>
                 <ToolTip>
-                    <TextBlock>Déplier fiche de détails.</TextBlock>
+                    <TextBlock>Déplier la fiche de détails.</TextBlock>
                 </ToolTip>
             </Expander.ToolTip>
             <DockPanel>

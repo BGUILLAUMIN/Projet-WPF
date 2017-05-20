@@ -14,7 +14,7 @@
         <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right">
             <Expander.ToolTip>
                 <ToolTip>
-                    <TextBlock>Déplier fiche de détails.</TextBlock>
+                    <TextBlock>Déplier la fiche de détails.</TextBlock>
                 </ToolTip>
             </Expander.ToolTip>
             <DockPanel>
@@ -68,11 +68,11 @@
 
 
                     <TextBlock Text="Date de création : " Grid.Row="1"/>
-                    <TextBlock Text="La date de création" Grid.Row="2"/>
+                    <TextBlock Text="La date de création" Grid.Row="2" FontWeight="Bold"/>
                     <TextBlock Text="Date Durée Prévue : " Grid.Row="3"/>
-                    <TextBlock Text="La Durée Prévue" Grid.Row="4"/>
+                    <TextBlock Text="La Durée Prévue" Grid.Row="4" FontWeight="Bold"/>
                     <TextBlock Text="Module : " Grid.Row="5"/>
-                    <TextBlock Text="Libelle du module" Grid.Row="6"/>
+                    <TextBlock Text="Libelle du module" Grid.Row="6" FontWeight="Bold"/>
                     <TextBlock Text="Description" Grid.Row="7"/>
 
                 </Grid>
