@@ -82,6 +82,9 @@
     <Compile Include="View\ModalWindow.xaml.cs">
       <DependentUpon>ModalWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UCSaisieTemps.xaml.cs">
+      <DependentUpon>UCSaisieTemps.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UCTachesAnnexe.xaml.cs">
       <DependentUpon>UCTachesAnnexe.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ModalWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UCSaisieTemps.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
