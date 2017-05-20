@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using JobOverview.Entity;
 using System.Data.SqlClient;
 using JobOverview.Properties;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace JobOverview.Model
 {
@@ -20,9 +22,10 @@ namespace JobOverview.Model
         {
             var listPersonnes = new List<Personne>();
 
-            string req = @"select Login, Nom, Prenom, CodeEquipe, Manager from jo.Personne";
+            string req = @"SELECT Login, Nom, Prenom, CodeEquipe, Manager FROM jo.Personne";
+            string connectString = Properties.Settings.Default.ConnectionJobOverview;
 
-            using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
+            using (var connect = new SqlConnection(connectString))
             {
                 var command = new SqlCommand(req, connect);
                 connect.Open();
@@ -31,16 +34,16 @@ namespace JobOverview.Model
                 {
                     while (reader.Read())
                     {
-                        string login = (string)reader["Login"];
 
                         Personne pers = null;
                         {
                             pers = new Personne();
-                            pers.Login = login;
+                            pers.Login = (string)reader["Login"];
                             pers.Nom = (string)reader["Nom"];
                             pers.Prenom = (string)reader["Prenom"];
                             pers.CodeMetier = (string)reader["CodeEquipe"];
-                            pers.Manager = (string)reader["Manager"];
+                            if(reader["Manager"] != DBNull.Value)
+                                pers.Manager = (string)reader["Manager"];
 
                             //TODO enlever méthode dans le diagramme de classe
                             listPersonnes.Add(pers);

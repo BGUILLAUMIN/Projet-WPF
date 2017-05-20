@@ -23,16 +23,25 @@ namespace JobOverview.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=VPORTEMER17-DE\\IP08R2;Initial Catalog=JobOverview;Integrated Security" +
-            "=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=JobOverview;Integrated Securit" +
+            "y=True")]
         public string ConnectionJobOverview {
             get {
                 return ((string)(this["ConnectionJobOverview"]));
             }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PersonneConnecte {
+            get {
+                return ((string)(this["PersonneConnecte"]));
+            }
             set {
-                this["ConnectionJobOverview"] = value;
+                this["PersonneConnecte"] = value;
             }
         }
     }
