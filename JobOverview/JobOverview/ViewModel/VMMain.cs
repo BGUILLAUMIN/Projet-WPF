@@ -57,10 +57,11 @@ namespace JobOverview.ViewModel
             {
                 if (_CmdTachesProd == null)
                     _CmdTachesProd = new RelayCommand(ActionMenuTachesProd);
+
                 return _CmdTachesProd;
             }
         }
-        private void ActionMenuTachesProd(object obj)
+        private void ActionMenuTachesProd()
         {
             VMCourante = new VMTachesProd();
         }
