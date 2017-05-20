@@ -43,7 +43,7 @@ namespace JobOverview.ViewModel
             get
             {
                 if (_vmCourante == null)
-                    _vmCourante = new VMTachesProd();
+                    _vmCourante = new VMLogin();
                 return _vmCourante;
             }
             set
@@ -67,20 +67,20 @@ namespace JobOverview.ViewModel
             VMCourante = new VMTachesProd();
         }
 
-        //private ICommand _cmdMenu2;
-        //public ICommand CmdMenu2
-        //{
-        //    get
-        //    {
-        //        if (_cmdMenu2 == null)
-        //            _cmdMenu2 = new RelayCommand(ActionMenu2);
-        //        return _cmdMenu2;
-        //    }
-        //}
-        //private void ActionMenu2(object obj)
-        //{
-        //    VMCourante = new VMMenu2();
-        //}
+        private ICommand _cmdTachesAnnexe;
+        public ICommand CmdTachesAnnexe
+        {
+            get
+            {
+                if (_cmdTachesAnnexe == null)
+                    _cmdTachesAnnexe = new RelayCommand(ActionMenuTachesAnnexe);
+                return _cmdTachesAnnexe;
+            }
+        }
+        private void ActionMenuTachesAnnexe()
+        {
+            VMCourante = new VMTachesAnnexe();
+        }
     }
 }
 
