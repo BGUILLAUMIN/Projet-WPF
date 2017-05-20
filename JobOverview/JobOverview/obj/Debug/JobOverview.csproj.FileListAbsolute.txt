@@ -71,3 +71,6 @@ C:\Users\Utilisateur\Documents\Projet final\JobOverview\JobOverview\obj\Debug\Jo
 C:\Users\Utilisateur\Documents\Projet final\JobOverview\JobOverview\obj\Debug\JobOverview.csproj.GenerateResource.Cache
 C:\Users\Utilisateur\Documents\Projet final\JobOverview\JobOverview\obj\Debug\JobOverview.exe
 C:\Users\Utilisateur\Documents\Projet final\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
+C:\Users\Ben\Source\Repos\Projet-WPF2\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
+C:\Users\Ben\Source\Repos\Projet-WPF2\JobOverview\JobOverview\obj\Debug\JobOverview.exe
+C:\Users\Ben\Source\Repos\Projet-WPF2\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
