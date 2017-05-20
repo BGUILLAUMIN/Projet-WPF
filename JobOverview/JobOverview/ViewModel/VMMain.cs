@@ -57,6 +57,7 @@ namespace JobOverview.ViewModel
             {
                 if (_CmdTachesProd == null)
                     _CmdTachesProd = new RelayCommand(ActionMenuTachesProd);
+
                 return _CmdTachesProd;
             }
         }
