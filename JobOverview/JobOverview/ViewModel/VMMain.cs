@@ -81,6 +81,20 @@ namespace JobOverview.ViewModel
         {
             VMCourante = new VMTachesAnnexe();
         }
+        private ICommand _cmdSaisieTemps;
+        public ICommand CmdSaisieTemps
+        {
+            get
+            {
+                if (_cmdSaisieTemps == null)
+                    _cmdSaisieTemps = new RelayCommand(ActionMenuSaisieTemps);
+                return _cmdSaisieTemps;
+            }
+        }
+        private void ActionMenuSaisieTemps()
+        {
+            VMCourante = new VMSaisieTemps();
+        }
     }
 }
 
