@@ -14,6 +14,10 @@
         <DataTemplate DataType="{x:Type vm:VMTachesProd}">
             <vw:UCTachesProd/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:VMTachesAnnexe}">
+            <vw:UCTachesAnnexe/>
+        </DataTemplate>
+
         <Style x:Key="ButtonStyle">
             <Setter Property="Button.Height" Value="30"/>
             <Setter Property="Button.Width" Value="30"/>

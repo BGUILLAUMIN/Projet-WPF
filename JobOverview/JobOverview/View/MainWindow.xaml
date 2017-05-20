@@ -55,7 +55,7 @@
 			automatiquement la vue à utiliser pour afficher la vue-modèle courante --><!--
 		<ContentControl Grid.Column="1" Margin="10,0,0,0" Content="{Binding Path=VMCourante}"/>-->
     <Grid>
-        <TabControl TabStripPlacement="Top" >
+        <!--<TabControl TabStripPlacement="Top" >
             <TabItem Header="Taches Production" Padding="30,0,30,0">
                 <v:UCTachesProd/>
 
@@ -74,8 +74,14 @@
 
             </TabItem>
 
-        </TabControl>
-        
+        </TabControl>-->
+        <Menu>
+            <MenuItem Name="TachesProd" Header="Taches Production"/>
+            <MenuItem Name="TachesAnnexe" Header="Taches Annexes"/>
+            <MenuItem Name="SaisieTemps" Header="Saisie Temps"/>
+            <MenuItem Name="SynthèseVersions" Header="Synthèse Versions"/>
+            <MenuItem Name="APropos" Header="A propos"/>
+        </Menu>
         
     </Grid>
 </Window>

@@ -69,9 +69,10 @@
     <Compile Include="Entity\Personne.cs" />
     <Compile Include="Entity\Tache.cs" />
     <Compile Include="ExporterXml.cs" />
-    <Compile Include="Model\DALLogiciels.cs" />
-    <Compile Include="Model\DALPersonnes.cs" />
-    <Compile Include="Model\DALTaches.cs" />
+    <Compile Include="ViewModel\VMTachesAnnexe.cs" />
+    <Compile Include="View\Model\DALLogiciels.cs" />
+    <Compile Include="View\Model\DALPersonnes.cs" />
+    <Compile Include="View\Model\DALTaches.cs" />
     <Compile Include="ViewModel\VMTachesProd.cs" />
     <Compile Include="View\UCButtonsBar.xaml.cs">
       <DependentUpon>UCButtonsBar.xaml</DependentUpon>
@@ -82,11 +83,17 @@
     <Compile Include="View\ModalWindow.xaml.cs">
       <DependentUpon>ModalWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UCSaisieTemps.xaml.cs">
+      <DependentUpon>UCSaisieTemps.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UCTachesAnnexe.xaml.cs">
       <DependentUpon>UCTachesAnnexe.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UCTachesProd.xaml.cs">
       <DependentUpon>UCTachesProd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UCVersions.xaml.cs">
+      <DependentUpon>UCVersions.xaml</DependentUpon>
     </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -116,11 +123,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\UCSaisieTemps.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UCTachesAnnexe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UCTachesProd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UCVersions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
