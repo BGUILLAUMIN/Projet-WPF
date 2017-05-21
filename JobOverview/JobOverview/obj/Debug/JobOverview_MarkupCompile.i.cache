@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Projet-WPF\JobOverview\JobOverview\App.xaml
-8-455850967
+9-493240162
 
-30203550474
+321728292776
 16-253218752
-View\MainWindow.xaml;View\UCButtonsBar.xaml;View\UCLogin.xaml;View\ModalWindow.xaml;View\UCSaisieTemps.xaml;View\UCTachesAnnexe.xaml;View\UCTachesProd.xaml;View\UCVersions.xaml;
+View\MainWindow.xaml;View\UCAPropos.xaml;View\UCButtonsBar.xaml;View\UCLogin.xaml;View\ModalWindow.xaml;View\UCSaisieTemps.xaml;View\UCTachesAnnexe.xaml;View\UCTachesProd.xaml;View\UCVersions.xaml;
 
-False
+True
 

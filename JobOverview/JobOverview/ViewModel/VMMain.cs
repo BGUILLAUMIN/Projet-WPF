@@ -42,8 +42,6 @@ namespace JobOverview.ViewModel
         {
             get
             {
-                if (_vmCourante == null)
-                    _vmCourante = new VMTachesProd();
                 return _vmCourante;
             }
             set
@@ -80,6 +78,20 @@ namespace JobOverview.ViewModel
         private void ActionMenuTachesAnnexe()
         {
             VMCourante = new VMTachesAnnexe();
+        }
+        private ICommand _cmdAPropos;
+        public ICommand CmdAPropos
+        {
+            get
+            {
+                if (_cmdAPropos == null)
+                    _cmdAPropos = new RelayCommand(ActionMenuAPropos);
+                return _cmdAPropos;
+            }
+        }
+        private void ActionMenuAPropos()
+        {
+            VMCourante = new VMAPropos();
         }
     }
 }

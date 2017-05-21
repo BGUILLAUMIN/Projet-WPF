@@ -4,14 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:JobOverview.View"
+             xmlns:properties="clr-namespace:JobOverview.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Orientation="Horizontal" MinHeight="100" >
 		<Label Content="Utilisateur" VerticalAlignment="Center" Margin="10"/>
         <ComboBox Name="cbxUtilisateur" Height="30" Width="200" ItemsSource="{Binding Path=Personnes}"
                   DisplayMemberPath="NomComplet"
-                  SelectedValuePath="Login" SelectedIndex="0" >
-            
+                  SelectedValuePath="Login" SelectedValue="{Binding Source={x:Static properties:Settings.Default}, Path=PersonneConnecte}" >
         </ComboBox>
 	</StackPanel>
 </UserControl>

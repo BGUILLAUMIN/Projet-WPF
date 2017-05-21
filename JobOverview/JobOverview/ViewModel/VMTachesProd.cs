@@ -16,7 +16,7 @@ namespace JobOverview.ViewModel
         public VMTachesProd()
         {
             Logiciels = DALLogiciels.GetLogicielsVersions();
-            Personnes = DALPersonnes.GetPersonnesFromUser("GLECLERCQ");
+            Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
         }
 
     }

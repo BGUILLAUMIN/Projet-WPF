@@ -130,7 +130,8 @@
                 <ComboBox Margin="5" Style="{StaticResource ComboBoxStyle}"
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
-                          SelectedValuePath="Login">
+                          SelectedValuePath="Login"
+                          SelectedIndex="0">
                     <ComboBox.ToolTip>
                         <ToolTip>
                             <TextBlock>Selection de l'employé.</TextBlock>

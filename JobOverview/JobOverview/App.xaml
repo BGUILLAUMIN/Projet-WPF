@@ -19,10 +19,10 @@
         </DataTemplate>
         <!--<DataTemplate DataType="{x:Type vm:VMSaisieTemps}">
             <vw:UCSaisieTemps/>
-        </DataTemplate>
+        </DataTemplate>-->
         <DataTemplate DataType="{x:Type vm:VMAPropos}">
             <vw:UCAPropos/>
-        </DataTemplate>-->
+        </DataTemplate>
         
         <Style x:Key="ButtonStyle">
             <Setter Property="Button.Height" Value="30"/>
