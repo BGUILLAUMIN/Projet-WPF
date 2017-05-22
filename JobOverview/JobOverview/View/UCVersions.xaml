@@ -49,7 +49,7 @@
         </Expander>
         <!--#endregion-->
 
-        <!--#region DockPanel Consultation des Taches Annexe-->
+        <!--#region DockPanel Consultation des Taches Annexes-->
         <DockPanel>
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,5,10,0">

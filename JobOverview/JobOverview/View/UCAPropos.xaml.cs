@@ -27,7 +27,7 @@ namespace JobOverview.View
         public UCAPropos()
         {
             InitializeComponent();
-            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden; // Cacher la scrollbar vertical
+            scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden; // Cache la scrollbar vertical
 
             //Initialisation du timer
             System.Windows.Threading.DispatcherTimer Timer1 = new System.Windows.Threading.DispatcherTimer();

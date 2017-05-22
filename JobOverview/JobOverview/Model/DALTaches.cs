@@ -7,14 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JobOverview.Entity;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace JobOverview.Model
 {
     class DALTaches
     {
-        public static List<TacheProd> GetTachesProd(string codeLogiciel, float numVersion)
+        public static ObservableCollection<TacheProd> GetTachesProd(string codeLogiciel, float numVersion)
         {
-            var listTaches = new List<TacheProd>();
+            var listTaches = new ObservableCollection<TacheProd>();
 
             string req = @"select t.IdTache, t.Libelle, t.Description, t.CodeActivite, t.Login,
 						tp.Numero, tp.DureePrevue, tp.DureeRestanteEstimee,
@@ -176,6 +178,17 @@ namespace JobOverview.Model
 
             }
             return table;
+        }
+        /// <summary>
+        /// Sérialisation des tâches. Permet d'exporter les données tâches en données xml
+        /// </summary>
+        /// <param name="taches"></param>
+        public static void ExportTachesXml(List<Tache> taches)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Tache>),
+                                                new XmlRootAttribute("Taches"));
+            using (TextWriter writer = new StreamWriter("Taches.xml"))
+                serializer.Serialize(writer, taches);
         }
     }
 }
