@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\App.xaml
-61751797406
+9-493240162
 
-27-122348151
-16-1339413682
-View\MainWindow.xaml;View\UCButtonsBar.xaml;View\UCLogin.xaml;View\ModalWindow.xaml;View\UCTachesAnnexe.xaml;View\UCTachesProd.xaml;
+33-123336416
+161738432920
+View\MainWindow.xaml;View\UCAPropos.xaml;View\UCButtonsBar.xaml;View\UCLogin.xaml;View\ModalWindow.xaml;View\UCSaisieTemps.xaml;View\UCTachesAnnexe.xaml;View\UCTachesProd.xaml;View\UCVersions.xaml;
 
 True
 
