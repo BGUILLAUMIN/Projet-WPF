@@ -41,8 +41,8 @@
         
         <!--Style général pour les boutons-->
         <Style x:Key="ButtonStyle">
-            <Setter Property="Button.Height" Value="30"/>
-            <Setter Property="Button.Width" Value="30"/>
+            <Setter Property="Button.Height" Value="40"/>
+            <Setter Property="Button.Width" Value="40"/>
         </Style>
 
         <!--Style général pour les ComboBox-->
@@ -57,5 +57,10 @@
             <Setter Property="Width" Value="200"/>
         </Style>
 
+
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        
     </Application.Resources>
 </Application>
