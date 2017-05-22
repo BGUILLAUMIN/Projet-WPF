@@ -9,6 +9,8 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Windows.Forms;
+
 
 namespace JobOverview.ViewModel
 {
@@ -26,14 +28,7 @@ namespace JobOverview.ViewModel
         public List<Logiciel> Logiciels { get; set; }
         public List<Personne> Personnes { get; set; }
         public ObservableCollection<TacheProd> TachesProds { get; }
-        public TacheProd NouvelleTache
-        {
-            get { return _nouvelleTache; }
-            private set
-            {
-                SetProperty(ref _nouvelleTache, value);
-            }
-        }
+        
         public TacheProd TacheCourante
         {
             get
@@ -137,7 +132,17 @@ namespace JobOverview.ViewModel
 
         private void AppelExport()
         {
-            DALTaches.ExportTachesXml(TachesProds.ToList());
+            try
+            {
+                DALTaches.ExportTachesXml(TachesProds.ToList());
+               MessageBox.Show("Exportation réalisée avec succès",
+                        "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+
+               MessageBox.Show("L'exportation a échoué", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Crée une nouvelle tâche et l'ajoute à la collection
@@ -145,7 +150,7 @@ namespace JobOverview.ViewModel
         private void AjouterTache()
         {
             //Instancie une nouvelle tâche
-            NouvelleTache = new TacheProd();
+            var NouvelleTache = new TacheProd();
 
             // Ajoute la nouvelle tache dans la liste TachesProds
             TachesProds.Add(NouvelleTache);
@@ -162,9 +167,18 @@ namespace JobOverview.ViewModel
         private void EnregistrerTache()
         {
             {
+                try
+                {
                 //Enregistre dans la base la liste mis à jour de la listview 
-                DALTaches.EnregistrerTachesProd(TachesProds.ToList());
-
+                DALTaches.EnregistrerTachesProd(TacheCourante);
+                    MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
+                       "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+              
                 //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                 ModeEdit = ModesEdition.Consultation;
             }

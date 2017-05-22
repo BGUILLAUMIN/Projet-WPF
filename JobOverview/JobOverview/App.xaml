@@ -11,6 +11,7 @@
         <!-- Convertisseurs pour les propriétés IsEnabled et IsReadOnly -->
         <vw:ConvModeEditActivation x:Key="ConvModeEditActivation"/>
         <vw:ConvModeEditLectureSeule x:Key="ConvModeEditLectureSeule"/>
+        <vw:IntToColorBrushConverter x:Key="InteToColorBrushConverter"/>
         
 <!--liaison des vues modèles aux Users Control-->
         <DataTemplate DataType="{x:Type vm:VMLogin}">

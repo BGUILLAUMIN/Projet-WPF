@@ -20,7 +20,7 @@
             </Expander.ToolTip>
             <DockPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                    <Button Style="{StaticResource ButtonStyle}">
+                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
                         <Button.ToolTip>
                             <ToolTip>
                                 <TextBlock>Ajouter une tâche annexe.</TextBlock>
@@ -28,7 +28,7 @@
                         </Button.ToolTip>
                         <fa:IconBlock Icon="PlusCircle"/>
                     </Button>
-                    <Button Style="{StaticResource ButtonStyle}">
+                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdSupprimer}">
                         <Button.ToolTip>
                             <ToolTip>
                                 <TextBlock>Supprimer tâche.</TextBlock>
@@ -60,9 +60,9 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="40"/>
                         <RowDefinition Height="20"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="40"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
@@ -78,7 +78,7 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
 
-                    <ComboBox Grid.Row="2" ItemsSource="{Binding Path=Activites}" DisplayMemberPath="Libelle" SelectedValuePath="Code" SelectedIndex="0" >
+                    <ComboBox Grid.Row="2" ItemsSource="{Binding Path=Activites}" DisplayMemberPath="Code" SelectedValuePath="Code" SelectedIndex="0" IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" >
                         <ComboBox.ToolTip>
                             <ToolTip>
                                 <TextBlock>Liste des activités.</TextBlock>
@@ -86,16 +86,17 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
 
-
-                    <TextBlock Text="Libellé : " Grid.Row="3"/>
-                    <TextBlock Text="Libellé activité" Grid.Row="4"/>
-                    <TextBlock Text="Date Travail " Grid.Row="5"/>
-                    <TextBlock Text="Heures" Grid.Row="6"/>
-                    <TextBlock Text="{Binding Path=TachesAnnexes/Libelle }" Grid.Row="7" />
+                    <Label  Grid.Row="3" Content="Libellé Tache Annexe:"/>
+                    <TextBlock Grid.Row="4" Text="{Binding Path=TachesAnnexes\Libelle}"/>
+                    <Label  Grid.Row="5" Content="Libellé Tache Annexe:"/>
+                    <TextBlock Grid.Row="6" Text="{Binding Path=Activites\Libelle}" />
+                    <!--<TextBlock Text="Date Travail " Grid.Row="5"/>
+                    <TextBlock Text="Heures" Grid.Row="6"/>-->
+                   
 
                 </Grid>
 
-                <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"/>
+                <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap" IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}"/>
             </DockPanel>
         </Expander>
         <!--#endregion-->
@@ -119,7 +120,7 @@
                 </ComboBox>
             </StackPanel>
 
-            <ListView Margin="10" ItemsSource="{Binding TachesAnnexes}" IsSynchronizedWithCurrentItem="True" >
+            <ListView Margin="10" ItemsSource="{Binding TachesAnnexes}" IsSynchronizedWithCurrentItem="True" IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule} }">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn  Header="Login" DisplayMemberBinding="{Binding Path= LoginPersonne}" />
