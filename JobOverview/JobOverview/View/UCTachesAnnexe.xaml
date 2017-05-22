@@ -78,7 +78,7 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
 
-                    <ComboBox Grid.Row="2" ItemsSource="{Binding Path=Activites}" DisplayMemberPath="Libelle" SelectedValuePath="Code" SelectedIndex="0" >
+                    <ComboBox Grid.Row="2" ItemsSource="{Binding Path=Activites}" DisplayMemberPath="Libelle" SelectedValuePath="Code" SelectedIndex="0" IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" >
                         <ComboBox.ToolTip>
                             <ToolTip>
                                 <TextBlock>Liste des activités.</TextBlock>
@@ -95,7 +95,7 @@
 
                 </Grid>
 
-                <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"/>
+                <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap" IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}"/>
             </DockPanel>
         </Expander>
         <!--#endregion-->
@@ -119,7 +119,7 @@
                 </ComboBox>
             </StackPanel>
 
-            <ListView Margin="10" ItemsSource="{Binding TachesAnnexes}" IsSynchronizedWithCurrentItem="True" >
+            <ListView Margin="10" ItemsSource="{Binding TachesAnnexes}" IsSynchronizedWithCurrentItem="True" IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule} }">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn  Header="Login" DisplayMemberBinding="{Binding Path= LoginPersonne}" />

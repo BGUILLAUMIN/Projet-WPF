@@ -62,7 +62,8 @@
                 <!--#region Zones de saisies-->
                 <StackPanel Orientation="Horizontal">
                     <Label Content="N° :"/>
-                    <TextBox  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}" />
+                    <TextBox  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" 
+                              IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditActivation}}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
@@ -110,7 +111,7 @@
         <DockPanel>
             <!--#region ligne du bas checkbox + bouton exporté-->
             <DockPanel DockPanel.Dock="Bottom">
-                <CheckBox Content="Taches terminées" IsChecked="False" VerticalAlignment="Center" Margin="10,0,0,0">
+                <CheckBox Name="ckbtachesterm" Content="Taches terminées" IsChecked="False" VerticalAlignment="Center" Margin="10,0,0,0">
                     <CheckBox.ToolTip>
                         <ToolTip>
                             <TextBlock>Filtrer les tâches selon leur degré d'avancement.</TextBlock>

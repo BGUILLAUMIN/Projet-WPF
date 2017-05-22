@@ -30,7 +30,7 @@ namespace JobOverview.View
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (ModesEdition)value == ModesEdition.Consultation ? true : false;
+            return ((ModesEdition)value == ModesEdition.Consultation);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -9,6 +9,8 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Windows.Forms;
+
 
 namespace JobOverview.ViewModel
 {
@@ -31,7 +33,6 @@ namespace JobOverview.ViewModel
             get { return _nouvelleTache; }
             private set
             {
-                _nouvelleTache = value;
                 SetProperty(ref _nouvelleTache, value);
             }
         }
@@ -47,7 +48,6 @@ namespace JobOverview.ViewModel
             get { return _mode; }
             private set
             {
-                _mode = value;
                 SetProperty(ref _mode, value);
             }
         }
@@ -139,7 +139,17 @@ namespace JobOverview.ViewModel
 
         private void AppelExport()
         {
-            DALTaches.ExportTachesXml(TachesProds.ToList());
+            try
+            {
+                DALTaches.ExportTachesXml(TachesProds.ToList());
+               MessageBox.Show("Exportation réalisée avec succès",
+                        "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+
+               MessageBox.Show("L'exportation a échoué", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Crée une nouvelle tâche et l'ajoute à la collection
@@ -164,9 +174,18 @@ namespace JobOverview.ViewModel
         private void EnregistrerTache()
         {
             {
+                try
+                {
                 //Enregistre dans la base la liste mis à jour de la listview 
                 DALTaches.EnregistrerTachesProd(TachesProds.ToList());
-
+                    MessageBox.Show("Enregistrement réalisé avec succès",
+                       "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+              
                 //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                 ModeEdit = ModesEdition.Consultation;
             }

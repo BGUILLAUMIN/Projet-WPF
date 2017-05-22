@@ -29,9 +29,7 @@ namespace JobOverview.View
         {
             InitializeComponent();
             DataContext = new VMTachesProd();
-
         }
 
-
-    }
+}
 }
