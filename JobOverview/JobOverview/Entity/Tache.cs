@@ -35,7 +35,7 @@ namespace JobOverview.Entity
         public string CodeLogiciel { get; set; }
         [XmlAttribute]
         public string CodeModule { get; set; }
-        [XmlAttribute]
+        [XmlAttribute("NuméroVersion")]
         public float Version { get; set; }
     }
 
