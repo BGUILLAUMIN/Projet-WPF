@@ -57,6 +57,41 @@ namespace JobOverview.Model
             return listPersonnes;
         }
 
+        public static List<Activite> GetActivite()
+        {
+            var listActivites = new List<Activite>();
+
+            string req = @"select CodeActivite,Libelle,Annexe from jo.activite where Annexe=1";
+            string connectString = Properties.Settings.Default.ConnectionJobOverview;
+
+            using (var connect = new SqlConnection(connectString))
+            {
+                var command = new SqlCommand(req, connect);
+                connect.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        Activite activite = null;
+                        {
+                            activite = new Activite();
+                            activite.Code = (string)reader["CodeActivite"];
+                            activite.Libelle = (string)reader["Libelle"];
+
+
+
+                            //TODO enlever méthode dans le diagramme de classe
+                            listActivites.Add(activite);
+                        }
+                    }
+                }
+            }
+            return listActivites;
+        }
+
+
         public static List<Personne> GetPersonnesFromUser(string login)
         {
             List<Personne> Personnes = new List<Personne>();
