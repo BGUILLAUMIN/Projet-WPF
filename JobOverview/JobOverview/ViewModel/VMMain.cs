@@ -79,6 +79,8 @@ namespace JobOverview.ViewModel
         {
             VMCourante = new VMTachesAnnexe();
         }
+
+
         private ICommand _cmdAPropos;
         public ICommand CmdAPropos
         {
@@ -93,6 +95,45 @@ namespace JobOverview.ViewModel
         {
             VMCourante = new VMAPropos();
         }
+
+
+
+        private ICommand _CmdSaisieTemps;
+
+        public ICommand CmdSaisieTemps
+        {
+            get
+            {
+                if (_CmdSaisieTemps == null)
+                    _CmdSaisieTemps = new RelayCommand(ActionMenuSaisieTemps);
+                return _CmdSaisieTemps;
+            }
+          
+        }
+
+        private void ActionMenuSaisieTemps()
+        {
+            VMCourante = new VMSaisieTemps();
+        }
+
+        private ICommand _CmdVersion;
+
+        public ICommand CmdVersion
+        {
+            get
+            {
+                if (_CmdVersion == null)
+                    _CmdVersion = new RelayCommand(ActionMenuVersion);
+                return _CmdVersion;
+            }
+        }
+
+        private void ActionMenuVersion()
+        {
+            VMCourante = new VMVersion();
+        }
     }
+
+
 }
 

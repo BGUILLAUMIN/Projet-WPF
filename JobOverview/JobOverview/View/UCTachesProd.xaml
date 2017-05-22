@@ -20,7 +20,7 @@
             <DockPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                     <Button Style="{StaticResource ButtonStyle}">
-                        <fa:IconBlock Icon="FloppyO"/>
+                        <fa:IconBlock Icon="PlusCircle"/>
                         <Button.ToolTip>
                             <ToolTip>
                                 <TextBlock>Ajouter une tâche de production.</TextBlock>
@@ -28,7 +28,7 @@
                         </Button.ToolTip>
                     </Button>
                     <Button Style="{StaticResource ButtonStyle}">
-                        <fa:IconBlock Icon="Times"/>
+                        <fa:IconBlock Icon="FloppyO"/>
                         <Button.ToolTip>
                             <ToolTip>
                                 <TextBlock>Enregistrer la tâche.</TextBlock>

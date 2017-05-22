@@ -69,11 +69,13 @@
     <Compile Include="Entity\Personne.cs" />
     <Compile Include="Entity\Tache.cs" />
     <Compile Include="ViewModel\VMAPropos.cs" />
+    <Compile Include="ViewModel\VMSaisieTemps.cs" />
     <Compile Include="ViewModel\VMTachesAnnexe.cs" />
     <Compile Include="Model\DALLogiciels.cs" />
     <Compile Include="Model\DALPersonnes.cs" />
     <Compile Include="Model\DALTaches.cs" />
     <Compile Include="ViewModel\VMTachesProd.cs" />
+    <Compile Include="ViewModel\VMVersion.cs" />
     <Compile Include="View\UCAPropos.xaml.cs">
       <DependentUpon>UCAPropos.xaml</DependentUpon>
     </Compile>
