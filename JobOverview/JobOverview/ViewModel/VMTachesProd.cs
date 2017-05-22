@@ -31,7 +31,7 @@ namespace JobOverview.ViewModel
             get { return _nouvelleTache; }
             private set
             {
-                _nouvelleTache = value;
+                
                 SetProperty(ref _nouvelleTache, value);
             }
         }
