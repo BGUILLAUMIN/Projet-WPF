@@ -25,8 +25,8 @@ namespace JobOverview.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=YCAPPELLE17-DE\\IP08R2;Initial Catalog=JobOverview;Integrated Security" +
-            "=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=JobOverview;Integrated Securit" +
+            "y=True")]
         public string ConnectionJobOverview {
             get {
                 return ((string)(this["ConnectionJobOverview"]));
@@ -42,6 +42,18 @@ namespace JobOverview.Properties {
             }
             set {
                 this["PersonneConnecte"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ManagerConnecte {
+            get {
+                return ((bool)(this["ManagerConnecte"]));
+            }
+            set {
+                this["ManagerConnecte"] = value;
             }
         }
     }

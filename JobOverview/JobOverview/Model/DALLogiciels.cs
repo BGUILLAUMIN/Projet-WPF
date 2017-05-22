@@ -33,7 +33,7 @@ namespace JobOverview.Model
 				v.DateOuverture, v.DateSortiePrevue, v.DateSortieReelle,
 				v.Millesime, v.NumeroVersion";
 
-            // NB/ On pouvait éventuellement filtrer la requête sur la filière BIOH
+            
 
             using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {

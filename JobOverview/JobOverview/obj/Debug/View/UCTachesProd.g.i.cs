@@ -10,6 +10,7 @@
 //------------------------------------------------------------------------------
 
 using FontAwesome.Sharp;
+using JobOverview.Properties;
 using JobOverview.View;
 using System;
 using System.Diagnostics;
@@ -42,7 +43,7 @@ namespace JobOverview.View {
     public partial class UCTachesProd : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         
-        #line 108 "..\..\..\View\UCTachesProd.xaml"
+        #line 109 "..\..\..\View\UCTachesProd.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox cbxLogiciels;
         

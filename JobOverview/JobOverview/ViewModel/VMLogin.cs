@@ -11,13 +11,10 @@ namespace JobOverview.ViewModel
 {
 	public class VMLogin : ViewModelBase
 	{
-		// TODO : à remplacer par une vraie liste de personnes
 		public List<Personne> Personnes { get; private set; }
 
 		public VMLogin()
 		{
-            //// TODO : à remplacer par un appel à une méthode de DAL
-            //Personnes = new List<string>()	{ "Pierre", "Paul", "Jacques" };
             Personnes = new List<Personne>();
             Personnes = DALPersonnes.GetPersonnes();
 		}

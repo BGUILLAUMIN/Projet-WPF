@@ -71,7 +71,7 @@
                 <MenuItem Name="TachesProd" Header="Taches Production" Background="#777" Command="{Binding CmdTachesProd}"/>
                 <MenuItem Name="TachesAnnexe" Header="Taches Annexes"  Background="#999" Command="{Binding CmdTachesAnnexe}"/>
                 <MenuItem Name="SaisieTemps" Header="Saisie Temps"  Background="#BBB" Command="{Binding CmdSaisieTemps}"/>
-                <MenuItem Name="SynthèseVersions" Header="Synthèse Versions"  Background="#DDD" Command="{Binding CmdTachesProd}"/>
+                <MenuItem Name="SynthèseVersions" Header="Synthèse Versions"  Background="#DDD" Command="{Binding CmdVersion}"/>
                 <MenuItem Name="APropos" Header="A propos" Background="#EEE"  Command="{Binding CmdAPropos}"/>
             </Menu>
             <UserControl Content="{Binding VMCourante}"/>

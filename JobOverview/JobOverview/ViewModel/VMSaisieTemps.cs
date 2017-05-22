@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace JobOverview.ViewModel
 {
-    public class VMSaisieTemps:ViewModelBase
+    class VMSaisieTemps : ViewModelBase
     {
+
+
     }
 }
