@@ -102,7 +102,7 @@ namespace JobOverview.Model
         /// Enregistre une liste de tâches de production dans la base
         /// </summary>
         /// <param name="listTaches"></param>
-        public static void EnregistrerTachesProd(List<TacheProd> listTaches)
+        public static void EnregistrerTachesProd(TacheProd tache)
         {
             string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
                         select IdTache, Libelle, Annexe, CodeActivite, Login, Description
@@ -117,7 +117,7 @@ namespace JobOverview.Model
             // Création du paramètre de type table mémoire
             // /!\ Le type TypeTableProd doit être créé au préalable dans la base
             var param = new SqlParameter("@table", SqlDbType.Structured);
-            DataTable tableTaches = GetDataTableForTachesProd(listTaches);
+            DataTable tableTaches = GetDataTableForTachesProd(tache);
             param.TypeName = "TypeTableTachesProd";
             param.Value = tableTaches;
 
@@ -149,7 +149,7 @@ namespace JobOverview.Model
         /// Enregistre une liste de tâches annexes dans la base
         /// </summary>
         /// <param name="listTaches"></param>
-        public static void EnregistrerTachesAnnexes(List<Tache> listTachesAnnexes)
+        public static void EnregistrerTachesAnnexes(Tache TachesAnn)
         {
             string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
                         select IdTache, Libelle, Annexe, CodeActivite, Login, Description
@@ -159,7 +159,7 @@ namespace JobOverview.Model
             // Création du paramètre de type table mémoire
             // /!\ Le type TypeTableAnn doit être créé au préalable dans la base
             var param = new SqlParameter("@table", SqlDbType.Structured);
-            DataTable tableTaches = GetDataTableForTachesAnn(listTachesAnnexes);
+            DataTable tableTaches = GetDataTableForTachesAnn(TachesAnn);
             param.TypeName = "TypeTableTachesAnn";
             param.Value = tableTaches;
 
@@ -232,7 +232,7 @@ namespace JobOverview.Model
         /// </summary>
         /// <param name="listTachesProd"></param>
         /// <returns></returns>
-        private static DataTable GetDataTableForTachesAnn(List<Tache> listTachesAnnexes)
+        private static DataTable GetDataTableForTachesAnn(Tache tacheAnn)
         {
             // Création de la table et de ses colonnes
             DataTable table = new DataTable();
@@ -255,7 +255,7 @@ namespace JobOverview.Model
             table.Columns.Add(colDescription);
 
             // Remplissage de la table
-            foreach (var p in listTachesAnnexes)
+            foreach (var p in tacheAnn)
             {
                 DataRow ligne = table.NewRow();
                 ligne["IdTache"] = Guid.NewGuid();
@@ -276,7 +276,7 @@ namespace JobOverview.Model
         /// </summary>
         /// <param name="listTachesAnn"></param>
         /// <returns></returns>
-        private static DataTable GetDataTableForTachesProd(List<TacheProd> listTachesProd)
+        private static DataTable GetDataTableForTachesProd(TacheProd tache)
         {
             // Création de la table et de ses colonnes
             DataTable table = new DataTable();
@@ -318,7 +318,7 @@ namespace JobOverview.Model
             table.Columns.Add(colDescription);
 
             // Remplissage de la table
-            foreach (var p in listTachesProd)
+            foreach (var p in table)
             {
                 DataRow ligne = table.NewRow();
                 ligne["IdTache"] = Guid.NewGuid();
