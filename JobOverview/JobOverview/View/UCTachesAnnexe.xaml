@@ -12,7 +12,7 @@
     <DockPanel Margin="0,20,0,0">
 
         <!--#region Expander Ajout de Taches Annexe-->
-        <Expander ExpandDirection="Left" MaxWidth="280" DockPanel.Dock="Right">
+        <Expander ExpandDirection="Left" MaxWidth="280" DockPanel.Dock="Right" IsExpanded="True">
             <Expander.ToolTip>
                 <ToolTip>
                     <TextBlock>Déplier la fiche de détails.</TextBlock>

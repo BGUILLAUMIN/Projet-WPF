@@ -47,6 +47,7 @@ namespace JobOverview.ViewModel
 
 
 
+        #region Constructeur
         public VMTachesAnnexe()
         {
             Activites = DALPersonnes.GetActivite();
@@ -54,7 +55,8 @@ namespace JobOverview.ViewModel
 
             TachesAnnexes = new ObservableCollection<Tache>(DALTaches.GetTachesAnnexe());
             ModeEdit = ModesEdition.Consultation;
-        }
+        } 
+        #endregion
 
         #region Définition des commandes
         //lors du clic sur le bouton Ajouter

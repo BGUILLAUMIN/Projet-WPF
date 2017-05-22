@@ -130,20 +130,23 @@
 
             <!--#region zone de sélection-->
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                <StackPanel>
+                <StackPanel >
                     <Label Content="Logiciel"/>
                     <ComboBox Name="cbxLogiciels"
                           ItemsSource="{Binding Path=Logiciels}"
                           DisplayMemberPath="Nom"
                           SelectedValuePath="Code"
                           SelectedIndex="0" IsSynchronizedWithCurrentItem="True">
-                    <ComboBox.ToolTip>
-                        <ToolTip>
-                            <TextBlock>Selection du logiciel.</TextBlock>
-                        </ToolTip>
-                    </ComboBox.ToolTip>
-                </ComboBox>
-                <ComboBox Name="cbxVersions" Margin="5" 
+                        <ComboBox.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Selection du logiciel.</TextBlock>
+                            </ToolTip>
+                        </ComboBox.ToolTip>
+                    </ComboBox>
+                </StackPanel>
+            <StackPanel>
+            <Label Content="Version"/>
+                <ComboBox Name="cbxVersions"  
                           ItemsSource="{Binding Path=Logiciels/Versions}"
                           DisplayMemberPath="Numero"
                           SelectedValuePath="Numero" 
@@ -157,7 +160,7 @@
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Personnes"/>
-                    <ComboBox Name="cbxPersonnes" Width="200"
+                    <ComboBox Name="cbxPersonnes" Style="{StaticResource Combobox2}"
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
