@@ -19,7 +19,7 @@ namespace JobOverview.ViewModel
     {
 
         #region champs privés
-        private Tache _nouvelleTache;
+       
         private ModesEdition _mode;
 
         #endregion
@@ -77,8 +77,8 @@ namespace JobOverview.ViewModel
             get
             {
                 if (_cmdSupprimer == null)
-                    _cmdSupprimer = new RelayCommand(SupprimerTache,ActiverSupprimer()
-);
+                    _cmdSupprimer = new RelayCommand(SupprimerTache, ActiverSupprimer);
+
                 return _cmdSupprimer;
             }
         }
