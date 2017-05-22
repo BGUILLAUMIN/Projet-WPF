@@ -48,4 +48,6 @@ namespace JobOverview.Entity
         [XmlAttribute("TauxProduct")]
         public float TauxProductivite { get; set; }
     }
+  
+
 }

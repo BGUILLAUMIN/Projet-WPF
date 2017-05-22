@@ -39,7 +39,7 @@
                             </ToolTip>
                         </Button.ToolTip>
                     </Button>
-                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAnnuler}">
+                    <Button Style="{StaticResource ButtonStyle}"  Command="{Binding CmdAnnuler}">
                         <fa:IconBlock Icon="Undo"/>
                         <Button.ToolTip>
                             <ToolTip>
