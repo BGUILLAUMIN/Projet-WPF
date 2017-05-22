@@ -78,6 +78,7 @@ namespace JobOverview.ViewModel
         private void ActionMenuTachesAnnexe()
         {
             VMCourante = new VMTachesAnnexe();
+           
         }
 
 

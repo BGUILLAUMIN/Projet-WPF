@@ -24,6 +24,11 @@
 <!--Création du style pour les menu-->
         <Style TargetType="MenuItem">
             <Setter Property="FontSize" Value="20"/>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background" Value="AliceBlue"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
 
@@ -68,7 +73,7 @@
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
-                <MenuItem Name="TachesProd" Header="Taches Production" Background="#777" Command="{Binding CmdTachesProd}" />
+                <MenuItem Name="TachesProd"  Header="Taches Production" Background="#777" Command="{Binding CmdTachesProd}" />
                 <MenuItem Name="TachesAnnexe" Header="Taches Annexes"  Background="#999" Command="{Binding CmdTachesAnnexe}"/>
                 <MenuItem Name="SaisieTemps" Header="Saisie Temps"  Background="#BBB" Command="{Binding CmdSaisieTemps}"/>
                 <MenuItem Name="SynthèseVersions" Header="Synthèse Versions"  Background="#DDD" Command="{Binding CmdVersion}"/>
