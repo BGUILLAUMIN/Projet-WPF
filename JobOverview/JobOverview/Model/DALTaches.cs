@@ -9,11 +9,16 @@ using System.Threading.Tasks;
 using JobOverview.Entity;
 using System.Xml.Serialization;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace JobOverview.Model
 {
-    static class DALTaches
+    public class DALTaches
     {
+        #region Méthodes publiques
+        /// <summary>
+        /// Permet de récupérer les tâches de production
+        /// </summary>
         public static List<TacheProd> GetTachesProd(string codeLogiciel, float numVersion)
         {
             var listTaches = new List<TacheProd>();
@@ -21,10 +26,10 @@ namespace JobOverview.Model
             string req = @"select t.IdTache, t.Libelle, t.Description, t.CodeActivite, t.Login,
 						tp.Numero, tp.DureePrevue, tp.DureeRestanteEstimee,
 						tp.CodeLogicielVersion, tp.NumeroVersion, tp.CodeModule
-					from jo.Tache t
-					inner join jo.TacheProd tp on t.IdTache = tp.IdTache
-					where Annexe = 0 and tp.CodeLogicielVersion = @CodeLogiciel and tp.NumeroVersion = @NumVersion
-					order by Numero";
+					    from jo.Tache t
+					    inner join jo.TacheProd tp on t.IdTache = tp.IdTache
+					    where Annexe = 0 and tp.CodeLogicielVersion = @CodeLogiciel and tp.NumeroVersion = @NumVersion
+					    order by Numero";
 
             var paramCodeLogi = new SqlParameter("@CodeLogiciel", DbType.String);
             paramCodeLogi.Value = codeLogiciel;
@@ -59,7 +64,6 @@ namespace JobOverview.Model
                     }
                 }
             }
-
             return listTaches;
         }
         public static List<Tache> GetTachesAnnexe()
@@ -132,26 +136,64 @@ namespace JobOverview.Model
             command.Parameters.Add(param);
             command.ExecuteNonQuery();
 
-            // Validation de la transaction s'il n'y a pas eu d'erreur
-            tran.Commit();
+                    // Validation de la transaction s'il n'y a pas eu d'erreur
+                    tran.Commit();
+                }
+                catch (Exception)
+                {
+                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
+                    throw;   // Remontée de l'erreur à l'appelant
+                }
+            }
         }
-        catch (Exception)
-        {
-            tran.Rollback(); // Annulation de la transaction en cas d'erreur
-            throw;   // Remontée de l'erreur à l'appelant
-        }
-    }
-}
 
-/// <summary>
-/// Création et remplissage d'une table mémoire à partir d'une liste de tâches de prod
-/// </summary>
-/// <param name="listTachesProd"></param>
-/// <returns></returns>
-private static DataTable GetDataTableForTachesProd(List<TacheProd> listTachesProd)
-{
-    // Création de la table et de ses colonnes
-    DataTable table = new DataTable();
+        /// <summary>
+        /// Sérialisation des tâches. Permet d'exporter les données tâches en données xml
+        /// </summary>
+        /// <param name="taches"></param>
+        public static void ExportTachesXml(List<Tache> taches)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Tache>),
+                                                new XmlRootAttribute("Taches"));
+            using (TextWriter writer = new StreamWriter("Taches.xml"))
+                serializer.Serialize(writer, taches);
+        }
+
+        /// <summary>
+        /// Permet de récupérer les activités annexes
+        /// </summary>
+        public static List<Activite> GetActivitésAnnexes()
+        {
+            //Requêtage à la BDD pour récupérer les informations sur les activités
+            List<Activite> listActivitésAnx = new List<Activite>();
+
+            var conx = new SqlConnection(Settings.Default.ConnectionJobOverview);
+
+            string query = @"select CodeActivite, Libelle from jo.Activite where Annexe = 1";
+
+            var com = new SqlCommand(query, conx);
+            conx.Open();
+
+            using (SqlDataReader reader = com.ExecuteReader())
+            {
+                GetActivitésFromDataReader(reader, listActivitésAnx);
+            }
+
+            return listActivitésAnx;
+        }
+        #endregion
+
+        #region Méthodes Privées
+
+        /// <summary>
+        /// Création et remplissage d'une table mémoire à partir d'une liste de tâches de prod
+        /// </summary>
+        /// <param name="listTachesProd"></param>
+        /// <returns></returns>
+        private static DataTable GetDataTableForTachesProd(List<TacheProd> listTachesProd)
+        {
+            // Création de la table et de ses colonnes
+            DataTable table = new DataTable();
 
     var colIdTache = new DataColumn("IdTache", typeof(Guid));
     colIdTache.AllowDBNull = false;
@@ -209,19 +251,25 @@ private static DataTable GetDataTableForTachesProd(List<TacheProd> listTachesPro
 
         table.Rows.Add(ligne);
 
+            }
+            return table;
+        }
+        
+        private static void GetActivitésFromDataReader(SqlDataReader reader, List<Activite> listActivitésAnx)
+        {
+            while (reader.Read())
+            {
+                Activite act = new Activite();
+
+                act.Code = reader["CodeActivite"].ToString();
+                act.Libelle = reader["Libelle"].ToString();
+
+                listActivitésAnx.Add(act);
+            }
+        }
+        #endregion
     }
-    return table;
-}
-/// <summary>
-/// Sérialisation des tâches. Permet d'exporter les données tâches en données xml
-/// </summary>
-/// <param name="taches"></param>
-public static void ExportTachesXml(List<Tache> taches)
-{
-    XmlSerializer serializer = new XmlSerializer(typeof(List<Tache>),
-                                        new XmlRootAttribute("Taches"));
-    using (TextWriter writer = new StreamWriter("Taches.xml"))
-        serializer.Serialize(writer, taches);
-}
-    }
+
+
+
 }

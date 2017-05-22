@@ -9,7 +9,7 @@ using JobOverview.Properties;
 
 namespace JobOverview.Model
 {
-    class DALLogiciels
+   public class DALLogiciels
     {
         /// <summary>
 		/// Obtient et renvoie la liste des logiciels et leurs versions associées,
@@ -21,17 +21,23 @@ namespace JobOverview.Model
         {
             var listLogiciels = new List<Logiciel>();
 
-            string req = @"select l.CodeLogiciel, l.Nom,
+            string req = @"select l.CodeLogiciel, l.Nom, 
 				v.DateOuverture, v.DateSortiePrevue, v.DateSortieReelle, 
-				v.Millesime, v.NumeroVersion,
-				max(r.NumeroRelease) DerniereRelease
+				v.Millesime, v.NumeroVersion, 
+				max(r.NumeroRelease) DerniereRelease,
+				SUM( tr.Heures/8) NombreJours ,  COUNT(distinct p.Login) NombrePersonnes			
 				from jo.Logiciel l
 				left outer join jo.Version v on l.CodeLogiciel = v.CodeLogiciel
-				left outer join jo.Release r on (r.NumeroVersion = v.NumeroVersion and
-				r.CodeLogiciel = v.CodeLogiciel)
+				left outer join jo.Release r on (r.NumeroVersion = v.NumeroVersion and r.CodeLogiciel = v.CodeLogiciel)
+				left outer join jo.Module m on m.CodeLogiciel = l.CodeLogiciel
+				left outer join jo.TacheProd tp on tp.CodeModule = m.CodeModule
+				left outer join jo.Tache t on t.IdTache = tp.IdTache
+				left outer join jo.Personne p on p.Login = t.Login
+				left outer join jo.Travail tr on tr.IdTache = t.IdTache
 				group by l.CodeLogiciel, l.Nom,
 				v.DateOuverture, v.DateSortiePrevue, v.DateSortieReelle,
-				v.Millesime, v.NumeroVersion";
+				v.Millesime, v.NumeroVersion
+				order by l.CodeLogiciel desc";
 
             
 
@@ -140,6 +146,11 @@ namespace JobOverview.Model
                 if(reader["DerniereRelease"] != DBNull.Value)
                     v.DerniereRelease = (Int16)reader["DerniereRelease"];
 
+                if (reader["NombreJours"] != DBNull.Value)
+                    v.NombreJours = (double)reader["NombreJours"];
+
+                if (reader["NombrePersonnes"] != DBNull.Value)
+                    v.NombrePersonnes = (int)reader["NombrePersonnes"];
                 logi.Versions.Add(v);
             }
         }
