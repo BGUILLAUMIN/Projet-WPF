@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:JobOverview"
         xmlns:v="clr-namespace:JobOverview.View"
         mc:Ignorable="d"
-       Title="Job Overview" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+       Title="Job Overview" Height="600" Width="800" WindowStartupLocation="CenterScreen" Icon="pack://application:,,,/images/IconeJO.ico">
     <Window.Resources>
         <!-- DataTemplates pour les différents types de vues-modèles -->
         <!--<Style TargetType="Button">
