@@ -40,5 +40,17 @@ namespace JobOverview.View
             throw new NotImplementedException();
         }
     }
+    public class ConvModeEditToString : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (ModesEdition)value == ModesEdition.Edition ? "(mode édition)" : " ";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
 

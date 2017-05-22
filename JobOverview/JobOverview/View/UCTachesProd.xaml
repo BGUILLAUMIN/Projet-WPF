@@ -19,18 +19,20 @@
         </Style>
     </UserControl.Resources>
 
-
-    <DockPanel Margin="5">
+    <DockPanel Margin="5" Background="White">
         <!--#region Expander Ajout de Taches de production-->
-        <Expander ExpandDirection="Left" MaxWidth="250" DockPanel.Dock="Right" IsExpanded="True">
+        <Expander ExpandDirection="Left" Width="Auto" DockPanel.Dock="Right" IsExpanded="True">
             <Expander.ToolTip>
                 <ToolTip>
-                    <TextBlock>Déplier la fiche de détails.</TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconBlock Icon="LightbulbO" Margin="3"/>
+                        <TextBlock>Déplier la fiche de détails.</TextBlock>
+                    </StackPanel>
                 </ToolTip>
             </Expander.ToolTip>
             <StackPanel>
                 <!--#region Barre de boutons-->
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <StackPanel Orientation="Horizontal">
                     <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
                         <fa:IconBlock Icon="PlusCircle"/>
                         <Button.ToolTip>
@@ -56,50 +58,73 @@
                         </Button.ToolTip>
                     </Button>
                 </StackPanel>
-                <Separator Height="10" Opacity="0" />
+                <Separator Height="10" Width="350" Opacity="0" />
                 <!--#endregion-->
 
                 <!--#region Zones de saisies-->
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="N° :"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="N° :" Grid.Row="1" Grid.Column="0"/>
+                    <Label Content="Libellé :" Grid.Row="2"/>
+                    <Label Content="Durée Prévue :" Grid.Row="3"/>
+                    <Label Content="Durée Restante :" Grid.Row="4"/>
+                    <Label Content="Module :" Grid.Row="5"/>
+                    <Label Content="Activité :" Grid.Row="6"/>
                     <TextBox  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" 
-                              IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditActivation}}" />
-                </StackPanel>
+                              Margin="0,7,0,7"
+                              IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
+                                  HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"
+                              VerticalContentAlignment="Center"/>
+                    <TextBox MinWidth="100" Text="{Binding Path=TachesProds/Libelle}" FontWeight="Bold" 
+                             Margin="0,7,0,7"
+                                 IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
+                                 HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"
+                                 VerticalContentAlignment="Center"/>
+                    <TextBox Width="20"  Text="{Binding Path=TachesProds/DureePrevue}" FontWeight="Bold" 
+                             Margin="0,7,0,7"
+                                     IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
+                                 HorizontalAlignment="Left" Grid.Row="3" Grid.Column="1"
+                                 VerticalContentAlignment="Center"/>
+                    <TextBox Width="20" Text="{Binding Path=TachesProds/DureeRestante}" FontWeight="Bold" 
+                             Margin="0,7,0,7"
+                                     IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
+                                 HorizontalAlignment="Left" Grid.Row="4" Grid.Column="1"
+                                 VerticalContentAlignment="Center"/>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Libellé :"/>
-                    <TextBox MinWidth="100" Text="{Binding Path=TachesProds/Libelle}" FontWeight="Bold" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"/>
-                </StackPanel>
+                    <TextBlock Width="100" Text="{Binding Path=TachesProds/CodeModule}" 
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center" 
+                                   Grid.Row="5" Grid.Column="1"/>
+                    <ComboBox Visibility="Hidden"  Grid.Row="5" Grid.Column="1" />
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Durée Prévue :"/>
-                    <TextBox Width="20"  Text="{Binding Path=TachesProds/DureePrevue}" FontWeight="Bold" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"/>
-                </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Durée Restante :"/>
-                    <TextBox Width="20" Text="{Binding Path=TachesProds/DureeRestante}" FontWeight="Bold" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"/>
-                </StackPanel>
-                <Label Content=" Module :" />
-                <Grid>
+                    <TextBlock Width="100" Text="{Binding Path= TachesProds/CodeActivite}"
+                                   Grid.Row="6" Grid.Column="1"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                    <ComboBox  Visibility="Hidden" Grid.Column="1" Margin="13,5,37,5"/>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Width="100" Text="{Binding Path=TachesProds/CodeModule}"  />
-                    <ComboBox Visibility="Hidden"   />
                 </Grid>
+                <StackPanel Orientation="Vertical">
+                    <Separator Height="10" Opacity="0"/>
+                    <Label Content="Description (facultatif) :"/>
+                    <TextBox MinHeight="100" TextWrapping="Wrap" Text="{Binding Path=TachesProds/Description}" 
+                         IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"/>
 
-                <Label Content=" Activité :" />
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Width="100" Text="{Binding Path= TachesProds/CodeActivite}"/>
-                    <ComboBox  Visibility="Hidden"  />
-                </Grid>
-
-                <TextBox MinHeight="50" TextWrapping="Wrap" Text="{Binding Path=TachesProds/Description}" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditActivation}}"/>
+                </StackPanel>
             </StackPanel>
             <!--#endregion-->
 
@@ -118,7 +143,15 @@
                         </ToolTip>
                     </CheckBox.ToolTip>
                 </CheckBox>
-                <Button Content="XML" Width="100" HorizontalAlignment="Right" Margin="0,0,10,5" Command="{Binding CmdExport}">
+                <Button Width="100" HorizontalAlignment="Right" Margin="0,0,10,5" Command="{Binding CmdExport}" Background="Beige">
+                    <Grid VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <fa:IconBlock Icon="ArrowRight" Margin="5" FontSize="20"/>
+                        <Label Content="XML" VerticalContentAlignment="Center" Grid.Column="1"/>
+                    </Grid>
                     <Button.ToolTip>
                         <ToolTip>
                             <TextBlock>Exporter toutes les tâches de production au format XML.</TextBlock>
@@ -137,13 +170,16 @@
                           DisplayMemberPath="Nom"
                           SelectedValuePath="Code"
                           SelectedIndex="0" IsSynchronizedWithCurrentItem="True">
-                    <ComboBox.ToolTip>
-                        <ToolTip>
-                            <TextBlock>Selection du logiciel.</TextBlock>
-                        </ToolTip>
-                    </ComboBox.ToolTip>
-                </ComboBox>
-                <ComboBox Name="cbxVersions" Margin="5" 
+                        <ComboBox.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Selection du logiciel.</TextBlock>
+                            </ToolTip>
+                        </ComboBox.ToolTip>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Version"/>
+                    <ComboBox Name="cbxVersions" Margin="5" 
                           ItemsSource="{Binding Path=Logiciels/Versions}"
                           DisplayMemberPath="Numero"
                           SelectedValuePath="Numero" 
@@ -156,7 +192,7 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel>
-                    <Label Content="Personnes"/>
+                    <Label Content="Personne"/>
                     <ComboBox Name="cbxPersonnes" Width="200"
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
