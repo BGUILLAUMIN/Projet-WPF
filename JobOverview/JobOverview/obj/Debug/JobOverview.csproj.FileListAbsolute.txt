@@ -128,10 +128,16 @@ C:\Users\Ben\Source\Repos\Projet-WPF2\JobOverview\JobOverview\obj\Debug\View\UCV
 C:\Users\Ben\Source\Repos\Projet-WPF2\JobOverview\JobOverview\obj\Debug\JobOverview.g.resources
 C:\Users\Ben\Source\Repos\Projet-WPF2\JobOverview\JobOverview\obj\Debug\JobOverview.Properties.Resources.resources
 C:\Users\Ben\Source\Repos\Projet-WPF2\JobOverview\JobOverview\obj\Debug\JobOverview.csproj.GenerateResource.Cache
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.pdb
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\FontAwesome.Sharp.dll
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.g.cs
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSaisieTemps.g.cs
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.g.cs
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.g.cs
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.g.cs
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.baml
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSaisieTemps.baml
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.baml
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.baml
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.baml
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.g.cs
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.g.cs
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCButtonsBar.g.cs
@@ -145,6 +151,11 @@ C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\A
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.cache
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.lref
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.pdb
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.baml
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.baml
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.baml
@@ -160,13 +171,3 @@ C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\J
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csproj.GenerateResource.Cache
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.g.cs
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSaisieTemps.g.cs
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.g.cs
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.g.cs
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.g.cs
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.baml
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSaisieTemps.baml
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.baml
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.baml
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.baml

@@ -49,8 +49,8 @@ namespace JobOverview.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=BGUILLAUMI17-DE\\IP08R2;Initial Catalog=WinformsJobOverview;Integrated" +
-            " Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=BGUILLAUMI17-DE\\IP08R2;Initial Catalog=JobOverview;Integrated Securit" +
+            "y=True")]
         public string ConnectionJobOverview {
             get {
                 return ((string)(this["ConnectionJobOverview"]));

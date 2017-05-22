@@ -6,8 +6,10 @@
                 xmlns:local="clr-namespace:JobOverview"
 				xmlns:vw="clr-namespace:JobOverview.View"
 				xmlns:vm="clr-namespace:JobOverview.ViewModel"
-             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-             xmlns:properties="clr-namespace:JobOverview.Properties"
+                xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+                xmlns:properties="clr-namespace:JobOverview.Properties"
+                xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+               
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
     <UserControl.Resources>
@@ -132,7 +134,8 @@
                           ItemsSource="{Binding Path=Logiciels}"
                           DisplayMemberPath="Nom"
                           SelectedValuePath="Code"
-                          SelectedIndex="0" IsSynchronizedWithCurrentItem="True">
+                          SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
+                          SelectionChanged="{Binding CmdFiltreTach}">
                     <ComboBox.ToolTip>
                         <ToolTip>
                             <TextBlock>Selection du logiciel.</TextBlock>
