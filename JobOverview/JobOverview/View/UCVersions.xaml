@@ -11,7 +11,7 @@
     <DockPanel Margin="0,20,0,0">
 
         <!--#region Expander Ajout de Taches Annexe-->
-        <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right">
+        <Expander ExpandDirection="Left" MaxWidth="250" DockPanel.Dock="Right">
             <Expander.ToolTip>
                 <ToolTip>
                     <TextBlock>Déplier la fiche de détails.</TextBlock>
@@ -26,20 +26,35 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="30"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="20"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="20"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Nombre de jours total &#10; réalisé sur chaque &#10; module : " Grid.Row="3"/>
-                    <TextBlock Text="X jours" Grid.Row="4" FontWeight="Bold"/>
-                    <TextBlock Text="Nombre de releases :" Grid.Row="5"/>
-                    <TextBlock Text="{Binding Path=Logiciels/Versions/DerniereRelease}" Grid.Row="6" FontWeight="Bold"/>
+
+                    <TextBlock Text="Millesime de la version :" 
+                               Grid.Row="0"/>
+                    <TextBlock Text="{Binding Path=Logiciels/Versions/Millesime}" 
+                               Grid.Row="1"
+                               FontWeight="Bold"/>
+                    <TextBlock Text="Nombre de releases :" 
+                               Grid.Row="2"/>
+                    <TextBlock Text="{Binding Path=Logiciels/Versions/DerniereRelease}" 
+                               Grid.Row="3" 
+                               FontWeight="Bold"/>
+                    <TextBlock Text="Date d'ouverture de la version :" Grid.Row="4"/>
+                    <TextBlock Text="{Binding Path=Logiciels/Versions/DateOuverture, StringFormat='\{0:dd/MM/yyy}'}" 
+                               FontWeight="Bold"
+                               Grid.Row="5"/>
+                    <TextBlock Text="Date de sortie prévue de la version :" Grid.Row="6"/>
+                    <TextBlock Text="{Binding Path=Logiciels/Versions/DateSortiePrevue, StringFormat='\{0:dd/MM/yyy}'}"
+                               FontWeight="Bold"
+                               Grid.Row="7"/>
 
 
                 </Grid>
@@ -54,8 +69,7 @@
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,5,10,0">
                 <TextBlock Text="Logiciel : " VerticalAlignment="Center" MinWidth="55"/>
-                <ComboBox Style="{StaticResource ComboBoxStyle}"
-                          ItemsSource="{Binding Path=Logiciels}"
+                <ComboBox ItemsSource="{Binding Path=Logiciels}"
                           DisplayMemberPath="Nom"
                           SelectedValuePath="Code"
                           SelectedIndex="0" IsSynchronizedWithCurrentItem="True">
@@ -67,22 +81,22 @@
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,5,10,0">
-                <TextBlock Text="Filtre : " VerticalAlignment="Center" MinWidth="55"/>
-                <ComboBox Margin="0,5,10,0" Style="{StaticResource ComboBoxStyle}">
+                <TextBlock Text="Filtre : " VerticalAlignment="Center" MinWidth="60"/>
+                <ComboBox Margin="0,5,10,0">
                     <ComboBox.ToolTip>
                         <ToolTip>
                             <TextBlock>Choix de la version.</TextBlock>
                         </ToolTip>
                     </ComboBox.ToolTip>
                 </ComboBox>
-                <ComboBox Margin="0,5,10,0" Style="{StaticResource ComboBoxStyle}">
+                <ComboBox Margin="0,5,10,0">
                     <ComboBox.ToolTip>
                         <ToolTip>
                             <TextBlock>Choix du module.</TextBlock>
                         </ToolTip>
                     </ComboBox.ToolTip>
                 </ComboBox>
-                <ComboBox Margin="0,5,10,0" Style="{StaticResource ComboBoxStyle}" Width="50">
+                <ComboBox Margin="0,5,10,0" Width="50">
                     <ComboBoxItem>
                         <fa:IconBlock Icon="SortAsc"/>
                     </ComboBoxItem>
@@ -97,6 +111,25 @@
                 </ComboBox>
             </StackPanel>
 
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
+                <TextBlock Text="Modules :" Margin="10,0,0,10"
+                           FontWeight="Bold"/>
+
+                <ListView HorizontalAlignment="Stretch"
+                    FontWeight="Bold" ItemsSource="{Binding Path=Logiciels/Modules}" Margin="10">
+
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="True">
+                            <GridViewColumn Header="Numéro de Version" DisplayMemberBinding="{Binding Path=NumeroVersion}"/>
+                            <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Path=Code}"/>
+                            <GridViewColumn Header="Nombre de jours total réalisé" DisplayMemberBinding="{Binding Path=NombreJoursTotalModule}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </StackPanel>
+
+
             <ListView Margin="10"
                       ItemsSource="{Binding Path=Logiciels/Versions}"
                       IsSynchronizedWithCurrentItem="True"
@@ -105,26 +138,27 @@
 
                     <!--TODO Mettre les infos-bulle au dessus de chaque colonne.-->
                     <GridView AllowsColumnReorder="true">
-                       
+
                         <GridViewColumn Header="Version" 
                   DisplayMemberBinding="{Binding Path=Numero}"/>
-                        
+
                         <GridViewColumn Header="Date de sortie prévue" 
                   DisplayMemberBinding="{Binding Path=DateSortiePrevue, StringFormat='\{0:dd/MM/yyy}'}"/>
-                        
+
                         <GridViewColumn Header="Date de sortie effective" 
                   DisplayMemberBinding="{Binding Path=DateSortieReelle, StringFormat='\{0:dd/MM/yyy}'}"/>
-                        
+
                         <GridViewColumn Header="Ecart (en jours)" 
                   DisplayMemberBinding="{Binding Path=EcartJour}"/>
-                        
+
                         <GridViewColumn Header="Nombre de jours-hommes" 
                   DisplayMemberBinding="{Binding Path=JoursHommes}"/>
-                        
+
                     </GridView>
 
                 </ListView.View>
             </ListView>
+
 
 
         </DockPanel>

@@ -6,8 +6,10 @@
                 xmlns:local="clr-namespace:JobOverview"
 				xmlns:vw="clr-namespace:JobOverview.View"
 				xmlns:vm="clr-namespace:JobOverview.ViewModel"
-             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-             xmlns:properties="clr-namespace:JobOverview.Properties"
+                xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+                xmlns:properties="clr-namespace:JobOverview.Properties"
+                xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+               
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
     <!--définition des ressources-->
@@ -45,7 +47,7 @@
                             </ToolTip>
                         </Button.ToolTip>
                     </Button>
-                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAnnuler}">
+                    <Button Style="{StaticResource ButtonStyle}"  Command="{Binding CmdAnnuler}">
                         <fa:IconBlock Icon="Undo"/>
                         <Button.ToolTip>
                             <ToolTip>
@@ -60,7 +62,8 @@
                 <!--#region Zones de saisies-->
                 <StackPanel Orientation="Horizontal">
                     <Label Content="N° :"/>
-                    <TextBox  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}" />
+                    <TextBox  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" 
+                              IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditActivation}}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
@@ -134,16 +137,13 @@
                           DisplayMemberPath="Nom"
                           SelectedValuePath="Code"
                           SelectedIndex="0" IsSynchronizedWithCurrentItem="True">
-                        <ComboBox.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Selection du logiciel.</TextBlock>
-                            </ToolTip>
-                        </ComboBox.ToolTip>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel>
-                    <Label Content="Version"/>
-                    <ComboBox Name="cbxVersions" 
+                    <ComboBox.ToolTip>
+                        <ToolTip>
+                            <TextBlock>Selection du logiciel.</TextBlock>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+                <ComboBox Name="cbxVersions" Margin="5" 
                           ItemsSource="{Binding Path=Logiciels/Versions}"
                           DisplayMemberPath="Numero"
                           SelectedValuePath="Numero" 

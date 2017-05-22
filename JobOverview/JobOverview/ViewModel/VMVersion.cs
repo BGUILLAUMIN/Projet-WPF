@@ -13,6 +13,7 @@ namespace JobOverview.ViewModel
     class VMVersion : ViewModelBase
     {
         public List<Logiciel> Logiciels { get; set; }
+        public List<Module> Modules { get; set; }
 
         public VMVersion()
         {

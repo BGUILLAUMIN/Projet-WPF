@@ -33,7 +33,6 @@ namespace JobOverview.ViewModel
             get { return _nouvelleTache; }
             private set
             {
-                _nouvelleTache = value;
                 SetProperty(ref _nouvelleTache, value);
             }
         }
@@ -49,7 +48,6 @@ namespace JobOverview.ViewModel
             get { return _mode; }
             private set
             {
-                _mode = value;
                 SetProperty(ref _mode, value);
             }
         }
@@ -62,13 +60,24 @@ namespace JobOverview.ViewModel
             Logiciels = DALLogiciels.GetLogicielsVersions();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
             TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
-
             ModeEdit = ModesEdition.Consultation;
         }
         #endregion
 
 
         #region Définition des commandes
+        private ICommand _cmdFiltreTach;
+        public ICommand CmdFiltreTach
+        {
+            get
+            {
+                if (_cmdFiltreTach == null)
+                    _cmdFiltreTach = new RelayCommand(FiltrerTachesProd);
+                return _cmdFiltreTach;
+            }
+        }
+
+
         //lors du clic sur le bouton Ajouter
         private ICommand _cmdAjouter;
         public ICommand CmdAjouter
@@ -123,6 +132,10 @@ namespace JobOverview.ViewModel
         #endregion
 
         #region Code des commandes
+        private void FiltrerTachesProd()
+        {
+
+        }
 
         private void AppelExport()
         {
@@ -176,7 +189,6 @@ namespace JobOverview.ViewModel
                 //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                 ModeEdit = ModesEdition.Consultation;
             }
-
         }
 
         //Appel de la méthode d'enregistrement des tâches de production dans la base
@@ -189,9 +201,6 @@ namespace JobOverview.ViewModel
             //Lorsque l'on clique sur le bouton annuler, on passe la fenêtre en mode Consultation
             ModeEdit = ModesEdition.Consultation;
         }
-
-
-
 
         //méthodes d'activation du Mode Edition
         // dès que l'on clique sur le bouton ajouter, cela désactive l'état du bouton

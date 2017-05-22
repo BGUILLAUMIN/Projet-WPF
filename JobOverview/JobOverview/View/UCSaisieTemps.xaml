@@ -81,7 +81,7 @@
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right">
                 <TextBlock Text="Filtre : " VerticalAlignment="Center"/>
-                <ComboBox Margin="0,5,10,0" Style="{StaticResource ComboBoxStyle}">
+                <ComboBox Margin="0,5,10,0">
                     <ComboBox.ToolTip>
                         <ToolTip>
                             <TextBlock>Choisir les options de filtrage.</TextBlock>

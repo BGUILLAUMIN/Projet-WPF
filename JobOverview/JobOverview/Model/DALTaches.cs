@@ -83,7 +83,7 @@ namespace JobOverview.Model
                     while (reader.Read())
                     {
                         var ta = new Tache();
-                      
+                      ta.Id= (Guid)reader["IdTache"];
                         ta.Libelle = (string)reader["Libelle"];
                         if (reader["Description"] != DBNull.Value)
                             ta.Description = (string)reader["Description"];
