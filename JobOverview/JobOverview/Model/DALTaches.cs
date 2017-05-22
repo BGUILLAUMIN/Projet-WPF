@@ -99,27 +99,19 @@ namespace JobOverview.Model
         }
 
         /// <summary>
-        /// Enregistre une liste de tâches de production dans la base
+        /// Enregistre une tâches de production dans la base
         /// </summary>
         /// <param name="listTaches"></param>
-        public static void EnregistrerTachesProd(TacheProd tache)
+        public static void EnregistrerTachesProd(TacheProd tacheProd)
         {
-            string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
-                        select IdTache, Libelle, Annexe, CodeActivite, Login, Description
-								from  @table;
+            string req = @"Insert jo.Tache(Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
+                        Values  (@Libelle, 0 , @CodeActivite, @Login, @Description);
 
-                        Insert jo.TacheProd (IdTache, DureePrevue, DureeRestanteEstimee,
+                        Insert jo.TacheProd (DureePrevue, DureeRestanteEstimee,
 									CodeModule, CodeLogicielModule, NumeroVersion, CodeLogicielVersion)
-                        select IdTache, DureePrevue, DureeRestanteEstimee,
-								CodeModule, CodeLogicielModule, NumeroVersion, CodeLogicielVersion
-								from @table";
+                        values  (@DureePrevue, @DureeRestanteEstimee,
+								@CodeModule, @CodeLogicielModule, @NumeroVersion, @CodeLogicielVersion)";
 
-            // Création du paramètre de type table mémoire
-            // /!\ Le type TypeTableProd doit être créé au préalable dans la base
-            var param = new SqlParameter("@table", SqlDbType.Structured);
-            DataTable tableTaches = GetDataTableForTachesProd(tache);
-            param.TypeName = "TypeTableTachesProd";
-            param.Value = tableTaches;
 
             using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
@@ -127,11 +119,46 @@ namespace JobOverview.Model
                 cnx.Open();
                 SqlTransaction tran = cnx.BeginTransaction();
 
+                #region Paramètres
+                SqlParameter paramLibellé = new SqlParameter("@Libelle", DbType.String);
+                paramLibellé.Value = tacheProd.Libelle;
+                SqlParameter paramCodeActivite = new SqlParameter("@CodeActivite", DbType.String);
+                paramCodeActivite.Value = tacheProd.CodeActivite;
+                SqlParameter paramLogin = new SqlParameter("@Login", DbType.String);
+                paramLogin.Value = tacheProd.LoginPersonne;
+                SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
+                paramDescription.Value = tacheProd.Description;
+                SqlParameter paramDureePrevue = new SqlParameter("@DureePrevue", SqlDbType.Float);
+                paramDureePrevue.Value = tacheProd.DureePrevue;
+                SqlParameter paramDureeRestanteEstimee = new SqlParameter("@DureeRestanteEstimee", SqlDbType.Float);
+                paramDureeRestanteEstimee.Value = tacheProd.DureeRestante;
+                SqlParameter paramCodeModule = new SqlParameter("@CodeModule", DbType.String);
+                paramCodeModule.Value = tacheProd.CodeModule;
+                SqlParameter paramCodeLogicielModule = new SqlParameter("@CodeLogicielModule", DbType.String);
+                paramCodeLogicielModule.Value = tacheProd.CodeLogiciel;
+                SqlParameter paramNumeroVersion = new SqlParameter("@NumeroVersion", SqlDbType.Float);
+                paramNumeroVersion.Value = tacheProd.Numero;
+                SqlParameter paramCodeLogicielVersion = new SqlParameter("@CodeLogicielVersion", DbType.String);
+                paramCodeLogicielVersion.Value = tacheProd.CodeLogiciel;
+
+                // Création  de la commande
+                var command = new SqlCommand(req, cnx, tran);
+                command.Parameters.Add(paramLibellé);
+                command.Parameters.Add(paramCodeActivite);
+                command.Parameters.Add(paramLogin);
+                command.Parameters.Add(paramDescription);
+                command.Parameters.Add(paramDureePrevue);
+                command.Parameters.Add(paramDureeRestanteEstimee);
+                command.Parameters.Add(paramCodeModule);
+                command.Parameters.Add(paramCodeLogicielModule);
+                command.Parameters.Add(paramNumeroVersion);
+                command.Parameters.Add(paramCodeLogicielVersion);
+
+                #endregion
                 try
                 {
-                    // Création et exécution de la commande
-                    var command = new SqlCommand(req, cnx, tran);
-                    command.Parameters.Add(param);
+                    //  exécution de la commande
+             
                     command.ExecuteNonQuery();
 
                     // Validation de la transaction s'il n'y a pas eu d'erreur
@@ -146,34 +173,45 @@ namespace JobOverview.Model
         }
 
         /// <summary>
-        /// Enregistre une liste de tâches annexes dans la base
+        /// Enregistre une tâche annexe dans la base
         /// </summary>
         /// <param name="listTaches"></param>
         public static void EnregistrerTachesAnnexes(Tache TachesAnn)
         {
-            string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
-                        select IdTache, Libelle, Annexe, CodeActivite, Login, Description
-								from  @table";
-                    
-
-            // Création du paramètre de type table mémoire
-            // /!\ Le type TypeTableAnn doit être créé au préalable dans la base
-            var param = new SqlParameter("@table", SqlDbType.Structured);
-            DataTable tableTaches = GetDataTableForTachesAnn(TachesAnn);
-            param.TypeName = "TypeTableTachesAnn";
-            param.Value = tableTaches;
-
+            // Ecriture de la requête d'insertion 
+            string req = @"Insert jo.Tache(Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
+                        Values (@Libelle, 1 , @CodeActivite, @Login, @Description";
+								
+         
             using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
                 // Ouverture de la connexion et début de la transaction
                 cnx.Open();
                 SqlTransaction tran = cnx.BeginTransaction();
 
+                #region Paramètres
+                SqlParameter paramLibellé = new SqlParameter("@Libelle", DbType.String);
+                paramLibellé.Value = TachesAnn.Libelle;
+                SqlParameter paramCodeActivite = new SqlParameter("@CodeActivite", DbType.String);
+                paramCodeActivite.Value = TachesAnn.CodeActivite;
+                SqlParameter paramLogin = new SqlParameter("@Login", DbType.String);
+                paramLogin.Value = TachesAnn.LoginPersonne;
+                SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
+                paramDescription.Value = TachesAnn.Description;
+
+                // Création  de la commande
+                var command = new SqlCommand(req, cnx, tran);
+                command.Parameters.Add(paramLibellé);
+                command.Parameters.Add(paramCodeActivite);
+                command.Parameters.Add(paramLogin);
+                command.Parameters.Add(paramDescription);
+
+                #endregion
+
                 try
                 {
-                    // Création et exécution de la commande
-                    var command = new SqlCommand(req, cnx, tran);
-                    command.Parameters.Add(param);
+                    // exécution de la commande
+                   
                     command.ExecuteNonQuery();
 
                     // Validation de la transaction s'il n'y a pas eu d'erreur
@@ -227,120 +265,7 @@ namespace JobOverview.Model
 
         #region Méthodes Privées
 
-        /// <summary>
-        /// Création et remplissage d'une table mémoire à partir d'une liste de tâches de prod
-        /// </summary>
-        /// <param name="listTachesProd"></param>
-        /// <returns></returns>
-        private static DataTable GetDataTableForTachesAnn(Tache tacheAnn)
-        {
-            // Création de la table et de ses colonnes
-            DataTable table = new DataTable();
-
-            var colIdTache = new DataColumn("IdTache", typeof(Guid));
-            colIdTache.AllowDBNull = false;
-            var colLibelle = new DataColumn("Libelle", typeof(string));
-            colLibelle.AllowDBNull = false;
-            table.Columns.Add(colLibelle);
-            var colAnnexe = new DataColumn("Annexe", typeof(bool));
-            colAnnexe.AllowDBNull = false;
-            table.Columns.Add(colAnnexe);
-            var colCodeActivite = new DataColumn("CodeActivite", typeof(string));
-            colCodeActivite.AllowDBNull = false;
-            table.Columns.Add(colCodeActivite);
-            var colLogin = new DataColumn("Login", typeof(string));
-            colLogin.AllowDBNull = false;
-            table.Columns.Add(colLogin);
-            var colDescription = new DataColumn("Description", typeof(string));
-            table.Columns.Add(colDescription);
-
-            // Remplissage de la table
-            foreach (var p in tacheAnn)
-            {
-                DataRow ligne = table.NewRow();
-                ligne["IdTache"] = Guid.NewGuid();
-                ligne["Libelle"] = p.Libelle;
-                ligne["Annexe"] = false;
-                ligne["CodeActivite"] = p.CodeActivite;
-                ligne["Login"] = p.LoginPersonne;
-                ligne["Description"] = p.Description;
-
-                table.Rows.Add(ligne);
-
-            }
-            return table;
-        }
-
-        /// <summary>
-        /// Création et remplissage d'une table mémoire à partir d'une liste de tâches de prod
-        /// </summary>
-        /// <param name="listTachesAnn"></param>
-        /// <returns></returns>
-        private static DataTable GetDataTableForTachesProd(TacheProd tache)
-        {
-            // Création de la table et de ses colonnes
-            DataTable table = new DataTable();
-
-            var colIdTache = new DataColumn("IdTache", typeof(Guid));
-            colIdTache.AllowDBNull = false;
-            table.Columns.Add(colIdTache);
-            var colDureePrevue = new DataColumn("DureePrevue", typeof(float));
-            colDureePrevue.AllowDBNull = false;
-            table.Columns.Add(colDureePrevue);
-            var colDureeRestanteEstimee = new DataColumn("DureeRestanteEstimee", typeof(float));
-            colDureeRestanteEstimee.AllowDBNull = false;
-            table.Columns.Add(colDureeRestanteEstimee);
-            var colCodeModule = new DataColumn("CodeModule", typeof(string));
-            colCodeModule.AllowDBNull = false;
-            table.Columns.Add(colCodeModule);
-            var colCodeLogicieModule = new DataColumn("CodeLogicielModule", typeof(string));
-            colCodeLogicieModule.AllowDBNull = false;
-            table.Columns.Add(colCodeLogicieModule);
-            var colNumeroVersion = new DataColumn("NumeroVersion", typeof(float));
-            colNumeroVersion.AllowDBNull = false;
-            table.Columns.Add(colNumeroVersion);
-            var colCodeLogicielVersion = new DataColumn("CodeLogicielVersion", typeof(string));
-            colCodeLogicielVersion.AllowDBNull = false;
-            table.Columns.Add(colCodeLogicielVersion);
-            var colLibelle = new DataColumn("Libelle", typeof(string));
-            colLibelle.AllowDBNull = false;
-            table.Columns.Add(colLibelle);
-            var colAnnexe = new DataColumn("Annexe", typeof(bool));
-            colAnnexe.AllowDBNull = false;
-            table.Columns.Add(colAnnexe);
-            var colCodeActivite = new DataColumn("CodeActivite", typeof(string));
-            colCodeActivite.AllowDBNull = false;
-            table.Columns.Add(colCodeActivite);
-            var colLogin = new DataColumn("Login", typeof(string));
-            colLogin.AllowDBNull = false;
-            table.Columns.Add(colLogin);
-            var colDescription = new DataColumn("Description", typeof(string));
-            table.Columns.Add(colDescription);
-
-            // Remplissage de la table
-            foreach (var p in table)
-            {
-                DataRow ligne = table.NewRow();
-                ligne["IdTache"] = Guid.NewGuid();
-
-                ligne["DureePrevue"] = p.DureePrevue;
-                ligne["DureeRestanteEstimee"] = p.DureeRestante;
-                ligne["CodeModule"] = p.CodeModule;
-                ligne["CodeLogicielModule"] = p.CodeLogiciel;
-                ligne["NumeroVersion"] = p.Version;
-                ligne["CodeLogicielVersion"] = p.CodeLogiciel;
-                ligne["Libelle"] = p.Libelle;
-                ligne["Annexe"] = false;
-                ligne["CodeActivite"] = p.CodeActivite;
-                ligne["Login"] = p.LoginPersonne;
-                ligne["Description"] = p.Description;
-
-                table.Rows.Add(ligne);
-
-            }
-            return table;
-        }
-
+      
         /// <summary>
         /// Obtient et renvoie la liste des activités 
         /// </summary>

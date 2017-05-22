@@ -190,3 +190,4 @@ D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csproj.Gen
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
