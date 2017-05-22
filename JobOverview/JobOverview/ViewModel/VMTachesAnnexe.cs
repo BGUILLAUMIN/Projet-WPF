@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -27,14 +28,7 @@ namespace JobOverview.ViewModel
         public List<Personne> Personnes { get; set; }
         public ObservableCollection<Tache> TachesAnnexes { get; set; }
 
-        public Tache NouvelleTache
-        {
-            get { return _nouvelleTache; }
-            private set
-            {
-                SetProperty(ref _nouvelleTache, value);
-            }
-        }
+    
         public Tache TacheCourante
         {
             get
@@ -61,8 +55,10 @@ namespace JobOverview.ViewModel
             TachesAnnexes = new ObservableCollection<Tache>(DALTaches.GetTachesAnnexe());
             ModeEdit = ModesEdition.Consultation;
         }
+       
 
-        #region MyRegion
+        // ajout des commandes
+        #region COMMANDES
         //lors du clic sur le bouton Ajouter
         private ICommand _cmdAjouter;
         public ICommand CmdAjouter
@@ -74,7 +70,18 @@ namespace JobOverview.ViewModel
                 return _cmdAjouter;
             }
         }
-
+        //lors du clic sur le bouton Supprimer
+        private ICommand _cmdSupprimer;
+        public ICommand CmdSupprimer
+        {
+            get
+            {
+                if (_cmdSupprimer == null)
+                    _cmdSupprimer = new RelayCommand(SupprimerTache,ActiverSupprimer()
+);
+                return _cmdSupprimer;
+            }
+        }
         //lors du clic sur le bouton Enregistrer
         private ICommand _cmdEnregistrer;
         public ICommand CmdEnregistrer
@@ -109,7 +116,7 @@ namespace JobOverview.ViewModel
         private void AjouterTache()
         {
             //Instancie une nouvelle tâche
-            NouvelleTache = new Tache();
+            var NouvelleTache = new Tache();
 
             // Ajoute la nouvelle tache dans la liste TachesAnnexes
             TachesAnnexes.Add(NouvelleTache);
@@ -121,13 +128,40 @@ namespace JobOverview.ViewModel
             ModeEdit = ModesEdition.Edition;
         }
 
+        // Supprime la tâche sélectionnée et la supprime de la collection
+        private void SupprimerTache()
+        {
+            try
+            {
+                TachesAnnexes.Remove(TacheCourante);
+                DALTaches.EnregistrerTachesAnnexes(TacheCourante);
+                MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Tâche non supprimée", "Attention", MessageBoxButton.OK);
+            }
+
+        }
+
         //Appel de la méthode d'enregistrement des tâches de production dans la base
         //et définit le mode d'édition
         private void EnregistrerTache()
         {
             {
-                //Enregistre dans la base la liste mis à jour de la listview 
-                DALTaches.EnregistrerTachesAnnexes(TachesAnnexes.ToList());
+                try
+                {
+                    //Enregistre dans la base la liste mis à jour de la listview 
+                    DALTaches.EnregistrerTachesAnnexes(TacheCourante);
+                    MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("Tâche non enregistrée", "Attention", MessageBoxButton.OK);
+                }
 
                 //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                 ModeEdit = ModesEdition.Consultation;
@@ -151,7 +185,10 @@ namespace JobOverview.ViewModel
         {
             return ModeEdit == ModesEdition.Consultation; ;
         }
-
+        private bool ActiverSupprimer()
+        {
+            return ModeEdit == ModesEdition.Consultation; ;
+        }
         // dès que l'on clique sur le bouton Enregistrer ou Annuler, cela désactive l'état des boutons
         private bool ActiverAnnEnr()
         {

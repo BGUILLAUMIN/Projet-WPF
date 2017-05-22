@@ -28,14 +28,7 @@ namespace JobOverview.ViewModel
         public List<Logiciel> Logiciels { get; set; }
         public List<Personne> Personnes { get; set; }
         public ObservableCollection<TacheProd> TachesProds { get; }
-        public TacheProd NouvelleTache
-        {
-            get { return _nouvelleTache; }
-            private set
-            {
-                SetProperty(ref _nouvelleTache, value);
-            }
-        }
+        
         public TacheProd TacheCourante
         {
             get
@@ -157,7 +150,7 @@ namespace JobOverview.ViewModel
         private void AjouterTache()
         {
             //Instancie une nouvelle tâche
-            NouvelleTache = new TacheProd();
+            var NouvelleTache = new TacheProd();
 
             // Ajoute la nouvelle tache dans la liste TachesProds
             TachesProds.Add(NouvelleTache);
@@ -177,9 +170,9 @@ namespace JobOverview.ViewModel
                 try
                 {
                 //Enregistre dans la base la liste mis à jour de la listview 
-                DALTaches.EnregistrerTachesProd(TachesProds.ToList());
-                    MessageBox.Show("Enregistrement réalisé avec succès",
-                       "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DALTaches.EnregistrerTachesProd(TacheCourante);
+                    MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
+                       "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 }
                 catch (Exception)
                 {
