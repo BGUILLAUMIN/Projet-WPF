@@ -45,7 +45,7 @@
         </Style>
 
         <!--Style général pour les ComboBox-->
-        <Style x:Key="ComboBoxStyle">
+        <Style TargetType="ComboBox">
             <Setter Property="ComboBox.Width" Value="100"/>
             <Setter Property="ComboBox.Height" Value="30"/>
         </Style>

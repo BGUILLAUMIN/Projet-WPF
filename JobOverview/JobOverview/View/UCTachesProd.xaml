@@ -74,8 +74,31 @@
                     <Label Content="Durée Restante :"/>
                     <TextBox Width="20" Text="{Binding Path=TachesProds/DureeRestante}" FontWeight="Bold" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"/>
                 </StackPanel>
+                <Label Content=" Module :" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="9*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Width="100" Text="{Binding Path=TachesProds/CodeModule}" Grid.ColumnSpan="2" Margin="27,0"/>
+                    <ComboBox Visibility="Hidden" Grid.ColumnSpan="2" Margin="27,0"  />
+                </Grid>
 
-                <TextBox MinHeight="50" TextWrapping="Wrap" Text="{Binding Path=TachesProds/Description}" Grid.Row="7" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"/>
+                <Label Content=" Activité :" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Width="100" Text="{Binding Path= TachesProds/CodeActivite}"/>
+                    <ComboBox  Visibility="Hidden"  />
+
+                </Grid>
+
+
+                <TextBox MinHeight="50" TextWrapping="Wrap" Text="{Binding Path=TachesProds/Description}" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"/>
             </StackPanel>
 
 
@@ -105,7 +128,7 @@
 
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                <ComboBox Name="cbxLogiciels" Margin="15,5,5,5" Style="{StaticResource ComboBoxStyle}"
+                <ComboBox Name="cbxLogiciels" Margin="15,5,5,5"
                           ItemsSource="{Binding Path=Logiciels}"
                           DisplayMemberPath="Nom"
                           SelectedValuePath="Code"
@@ -116,7 +139,7 @@
                         </ToolTip>
                     </ComboBox.ToolTip>
                 </ComboBox>
-                <ComboBox Name="cbxVersions" Margin="5" Style="{StaticResource ComboBoxStyle}"
+                <ComboBox Name="cbxVersions" Margin="5" 
                           ItemsSource="{Binding Path=Logiciels/Versions}"
                           DisplayMemberPath="Numero"
                           SelectedValuePath="Numero" 
@@ -127,7 +150,7 @@
                         </ToolTip>
                     </ComboBox.ToolTip>
                 </ComboBox>
-                <ComboBox Name="cbxPersonnes" Margin="5" Style="{StaticResource ComboBoxStyle}" Width="200"
+                <ComboBox Name="cbxPersonnes" Margin="5"  Width="200"
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"

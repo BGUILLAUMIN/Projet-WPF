@@ -13,7 +13,7 @@ namespace JobOverview.Entity
         public Guid Id { get; set; }
         [XmlAttribute]
         public string Libelle { get; set; }
-        [XmlIgnore]
+        [XmlAttribute]
         public string Description { get; set; }
         [XmlAttribute]
         public string CodeActivite { get; set; }
@@ -25,7 +25,7 @@ namespace JobOverview.Entity
 
     public class TacheProd : Tache
     {
-        [XmlIgnore]
+        [XmlAttribute]
         public int Numero { get; set; }
         [XmlAttribute("DureePrev")]
         public float DureePrevue { get; set; }
