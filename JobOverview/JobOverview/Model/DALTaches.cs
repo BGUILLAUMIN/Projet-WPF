@@ -19,7 +19,7 @@ namespace JobOverview.Model
         /// <summary>
         /// Permet de récupérer les tâches de production
         /// </summary>
-        public static List<TacheProd> GetTachesProd(string codeLogiciel, float numVersion)
+        public static List<TacheProd> GetTachesProd()
         {
             var listTaches = new List<TacheProd>();
 
@@ -28,20 +28,12 @@ namespace JobOverview.Model
 						tp.CodeLogicielVersion, tp.NumeroVersion, tp.CodeModule
 					    from jo.Tache t
 					    inner join jo.TacheProd tp on t.IdTache = tp.IdTache
-					    where Annexe = 0 and tp.CodeLogicielVersion = @CodeLogiciel and tp.NumeroVersion = @NumVersion
+					    where Annexe = 0
 					    order by Numero";
-
-            var paramCodeLogi = new SqlParameter("@CodeLogiciel", DbType.String);
-            paramCodeLogi.Value = codeLogiciel;
-
-            var paramNumVersion = new SqlParameter("@NumVersion", DbType.Double);
-            paramNumVersion.Value = numVersion;
 
             using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
                 var command = new SqlCommand(req, connect);
-                command.Parameters.Add(paramCodeLogi);
-                command.Parameters.Add(paramNumVersion);
 
                 connect.Open();
 
@@ -66,14 +58,47 @@ namespace JobOverview.Model
             }
             return listTaches;
         }
+        public static List<Tache> GetTachesAnnexe()
+        {
+            var listTachesAnnexe = new List<Tache>();
 
+            string req = @"select IdTache, Libelle, Description, CodeActivite, Login
+                        from jo.Tache
+                        where Annexe = 1";
+			    
+
+
+            using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
+            {
+                var command = new SqlCommand(req, connect);
+                connect.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var ta = new Tache();
+                      
+                        ta.Libelle = (string)reader["Libelle"];
+                        if (reader["Description"] != DBNull.Value)
+                            ta.Description = (string)reader["Description"];
+                           ta.CodeActivite = (string)reader["CodeActivite"];
+                          ta.LoginPersonne = (string)reader["Login"];
+
+            listTachesAnnexe.Add(ta);
+        }
+    }
+}
+
+            return listTachesAnnexe;
+        }
         /// <summary>
         /// Enregistre une liste de tâches de production dans la base
         /// </summary>
         /// <param name="listTaches"></param>
         public static void EnregistrerTachesProd(List<TacheProd> listTaches)
-        {
-            string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
+{
+    string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
                         select IdTache, Libelle, Annexe, CodeActivite, Login, Description
 								from  @table;
 
@@ -83,25 +108,25 @@ namespace JobOverview.Model
 								CodeModule, CodeLogicielModule, NumeroVersion, CodeLogicielVersion
 								from @table";
 
-            // Création du paramètre de type table mémoire
-            // /!\ Le type TypeTablePersonne doit être créé au préalable dans la base
-            var param = new SqlParameter("@table", SqlDbType.Structured);
-            DataTable tableTaches = GetDataTableForTachesProd(listTaches);
-            param.TypeName = "TypeTableTachesProd";
-            param.Value = tableTaches;
+    // Création du paramètre de type table mémoire
+    // /!\ Le type TypeTablePersonne doit être créé au préalable dans la base
+    var param = new SqlParameter("@table", SqlDbType.Structured);
+    DataTable tableTaches = GetDataTableForTachesProd(listTaches);
+    param.TypeName = "TypeTableTachesProd";
+    param.Value = tableTaches;
 
-            using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
-            {
-                // Ouverture de la connexion et début de la transaction
-                cnx.Open();
-                SqlTransaction tran = cnx.BeginTransaction();
+    using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
+    {
+        // Ouverture de la connexion et début de la transaction
+        cnx.Open();
+        SqlTransaction tran = cnx.BeginTransaction();
 
-                try
-                {
-                    // Création et exécution de la commande
-                    var command = new SqlCommand(req, cnx, tran);
-                    command.Parameters.Add(param);
-                    command.ExecuteNonQuery();
+        try
+        {
+            // Création et exécution de la commande
+            var command = new SqlCommand(req, cnx, tran);
+            command.Parameters.Add(param);
+            command.ExecuteNonQuery();
 
                     // Validation de la transaction s'il n'y a pas eu d'erreur
                     tran.Commit();
@@ -118,7 +143,7 @@ namespace JobOverview.Model
         /// Sérialisation des tâches. Permet d'exporter les données tâches en données xml
         /// </summary>
         /// <param name="taches"></param>
-        public static void ExportTachesXml(List<Tache> taches)
+        public static void ExportTachesXml(List<TacheProd> taches)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Tache>),
                                                 new XmlRootAttribute("Taches"));
@@ -162,61 +187,61 @@ namespace JobOverview.Model
             // Création de la table et de ses colonnes
             DataTable table = new DataTable();
 
-            var colIdTache = new DataColumn("IdTache", typeof(Guid));
-            colIdTache.AllowDBNull = false;
-            table.Columns.Add(colIdTache);
-            var colDureePrevue = new DataColumn("DureePrevue", typeof(float));
-            colDureePrevue.AllowDBNull = false;
-            table.Columns.Add(colDureePrevue);
-            var colDureeRestanteEstimee = new DataColumn("DureeRestanteEstimee", typeof(float));
-            colDureeRestanteEstimee.AllowDBNull = false;
-            table.Columns.Add(colDureeRestanteEstimee);
-            var colCodeModule = new DataColumn("CodeModule", typeof(string));
-            colCodeModule.AllowDBNull = false;
-            table.Columns.Add(colCodeModule);
-            var colCodeLogicieModule = new DataColumn("CodeLogicielModule", typeof(string));
-            colCodeLogicieModule.AllowDBNull = false;
-            table.Columns.Add(colCodeLogicieModule);
-            var colNumeroVersion = new DataColumn("NumeroVersion", typeof(float));
-            colNumeroVersion.AllowDBNull = false;
-            table.Columns.Add(colNumeroVersion);
-            var colCodeLogicielVersion = new DataColumn("CodeLogicielVersion", typeof(string));
-            colCodeLogicielVersion.AllowDBNull = false;
-            table.Columns.Add(colCodeLogicielVersion);
-            var colLibelle = new DataColumn("Libelle", typeof(string));
-            colLibelle.AllowDBNull = false;
-            table.Columns.Add(colLibelle);
-            var colAnnexe = new DataColumn("Annexe", typeof(bool));
-            colAnnexe.AllowDBNull = false;
-            table.Columns.Add(colAnnexe);
-            var colCodeActivite = new DataColumn("CodeActivite", typeof(string));
-            colCodeActivite.AllowDBNull = false;
-            table.Columns.Add(colCodeActivite);
-            var colLogin = new DataColumn("Login", typeof(string));
-            colLogin.AllowDBNull = false;
-            table.Columns.Add(colLogin);
-            var colDescription = new DataColumn("Description", typeof(string));
-            table.Columns.Add(colDescription);
+    var colIdTache = new DataColumn("IdTache", typeof(Guid));
+    colIdTache.AllowDBNull = false;
+    table.Columns.Add(colIdTache);
+    var colDureePrevue = new DataColumn("DureePrevue", typeof(float));
+    colDureePrevue.AllowDBNull = false;
+    table.Columns.Add(colDureePrevue);
+    var colDureeRestanteEstimee = new DataColumn("DureeRestanteEstimee", typeof(float));
+    colDureeRestanteEstimee.AllowDBNull = false;
+    table.Columns.Add(colDureeRestanteEstimee);
+    var colCodeModule = new DataColumn("CodeModule", typeof(string));
+    colCodeModule.AllowDBNull = false;
+    table.Columns.Add(colCodeModule);
+    var colCodeLogicieModule = new DataColumn("CodeLogicielModule", typeof(string));
+    colCodeLogicieModule.AllowDBNull = false;
+    table.Columns.Add(colCodeLogicieModule);
+    var colNumeroVersion = new DataColumn("NumeroVersion", typeof(float));
+    colNumeroVersion.AllowDBNull = false;
+    table.Columns.Add(colNumeroVersion);
+    var colCodeLogicielVersion = new DataColumn("CodeLogicielVersion", typeof(string));
+    colCodeLogicielVersion.AllowDBNull = false;
+    table.Columns.Add(colCodeLogicielVersion);
+    var colLibelle = new DataColumn("Libelle", typeof(string));
+    colLibelle.AllowDBNull = false;
+    table.Columns.Add(colLibelle);
+    var colAnnexe = new DataColumn("Annexe", typeof(bool));
+    colAnnexe.AllowDBNull = false;
+    table.Columns.Add(colAnnexe);
+    var colCodeActivite = new DataColumn("CodeActivite", typeof(string));
+    colCodeActivite.AllowDBNull = false;
+    table.Columns.Add(colCodeActivite);
+    var colLogin = new DataColumn("Login", typeof(string));
+    colLogin.AllowDBNull = false;
+    table.Columns.Add(colLogin);
+    var colDescription = new DataColumn("Description", typeof(string));
+    table.Columns.Add(colDescription);
 
-            // Remplissage de la table
-            foreach (var p in listTachesProd)
-            {
-                DataRow ligne = table.NewRow();
-                ligne["IdTache"] = Guid.NewGuid();
+    // Remplissage de la table
+    foreach (var p in listTachesProd)
+    {
+        DataRow ligne = table.NewRow();
+        ligne["IdTache"] = Guid.NewGuid();
 
-                ligne["DureePrevue"] = p.DureePrevue;
-                ligne["DureeRestanteEstimee"] = p.DureeRestante;
-                ligne["CodeModule"] = p.CodeModule;
-                ligne["CodeLogicielModule"] = p.CodeLogiciel;
-                ligne["NumeroVersion"] = p.Version;
-                ligne["CodeLogicielVersion"] = p.CodeLogiciel;
-                ligne["Libelle"] = p.Libelle;
-                ligne["Annexe"] = false;
-                ligne["CodeActivite"] = p.CodeActivite;
-                ligne["Login"] = p.LoginPersonne;
-                ligne["Description"] = p.Description;
+        ligne["DureePrevue"] = p.DureePrevue;
+        ligne["DureeRestanteEstimee"] = p.DureeRestante;
+        ligne["CodeModule"] = p.CodeModule;
+        ligne["CodeLogicielModule"] = p.CodeLogiciel;
+        ligne["NumeroVersion"] = p.Version;
+        ligne["CodeLogicielVersion"] = p.CodeLogiciel;
+        ligne["Libelle"] = p.Libelle;
+        ligne["Annexe"] = false;
+        ligne["CodeActivite"] = p.CodeActivite;
+        ligne["Login"] = p.LoginPersonne;
+        ligne["Description"] = p.Description;
 
-                table.Rows.Add(ligne);
+        table.Rows.Add(ligne);
 
             }
             return table;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobOverview.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace JobOverview.View
         public UCTachesAnnexe()
         {
             InitializeComponent();
+            DataContext = new VMTachesAnnexe();
         }
     }
 }
