@@ -43,7 +43,7 @@ namespace JobOverview.View {
     public partial class MainWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
         
-        #line 76 "..\..\..\View\MainWindow.xaml"
+        #line 29 "..\..\..\View\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.MenuItem TachesProd;
         
@@ -51,7 +51,7 @@ namespace JobOverview.View {
         #line hidden
         
         
-        #line 77 "..\..\..\View\MainWindow.xaml"
+        #line 30 "..\..\..\View\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.MenuItem TachesAnnexe;
         
@@ -59,7 +59,7 @@ namespace JobOverview.View {
         #line hidden
         
         
-        #line 78 "..\..\..\View\MainWindow.xaml"
+        #line 31 "..\..\..\View\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.MenuItem SaisieTemps;
         
@@ -67,7 +67,7 @@ namespace JobOverview.View {
         #line hidden
         
         
-        #line 79 "..\..\..\View\MainWindow.xaml"
+        #line 32 "..\..\..\View\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.MenuItem SynthèseVersions;
         
@@ -75,7 +75,7 @@ namespace JobOverview.View {
         #line hidden
         
         
-        #line 80 "..\..\..\View\MainWindow.xaml"
+        #line 33 "..\..\..\View\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.MenuItem APropos;
         
