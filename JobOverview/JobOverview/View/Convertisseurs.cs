@@ -19,7 +19,7 @@ namespace JobOverview.View
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-
+            
             return (ModesEdition)value == ModesEdition.Edition ? true : false;
         }
 

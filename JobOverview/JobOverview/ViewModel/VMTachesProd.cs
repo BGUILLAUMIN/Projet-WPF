@@ -60,6 +60,8 @@ namespace JobOverview.ViewModel
             Logiciels = DALLogiciels.GetLogicielsVersions();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
             TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
+
+            ModeEdit = ModesEdition.Consultation;
         }
         #endregion
 
