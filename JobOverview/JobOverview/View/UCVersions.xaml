@@ -26,19 +26,35 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="20"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="30"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="100"/>
                         <RowDefinition Height="20"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
 
 
-                    <TextBlock Text="Nombre de releases :" Grid.Row="5"/>
-                    <TextBlock Text="{Binding Path=Logiciels/Versions/DerniereRelease}" Grid.Row="6" FontWeight="Bold"/>
+                    <TextBlock Text="Millesime de la version :" 
+                               Grid.Row="0"/>
+                    <TextBlock Text="{Binding Path=Logiciels/Versions/Millesime}" 
+                               Grid.Row="1"
+                               FontWeight="Bold"/>
+                    <TextBlock Text="Nombre de releases :" 
+                               Grid.Row="2"/>
+                    <TextBlock Text="{Binding Path=Logiciels/Versions/DerniereRelease}" 
+                               Grid.Row="3" 
+                               FontWeight="Bold"/>
+                    <TextBlock Text="Date d'ouverture de la version :" Grid.Row="4"/>
+                    <TextBlock Text="{Binding Path=Logiciels/Versions/DateOuverture, StringFormat='\{0:dd/MM/yyy}'}" 
+                               FontWeight="Bold"
+                               Grid.Row="5"/>
+                    <TextBlock Text="Date de sortie prévue de la version :" Grid.Row="6"/>
+                    <TextBlock Text="{Binding Path=Logiciels/Versions/DateSortiePrevue, StringFormat='\{0:dd/MM/yyy}'}"
+                               FontWeight="Bold"
+                               Grid.Row="7"/>
 
 
                 </Grid>
