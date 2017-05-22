@@ -10,14 +10,15 @@
              xmlns:properties="clr-namespace:JobOverview.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
+    <!--définition des ressources-->
     <UserControl.Resources>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="2"/>
         </Style>
     </UserControl.Resources>
 
-    <DockPanel Margin="0,20,0,0">
 
+    <DockPanel Margin="5">
         <!--#region Expander Ajout de Taches de production-->
         <Expander ExpandDirection="Left" MaxWidth="250" DockPanel.Dock="Right" IsExpanded="True">
             <Expander.ToolTip>
@@ -26,7 +27,7 @@
                 </ToolTip>
             </Expander.ToolTip>
             <StackPanel>
-                <!--Barre de boutons-->
+                <!--#region Barre de boutons-->
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                     <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
                         <fa:IconBlock Icon="PlusCircle"/>
@@ -54,10 +55,12 @@
                     </Button>
                 </StackPanel>
                 <Separator Height="10" Opacity="0" />
+                <!--#endregion-->
 
+                <!--#region Zones de saisies-->
                 <StackPanel Orientation="Horizontal">
                     <Label Content="N° :"/>
-                    <TextBox Width="20" Text="{Binding Path= TachesProds/Numero}" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}" />
+                    <TextBox  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
@@ -76,15 +79,12 @@
                 </StackPanel>
                 <Label Content=" Module :" />
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="9*"/>
-                    </Grid.ColumnDefinitions>
+
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Width="100" Text="{Binding Path=TachesProds/CodeModule}" Grid.ColumnSpan="2" Margin="27,0"/>
-                    <ComboBox Visibility="Hidden" Grid.ColumnSpan="2" Margin="27,0"  />
+                    <TextBlock Width="100" Text="{Binding Path=TachesProds/CodeModule}"  />
+                    <ComboBox Visibility="Hidden"   />
                 </Grid>
 
                 <Label Content=" Activité :" />
@@ -94,13 +94,11 @@
                     </Grid.RowDefinitions>
                     <TextBlock Width="100" Text="{Binding Path= TachesProds/CodeActivite}"/>
                     <ComboBox  Visibility="Hidden"  />
-
                 </Grid>
 
-
-                <TextBox MinHeight="50" TextWrapping="Wrap" Text="{Binding Path=TachesProds/Description}" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"/>
+                <TextBox MinHeight="50" TextWrapping="Wrap" Text="{Binding Path=TachesProds/Description}" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditActivation}}"/>
             </StackPanel>
-
+            <!--#endregion-->
 
 
         </Expander>
@@ -108,7 +106,7 @@
 
         <!--#region DockPanel Consultation des Taches de production-->
         <DockPanel>
-
+            <!--#region ligne du bas checkbox + bouton exporté-->
             <DockPanel DockPanel.Dock="Bottom">
                 <CheckBox Content="Taches terminées" IsChecked="False" VerticalAlignment="Center" Margin="10,0,0,0">
                     <CheckBox.ToolTip>
@@ -125,44 +123,56 @@
                     </Button.ToolTip>
                 </Button>
             </DockPanel>
+            <!--#endregion-->
 
-
+            <!--#region zone de sélection-->
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                <ComboBox Name="cbxLogiciels" Margin="15,5,5,5"
+                <StackPanel>
+                    <Label Content="Logiciel"/>
+                    <ComboBox Name="cbxLogiciels"
                           ItemsSource="{Binding Path=Logiciels}"
                           DisplayMemberPath="Nom"
                           SelectedValuePath="Code"
                           SelectedIndex="0" IsSynchronizedWithCurrentItem="True">
-                    <ComboBox.ToolTip>
-                        <ToolTip>
-                            <TextBlock>Selection du logiciel.</TextBlock>
-                        </ToolTip>
-                    </ComboBox.ToolTip>
-                </ComboBox>
-                <ComboBox Name="cbxVersions" Margin="5" 
+                        <ComboBox.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Selection du logiciel.</TextBlock>
+                            </ToolTip>
+                        </ComboBox.ToolTip>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Version"/>
+                    <ComboBox Name="cbxVersions" 
                           ItemsSource="{Binding Path=Logiciels/Versions}"
                           DisplayMemberPath="Numero"
                           SelectedValuePath="Numero" 
                           IsSynchronizedWithCurrentItem="True">
-                    <ComboBox.ToolTip>
-                        <ToolTip>
-                            <TextBlock>Selection de la version.</TextBlock>
-                        </ToolTip>
-                    </ComboBox.ToolTip>
-                </ComboBox>
-                <ComboBox Name="cbxPersonnes" Margin="5"  Width="200"
+                        <ComboBox.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Selection de la version.</TextBlock>
+                            </ToolTip>
+                        </ComboBox.ToolTip>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Personnes"/>
+                    <ComboBox Name="cbxPersonnes" Width="200"
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
                           SelectedIndex="0"
                           IsEnabled="{Binding Source={x:Static properties:Settings.Default}, Path=ManagerConnecte}">
-                    <ComboBox.ToolTip>
-                        <ToolTip>
-                            <TextBlock>Selection de l'employé.</TextBlock>
-                        </ToolTip>
-                    </ComboBox.ToolTip>
-                </ComboBox>
+                        <ComboBox.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Selection de l'employé.</TextBlock>
+                            </ToolTip>
+                        </ComboBox.ToolTip>
+                    </ComboBox>
+                </StackPanel>
             </StackPanel>
+            <!--#endregion-->
+            <!--#region Affichage des temps de travail-->
             <StackPanel Orientation="Vertical" Margin="10" DockPanel.Dock="Top">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Temps de travail restant global :" MinWidth="175"/>
@@ -173,17 +183,19 @@
                     <TextBlock Text="102 h"/>
                 </StackPanel>
             </StackPanel>
+            <!--#endregion-->
 
+            <!--#region Liste d'affichage-->
             <ListView Margin="10" ItemsSource="{Binding TachesProds}" IsSynchronizedWithCurrentItem="True" IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Numéro" DisplayMemberBinding="{Binding Path=Numero}"/>
                         <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
                         <GridViewColumn Header="Code Module" DisplayMemberBinding="{Binding Path= CodeModule}" />
-                        <GridViewColumn Header="Code Activité" DisplayMemberBinding="{Binding Path= CodeActivite}" />
                     </GridView>
                 </ListView.View>
             </ListView>
+            <!--#endregion-->
         </DockPanel>
 
 
