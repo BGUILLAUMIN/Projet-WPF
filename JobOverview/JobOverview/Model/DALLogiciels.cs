@@ -9,7 +9,7 @@ using JobOverview.Properties;
 
 namespace JobOverview.Model
 {
-    class DALLogiciels
+   public class DALLogiciels
     {
         /// <summary>
 		/// Obtient et renvoie la liste des logiciels et leurs versions associées,

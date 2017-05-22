@@ -8,7 +8,11 @@
              xmlns:dico="clr-namespace:JobOverview">
     
 	<Application.Resources>
+        <!-- Convertisseurs pour les propriétés IsEnabled et IsReadOnly -->
+        <vw:ConvModeEditActivation x:Key="ConvModeEditActivation"/>
+        <vw:ConvModeEditLectureSeule x:Key="ConvModeEditLectureSeule"/>
         
+<!--liaison des vues modèles aux Users Control-->
         <DataTemplate DataType="{x:Type vm:VMLogin}">
             <vw:UCLogin/>
         </DataTemplate>
@@ -33,11 +37,14 @@
             <vw:UCVersions/>
         </DataTemplate>
 
+        
+        <!--Style général pour les boutons-->
         <Style x:Key="ButtonStyle">
             <Setter Property="Button.Height" Value="30"/>
             <Setter Property="Button.Width" Value="30"/>
         </Style>
 
+        <!--Style général pour les ComboBox-->
         <Style x:Key="ComboBoxStyle">
             <Setter Property="ComboBox.Width" Value="100"/>
             <Setter Property="ComboBox.Height" Value="30"/>

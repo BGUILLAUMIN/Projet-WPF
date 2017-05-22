@@ -10,7 +10,8 @@ namespace JobOverview.View
 	{
 		public MainWindow()
 		{
-			InitializeComponent();
+            Language = System.Windows.Markup.XmlLanguage.GetLanguage(System.Threading.Thread.CurrentThread.CurrentCulture.Name);
+            InitializeComponent();
 			DataContext = new VMMain();
 
 			Loaded += MainWindow_Loaded;
