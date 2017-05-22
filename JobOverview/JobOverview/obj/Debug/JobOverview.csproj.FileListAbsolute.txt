@@ -130,6 +130,7 @@ C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\J
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.pdb
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.g.cs
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.g.cs
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCButtonsBar.g.cs

@@ -15,17 +15,17 @@ namespace JobOverview.Model
 {
     class DALTaches
     {
-        public static ObservableCollection<TacheProd> GetTachesProd(string codeLogiciel, float numVersion)
+        public static List<TacheProd> GetTachesProd(string codeLogiciel, double numVersion)
         {
-            var listTaches = new ObservableCollection<TacheProd>();
+            var listTaches = new List<TacheProd>();
 
             string req = @"select t.IdTache, t.Libelle, t.Description, t.CodeActivite, t.Login,
 						tp.Numero, tp.DureePrevue, tp.DureeRestanteEstimee,
 						tp.CodeLogicielVersion, tp.NumeroVersion, tp.CodeModule
-					from jo.Tache t
-					inner join jo.TacheProd tp on t.IdTache = tp.IdTache
-					where Annexe = 0 and tp.CodeLogicielVersion = @CodeLogiciel and tp.NumeroVersion = @NumVersion
-					order by Numero";
+					    from jo.Tache t
+					    inner join jo.TacheProd tp on t.IdTache = tp.IdTache
+					    where Annexe = 0 and tp.CodeLogicielVersion = @CodeLogiciel and tp.NumeroVersion = @NumVersion
+					    order by Numero";
 
             var paramCodeLogi = new SqlParameter("@CodeLogiciel", DbType.String);
             paramCodeLogi.Value = codeLogiciel;
@@ -60,7 +60,6 @@ namespace JobOverview.Model
                     }
                 }
             }
-
             return listTaches;
         }
 
