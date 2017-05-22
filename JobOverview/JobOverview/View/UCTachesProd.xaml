@@ -62,7 +62,8 @@
                 <!--#region Zones de saisies-->
                 <StackPanel Orientation="Horizontal">
                     <Label Content="N° :"/>
-                    <TextBox  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}" />
+                    <TextBox  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" 
+                              IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditActivation}}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
