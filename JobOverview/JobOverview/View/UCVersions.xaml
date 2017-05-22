@@ -22,6 +22,8 @@
                     <TextBlock>Déplier la fiche de détails.</TextBlock>
                 </ToolTip>
             </Expander.ToolTip>
+            <Border BorderThickness="1" BorderBrush="Black" Padding="10"
+                    Margin="0,0,0,10">
             <DockPanel>
 
                 <Separator Height="10" Opacity="0" DockPanel.Dock="Top"/>
@@ -66,6 +68,7 @@
 
 
             </DockPanel>
+            </Border>
         </Expander>
         <!--#endregion-->
 

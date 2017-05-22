@@ -34,7 +34,7 @@
                 <!--#region Barre de boutons-->
                 <StackPanel Orientation="Horizontal">
                     <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
-                        <fa:IconBlock Icon="PlusCircle"/>
+                        <fa:IconBlock Icon="PlusCircle" FontSize="25"/>
                         <Button.ToolTip>
                             <ToolTip>
                                 <TextBlock>Ajouter une tâche de production.</TextBlock>
@@ -42,7 +42,7 @@
                         </Button.ToolTip>
                     </Button>
                     <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdEnregistrer}">
-                        <fa:IconBlock Icon="FloppyO"/>
+                        <fa:IconBlock Icon="FloppyO" FontSize="25"/>
                         <Button.ToolTip>
                             <ToolTip>
                                 <TextBlock>Enregistrer la tâche.</TextBlock>
@@ -50,7 +50,7 @@
                         </Button.ToolTip>
                     </Button>
                     <Button Style="{StaticResource ButtonStyle}"  Command="{Binding CmdAnnuler}">
-                        <fa:IconBlock Icon="Undo"/>
+                        <fa:IconBlock Icon="Undo" FontSize="25"/>
                         <Button.ToolTip>
                             <ToolTip>
                                 <TextBlock>Annuler la création de tâche.</TextBlock>
