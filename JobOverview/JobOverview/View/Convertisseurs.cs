@@ -9,9 +9,7 @@ using System.Globalization;
 using JobOverview.ViewModel;
 using JobOverview.View;
 using JobOverview.Model;
-
-
-
+using System.Windows.Media;
 
 namespace JobOverview.View
 {
@@ -40,5 +38,27 @@ namespace JobOverview.View
             throw new NotImplementedException();
         }
     }
+
+    public class IntToColorBrushConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Color c = Colors.White;
+            int d = (int)value;
+            var seuil = int.Parse(parameter.ToString());
+            if (d > seuil)
+                c = Colors.LightGreen;
+            else if (d < seuil)
+                c = Colors.Tomato;
+
+            return new SolidColorBrush(c);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }
 
