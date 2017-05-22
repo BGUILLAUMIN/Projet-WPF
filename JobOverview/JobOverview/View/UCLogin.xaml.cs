@@ -27,10 +27,17 @@ namespace JobOverview.View
             cbxUtilisateur.SelectionChanged += CbxUtilisateur_SelectionChanged;
 		}
 
+        /// <summary>
+        /// Récupère et enregistre dans la propriété PersonneConnecte
+        /// le nom du dernier utilisateur sélectionné
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CbxUtilisateur_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Personne p = (Personne)cbxUtilisateur.SelectedItem;
             Properties.Settings.Default.PersonneConnecte = p.Login;
+            Properties.Settings.Default.ManagerConnecte = p.Manager;
             Properties.Settings.Default.Save();
         }
     }

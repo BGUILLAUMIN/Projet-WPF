@@ -12,7 +12,7 @@ namespace JobOverview.Entity
         public string Login { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
-        public string Manager { get; set; }
+        public bool Manager { get; set; }
         public string CodeMetier { get; set; }
         public string LibelleMetier { get; set; }
         public string CodeEquipe { get; set; }

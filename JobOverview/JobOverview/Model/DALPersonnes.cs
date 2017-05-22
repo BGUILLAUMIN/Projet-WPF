@@ -44,7 +44,9 @@ namespace JobOverview.Model
                             pers.Prenom = (string)reader["Prenom"];
                             pers.CodeMetier = (string)reader["CodeEquipe"];
                             if (reader["Manager"] != DBNull.Value)
-                                pers.Manager = (string)reader["Manager"];
+                                pers.Manager = false;
+                            else
+                                pers.Manager = true;
 
                             //TODO enlever méthode dans le diagramme de classe
                             listPersonnes.Add(pers);
