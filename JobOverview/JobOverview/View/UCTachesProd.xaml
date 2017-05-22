@@ -154,8 +154,6 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Numéro" DisplayMemberBinding="{Binding Path=Numero}"/>
-
-
                         <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
                         <GridViewColumn Header="Code Module" DisplayMemberBinding="{Binding Path= CodeModule}" />
            

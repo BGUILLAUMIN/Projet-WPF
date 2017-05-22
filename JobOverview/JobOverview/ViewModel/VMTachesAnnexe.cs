@@ -14,12 +14,14 @@ namespace JobOverview.ViewModel
         public List<Logiciel> Logiciels { get; set; }
         public List<Personne> Personnes { get; set; }
         public ObservableCollection<Tache> TachesAnnexes { get; set; }
+        public List<Tache> list { get; set; }
 
         public VMTachesAnnexe()
         {
             Logiciels = DALLogiciels.GetLogicielsVersions();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
-            TachesAnnexes =new ObservableCollection < Tache >(DALTaches.GetTachesAnnexe());
+           
+           TachesAnnexes =new ObservableCollection < Tache >(DALTaches.GetTachesAnnexe());
         }
     }
 }

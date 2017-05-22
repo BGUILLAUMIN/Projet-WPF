@@ -105,7 +105,7 @@
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right">
                 <TextBlock Text="Filtre : " VerticalAlignment="Center"/>
-                <ComboBox Margin="0,5,10,0" Style="{StaticResource ComboBoxStyle}"
+                <ComboBox Name="cbPersonne" Margin="0,5,10,0" Style="{StaticResource ComboBoxStyle}"
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
@@ -119,9 +119,16 @@
                 </ComboBox>
             </StackPanel>
 
-            <ListView Margin="10"/>
+            <ListView Margin="10" ItemsSource="{Binding TachesAnnexes}" IsSynchronizedWithCurrentItem="True" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="CodeActivité" DisplayMemberBinding="{Binding Path=CodeActivite}"/>
+                        <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
+                        <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Path= Description}" />
 
-
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </DockPanel>
         <!--#endregion-->
 
