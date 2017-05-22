@@ -5,10 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:JobOverview.View"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
 
     <DockPanel Margin="0,20,0,0">
+        <DockPanel.Resources>
+            <local:IntToColorBrushConverter x:Key="IntToColorBrushConverter"/>
+            <sys:Double x:Key="ValeurEcartJour">0</sys:Double>
+        </DockPanel.Resources>
 
         <!--#region Expander Ajout de Taches Annexe-->
         <Expander ExpandDirection="Left" MaxWidth="250" DockPanel.Dock="Right">
@@ -134,11 +139,16 @@
                       ItemsSource="{Binding Path=Logiciels/Versions}"
                       IsSynchronizedWithCurrentItem="True"
                       HorizontalAlignment="Stretch">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Background" Value="{Binding Path=EcartJour,
+                            Converter={StaticResource IntToColorBrushConverter}, ConverterParameter={StaticResource ValeurEcartJour}}"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.View>
 
                     <!--TODO Mettre les infos-bulle au dessus de chaque colonne.-->
                     <GridView AllowsColumnReorder="true">
-
                         <GridViewColumn Header="Version" 
                   DisplayMemberBinding="{Binding Path=Numero}"/>
 
