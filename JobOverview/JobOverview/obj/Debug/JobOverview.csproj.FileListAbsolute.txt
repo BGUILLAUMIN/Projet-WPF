@@ -138,6 +138,10 @@ D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSais
 D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.baml
 D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.baml
 D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.baml
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.pdb
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\FontAwesome.Sharp.dll
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.g.cs
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.g.cs
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCButtonsBar.g.cs
@@ -151,11 +155,6 @@ C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\A
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.cache
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.lref
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.pdb
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\FontAwesome.Sharp.dll
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.baml
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.baml
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.baml

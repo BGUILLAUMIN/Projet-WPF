@@ -60,7 +60,6 @@ namespace JobOverview.ViewModel
             Logiciels = DALLogiciels.GetLogicielsVersions();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
             TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
-
             ModeEdit = ModesEdition.Consultation;
         }
         #endregion
@@ -171,7 +170,6 @@ namespace JobOverview.ViewModel
                 //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                 ModeEdit = ModesEdition.Consultation;
             }
-
         }
 
         //Appel de la méthode d'enregistrement des tâches de production dans la base
@@ -184,9 +182,6 @@ namespace JobOverview.ViewModel
             //Lorsque l'on clique sur le bouton annuler, on passe la fenêtre en mode Consultation
             ModeEdit = ModesEdition.Consultation;
         }
-
-
-
 
         //méthodes d'activation du Mode Edition
         // dès que l'on clique sur le bouton ajouter, cela désactive l'état du bouton
