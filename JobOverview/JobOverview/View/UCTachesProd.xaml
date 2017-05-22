@@ -126,7 +126,7 @@
                         </ToolTip>
                     </ComboBox.ToolTip>
                 </ComboBox>
-                <ComboBox Margin="5" Style="{StaticResource ComboBoxStyle}"
+                <ComboBox Name="cbxPersonnes" Margin="5" Style="{StaticResource ComboBoxStyle}"
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"

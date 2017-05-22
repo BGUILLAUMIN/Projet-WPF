@@ -22,6 +22,24 @@ namespace JobOverview.Entity
         public float Numero { get; set; }
         public int Millesime { get; set; }
         public int DerniereRelease { get; set; }
+        public int EcartJour
+        { get
+            {
+                if (DateSortieReelle != null)
+                {
+                    TimeSpan ts = (TimeSpan)(DateSortieReelle - DateSortiePrevue);
+                    int ecart = int.Parse(ts.Days.ToString());
+                    return ecart;
+                }
+                return 0;
+            }
+        }
+
+        public double NombreJours { get; set; }
+        public double NombrePersonnes { get; set; }
+
+        public double JoursHommes { get { return (NombreJours*NombrePersonnes); }  }
+
     }
 
     public class Module
@@ -29,5 +47,6 @@ namespace JobOverview.Entity
         public string Code { get; set; }
         public string Libelle { get; set; }
         public string CodeModuleParent { get; set; }
+        
     }
 }

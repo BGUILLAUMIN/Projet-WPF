@@ -21,7 +21,7 @@
             <Setter Property="Margin" Value="5,0"/>
         </Style>-->
 
-
+<!--Création du style pour les menu-->
         <Style TargetType="MenuItem">
             <Setter Property="FontSize" Value="20"/>
         </Style>
