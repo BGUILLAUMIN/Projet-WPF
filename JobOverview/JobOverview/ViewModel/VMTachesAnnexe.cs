@@ -9,16 +9,25 @@ using System.Threading.Tasks;
 
 namespace JobOverview.ViewModel
 {
+
+  
     public class VMTachesAnnexe:ViewModelBase
     {
-        public List<Logiciel> Logiciels { get; set; }
+
+        #region champs privés
+        private Tache _nouvelleTache;
+        private ModesEdition _mode;
+
+        #endregion
+
+        public List<Activite> Activites{ get; set; }
         public List<Personne> Personnes { get; set; }
         public ObservableCollection<Tache> TachesAnnexes { get; set; }
-        public List<Tache> list { get; set; }
+        
 
         public VMTachesAnnexe()
         {
-            Logiciels = DALLogiciels.GetLogicielsVersions();
+            Activites = DALPersonnes.GetActivite();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
            
            TachesAnnexes =new ObservableCollection < Tache >(DALTaches.GetTachesAnnexe());

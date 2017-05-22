@@ -12,7 +12,7 @@
     <DockPanel Margin="0,20,0,0">
 
         <!--#region Expander Ajout de Taches Annexe-->
-        <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right">
+        <Expander ExpandDirection="Left" MaxWidth="280" DockPanel.Dock="Right">
             <Expander.ToolTip>
                 <ToolTip>
                     <TextBlock>Déplier la fiche de détails.</TextBlock>
@@ -36,7 +36,7 @@
                         </Button.ToolTip>
                         <fa:IconBlock Icon="Times"/>
                     </Button>
-                    <Button Style="{StaticResource ButtonStyle}">
+                    <Button Style="{StaticResource ButtonStyle}" >
                         <Button.ToolTip>
                             <ToolTip>
                                 <TextBlock>Annuler.</TextBlock>
@@ -78,7 +78,7 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
 
-                    <ComboBox Grid.Row="2" >
+                    <ComboBox Grid.Row="2" ItemsSource="{Binding Path=Activites}" DisplayMemberPath="Libelle" SelectedValuePath="Code" SelectedIndex="0" >
                         <ComboBox.ToolTip>
                             <ToolTip>
                                 <TextBlock>Liste des activités.</TextBlock>
@@ -91,11 +91,11 @@
                     <TextBlock Text="Libellé activité" Grid.Row="4"/>
                     <TextBlock Text="Date Travail " Grid.Row="5"/>
                     <TextBlock Text="Heures" Grid.Row="6"/>
-                    <TextBlock Text="Description" Grid.Row="7"/>
+                    <TextBlock Text="{Binding Path=TachesAnnexes/Libelle }" Grid.Row="7" />
 
                 </Grid>
 
-                <TextBox TextWrapping="Wrap"/>
+                <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"/>
             </DockPanel>
         </Expander>
         <!--#endregion-->
@@ -122,9 +122,11 @@
             <ListView Margin="10" ItemsSource="{Binding TachesAnnexes}" IsSynchronizedWithCurrentItem="True" >
                 <ListView.View>
                     <GridView>
+                        <GridViewColumn  Header="Login" DisplayMemberBinding="{Binding Path= LoginPersonne}" />
                         <GridViewColumn Header="CodeActivité" DisplayMemberBinding="{Binding Path=CodeActivite}"/>
                         <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
-                        <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Path= Description}" />
+                        <GridViewColumn  Header="Description" DisplayMemberBinding="{Binding Path= Description}" />
+                        
 
                     </GridView>
                 </ListView.View>
