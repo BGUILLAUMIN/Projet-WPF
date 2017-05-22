@@ -14,17 +14,18 @@ namespace JobOverview.ViewModel
 {
     // enumération les différents types d'édition: mode consultation ou mode edition
     public enum ModesEdition { Consultation, Edition }
+
     public class VMTachesProd : ViewModelBase
     {
         #region Champs privés
         private TacheProd _nouvelleTache;
-        private ModesEdition _mode; 
+        private ModesEdition _mode;
         #endregion
 
         #region Propriétés
         public List<Logiciel> Logiciels { get; set; }
         public List<Personne> Personnes { get; set; }
-        public ObservableCollection<TacheProd> TachesProds { get;}
+        public ObservableCollection<TacheProd> TachesProds { get; }
         public TacheProd NouvelleTache
         {
             get { return _nouvelleTache; }
@@ -53,15 +54,31 @@ namespace JobOverview.ViewModel
 
         #endregion
 
+        #region Constructeur
         public VMTachesProd()
         {
             Logiciels = DALLogiciels.GetLogicielsVersions();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
-          //TachesProds = new ObservableCollection<Tache>(DALTaches.GetTachesProd());
+            TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
+            ModeEdit = ModesEdition.Consultation;
         }
+        #endregion
 
 
         #region Définition des commandes
+        private ICommand _cmdFiltreTach;
+        public ICommand CmdFiltreTach
+        {
+            get
+            {
+                if (_cmdFiltreTach == null)
+                    _cmdFiltreTach = new RelayCommand(FiltrerTachesProd);
+                return _cmdFiltreTach;
+            }
+        }
+
+
+        //lors du clic sur le bouton Ajouter
         private ICommand _cmdAjouter;
         public ICommand CmdAjouter
         {
@@ -73,6 +90,7 @@ namespace JobOverview.ViewModel
             }
         }
 
+        //lors du clic sur le bouton Enregistrer
         private ICommand _cmdEnregistrer;
         public ICommand CmdEnregistrer
         {
@@ -84,26 +102,53 @@ namespace JobOverview.ViewModel
             }
         }
 
+        //lors du clic sur le bouton Annuler
         private ICommand _cmdAnnuler;
         public ICommand CmdAnnuler
         {
             get
             {
-                // Définition d'une instance de VMPersonnes comme vue-modèle courante
+
                 if (_cmdAnnuler == null)
                     _cmdAnnuler = new RelayCommand(AnnulerTache, ActiverAnnEnr);
                 return _cmdAnnuler;
             }
         }
+
+        //lors du clic sur le bouton Export XML
+        private ICommand _cmdExport;
+        public ICommand CmdExport
+        {
+            get
+            {
+
+                if (_cmdExport == null)
+                    _cmdExport = new RelayCommand(AppelExport);
+                return _cmdExport;
+            }
+        }
+
+
         #endregion
 
         #region Code des commandes
+        private void FiltrerTachesProd()
+        {
+
+        }
+
+        private void AppelExport()
+        {
+            DALTaches.ExportTachesXml(TachesProds.ToList());
+        }
+
         // Crée une nouvelle tâche et l'ajoute à la collection
+        // mode d'édition
         private void AjouterTache()
         {
             //Instancie une nouvelle tâche
             NouvelleTache = new TacheProd();
-          
+
             // Ajoute la nouvelle tache dans la liste TachesProds
             TachesProds.Add(NouvelleTache);
 
@@ -114,35 +159,38 @@ namespace JobOverview.ViewModel
             ModeEdit = ModesEdition.Edition;
         }
 
-
+        //Appel de la méthode d'enregistrement des tâches de production dans la base
+        //et définit le mode d'édition
         private void EnregistrerTache()
         {
-            
             {
+                //Enregistre dans la base la liste mis à jour de la listview 
                 DALTaches.EnregistrerTachesProd(TachesProds.ToList());
 
+                //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                 ModeEdit = ModesEdition.Consultation;
             }
-      
         }
 
+        //Appel de la méthode d'enregistrement des tâches de production dans la base
+        //et définit le mode d'édition
         private void AnnulerTache()
         {
+            //Enlève de l'affichage de la Listviw la tache qui est sélectionnée
             TachesProds.Remove(TacheCourante);
+
+            //Lorsque l'on clique sur le bouton annuler, on passe la fenêtre en mode Consultation
             ModeEdit = ModesEdition.Consultation;
         }
 
-
-
-    
-
-        //méthode d'activation du mode Edition
-        // dès que l'on clique sur le bouton ajouter ou supprimer ça désactive l'état du bouton
+        //méthodes d'activation du Mode Edition
+        // dès que l'on clique sur le bouton ajouter, cela désactive l'état du bouton
         private bool ActiverAjout()
         {
             return ModeEdit == ModesEdition.Consultation; ;
         }
 
+        // dès que l'on clique sur le bouton Enregistrer ou Annuler, cela désactive l'état des boutons
         private bool ActiverAnnEnr()
         {
             return ModeEdit == ModesEdition.Edition;

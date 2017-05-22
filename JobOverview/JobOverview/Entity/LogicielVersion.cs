@@ -46,7 +46,9 @@ namespace JobOverview.Entity
     {
         public string Code { get; set; }
         public string Libelle { get; set; }
-        public string CodeModuleParent { get; set; }
-        
+        public string CodeLogicielParent { get; set; }
+        public int NombreJoursTotalModule { get; set; }
+        public float NumeroVersion { get; set; }
+
     }
 }

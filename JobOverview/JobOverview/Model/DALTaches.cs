@@ -19,7 +19,7 @@ namespace JobOverview.Model
         /// <summary>
         /// Permet de récupérer les tâches de production
         /// </summary>
-        public static List<TacheProd> GetTachesProd(string codeLogiciel, float numVersion)
+        public static List<TacheProd> GetTachesProd()
         {
             var listTaches = new List<TacheProd>();
 
@@ -28,20 +28,12 @@ namespace JobOverview.Model
 						tp.CodeLogicielVersion, tp.NumeroVersion, tp.CodeModule
 					    from jo.Tache t
 					    inner join jo.TacheProd tp on t.IdTache = tp.IdTache
-					    where Annexe = 0 and tp.CodeLogicielVersion = @CodeLogiciel and tp.NumeroVersion = @NumVersion
+					    where Annexe = 0
 					    order by Numero";
-
-            var paramCodeLogi = new SqlParameter("@CodeLogiciel", DbType.String);
-            paramCodeLogi.Value = codeLogiciel;
-
-            var paramNumVersion = new SqlParameter("@NumVersion", DbType.Double);
-            paramNumVersion.Value = numVersion;
 
             using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
                 var command = new SqlCommand(req, connect);
-                command.Parameters.Add(paramCodeLogi);
-                command.Parameters.Add(paramNumVersion);
 
                 connect.Open();
 
@@ -100,6 +92,7 @@ namespace JobOverview.Model
 
             return listTachesAnnexe;
         }
+
         /// <summary>
         /// Enregistre une liste de tâches de production dans la base
         /// </summary>
@@ -151,7 +144,7 @@ namespace JobOverview.Model
         /// Sérialisation des tâches. Permet d'exporter les données tâches en données xml
         /// </summary>
         /// <param name="taches"></param>
-        public static void ExportTachesXml(List<Tache> taches)
+        public static void ExportTachesXml(List<TacheProd> taches)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Tache>),
                                                 new XmlRootAttribute("Taches"));

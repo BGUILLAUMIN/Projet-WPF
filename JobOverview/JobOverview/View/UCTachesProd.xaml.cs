@@ -29,16 +29,9 @@ namespace JobOverview.View
         {
             InitializeComponent();
             DataContext = new VMTachesProd();
-            cbxLogiciels.SelectionChanged += FiltrerLogicielVersion;
-            cbxVersions.SelectionChanged += FiltrerLogicielVersion;
+
         }
 
-        private void FiltrerLogicielVersion(object sender, SelectionChangedEventArgs e)
-        {
-            if (cbxVersions.SelectedValue != null && cbxLogiciels.SelectedValue != null)
-            {
-                TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd(cbxLogiciels.SelectedValue.ToString(), (float)cbxVersions.SelectedValue)); 
-            }
-        }
+
     }
 }
