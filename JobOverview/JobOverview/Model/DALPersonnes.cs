@@ -67,7 +67,7 @@ namespace JobOverview.Model
                             inner join jo.Equipe E on p2.CodeEquipe = E.CodeEquipe 
                             where p1.Login = @Login and p1.CodeEquipe = p2.CodeEquipe
                             union
-                            select P.Login, P.Nom, P.Prenom, M.CodeMetier ,M.Libelle, E.CodeEquipe, E.Nom as NomEquipe
+                            select P.Login, P.Nom, P.Prenom, M.CodeMetier, M.Libelle, E.CodeEquipe, E.Nom as NomEquipe
                             from jo.Personne P
                             inner join jo.Metier M on P.CodeMetier = M.CodeMetier
                             inner join jo.Equipe E on P.CodeEquipe = E.CodeEquipe  
@@ -76,7 +76,7 @@ namespace JobOverview.Model
             var param = new SqlParameter("@Login", DbType.String);
             param.Value = login;
 
-            using (SqlConnection connect = new SqlConnection(Properties.Settings.Default.ConnectionJobOverview))
+            using (SqlConnection connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
                 var command = new SqlCommand(req, connect);
                 command.Parameters.Add(param);
