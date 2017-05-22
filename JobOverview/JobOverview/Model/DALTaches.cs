@@ -12,8 +12,12 @@ using System.IO;
 
 namespace JobOverview.Model
 {
-    class DALTaches
+    public class DALTaches
     {
+        #region Méthodes publiques
+        /// <summary>
+        /// Permet de récupérer les tâches de production
+        /// </summary>
         public static List<TacheProd> GetTachesProd(string codeLogiciel, float numVersion)
         {
             var listTaches = new List<TacheProd>();
@@ -111,6 +115,44 @@ namespace JobOverview.Model
         }
 
         /// <summary>
+        /// Sérialisation des tâches. Permet d'exporter les données tâches en données xml
+        /// </summary>
+        /// <param name="taches"></param>
+        public static void ExportTachesXml(List<Tache> taches)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Tache>),
+                                                new XmlRootAttribute("Taches"));
+            using (TextWriter writer = new StreamWriter("Taches.xml"))
+                serializer.Serialize(writer, taches);
+        }
+
+        /// <summary>
+        /// Permet de récupérer les activités annexes
+        /// </summary>
+        public static List<Activite> GetActivitésAnnexes()
+        {
+            //Requêtage à la BDD pour récupérer les informations sur les activités
+            List<Activite> listActivitésAnx = new List<Activite>();
+
+            var conx = new SqlConnection(Settings.Default.ConnectionJobOverview);
+
+            string query = @"select CodeActivite, Libelle from jo.Activite where Annexe = 1";
+
+            var com = new SqlCommand(query, conx);
+            conx.Open();
+
+            using (SqlDataReader reader = com.ExecuteReader())
+            {
+                GetActivitésFromDataReader(reader, listActivitésAnx);
+            }
+
+            return listActivitésAnx;
+        }
+        #endregion
+
+        #region Méthodes Privées
+
+        /// <summary>
         /// Création et remplissage d'une table mémoire à partir d'une liste de tâches de prod
         /// </summary>
         /// <param name="listTachesProd"></param>
@@ -179,16 +221,22 @@ namespace JobOverview.Model
             }
             return table;
         }
-        /// <summary>
-        /// Sérialisation des tâches. Permet d'exporter les données tâches en données xml
-        /// </summary>
-        /// <param name="taches"></param>
-        public static void ExportTachesXml(List<Tache> taches)
+        
+        private static void GetActivitésFromDataReader(SqlDataReader reader, List<Activite> listActivitésAnx)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Tache>),
-                                                new XmlRootAttribute("Taches"));
-            using (TextWriter writer = new StreamWriter("Taches.xml"))
-                serializer.Serialize(writer, taches);
+            while (reader.Read())
+            {
+                Activite act = new Activite();
+
+                act.Code = reader["CodeActivite"].ToString();
+                act.Libelle = reader["Libelle"].ToString();
+
+                listActivitésAnx.Add(act);
+            }
         }
+        #endregion
     }
+
+
+
 }

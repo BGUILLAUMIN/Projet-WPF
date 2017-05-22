@@ -42,7 +42,7 @@ namespace JobOverview.View {
     public partial class UCTachesProd : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         
-        #line 108 "..\..\..\View\UCTachesProd.xaml"
+        #line 107 "..\..\..\View\UCTachesProd.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox cbxLogiciels;
         
