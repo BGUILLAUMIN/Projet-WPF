@@ -34,6 +34,7 @@ D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.g.cs
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.cache
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.lref
+D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.g.cs
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.g.cs
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCButtonsBar.g.cs
