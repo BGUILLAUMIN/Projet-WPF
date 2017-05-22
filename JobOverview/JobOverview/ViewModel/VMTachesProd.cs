@@ -187,7 +187,7 @@ namespace JobOverview.ViewModel
                 }
               
                 //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
-                ModeEdit = ModesEdition.Consultation;kkkkkkk
+                ModeEdit = ModesEdition.Consultation;
             }
         }
 
