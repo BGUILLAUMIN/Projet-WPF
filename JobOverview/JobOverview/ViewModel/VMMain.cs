@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using JobOverview.Model;
 
 namespace JobOverview.ViewModel
 {
@@ -35,13 +36,12 @@ namespace JobOverview.ViewModel
         //}
 
         //#endregion
+
         private ViewModelBase _vmCourante;
         public ViewModelBase VMCourante
         {
             get
             {
-                if (_vmCourante == null)
-                    _vmCourante = new VMTachesProd();
                 return _vmCourante;
             }
             set
@@ -60,25 +60,39 @@ namespace JobOverview.ViewModel
                 return _CmdTachesProd;
             }
         }
-        private void ActionMenuTachesProd(object obj)
+        private void ActionMenuTachesProd()
         {
             VMCourante = new VMTachesProd();
         }
 
-        //private ICommand _cmdMenu2;
-        //public ICommand CmdMenu2
-        //{
-        //    get
-        //    {
-        //        if (_cmdMenu2 == null)
-        //            _cmdMenu2 = new RelayCommand(ActionMenu2);
-        //        return _cmdMenu2;
-        //    }
-        //}
-        //private void ActionMenu2(object obj)
-        //{
-        //    VMCourante = new VMMenu2();
-        //}
+        private ICommand _cmdTachesAnnexe;
+        public ICommand CmdTachesAnnexe
+        {
+            get
+            {
+                if (_cmdTachesAnnexe == null)
+                    _cmdTachesAnnexe = new RelayCommand(ActionMenuTachesAnnexe);
+                return _cmdTachesAnnexe;
+            }
+        }
+        private void ActionMenuTachesAnnexe()
+        {
+            VMCourante = new VMTachesAnnexe();
+        }
+        private ICommand _cmdAPropos;
+        public ICommand CmdAPropos
+        {
+            get
+            {
+                if (_cmdAPropos == null)
+                    _cmdAPropos = new RelayCommand(ActionMenuAPropos);
+                return _cmdAPropos;
+            }
+        }
+        private void ActionMenuAPropos()
+        {
+            VMCourante = new VMAPropos();
+        }
     }
 }
 

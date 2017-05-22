@@ -8,20 +8,40 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
 
-    <DockPanel>
+    <DockPanel Margin="0,20,0,0">
        
         <!--#region Expander Ajout de Taches de production-->
         <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right">
+            <Expander.ToolTip>
+                <ToolTip>
+                    <TextBlock>Déplier la fiche de détails.</TextBlock>
+                </ToolTip>
+            </Expander.ToolTip>
             <DockPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                     <Button Style="{StaticResource ButtonStyle}">
                         <fa:IconBlock Icon="FloppyO"/>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Ajouter une tâche de production.</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
                     </Button>
                     <Button Style="{StaticResource ButtonStyle}">
                         <fa:IconBlock Icon="Times"/>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Enregistrer la tâche.</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
                     </Button>
                     <Button Style="{StaticResource ButtonStyle}">
-                        <fa:IconBlock Icon="FloppyO"/>
+                        <fa:IconBlock Icon="Undo"/>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Annuler la création de tâche.</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
                     </Button>
                 </StackPanel>
                 <Separator Height="10" Opacity="0" DockPanel.Dock="Top"/>
@@ -48,11 +68,11 @@
 
 
                     <TextBlock Text="Date de création : " Grid.Row="1"/>
-                    <TextBlock Text="La date de création" Grid.Row="2"/>
+                    <TextBlock Text="La date de création" Grid.Row="2" FontWeight="Bold"/>
                     <TextBlock Text="Date Durée Prévue : " Grid.Row="3"/>
-                    <TextBlock Text="La Durée Prévue" Grid.Row="4"/>
+                    <TextBlock Text="La Durée Prévue" Grid.Row="4" FontWeight="Bold"/>
                     <TextBlock Text="Module : " Grid.Row="5"/>
-                    <TextBlock Text="Libelle du module" Grid.Row="6"/>
+                    <TextBlock Text="Libelle du module" Grid.Row="6" FontWeight="Bold"/>
                     <TextBlock Text="Description" Grid.Row="7"/>
 
                 </Grid>
@@ -66,16 +86,58 @@
         <DockPanel>
 
             <DockPanel DockPanel.Dock="Bottom">
-                    <CheckBox IsChecked="False" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <CheckBox IsChecked="False" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <CheckBox.ToolTip>
+                        <ToolTip>
+                            <TextBlock>Filtrer les tâches selon leur degré d'avancement.</TextBlock>
+                        </ToolTip>
+                    </CheckBox.ToolTip>
+                </CheckBox>
                     <Label Content="Taches terminées" VerticalAlignment="Center" />
-                    <Button Content="XML" Width="100" HorizontalAlignment="Right" Margin="0,0,0,5"/>
+                <Button Content="XML" Width="100" HorizontalAlignment="Right" Margin="0,0,0,5">
+                    <Button.ToolTip>
+                        <ToolTip>
+                            <TextBlock>Exporter toutes les tâches de production au format XML.</TextBlock>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
                 </DockPanel>
   
             
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                <ComboBox Margin="15,5,5,5" Style="{StaticResource ComboBoxStyle}"/>
-                <ComboBox Margin="5" Style="{StaticResource ComboBoxStyle}"/>
-                <ComboBox Margin="5" Style="{StaticResource ComboBoxStyle}"/>
+                <ComboBox Name="cbxLogiciels" Margin="15,5,5,5" Style="{StaticResource ComboBoxStyle}"
+                          ItemsSource="{Binding Path=Logiciels}"
+                          DisplayMemberPath="Nom"
+                          SelectedValuePath="Code"
+                          SelectedIndex="0" IsSynchronizedWithCurrentItem="True">
+                    <ComboBox.ToolTip>
+                        <ToolTip>
+                            <TextBlock>Selection du logiciel.</TextBlock>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+                <ComboBox Margin="5" Style="{StaticResource ComboBoxStyle}"
+                          ItemsSource="{Binding Path=Logiciels/Versions}"
+                          DisplayMemberPath="Numero"
+                          SelectedValuePath="Numero" 
+                          IsSynchronizedWithCurrentItem="True">
+                    <ComboBox.ToolTip>
+                        <ToolTip>
+                            <TextBlock>Selection de la version.</TextBlock>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+                <ComboBox Margin="5" Style="{StaticResource ComboBoxStyle}"
+                          ItemsSource="{Binding Path=Personnes}"
+                          DisplayMemberPath="NomComplet"
+                          SelectedValuePath="Login"
+                          SelectedIndex="0">
+                    <ComboBox.ToolTip>
+                        <ToolTip>
+                            <TextBlock>Selection de l'employé.</TextBlock>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="10" DockPanel.Dock="Top">
                 <StackPanel Orientation="Horizontal">
@@ -90,7 +152,6 @@
             
             <ListView Margin="10"/>
             
-       
         </DockPanel>
 <!--#endregion-->
 
