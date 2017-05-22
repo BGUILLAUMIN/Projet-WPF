@@ -176,9 +176,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Compile Include="Images\yannick.png" />
+    <Resource Include="Images\IconeJO.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\yannick.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

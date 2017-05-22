@@ -14,9 +14,9 @@ namespace JobOverview.Model
 {
     class DALTaches
     {
-        public static ObservableCollection<TacheProd> GetTachesProd(string codeLogiciel, float numVersion)
+        public static List<TacheProd> GetTachesProd(string codeLogiciel, float numVersion)
         {
-            var listTaches = new ObservableCollection<TacheProd>();
+            var listTaches = new List<TacheProd>();
 
             string req = @"select t.IdTache, t.Libelle, t.Description, t.CodeActivite, t.Login,
 						tp.Numero, tp.DureePrevue, tp.DureeRestanteEstimee,
