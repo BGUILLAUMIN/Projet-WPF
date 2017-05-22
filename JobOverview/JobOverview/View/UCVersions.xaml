@@ -54,14 +54,16 @@
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,5,10,0">
                 <TextBlock Text="Logiciel : " VerticalAlignment="Center" MinWidth="55"/>
-                <ComboBox Style="{StaticResource ComboBoxStyle}">
+                <ComboBox Style="{StaticResource ComboBoxStyle}"
+                          ItemsSource="{Binding Path=Logiciels}"
+                          DisplayMemberPath="Nom"
+                          SelectedValuePath="Code"
+                          SelectedIndex="0" IsSynchronizedWithCurrentItem="True">
                     <ComboBox.ToolTip>
                         <ToolTip>
                             <TextBlock>Choix du logiciel.</TextBlock>
                         </ToolTip>
                     </ComboBox.ToolTip>
-                    <ComboBoxItem Content="Personne"/>
-                    <ComboBoxItem Content="Activité"/>
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,5,10,0">
