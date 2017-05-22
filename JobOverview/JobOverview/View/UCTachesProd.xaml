@@ -10,7 +10,7 @@
              d:DesignHeight="400" d:DesignWidth="500">
 
     <DockPanel Margin="0,20,0,0">
-       
+
         <!--#region Expander Ajout de Taches de production-->
         <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right">
             <Expander.ToolTip>
@@ -94,7 +94,7 @@
                         </ToolTip>
                     </CheckBox.ToolTip>
                 </CheckBox>
-                    <Label Content="Taches terminées" VerticalAlignment="Center" />
+                <Label Content="Taches terminées" VerticalAlignment="Center" />
                 <Button Content="XML" Width="100" HorizontalAlignment="Right" Margin="0,0,0,5">
                     <Button.ToolTip>
                         <ToolTip>
@@ -102,9 +102,9 @@
                         </ToolTip>
                     </Button.ToolTip>
                 </Button>
-                </DockPanel>
-  
-            
+            </DockPanel>
+
+
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                 <ComboBox Name="cbxLogiciels" Margin="15,5,5,5" Style="{StaticResource ComboBoxStyle}"
                           ItemsSource="{Binding Path=Logiciels}"
@@ -117,7 +117,7 @@
                         </ToolTip>
                     </ComboBox.ToolTip>
                 </ComboBox>
-                <ComboBox Margin="5" Style="{StaticResource ComboBoxStyle}"
+                <ComboBox Name="cbxVersions" Margin="5" Style="{StaticResource ComboBoxStyle}"
                           ItemsSource="{Binding Path=Logiciels/Versions}"
                           DisplayMemberPath="Numero"
                           SelectedValuePath="Numero" 
@@ -128,7 +128,7 @@
                         </ToolTip>
                     </ComboBox.ToolTip>
                 </ComboBox>
-                <ComboBox Margin="5" Style="{StaticResource ComboBoxStyle}"
+                <ComboBox Name="cbxPersonnes" Margin="5" Style="{StaticResource ComboBoxStyle}"
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
@@ -151,12 +151,18 @@
                     <TextBlock Text="102 h"/>
                 </StackPanel>
             </StackPanel>
-            
-            <ListView Margin="10"/>
-            
+
+            <ListView Margin="10" ItemsSource="{Binding TachesProds}" IsSynchronizedWithCurrentItem="True">
+                <ListViewItem>
+                    <GridView>
+                        <GridViewColumn Header="Numéro" DisplayMemberBinding="{Binding Path=Numero}"/>
+                    </GridView>
+                </ListViewItem>
+            </ListView>
+
         </DockPanel>
-<!--#endregion-->
+        <!--#endregion-->
 
     </DockPanel>
-    
+
 </UserControl>

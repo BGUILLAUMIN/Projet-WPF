@@ -13,14 +13,11 @@ namespace JobOverview.ViewModel
     {
         public List<Logiciel> Logiciels { get; set; }
         public List<Personne> Personnes { get; set; }
-        public ObservableCollection<TacheProd> TachesProds { get; set; }
 
         public VMTachesProd()
         {
             Logiciels = DALLogiciels.GetLogicielsVersions();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
-            TachesProds = DALTaches.GetTachesProd();
         }
-
     }
 }

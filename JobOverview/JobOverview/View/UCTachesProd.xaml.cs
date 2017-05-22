@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JobOverview.ViewModel;
+using System.Collections.ObjectModel;
+using JobOverview.Entity;
+using JobOverview.Model;
 
 namespace JobOverview.View
 {
@@ -21,10 +24,22 @@ namespace JobOverview.View
     /// </summary>
     public partial class UCTachesProd : UserControl
     {
+        public ObservableCollection<TacheProd> TachesProds { get; set; }
         public UCTachesProd()
         {
             InitializeComponent();
             DataContext = new VMTachesProd();
+            cbxLogiciels.SelectionChanged += FilterLogicielVersion;
+            cbxVersions.SelectionChanged += FilterLogicielVersion;
+
+        }
+
+        private void FilterLogicielVersion(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbxLogiciels.SelectedValue != null && cbxVersions.SelectedValue != null)
+            {
+                TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd(cbxLogiciels.SelectedValue.ToString(), double.Parse(cbxVersions.SelectedValue.ToString())));
+            }
         }
     }
 }
