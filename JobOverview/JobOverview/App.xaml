@@ -43,6 +43,7 @@
         <Style x:Key="ButtonStyle">
             <Setter Property="Button.Height" Value="30"/>
             <Setter Property="Button.Width" Value="30"/>
+            <Setter Property="Button.Background" Value="LightBlue"/>
         </Style>
 
         <!--Style général pour les ComboBox-->
@@ -51,6 +52,7 @@
             <Setter Property="Height" Value="30"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
+
         
     </Application.Resources>
 </Application>
