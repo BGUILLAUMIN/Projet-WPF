@@ -77,8 +77,7 @@ namespace JobOverview.ViewModel
             get
             {
                 if (_cmdSupprimer == null)
-                    _cmdSupprimer = new RelayCommand(SupprimerTache,ActiverSupprimer()
-);
+                    _cmdSupprimer = new RelayCommand(SupprimerTache, ActiverSupprimer);
                 return _cmdSupprimer;
             }
         }
