@@ -2,14 +2,14 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="JobOverview.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ConnectionJobOverview" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=JobOverview;Integrated Security=True</Value>
-    </Setting>
     <Setting Name="PersonneConnecte" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ManagerConnecte" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ConnectionJobOverview" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=RBLAVEC17-DE\IP08R2;Initial Catalog="JobOverview";Integrated Security=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

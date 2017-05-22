@@ -18,7 +18,7 @@
                 </ToolTip>
             </Expander.ToolTip>
             <DockPanel>
-               
+
                 <Separator Height="10" Opacity="0" DockPanel.Dock="Top"/>
 
                 <Grid DockPanel.Dock="Top">
@@ -38,13 +38,13 @@
 
                     <TextBlock Text="Nombre de jours total &#10; réalisé sur chaque &#10; module : " Grid.Row="3"/>
                     <TextBlock Text="X jours" Grid.Row="4" FontWeight="Bold"/>
-                    <TextBlock Text="Nombre de release :" Grid.Row="5"/>
-                    <TextBlock Text="Nbr Release" Grid.Row="6" FontWeight="Bold"/>
-                    
+                    <TextBlock Text="Nombre de releases :" Grid.Row="5"/>
+                    <TextBlock Text="{Binding Path=Logiciels/Versions/DerniereRelease}" Grid.Row="6" FontWeight="Bold"/>
+
 
                 </Grid>
 
-            
+
             </DockPanel>
         </Expander>
         <!--#endregion-->
@@ -97,7 +97,34 @@
                 </ComboBox>
             </StackPanel>
 
-            <ListView Margin="10"/>
+            <ListView Margin="10"
+                      ItemsSource="{Binding Path=Logiciels/Versions}"
+                      IsSynchronizedWithCurrentItem="True"
+                      HorizontalAlignment="Stretch">
+                <ListView.View>
+
+                    <!--TODO Mettre les infos-bulle au dessus de chaque colonne.-->
+                    <GridView AllowsColumnReorder="true">
+                       
+                        <GridViewColumn Header="Version" 
+                  DisplayMemberBinding="{Binding Path=Numero}"/>
+                        
+                        <GridViewColumn Header="Date de sortie prévue" 
+                  DisplayMemberBinding="{Binding Path=DateSortiePrevue, StringFormat='\{0:dd/MM/yyy}'}"/>
+                        
+                        <GridViewColumn Header="Date de sortie effective" 
+                  DisplayMemberBinding="{Binding Path=DateSortieReelle, StringFormat='\{0:dd/MM/yyy}'}"/>
+                        
+                        <GridViewColumn Header="Ecart (en jours)" 
+                  DisplayMemberBinding="{Binding Path=EcartJour}"/>
+                        
+                        <GridViewColumn Header="Nombre de jours-hommes" 
+                  DisplayMemberBinding="{Binding Path=JoursHommes}"/>
+                        
+                    </GridView>
+
+                </ListView.View>
+            </ListView>
 
 
         </DockPanel>

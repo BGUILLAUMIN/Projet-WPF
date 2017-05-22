@@ -19,7 +19,7 @@ namespace JobOverview.ViewModel
         {
             Logiciels = DALLogiciels.GetLogicielsVersions();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
-            TachesProds = DALTaches.GetTachesProd();
+            //TachesProds = DALTaches.GetTachesProd();
         }
 
     }
