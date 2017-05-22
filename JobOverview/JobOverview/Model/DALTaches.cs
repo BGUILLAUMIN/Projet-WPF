@@ -48,6 +48,7 @@ namespace JobOverview.Model
                             tp.Description = (string)reader["Description"];
                         tp.CodeActivite = (string)reader["CodeActivite"];
                         tp.CodeModule = (string)reader["CodeModule"];
+                        tp.Version = (float)reader["NumeroVersion"];
                         tp.LoginPersonne = (string)reader["Login"];
                         tp.DureePrevue = (float)reader["DureePrevue"];
                         tp.DureeRestante = (float)reader["DureeRestanteEstimee"];
@@ -58,6 +59,10 @@ namespace JobOverview.Model
             }
             return listTaches;
         }
+
+        /// <summary>
+        /// Permet de récupérer les tâches annexes
+        /// </summary>
         public static List<Tache> GetTachesAnnexe()
         {
             var listTachesAnnexe = new List<Tache>();
@@ -151,10 +156,12 @@ namespace JobOverview.Model
         /// <param name="taches"></param>
         public static void ExportTachesXml(List<TacheProd> taches)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Tache>),
-                                                new XmlRootAttribute("Taches"));
-            using (TextWriter writer = new StreamWriter("Taches.xml"))
-                serializer.Serialize(writer, taches);
+            // Exportation dans le fichier xml
+                XmlSerializer serializer = new XmlSerializer(typeof(List<TacheProd>),
+                                                       new XmlRootAttribute("Taches"));
+                using (TextWriter writer = new StreamWriter("TachesProduction.xml"))
+                    serializer.Serialize(writer, taches);
+           
         }
 
         /// <summary>
@@ -252,7 +259,11 @@ namespace JobOverview.Model
             }
             return table;
         }
-        
+
+        /// <summary>
+        /// Obtient et renvoie la liste des activités 
+        /// </summary>
+        /// <returns></returns>
         private static void GetActivitésFromDataReader(SqlDataReader reader, List<Activite> listActivitésAnx)
         {
             while (reader.Read())
