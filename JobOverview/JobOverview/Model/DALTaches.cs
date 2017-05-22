@@ -145,6 +145,11 @@ namespace JobOverview.Model
             }
         }
 
+        public static void EnregistrerTachesAnnexes(List<Tache> listTachesAnnexes)
+        {
+            //TODO
+        }
+
         /// <summary>
         /// Sérialisation des tâches. Permet d'exporter les données tâches en données xml
         /// </summary>
