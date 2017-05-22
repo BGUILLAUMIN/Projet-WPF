@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobOverview.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,14 @@ namespace JobOverview.View
 		public UCLogin()
 		{
 			InitializeComponent();
+            cbxUtilisateur.SelectionChanged += CbxUtilisateur_SelectionChanged;
 		}
-	}
+
+        private void CbxUtilisateur_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Personne p = (Personne)cbxUtilisateur.SelectedItem;
+            Properties.Settings.Default.PersonneConnecte = p.Login;
+            Properties.Settings.Default.Save();
+        }
+    }
 }

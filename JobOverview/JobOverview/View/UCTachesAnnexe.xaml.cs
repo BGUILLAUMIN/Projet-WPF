@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using JobOverview.ViewModel;
 
 namespace JobOverview.View
 {
     /// <summary>
-    /// Interaction logic for UCTachesProd.xaml
+    /// Interaction logic for UCTachesAnnexe.xaml
     /// </summary>
-    public partial class UCTachesProd : UserControl
+    public partial class UCTachesAnnexe : UserControl
     {
-        public UCTachesProd()
+        public UCTachesAnnexe()
         {
             InitializeComponent();
-            DataContext = new VMTachesProd();
         }
     }
 }

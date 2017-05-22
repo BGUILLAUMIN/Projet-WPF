@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="JobOverview.View.UCSaisieTemps"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:JobOverview.View"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="500">
+
+    <DockPanel Margin="0,20,0,0">
+
+        <!--#region Expander Ajout de Taches Annexe-->
+        <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right">
+            <Expander.ToolTip>
+                <ToolTip>
+                    <TextBlock>Déplier la fiche de détails.</TextBlock>
+                </ToolTip>
+            </Expander.ToolTip>
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <Button Style="{StaticResource ButtonStyle}">
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Ajouter une saisie de temps.</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                        <fa:IconBlock Icon="PlusCircle"/>
+                    </Button>                   
+                    <Button Style="{StaticResource ButtonStyle}">
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Annuler.</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                        <fa:IconBlock Icon="Undo"/>
+                    </Button>
+                    <Button Style="{StaticResource ButtonStyle}">
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Enregistrer.</TextBlock>
+                            </ToolTip>
+                        </Button.ToolTip>
+                        <fa:IconBlock Icon="FloppyO"/>
+                    </Button>
+                </StackPanel>
+                <Separator Height="10" Opacity="0" DockPanel.Dock="Top"/>
+
+                <Grid DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                     
+                    </Grid.RowDefinitions>
+
+              
+
+
+                    <TextBlock Text="Libellé : " Grid.Row="1"/>
+                    <TextBlock Text="Libellé activité" Grid.Row="2"/>
+                    <TextBlock Text="Date Travail " Grid.Row="3"/>
+                    <TextBlock Text="Heures" Grid.Row="4"/>
+                    <TextBlock Text="Description" Grid.Row="5"/>
+
+                </Grid>
+
+                <TextBox TextWrapping="Wrap"/>
+            </DockPanel>
+        </Expander>
+        <!--#endregion-->
+
+        <!--#region DockPanel Consultation des Taches Annexe-->
+        <DockPanel>
+
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right">
+                <TextBlock Text="Filtre : " VerticalAlignment="Center"/>
+                <ComboBox Margin="0,5,10,0" Style="{StaticResource ComboBoxStyle}">
+                    <ComboBox.ToolTip>
+                        <ToolTip>
+                            <TextBlock>Choisir les options de filtrage.</TextBlock>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                    <ComboBoxItem Content="Personne"/>
+                    <ComboBoxItem Content="Activité"/>
+                </ComboBox>
+            </StackPanel>
+
+            <ListView Margin="10"/>
+
+
+        </DockPanel>
+        <!--#endregion-->
+
+    </DockPanel>
+
+</UserControl>

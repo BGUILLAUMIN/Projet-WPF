@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>JobOverview</RootNamespace>
     <AssemblyName>JobOverview</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -17,6 +17,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -68,9 +69,15 @@
     <Compile Include="Entity\Personne.cs" />
     <Compile Include="Entity\Tache.cs" />
     <Compile Include="ExporterXml.cs" />
+    <Compile Include="ViewModel\VMAPropos.cs" />
+    <Compile Include="ViewModel\VMTachesAnnexe.cs" />
     <Compile Include="Model\DALLogiciels.cs" />
     <Compile Include="Model\DALPersonnes.cs" />
     <Compile Include="Model\DALTaches.cs" />
+    <Compile Include="ViewModel\VMTachesProd.cs" />
+    <Compile Include="View\UCAPropos.xaml.cs">
+      <DependentUpon>UCAPropos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UCButtonsBar.xaml.cs">
       <DependentUpon>UCButtonsBar.xaml</DependentUpon>
     </Compile>
@@ -80,8 +87,17 @@
     <Compile Include="View\ModalWindow.xaml.cs">
       <DependentUpon>ModalWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UCSaisieTemps.xaml.cs">
+      <DependentUpon>UCSaisieTemps.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UCTachesAnnexe.xaml.cs">
+      <DependentUpon>UCTachesAnnexe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UCTachesProd.xaml.cs">
       <DependentUpon>UCTachesProd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UCVersions.xaml.cs">
+      <DependentUpon>UCVersions.xaml</DependentUpon>
     </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -99,6 +115,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\UCAPropos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UCButtonsBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,7 +131,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\UCSaisieTemps.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UCTachesAnnexe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UCTachesProd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UCVersions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

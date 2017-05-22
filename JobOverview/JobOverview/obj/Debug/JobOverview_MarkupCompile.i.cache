@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\
+D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\
 JobOverview
 none
 false
 DEBUG;TRACE
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\App.xaml
-5-846277817
+D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\App.xaml
+61751797406
 
-251637012519
-161426876127
-View\MainWindow.xaml;View\UCButtonsBar.xaml;View\UCLogin.xaml;View\ModalWindow.xaml;View\UCTachesProd.xaml;
+27-122348151
+16-1339413682
+View\MainWindow.xaml;View\UCButtonsBar.xaml;View\UCLogin.xaml;View\ModalWindow.xaml;View\UCTachesAnnexe.xaml;View\UCTachesProd.xaml;
 
-False
+True
 
