@@ -47,6 +47,7 @@ namespace JobOverview.ViewModel
 
 
 
+        #region Constructeur
         public VMTachesAnnexe()
         {
             Activites = DALPersonnes.GetActivite();
