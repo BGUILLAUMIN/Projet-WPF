@@ -61,8 +61,10 @@ namespace JobOverview.ViewModel
             TachesAnnexes = new ObservableCollection<Tache>(DALTaches.GetTachesAnnexe());
             ModeEdit = ModesEdition.Consultation;
         }
+       
 
-        #region MyRegion
+        // ajout des commandes
+        #region COMMANDES
         //lors du clic sur le bouton Ajouter
         private ICommand _cmdAjouter;
         public ICommand CmdAjouter
@@ -74,7 +76,18 @@ namespace JobOverview.ViewModel
                 return _cmdAjouter;
             }
         }
-
+        //lors du clic sur le bouton Supprimer
+        private ICommand _cmdSupprimer;
+        public ICommand CmdSupprimer
+        {
+            get
+            {
+                if (_cmdSupprimer == null)
+                    _cmdSupprimer = new RelayCommand(SupprimerTache,ActiverSupprimer()
+);
+                return _cmdSupprimer;
+            }
+        }
         //lors du clic sur le bouton Enregistrer
         private ICommand _cmdEnregistrer;
         public ICommand CmdEnregistrer
@@ -151,7 +164,10 @@ namespace JobOverview.ViewModel
         {
             return ModeEdit == ModesEdition.Consultation; ;
         }
-
+        private bool ActiverSupprimer()
+        {
+            return ModeEdit == ModesEdition.Consultation; ;
+        }
         // dès que l'on clique sur le bouton Enregistrer ou Annuler, cela désactive l'état des boutons
         private bool ActiverAnnEnr()
         {
