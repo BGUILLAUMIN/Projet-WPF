@@ -45,3 +45,13 @@ D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\GeneratedIn
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.cache
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.lref
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.g.cs
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSaisieTemps.g.cs
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.g.cs
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.g.cs
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.g.cs
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.baml
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSaisieTemps.baml
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.baml
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.baml
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.baml
