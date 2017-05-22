@@ -27,6 +27,8 @@ namespace JobOverview.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=BGUILLAUMI17-DE\\IP08R2;Initial Catalog=WinformsJobOverview;Integrated" +
             " Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=VPORTEMER17-DE\\IP08R2;Initial Catalog=JobOverview;Integrated Security" +
+            "=True")]
         public string ConnectionJobOverview {
             get {
                 return ((string)(this["ConnectionJobOverview"]));
