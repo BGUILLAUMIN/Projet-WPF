@@ -157,17 +157,21 @@ namespace JobOverview.ViewModel
         private void EnregistrerTache()
         {
             {
-            //    try
-            //    {
+                try
+                {
                     //Enregistre dans la base la liste mis à jour de la listview 
-                    DALTaches.EnregistrerTachesProd(TacheCourante);
                     MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
                        "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-              //  }
-                //catch (Exception)
-                //{
-                //    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
+
+                    DALTaches.EnregistrerTachesProd(TacheCourante);
+
+                    MessageBox.Show(" Tâche de production enregistrée",
+                          "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
                 //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                 ModeEdit = ModesEdition.Consultation;

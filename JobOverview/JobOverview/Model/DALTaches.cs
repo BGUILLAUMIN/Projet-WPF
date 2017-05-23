@@ -129,6 +129,8 @@ namespace JobOverview.Model
                 paramCodeActivite.Value = tacheProd.CodeActivite;
                 SqlParameter paramLogin = new SqlParameter("@Login", DbType.String);
                 paramLogin.Value = tacheProd.LoginPersonne;
+
+
                 SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
                 paramDescription.Value = tacheProd.Description;
                 SqlParameter paramDureePrevue = new SqlParameter("@DureePrevue", SqlDbType.Float);
@@ -139,9 +141,9 @@ namespace JobOverview.Model
                 paramCodeModule.Value = tacheProd.CodeModule;
                 SqlParameter paramCodeLogicielModule = new SqlParameter("@CodeLogicielModule", DbType.String);
                 paramCodeLogicielModule.Value = tacheProd.CodeLogiciel;
-                SqlParameter paramNumeroVersion = new SqlParameter("@NumeroVersion", SqlDbType.Float);
+                                SqlParameter paramNumeroVersion = new SqlParameter("@NumeroVersion", SqlDbType.Float);
                 paramNumeroVersion.Value = tacheProd.Numero;
-                SqlParameter paramCodeLogicielVersion = new SqlParameter("@CodeLogicielVersion", DbType.String);
+                                SqlParameter paramCodeLogicielVersion = new SqlParameter("@CodeLogicielVersion", DbType.String);
                 paramCodeLogicielVersion.Value = tacheProd.CodeLogiciel;
 
                 // Création  de la commande
@@ -159,20 +161,20 @@ namespace JobOverview.Model
                 command.Parameters.Add(paramCodeLogicielVersion);
 
                 #endregion
-             //   try
-               // {
-                    //  exécution de la commande
-             
-                    command.ExecuteNonQuery();
+                try
+                {
+                    //exécution de la commande
 
-                    // Validation de la transaction s'il n'y a pas eu d'erreur
-                 //   tran.Commit();
-              //  }
-              //  catch (Exception)
-              //  {
-               //     tran.Rollback(); // Annulation de la transaction en cas d'erreur
-               //     throw;   // Remontée de l'erreur à l'appelant
-              //  }
+                command.ExecuteNonQuery();
+
+                    //Validation de la transaction s'il n'y a pas eu d'erreur
+                    tran.Commit();
+                }
+                catch (Exception)
+                {
+                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
+                    throw;   // Remontée de l'erreur à l'appelant
+                }
             }
         }
 
@@ -202,6 +204,7 @@ namespace JobOverview.Model
                 paramCodeActivite.Value = TachesAnn.CodeActivite;
                 SqlParameter paramLogin = new SqlParameter("@Login", DbType.String);
                 paramLogin.Value = TachesAnn.LoginPersonne;
+
                 SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
                 paramDescription.Value = TachesAnn.Description;
 
