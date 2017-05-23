@@ -10,6 +10,7 @@ namespace JobOverview.View
 	{
 		public MainWindow()
 		{
+            //Definition du language pour l'affichage des dates
             Language = System.Windows.Markup.XmlLanguage.GetLanguage(System.Threading.Thread.CurrentThread.CurrentCulture.Name);
             InitializeComponent();
 			DataContext = new VMMain();

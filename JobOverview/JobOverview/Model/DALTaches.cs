@@ -159,11 +159,10 @@ namespace JobOverview.Model
                 command.Parameters.Add(paramCodeLogicielVersion);
 
                 #endregion
-                //   try
-                // {
-                //  exécution de la commande
-
-                command.ExecuteNonQuery();
+                try
+                {
+                    //exécution de la commande
+                    command.ExecuteNonQuery();
 
                 // Validation de la transaction s'il n'y a pas eu d'erreur
                 //   tran.Commit();

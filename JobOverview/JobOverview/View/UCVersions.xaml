@@ -10,9 +10,9 @@
              d:DesignHeight="400" d:DesignWidth="500">
 
     <DockPanel Margin="0,20,0,0">
-        <!--#region DockPanel Resources-->
+        <!--#region Definition des resources-->
         <DockPanel.Resources>
-            
+
             <local:IntToColorBrushConverter x:Key="IntToColorBrushConverter"/>
             <sys:Double x:Key="ValeurEcartJour">0</sys:Double>
 
@@ -66,19 +66,15 @@
                         <TextBlock Text="{Binding Path=Logiciels/Versions/DateSortiePrevue, StringFormat='\{0:dd/MM/yyy}'}"
                                FontWeight="Bold"
                                Grid.Row="7"/>
-
-
                     </Grid>
-
-
                 </DockPanel>
             </Border>
         </Expander>
         <!--#endregion-->
 
-        <!--#region DockPanel Consultation des Taches Annexes-->
+        <!--#region Consultation des Taches Annexes-->
         <DockPanel>
-
+            <!--#region Partie des ComboBox-->
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,5,10,0">
                 <TextBlock Text="Logiciel : " VerticalAlignment="Center" MinWidth="55"/>
                 <ComboBox ItemsSource="{Binding Path=Logiciels}"
@@ -119,7 +115,9 @@
                     </ComboBox.ToolTip>
                 </ComboBox>
             </StackPanel>
+            <!--#endregion -->
 
+            <!--#region Affichage du détail des versions-->
             <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
                 <TextBlock Text="Modules :" Margin="10,0,0,10"
                            FontWeight="Bold"/>
@@ -135,10 +133,10 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-
             </StackPanel>
+            <!--#endregion -->
 
-
+            <!--#region Affichage des données-->
             <ListView Margin="10"
                       ItemsSource="{Binding Path=Logiciels/Versions}"
                       IsSynchronizedWithCurrentItem="True"
@@ -150,8 +148,6 @@
                             Converter={StaticResource IntToColorBrushConverter}, ConverterParameter={StaticResource ValeurEcartJour}}"/>
                     </Style>
                 </ListView.ItemContainerStyle>
-
-
                 <ListView.View>
 
                     <!--TODO Mettre les infos-bulle au dessus de chaque colonne.-->
@@ -159,7 +155,7 @@
 
                         <GridViewColumn Header="Version" 
                   DisplayMemberBinding="{Binding Path=Numero}"/>
-
+                        
                         <GridViewColumn Header="Date de sortie prévue" 
                   DisplayMemberBinding="{Binding Path=DateSortiePrevue, StringFormat='\{0:dd/MM/yyy}'}"/>
 
@@ -176,11 +172,10 @@
 
                 </ListView.View>
             </ListView>
-
-
-
+            <!--#endregion-->
+            
         </DockPanel>
         <!--#endregion-->
-
+        
     </DockPanel>
 </UserControl>

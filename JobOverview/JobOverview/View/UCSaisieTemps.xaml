@@ -11,7 +11,7 @@
     <DockPanel Margin="0,20,0,0">
 
         <!--#region Expander Ajout de Taches Annexe-->
-        <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right">
+        <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right" IsExpanded="True">
             <Expander.ToolTip>
                 <ToolTip>
                     <TextBlock>Déplier la fiche de détails.</TextBlock>
@@ -57,10 +57,7 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
-                     
                     </Grid.RowDefinitions>
-
-              
 
 
                     <TextBlock Text="Libellé : " Grid.Row="1"/>
@@ -68,7 +65,6 @@
                     <TextBlock Text="Date Travail " Grid.Row="3"/>
                     <TextBlock Text="Heures" Grid.Row="4"/>
                     <TextBlock Text="Description" Grid.Row="5"/>
-
                 </Grid>
 
                 <TextBox TextWrapping="Wrap"/>
