@@ -182,14 +182,15 @@
             <!--#endregion-->
 
             <!--#region zone de sélection-->
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="LightGray">
                 <StackPanel >
                     <Label Content="Logiciel"/>
-                    <ComboBox Name="cbxLogiciels"
-                          ItemsSource="{Binding Path=Logiciels}"
-                          DisplayMemberPath="Nom"
-                          SelectedValuePath="Code"
-                          SelectedIndex="0" IsSynchronizedWithCurrentItem="True">
+                    <ComboBox Name="cbxLogiciels" Background="Yellow"
+                              Style="{StaticResource Combobox2}"
+                              ItemsSource="{Binding Path=Logiciels}"
+                              DisplayMemberPath="Nom"
+                              SelectedValuePath="Code"
+                              SelectedIndex="0" IsSynchronizedWithCurrentItem="True">
                         <ComboBox.ToolTip>
                             <ToolTip>
                                 <TextBlock>Selection du logiciel.</TextBlock>
@@ -199,11 +200,12 @@
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Version"/>
-                    <ComboBox Name="cbxVersions"  
-                          ItemsSource="{Binding Path=Logiciels/Versions}"
-                          DisplayMemberPath="Numero"
-                          SelectedValuePath="Numero" 
-                          IsSynchronizedWithCurrentItem="True">
+                    <ComboBox Name="cbxVersions"
+                              Style="{StaticResource Combobox2}"
+                              ItemsSource="{Binding Path=Logiciels/Versions}"
+                              DisplayMemberPath="Numero"
+                              SelectedValuePath="Numero" 
+                              IsSynchronizedWithCurrentItem="True">
                         <ComboBox.ToolTip>
                             <ToolTip>
                                 <TextBlock>Selection de la version.</TextBlock>
@@ -213,12 +215,13 @@
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Personnes"/>
-                    <ComboBox Name="cbxPersonnes" Style="{StaticResource Combobox2}"
-                          ItemsSource="{Binding Path=Personnes}"
-                          DisplayMemberPath="NomComplet"
-                          SelectedValuePath="Login"
-                          SelectedIndex="0"
-                          IsEnabled="{Binding Source={x:Static properties:Settings.Default}, Path=ManagerConnecte}">
+                    <ComboBox Name="cbxPersonnes"
+                              Style="{StaticResource Combobox2}"
+                              ItemsSource="{Binding Path=Personnes}"
+                              DisplayMemberPath="NomComplet"
+                              SelectedValuePath="Login"
+                              SelectedIndex="0"
+                              IsEnabled="{Binding Source={x:Static properties:Settings.Default}, Path=ManagerConnecte}">
                         <ComboBox.ToolTip>
                             <ToolTip>
                                 <TextBlock>Selection de l'employé.</TextBlock>
