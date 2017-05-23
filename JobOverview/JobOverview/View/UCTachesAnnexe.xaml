@@ -20,98 +20,108 @@
             </Expander.ToolTip>
             <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="0,0,0,10">
                 <DockPanel>
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
-                        <Button.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Ajouter une tâche annexe.</TextBlock>
-                            </ToolTip>
-                        </Button.ToolTip>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
+                            <Button.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Ajouter une tâche annexe.</TextBlock>
+                                </ToolTip>
+                            </Button.ToolTip>
                             <fa:IconBlock Icon="PlusCircle"  FontSize="25"/>
-                    </Button>
-                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdSupprimer}">
-                        <Button.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Supprimer tâche.</TextBlock>
-                            </ToolTip>
-                        </Button.ToolTip>
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdSupprimer}">
+                            <Button.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Supprimer tâche.</TextBlock>
+                                </ToolTip>
+                            </Button.ToolTip>
                             <fa:IconBlock Icon="Times"  FontSize="25"/>
-                    </Button>
-                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAnnuler}" >
-                        <Button.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Annuler.</TextBlock>
-                            </ToolTip>
-                        </Button.ToolTip>
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAnnuler}" >
+                            <Button.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Annuler.</TextBlock>
+                                </ToolTip>
+                            </Button.ToolTip>
                             <fa:IconBlock Icon="Undo"  FontSize="25"/>
-                    </Button>
-                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdEnregistrer}">
-                        <Button.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Enregistrer.</TextBlock>
-                            </ToolTip>
-                        </Button.ToolTip>
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdEnregistrer}">
+                            <Button.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Enregistrer.</TextBlock>
+                                </ToolTip>
+                            </Button.ToolTip>
                             <fa:IconBlock Icon="FloppyO"  FontSize="25"/>
-                    </Button>
-                </StackPanel>
-                <Separator Height="10" Opacity="0"  DockPanel.Dock="Top"/>
+                        </Button>
+                    </StackPanel>
+                    <Separator Height="10" Opacity="0"  DockPanel.Dock="Top"/>
 
-                <Grid DockPanel.Dock="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
 
 
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="2" Content="Personne"/>
-                    <ComboBox Grid.Row="2" Name="cbPersonne2" 
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="2" Content="Personne"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="5" Width="150" Text="{Binding Path=TachesAnnexes/LoginPersonne}" 
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"/>
+
+                        <ComboBox Grid.Row="2" Name="cbPersonne2" 
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
+                              SelectedValue="{Binding Path=TachesAnnexes/LoginPersonne}"
                           SelectedIndex="{Binding ElementName=cbPersonne, Path=Cursor}"
                               Style="{StaticResource Combobox2}"
                            IsSynchronizedWithCurrentItem="True"
-                          IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Grid.Column="1" Height="Auto" Width="Auto">
-                        <ComboBox.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Liste des personnes.</TextBlock>
-                            </ToolTip>
-                        </ComboBox.ToolTip>
-                    </ComboBox>
-                    <Label Grid.Row="3" Grid.Column="0"  DockPanel.Dock="Left" Content="Activité"/>
-                    <ComboBox Grid.Row="3"  Grid.Column="1" DockPanel.Dock="Right" Name="cbActivite"  
-                              ItemsSource="{Binding Path=Activites}" DisplayMemberPath="Code" 
-                              SelectedValuePath="Libelle" SelectedIndex="0" 
-                              Style="{StaticResource Combobox2}"
-                             IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Height="Auto" Width="Auto">
-                        <ComboBox.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Liste des activités.</TextBlock>
-                            </ToolTip>
-                        </ComboBox.ToolTip>
-                    </ComboBox>
-                    <Label  Grid.Row="4" Content="Libellé Activité:" Grid.ColumnSpan="2"/>
-                    <TextBlock Grid.Row="5" Text="{Binding ElementName=cbActivite, Path=SelectedValue}" Grid.ColumnSpan="2"/>
+                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"  Grid.Column="1" Height="Auto" Width="Auto">
+                            <!--IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Grid.Column="1" Height="Auto" Width="Auto">-->
+                            <ComboBox.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Liste des personnes.</TextBlock>
+                                </ToolTip>
+                            </ComboBox.ToolTip>
+                        </ComboBox>
+                        <Label Grid.Row="3" Grid.Column="0"  DockPanel.Dock="Left" Content="Activité"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" Width="150" Text="{Binding Path=TachesAnnexes/CodeActivite}" 
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="3"  Grid.Column="1" DockPanel.Dock="Right" Name="cbActivite"  
+                              ItemsSource="{Binding Path=Activites}" SelectedValue="{Binding Path=TachesAnnexes/CodeActivite }" DisplayMemberPath="Code" 
+                              SelectedValuePath="Code" SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
+                              Style="{StaticResource Combobox2}" 
+                              Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" Height="Auto" Width="Auto">
+                            <!--IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Height="Auto" Width="Auto">-->
+                            <ComboBox.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Liste des activités.</TextBlock>
+                                </ToolTip>
+                            </ComboBox.ToolTip>
+                        </ComboBox>
+                        <Label  Grid.Row="4" Content="Libellé Activité:" />
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=Activites/Libelle}" VerticalAlignment="Center"/>
 
-                    <Label  Grid.Row="0" Content="Libellé Tache Annexe:" Grid.ColumnSpan="2" />
-                    <TextBox Grid.Row="1" Text="{Binding Path=TachesAnnexes/Libelle}"
+                        <Label  Grid.Row="0" Content="Libellé Tache Annexe:" Grid.ColumnSpan="2" />
+                        <TextBox Grid.Row="1" Text="{Binding Path=TachesAnnexes/Libelle}"
                              IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}" Grid.ColumnSpan="2"/>
-                    <!--<TextBlock Text="Date Travail " Grid.Row="5"/>
+                        <!--<TextBlock Text="Date Travail " Grid.Row="5"/>
                     <TextBlock Text="Heures" Grid.Row="6"/>-->
-                </Grid>
+                    </Grid>
 
-                <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"  Width="350"
+                    <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"  Width="350"
                          IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}"/>
-            </DockPanel>
-                </Border>
+                </DockPanel>
+            </Border>
         </Expander>
         <!--#endregion-->
 
