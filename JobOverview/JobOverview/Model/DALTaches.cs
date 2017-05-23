@@ -106,7 +106,7 @@ namespace JobOverview.Model
         public static void EnregistrerTachesProd(TacheProd tacheProd)
         {
 
-         var  @IdTache = Guid.NewGuid();
+     
 
             string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
                         Values  (@IdTache, @Libelle, 0 , @CodeActivite, @Login, @Description);
@@ -266,7 +266,7 @@ namespace JobOverview.Model
 
             using (SqlDataReader reader = com.ExecuteReader())
             {
-                GetActivitésFromDataReader(reader, listActivitésAnx);
+                GetActivitésAnnFromDataReader(reader, listActivitésAnx);
             }
 
             return listActivitésAnx;
@@ -280,7 +280,7 @@ namespace JobOverview.Model
         /// Obtient et renvoie la liste des activités 
         /// </summary>
         /// <returns></returns>
-        private static void GetActivitésFromDataReader(SqlDataReader reader, List<Activite> listActivitésAnx)
+        private static void GetActivitésAnnFromDataReader(SqlDataReader reader, List<Activite> listActivitésAnx)
         {
             while (reader.Read())
             {
