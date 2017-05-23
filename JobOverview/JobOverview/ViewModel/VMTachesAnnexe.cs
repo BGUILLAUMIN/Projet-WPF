@@ -1,15 +1,15 @@
 ﻿using JobOverview.Entity;
-using JobOverview.Model;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Data;
+using JobOverview.Model;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.ComponentModel;
+using System.Windows.Data;
+using System.Windows.Forms;
 
 namespace JobOverview.ViewModel
 {
@@ -72,18 +72,21 @@ namespace JobOverview.ViewModel
                 return _cmdAjouter;
             }
         }
-        //lors du clic sur le bouton Supprimer
-        private ICommand _cmdSupprimer;
-        public ICommand CmdSupprimer
-        {
-            get
-            {
-                if (_cmdSupprimer == null)
-                    _cmdSupprimer = new RelayCommand(SupprimerTache, ActiverSupprimer);
+        /// <summary>
+        /// TODO: Activer la commande suppression 
+        /// </summary>
+        ////lors du clic sur le bouton Supprimer
+        //private ICommand _cmdSupprimer;
+        //public ICommand CmdSupprimer
+        //{
+        //    get
+        //    {
+        //        if (_cmdSupprimer == null)
+        //            _cmdSupprimer = new RelayCommand(SupprimerTache, ActiverSupprimer);
 
-                return _cmdSupprimer;
-            }
-        }
+        //        return _cmdSupprimer;
+        //    }
+        //}
         //lors du clic sur le bouton Enregistrer
         private ICommand _cmdEnregistrer;
         public ICommand CmdEnregistrer
@@ -131,24 +134,24 @@ namespace JobOverview.ViewModel
 
             ModeEdit = ModesEdition.Edition;
         }
-
+       // //TODO : Gerer la métode de suppression
         // Supprime la tâche sélectionnée et la supprime de la collection
-        private void SupprimerTache()
-        {
-            try
-            {
-                TachesAnnexes.Remove(TacheCourante);
-                MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
-                DALTaches.EnregistrerTachesAnnexes(TacheCourante);//ToDO changer méthode suppression
+        //private void SupprimerTache()
+        //{
+        //    try
+        //    {
+        //        TachesAnnexes.Remove(TacheCourante);
+        //        MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButtons.OKCancel);
+        //        DALTaches.SuppressionTachesAnnexes(TacheCourante);//TODO Implémenter la méthode dans le DALTAches
+        //        MessageBox.Show(" Tâche annexe supprimée", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    }
+        //    catch (Exception)
+        //    {
 
-            }
-            catch (Exception)
-            {
+        //        MessageBox.Show("Tâche non supprimée", "Attention", MessageBoxButtons.OK);
+        //    }
 
-                MessageBox.Show("Tâche non supprimée", "Attention", MessageBoxButton.OK);
-            }
-
-        }
+        //}
 
 
 
@@ -160,13 +163,15 @@ namespace JobOverview.ViewModel
                 try
                 {
                     //Enregistre dans la base la liste mis à jour de la listview 
-                    MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
+                    MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?", "Attention", MessageBoxButtons.OKCancel);
                     DALTaches.EnregistrerTachesAnnexes(TacheCourante);
+                    MessageBox.Show(" Tâche annexe enregistrée","Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                      
                 }
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Tâche non enregistrée", "Attention", MessageBoxButton.OK);
+                    MessageBox.Show("Tâche non enregistrée", "Attention", MessageBoxButtons.OKCancel);
                 }
 
                 //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation

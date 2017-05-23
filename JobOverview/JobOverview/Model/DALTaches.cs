@@ -129,6 +129,8 @@ namespace JobOverview.Model
                 paramCodeActivite.Value = tacheProd.CodeActivite;
                 SqlParameter paramLogin = new SqlParameter("@Login", DbType.String);
                 paramLogin.Value = tacheProd.LoginPersonne;
+
+
                 SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
                 paramDescription.Value = tacheProd.Description;
                 SqlParameter paramDureePrevue = new SqlParameter("@DureePrevue", SqlDbType.Float);
@@ -159,34 +161,33 @@ namespace JobOverview.Model
                 command.Parameters.Add(paramCodeLogicielVersion);
 
                 #endregion
-             //   try
-               // {
-                    //  exécution de la commande
-             
+                try
+                {
+                    //exécution de la commande
                     command.ExecuteNonQuery();
 
-                    // Validation de la transaction s'il n'y a pas eu d'erreur
-                 //   tran.Commit();
-              //  }
-              //  catch (Exception)
-              //  {
-               //     tran.Rollback(); // Annulation de la transaction en cas d'erreur
-               //     throw;   // Remontée de l'erreur à l'appelant
-              //  }
+                    //Validation de la transaction s'il n'y a pas eu d'erreur
+                    tran.Commit();
+                }
+                catch (Exception)
+                {
+                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
+                    throw;   // Remontée de l'erreur à l'appelant
+                }
             }
         }
 
         /// <summary>
         /// Enregistre une tâche annexe dans la base
         /// </summary>
-      
+
         public static void EnregistrerTachesAnnexes(Tache TachesAnn)
         {
             // Ecriture de la requête d'insertion 
             string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
-                        Values (@IdTache, @Libelle, 1 , @CodeActivite, @Login, @Description";
-								
-         
+                        Values (@IdTache, @Libelle, 1 , @CodeActivite, @Login, @Description)";
+
+
             using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
                 // Ouverture de la connexion et début de la transaction
@@ -202,6 +203,7 @@ namespace JobOverview.Model
                 paramCodeActivite.Value = TachesAnn.CodeActivite;
                 SqlParameter paramLogin = new SqlParameter("@Login", DbType.String);
                 paramLogin.Value = TachesAnn.LoginPersonne;
+
                 SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
                 paramDescription.Value = TachesAnn.Description;
 
@@ -218,7 +220,7 @@ namespace JobOverview.Model
                 try
                 {
                     // exécution de la commande
-                   
+
                     command.ExecuteNonQuery();
 
                     // Validation de la transaction s'il n'y a pas eu d'erreur
@@ -313,7 +315,7 @@ namespace JobOverview.Model
             return TravailCourant;
         }
 
-   
+
 
         #endregion
 
@@ -340,17 +342,17 @@ namespace JobOverview.Model
 
         private static void GetTempsTravailGlobauxFromDataReader(SqlDataReader reader, Travail Travail)
         {
-            
-               
-                if (reader["NbrHeureTravail"] != DBNull.Value)
+
+
+            if (reader["NbrHeureTravail"] != DBNull.Value)
                 Travail.NbrHeuresTravailGlobalRealisees = (double)reader["NbrHeureTravail"];
 
-                if (reader["NbrHeureRestante"] != DBNull.Value)
+            if (reader["NbrHeureRestante"] != DBNull.Value)
                 Travail.NbrHeuresTravailGlobalRestantes = (double)reader["NbrHeureRestante"];
 
-          
 
-            
+
+
         }
 
         #endregion
