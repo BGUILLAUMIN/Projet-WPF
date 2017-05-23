@@ -36,16 +36,16 @@ namespace JobOverview.View
 
             //Branchement des gestionnaires évenements
             ckbTachesTerm.Unchecked += CkbTachesTerm_Unchecked;
-            ckbTachesTerm.Checked += CkbTachesTerm_Checked; 
+            ckbTachesTerm.Checked += CkbTachesTerm_Checked;
 
             cbxLogiciels.SelectionChanged += Filtrer_Click;
             cbxVersions.SelectionChanged += Filtrer_Click;
             cbxPersonnes.SelectionChanged += Filtrer_Click;
-            
+
 
         }
 
-      
+
 
         private void CkbTachesTerm_Checked(object sender, RoutedEventArgs e)
         {
@@ -74,10 +74,11 @@ namespace JobOverview.View
 
             }
 
-            //if(cbxLogiciels.SelectedValue != null)
+            //if (cbxLogiciels.SelectedValue != null)
             //{
             //    var n = (List<Module>)DALLogiciels.GetModulesLibellé(cbxLogiciels.SelectedValue.ToString());
-          
+
+
             //}
 
             ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);
