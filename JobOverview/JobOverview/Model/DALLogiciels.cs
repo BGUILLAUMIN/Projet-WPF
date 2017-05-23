@@ -108,17 +108,12 @@ namespace JobOverview.Model
             }
         }
 
-        public static List<Module> GetModules(List<Logiciel> ListeLogi)
+        public static List<Module> GetModules()
         {
             var listModules = new List<Module>();
 
-            string req = @" select m.CodeModule, m.Libelle, m.CodeLogicielParent,tp.NumeroVersion, (COUNT(tr.Heures))/8 as NombreJoursTotalModule
-                            from jo.Module m
-                            left outer join jo.TacheProd tp on tp.CodeModule = m.CodeModule
-                            left outer join jo.Tache t on t.IdTache = tp.IdTache
-                            left outer join jo.Travail tr on tr.IdTache = tp.IdTache
-                            GROUP BY m.CodeModule, m.Libelle, m.CodeLogicielParent, tp.NumeroVersion
-                            order by m.CodeLogicielParent desc";
+            string req = @" CodeModule, Libelle from jo.Module"; 
+                            
 
             using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
@@ -127,39 +122,22 @@ namespace JobOverview.Model
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
-                    {
-
-                        GetModuleFromDataReader(ListeLogi, reader);
-                    }
+                        GetModuleFromDataReader(listModules, reader);
                 }
             }
             return listModules;
         }
 
-        private static void GetModuleFromDataReader(List<Logiciel> listlogi, SqlDataReader reader)
+        private static void GetModuleFromDataReader(List<Module> listmod, SqlDataReader reader)
         {
-            // Si le code du Module courant est != de celui du dernier Module de la liste, on crée un nouvel objet Module.
-
-            Module Mod = null;
-
-            if (reader["CodelogicielParent"] != null)
+            while (reader.Read())
             {
-                string codeModule = (string)reader["CodeModule"];
-                Mod = new Module();
-                Mod.Code = (string)reader["CodeModule"];
-                Mod.CodeLogicielParent = reader["CodeLogicielParent"].ToString();
-                Mod.Libelle = (string)reader["Libelle"];
-                Mod.NombreJoursTotalModule = (int)reader["NombreJoursTotalModule"];
+                Module mod = new Module();
 
-                if (reader["NumeroVersion"] != DBNull.Value)
-                    Mod.NumeroVersion = (float)reader["NumeroVersion"];
+                mod.Code = reader["CodeModule"].ToString();
+                mod.Libelle = reader["Libelle"].ToString();
 
-                if (reader["CodelogicielParent"] != null && reader["CodelogicielParent"].ToString() == listlogi.Last().Code)
-                {
-                    listlogi.Last().Modules.Add(Mod);
-                }
-
+                listmod.Add(mod);
             }
 
         }

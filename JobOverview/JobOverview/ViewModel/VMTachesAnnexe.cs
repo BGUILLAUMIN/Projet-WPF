@@ -118,7 +118,7 @@ namespace JobOverview.ViewModel
         private void AjouterTache()
         {
             //Instancie une nouvelle tâche
-            var NouvelleTache = new Tache();
+            var NouvelleTache = new Tache { Libelle = "fdfd" };
 
             // Ajoute la nouvelle tache dans la liste TachesAnnexes
             TachesAnnexes.Add(NouvelleTache);
