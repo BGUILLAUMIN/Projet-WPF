@@ -21,7 +21,8 @@ namespace TestJobOverview
                 Id = Guid.NewGuid(),
                 Libelle = "Courrier",
                 CodeActivite = "DP",
-                LoginPersonne = "AFERRAND"
+                LoginPersonne = "AFERRAND",
+                Description = "aller le chercher"
             };
 
             DALTaches.EnregistrerTachesAnnexes(t);
@@ -32,6 +33,7 @@ namespace TestJobOverview
             Assert.AreEqual(nbTachesFinal-nbTachesintial, 1);
         }
 
+        [TestMethod]
         public void TestEnregistrementTacheProd()
         {
             var listTachesProd = DALTaches.GetTachesProd();
@@ -44,6 +46,7 @@ namespace TestJobOverview
                 Libelle = "CE",
                 CodeActivite = "DP",
                 LoginPersonne = "AFERRAND",
+                Description = "aller le chercher",
                 Numero = 99,
                 DureePrevue =8,
                 DureeRestante =1,
