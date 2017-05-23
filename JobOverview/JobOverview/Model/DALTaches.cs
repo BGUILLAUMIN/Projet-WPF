@@ -164,14 +164,14 @@ namespace JobOverview.Model
                     //exécution de la commande
                     command.ExecuteNonQuery();
 
-                // Validation de la transaction s'il n'y a pas eu d'erreur
-                //   tran.Commit();
-                //  }
-                //  catch (Exception)
-                //  {
-                //     tran.Rollback(); // Annulation de la transaction en cas d'erreur
-                //     throw;   // Remontée de l'erreur à l'appelant
-                //  }
+                    //Validation de la transaction s'il n'y a pas eu d'erreur
+                   tran.Commit();
+                }
+                catch (Exception)
+                {
+                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
+                    throw;   // Remontée de l'erreur à l'appelant
+                }
             }
         }
 
