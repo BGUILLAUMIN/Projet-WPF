@@ -158,29 +158,8 @@ namespace JobOverview.Model
                 logi.Versions.Add(v);
 
 
-
-            }
-        }
-
-
-
-
-            using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
-            {
-                var command = new SqlCommand(req, connect);
-                connect.Open();
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-
-                        GetModuleFromDataReader(ListeLogi, reader);
-                    }
-                }
             }
 
-            return listModules;
         }
 
         private static void GetModuleFromDataReader(List<Logiciel> listlogi, SqlDataReader reader)
@@ -223,57 +202,6 @@ namespace JobOverview.Model
 
 
 
-
-        /// <summary>
-        /// Obtient et renvoie la liste des logiciels et leurs modules associés,
-        /// La liste est triée par nom de logiciel et libellé de module
-        /// </summary>
-        /// <returns></returns>
-        // public static List<Logiciel> GetLogicielsModules()
-        // {
-        //     var listLogiciels = new List<Logiciel>();
-
-        //     string req = @"select l.CodeLogiciel, l.Nom, m.CodeModule, m.Libelle, m.CodeModuleParent
-        //from jo.Logiciel l
-        //inner join jo.Module m on l.CodeLogiciel = m.CodeLogiciel
-        //order by Nom, Libelle";
-
-        //     using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
-        //     {
-        //         var command = new SqlCommand(req, connect);
-        //         connect.Open();
-
-        //         using (SqlDataReader reader = command.ExecuteReader())
-        //         {
-        //             while (reader.Read())
-        //             {
-        //                 string codeLogi = (string)reader["CodeLogiciel"];
-
-        //                 // Si le code du logiciel courant est != de celui du dernier logiciel de la liste,
-        //                 // on crée un nouvel objet Logiciel,
-        //                 Logiciel logi = null;
-        //                 if (listLogiciels.Count == 0 || listLogiciels[listLogiciels.Count - 1].Code != codeLogi)
-        //                 {
-        //                     logi = new Logiciel();
-        //                     logi.Code = (string)reader["CodeLogiciel"];
-        //                     logi.Nom = (string)reader["Nom"];
-        //                     logi.Modules = new List<Module>();
-
-        //                     listLogiciels.Add(logi);
-        //                 }
-        //                 else logi = listLogiciels[listLogiciels.Count - 1];
-
-        //                 Module m = new Module();
-        //                 m.Code = (string)reader["CodeModule"];
-        //                 m.Libelle = (string)reader["Libelle"];
-        //                 if (reader["CodeModuleParent"] != DBNull.Value)
-        //                     m.CodeModuleParent = (string)reader["CodeModuleParent"];
-        //                 logi.Modules.Add(m);
-        //             }
-        //         }
-        //     }
-        //     return listLogiciels;
-        // }
 
 
     }
