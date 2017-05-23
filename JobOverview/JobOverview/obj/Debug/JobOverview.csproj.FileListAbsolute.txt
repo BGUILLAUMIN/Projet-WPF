@@ -54,6 +54,39 @@ C:\Users\Utilisateur\Documents\Projet final\JobOverview\JobOverview\obj\Debug\Jo
 C:\Users\Utilisateur\Documents\Projet final\JobOverview\JobOverview\obj\Debug\JobOverview.csproj.GenerateResource.Cache
 C:\Users\Utilisateur\Documents\Projet final\JobOverview\JobOverview\obj\Debug\JobOverview.exe
 C:\Users\Utilisateur\Documents\Projet final\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.g.cs
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCButtonsBar.g.cs
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCLogin.g.cs
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\ModalWindow.g.cs
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSaisieTemps.g.cs
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.g.cs
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.g.cs
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.g.cs
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.g.cs
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.cache
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.lref
+D:\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
+D:\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe
+D:\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.pdb
+D:\Projet-WPF\JobOverview\JobOverview\bin\Debug\FontAwesome.Sharp.dll
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.g.cs
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.baml
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.baml
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.baml
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCButtonsBar.baml
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCLogin.baml
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\ModalWindow.baml
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSaisieTemps.baml
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.baml
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.baml
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.baml
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.g.resources
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.Properties.Resources.resources
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csproj.GenerateResource.Cache
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
+D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
 C:\Users\Ben\Source\Repos\Projet-WPF2\JobOverview\JobOverview\bin\Debug\JobOverview.exe
 C:\Users\Ben\Source\Repos\Projet-WPF2\JobOverview\JobOverview\bin\Debug\JobOverview.pdb
 C:\Users\Ben\Source\Repos\Projet-WPF2\JobOverview\JobOverview\bin\Debug\FontAwesome.Sharp.dll
@@ -92,42 +125,6 @@ D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSais
 D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.baml
 D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.baml
 D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.baml
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.pdb
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\bin\Debug\FontAwesome.Sharp.dll
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.g.cs
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.g.cs
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCButtonsBar.g.cs
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCLogin.g.cs
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\ModalWindow.g.cs
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSaisieTemps.g.cs
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.g.cs
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.g.cs
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.g.cs
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.g.cs
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.cache
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.lref
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.baml
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.baml
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.baml
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCButtonsBar.baml
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCLogin.baml
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\ModalWindow.baml
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSaisieTemps.baml
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.baml
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.baml
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.baml
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.g.resources
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.Properties.Resources.resources
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csproj.GenerateResource.Cache
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
-D:\Exercices\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
-D:\Exercices\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe
-D:\Exercices\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.pdb
-D:\Exercices\Projet-WPF\JobOverview\JobOverview\bin\Debug\FontAwesome.Sharp.dll
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.g.cs
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.g.cs
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCButtonsBar.g.cs
@@ -141,7 +138,6 @@ D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.g.cs
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.cache
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.lref
-D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.baml
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.baml
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.baml
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCButtonsBar.baml
@@ -151,14 +147,20 @@ D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCSaisieTemps.bam
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesAnnexe.baml
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCTachesProd.baml
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCVersions.baml
+D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
+D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
+D:\Exercices\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
+D:\Exercices\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe
+D:\Exercices\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.pdb
+D:\Exercices\Projet-WPF\JobOverview\JobOverview\bin\Debug\FontAwesome.Sharp.dll
+D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.baml
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.g.resources
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.Properties.Resources.resources
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csproj.GenerateResource.Cache
-D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
-D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
-D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
-D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
-D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
+D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
+D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe
+D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.pdb
+D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\bin\Debug\FontAwesome.Sharp.dll
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.g.cs
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.g.cs
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCButtonsBar.g.cs
@@ -172,12 +174,6 @@ D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.g.cs
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.cache
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview_MarkupCompile.lref
-D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
-D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
-D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe.config
-D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.exe
-D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\bin\Debug\JobOverview.pdb
-D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\bin\Debug\FontAwesome.Sharp.dll
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\App.baml
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.baml
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.baml
@@ -224,4 +220,3 @@ D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.Properties.Resources
 D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csproj.GenerateResource.Cache
 D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
 D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
-C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
