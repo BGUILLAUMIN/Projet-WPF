@@ -60,6 +60,7 @@ namespace JobOverview.ViewModel
                 return _CmdTachesProd;
             }
         }
+        // On définit une instance de VMTachesProd comme vue-modèle courante
         private void ActionMenuTachesProd()
         {
             VMCourante = new VMTachesProd();
@@ -75,9 +76,12 @@ namespace JobOverview.ViewModel
                 return _cmdTachesAnnexe;
             }
         }
+
+        // On définit une instance de VMTachesAnnexe comme vue-modèle courante
         private void ActionMenuTachesAnnexe()
         {
             VMCourante = new VMTachesAnnexe();
+           
         }
 
 
@@ -91,6 +95,8 @@ namespace JobOverview.ViewModel
                 return _cmdAPropos;
             }
         }
+
+        // On définit une instance de VMPropos comme vue-modèle courante
         private void ActionMenuAPropos()
         {
             VMCourante = new VMAPropos();
@@ -111,6 +117,7 @@ namespace JobOverview.ViewModel
           
         }
 
+        // On définit une instance de VMSaisieTemps comme vue-modèle courante
         private void ActionMenuSaisieTemps()
         {
             VMCourante = new VMSaisieTemps();
@@ -128,6 +135,7 @@ namespace JobOverview.ViewModel
             }
         }
 
+        // On définit une instance de VMVersion comme vue-modèle courante
         private void ActionMenuVersion()
         {
             VMCourante = new VMVersion();

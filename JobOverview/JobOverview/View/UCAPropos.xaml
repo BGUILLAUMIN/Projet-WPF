@@ -22,6 +22,7 @@
 
 
             <TextBlock x:Name="textBlock" FontSize="24"  TextAlignment="Center">
+                <LineBreak/><LineBreak/><LineBreak/><LineBreak/>
                 <LineBreak/><LineBreak/><LineBreak/><LineBreak/><LineBreak/><LineBreak/><LineBreak/><LineBreak/><LineBreak/><LineBreak/><LineBreak/><Image Source="pack://application:,,,/images/IconeJO.ico"/>
                 <LineBreak/><LineBreak/> <Bold>JobOverview</Bold><LineBreak/><LineBreak/>Version 3.00(05/2017)<LineBreak/><LineBreak/>
                 <LineBreak/><Underline> Technologies:</Underline><LineBreak/><LineBreak/>.net Framework 4.6.1<LineBreak/>

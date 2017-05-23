@@ -32,7 +32,7 @@ namespace JobOverview.View
             //Initialisation du timer
             System.Windows.Threading.DispatcherTimer Timer1 = new System.Windows.Threading.DispatcherTimer();
             Timer1.Tick += new EventHandler(dispatcherTimer_Tick);
-            Timer1.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            Timer1.Interval = new TimeSpan(0, 0, 0, 0, 1);  //définition d'un interval de temps de 1ms.
             Timer1.Start(); // on lance le timer
         }
 
@@ -50,7 +50,7 @@ namespace JobOverview.View
             }
             else
             {
-                calcul = actual_pos + 1; // on augmente la position
+                calcul = actual_pos + 1; // on augmente la position (c'est le pas du scrolling qui défini la rapidité)
                 if (calcul > sb_max_height) //si la nouvelle position dépasse la taille max on modifie la nouvelle position qui sera égale a la taille max (on évite les dépassements)
                     calcul = sb_max_height;
                 scrollViewer.ScrollToVerticalOffset(calcul); // on ajoute la nouvelle position

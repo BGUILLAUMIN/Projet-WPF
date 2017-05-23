@@ -70,7 +70,12 @@
                         <RowDefinition Height="20"/>
                     </Grid.RowDefinitions>
 
-                    <ComboBox Grid.Row="0">
+                    <ComboBox Grid.Row="0" 
+                          ItemsSource="{Binding Path=Personnes}"
+                          DisplayMemberPath="NomComplet"
+                          SelectedValuePath="Login"
+                          SelectedIndex="0"
+                          IsEnabled="{Binding Source={x:Static properties:Settings.Default}, Path=ManagerConnecte}">
                         <ComboBox.ToolTip>
                             <ToolTip>
                                 <TextBlock>Liste des personnes.</TextBlock>
@@ -87,9 +92,9 @@
                     </ComboBox>
 
                     <Label  Grid.Row="3" Content="Libellé Tache Annexe:"/>
-                    <TextBlock Grid.Row="4" Text="{Binding Path=TachesAnnexes\Libelle}"/>
-                    <Label  Grid.Row="5" Content="Libellé Tache Annexe:"/>
-                    <TextBlock Grid.Row="6" Text="{Binding Path=Activites\Libelle}" />
+                    <TextBox Grid.Row="4" Text="{Binding Path=TachesAnnexes/Libelle}"/>
+                    <Label  Grid.Row="5" Content="Libellé Activité:"/>
+                    <TextBlock Grid.Row="6" Text="{Binding Path=Activites/Libelle}" />
                     <!--<TextBlock Text="Date Travail " Grid.Row="5"/>
                     <TextBlock Text="Heures" Grid.Row="6"/>-->
                    
@@ -106,7 +111,7 @@
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right">
                 <TextBlock Text="Filtre : " VerticalAlignment="Center"/>
-                <ComboBox Name="cbPersonne" Margin="0,5,10,0"
+                <ComboBox Name="cbPersonne" 
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
