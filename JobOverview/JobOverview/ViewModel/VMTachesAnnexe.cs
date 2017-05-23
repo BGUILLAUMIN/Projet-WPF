@@ -118,6 +118,8 @@ namespace JobOverview.ViewModel
         private void AjouterTache()
         {
             //Instancie une nouvelle tâche
+
+           
             var NouvelleTache = new Tache();
 
             // Ajoute la nouvelle tache dans la liste TachesAnnexes
@@ -158,8 +160,8 @@ namespace JobOverview.ViewModel
                 try
                 {
                     //Enregistre dans la base la liste mis à jour de la listview 
-                    DALTaches.EnregistrerTachesAnnexes(TacheCourante);
                     MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
+                    DALTaches.EnregistrerTachesAnnexes(TacheCourante);
                 }
                 catch (Exception)
                 {

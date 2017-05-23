@@ -9,15 +9,10 @@
         mc:Ignorable="d"
        Title="Job Overview" Height="600" Width="800" WindowStartupLocation="CenterScreen" Icon="pack://application:,,,/images/IconeJO.ico">
     <Window.Resources>
-       
-<!--Création du style pour les menu-->
+
+        <!--Création du style pour les menu-->
         <Style TargetType="MenuItem">
             <Setter Property="FontSize" Value="20"/>
-            <Style.Triggers>
-                <Trigger Property="IsChecked" Value="True">
-                    <Setter Property="Background" Value="AliceBlue"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
 

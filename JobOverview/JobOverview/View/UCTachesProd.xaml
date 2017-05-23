@@ -92,7 +92,7 @@
                              Margin="0,7,0,7"
                                  IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
                                  HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"
-                                 VerticalContentAlignment="Center"/>
+                                 VerticalContentAlignment="Center" Width="100"/>
                     <TextBox Width="20"  Text="{Binding Path=TachesProds/DureePrevue}" FontWeight="Bold" 
                              Margin="0,7,0,7"
                                      IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
@@ -107,17 +107,17 @@
                     <TextBlock Width="100" Text="{Binding Path=TachesProds/CodeModule}" 
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" 
-                                   Grid.Row="5" Grid.Column="1"/>
+                                   Grid.Row="5" Grid.Column="1" Height="16" Margin="0,12"/>
                     <ComboBox Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" 
-                              Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"/>
+                              Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" Margin="5,5,0,5"/>
 
 
                     <TextBlock Width="100" Text="{Binding Path= TachesProds/CodeActivite}"
                                    Grid.Row="6" Grid.Column="1"
                                        HorizontalAlignment="Left"
-                                       VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                                       VerticalAlignment="Center" Height="16" Margin="0,12"/>
                     <ComboBox Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"
-                              Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Left"/>
+                              Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Left" Height="Auto" Margin="5,5,0,5"/>
 
                 </Grid>
                 <StackPanel Orientation="Vertical">
@@ -179,9 +179,9 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
                 </StackPanel>
-            <StackPanel>
-            <Label Content="Version"/>
-                <ComboBox Name="cbxVersions"  
+                <StackPanel>
+                    <Label Content="Version"/>
+                    <ComboBox Name="cbxVersions"  
                           ItemsSource="{Binding Path=Logiciels/Versions}"
                           DisplayMemberPath="Numero"
                           SelectedValuePath="Numero" 

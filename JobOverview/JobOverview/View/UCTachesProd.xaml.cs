@@ -37,7 +37,7 @@ namespace JobOverview.View
 
         private void CbxPersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void CbxVersions_SelectionChanged(object sender, SelectionChangedEventArgs e)

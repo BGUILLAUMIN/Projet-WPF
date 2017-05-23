@@ -158,7 +158,6 @@ D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
 D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
-D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\MainWindow.g.cs
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCAPropos.g.cs
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\View\UCButtonsBar.g.cs
@@ -225,3 +224,4 @@ D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csproj.GenerateResou
 D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
 D:\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
+D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache

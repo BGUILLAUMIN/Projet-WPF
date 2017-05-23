@@ -53,60 +53,58 @@
                         <fa:IconBlock Icon="FloppyO"/>
                     </Button>
                 </StackPanel>
-                <Separator Height="10" Opacity="0" Width="350" DockPanel.Dock="Top"/>
+                <Separator Height="10" Opacity="0"  DockPanel.Dock="Top"/>
 
                 <Grid DockPanel.Dock="Top">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="17"/>
-                        <ColumnDefinition Width="143"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
                         <RowDefinition Height="40"/>
-                        <RowDefinition Height="20"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="20"/>
-                    </Grid.RowDefinitions>
 
-                    <ComboBox Grid.Row="0" 
+
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="2" Content="Personne"/>
+                    <ComboBox Grid.Row="2" Name="cbPersonne2" 
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
                           SelectedIndex="{Binding ElementName=cbPersonne, Path=Cursor}"
                            IsSynchronizedWithCurrentItem="True"
-                          IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Grid.Column="1" Margin="13,5,30,5">
+                          IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Grid.Column="1" Height="Auto" Width="Auto">
                         <ComboBox.ToolTip>
                             <ToolTip>
                                 <TextBlock>Liste des personnes.</TextBlock>
                             </ToolTip>
                         </ComboBox.ToolTip>
                     </ComboBox>
-
-                    <ComboBox Name="cbActivite" Grid.Row="2" ItemsSource="{Binding Path=Activites}" DisplayMemberPath="Code" 
+                    <Label Grid.Row="3" Grid.Column="0"  DockPanel.Dock="Left" Content="Activité"/>
+                    <ComboBox Grid.Row="3"  Grid.Column="1" DockPanel.Dock="Right" Name="cbActivite"  ItemsSource="{Binding Path=Activites}" DisplayMemberPath="Code" 
                               SelectedValuePath="Libelle" SelectedIndex="0" 
-                             IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Grid.Column="1" Margin="13,5,30,5" >
+                             IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Height="Auto" Width="Auto">
                         <ComboBox.ToolTip>
                             <ToolTip>
                                 <TextBlock>Liste des activités.</TextBlock>
                             </ToolTip>
                         </ComboBox.ToolTip>
                     </ComboBox>
+                    <Label  Grid.Row="4" Content="Libellé Activité:" Grid.ColumnSpan="2"/>
+                    <TextBlock Grid.Row="5" Text="{Binding ElementName=cbActivite, Path=SelectedValue}" Grid.ColumnSpan="2"/>
 
-                    <Label  Grid.Row="3" Content="Libellé Tache Annexe:" Grid.ColumnSpan="2"/>
-                    <TextBox Grid.Row="4" Text="{Binding Path=TachesAnnexes/Libelle}"
+                    <Label  Grid.Row="0" Content="Libellé Tache Annexe:" Grid.ColumnSpan="2" />
+                    <TextBox Grid.Row="1" Text="{Binding Path=TachesAnnexes/Libelle}"
                              IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}" Grid.ColumnSpan="2"/>
-                    <Label  Grid.Row="5" Content="Libellé Activité:" Grid.ColumnSpan="2"/>
-                    <TextBlock Grid.Row="6" Text="{Binding ElementName=cbActivite, Path=SelectedValue}" Grid.ColumnSpan="2"/>
                     <!--<TextBlock Text="Date Travail " Grid.Row="5"/>
                     <TextBlock Text="Heures" Grid.Row="6"/>-->
-
-
                 </Grid>
 
-                <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"  MaxWidth="350"
+                <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"  Width="350"
                          IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}"/>
             </DockPanel>
         </Expander>
