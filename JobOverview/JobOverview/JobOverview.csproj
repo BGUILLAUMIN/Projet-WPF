@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TestMethodAttribute.cs" />
     <Compile Include="View\Convertisseurs.cs" />
     <Compile Include="Entity\LogicielVersion.cs" />
     <Compile Include="Entity\Personne.cs" />
