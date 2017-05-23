@@ -10,6 +10,7 @@ using JobOverview.ViewModel;
 using JobOverview.View;
 using JobOverview.Model;
 using System.Windows.Media;
+using System.Windows;
 
 namespace JobOverview.View
 {
@@ -59,6 +60,20 @@ namespace JobOverview.View
             throw new NotImplementedException();
         }
     }
+
+    public class ConvModeEditVisible : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (ModesEdition)value == ModesEdition.Consultation ? Visibility.Hidden : Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 
 }
 

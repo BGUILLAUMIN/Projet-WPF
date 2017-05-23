@@ -108,20 +108,22 @@
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" 
                                    Grid.Row="5" Grid.Column="1"/>
-                    <ComboBox Visibility="Hidden"  Grid.Row="5" Grid.Column="1" />
+                    <ComboBox Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" 
+                              Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"/>
 
 
                     <TextBlock Width="100" Text="{Binding Path= TachesProds/CodeActivite}"
                                    Grid.Row="6" Grid.Column="1"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-                    <ComboBox  Visibility="Hidden" Grid.Column="1" Margin="13,5,37,5"/>
+                    <ComboBox Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"
+                              Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Left"/>
 
                 </Grid>
                 <StackPanel Orientation="Vertical">
                     <Separator Height="10" Opacity="0"/>
                     <Label Content="Description (facultatif) :"/>
-                    <TextBox MinHeight="100" TextWrapping="Wrap" Text="{Binding Path=TachesProds/Description}" 
+                    <TextBox MinHeight="100" TextWrapping="Wrap" Width="350" Text="{Binding Path=TachesProds/Description}" 
                          IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"/>
 
                 </StackPanel>
@@ -222,7 +224,8 @@
             <!--#endregion-->
 
             <!--#region Liste d'affichage-->
-            <ListView Margin="10" ItemsSource="{Binding TachesProds}" IsSynchronizedWithCurrentItem="True" IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}">
+            <ListView Margin="10" ItemsSource="{Binding TachesProds}" IsSynchronizedWithCurrentItem="True" 
+                      IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Numéro" DisplayMemberBinding="{Binding Path=Numero}"/>

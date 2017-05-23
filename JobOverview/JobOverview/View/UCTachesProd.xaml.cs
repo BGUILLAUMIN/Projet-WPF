@@ -29,7 +29,25 @@ namespace JobOverview.View
         {
             InitializeComponent();
             DataContext = new VMTachesProd();
+            cbxLogiciels.SelectionChanged += CbxLogiciels_SelectionChanged;
+            cbxVersions.SelectionChanged += CbxVersions_SelectionChanged;
+            cbxPersonnes.SelectionChanged += CbxPersonnes_SelectionChanged;
+
         }
 
-}
+        private void CbxPersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CbxVersions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+        }
+
+        private void CbxLogiciels_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+    }
 }

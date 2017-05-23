@@ -12,8 +12,9 @@
         <vw:ConvModeEditActivation x:Key="ConvModeEditActivation"/>
         <vw:ConvModeEditLectureSeule x:Key="ConvModeEditLectureSeule"/>
         <vw:IntToColorBrushConverter x:Key="InteToColorBrushConverter"/>
-        
-<!--liaison des vues modèles aux Users Control-->
+        <vw:ConvModeEditVisible x:Key="ConvModeEditVisible"/>
+
+        <!--liaison des vues modèles aux Users Control-->
         <DataTemplate DataType="{x:Type vm:VMLogin}">
             <vw:UCLogin/>
         </DataTemplate>
