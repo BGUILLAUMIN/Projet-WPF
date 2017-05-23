@@ -11,19 +11,13 @@ namespace JobOverview.Model
 {
     class DALLogiciels
     {
-
-
-
-
-        #region Méthodes publiques
-
         /// <summary>
-        /// Obtient et renvoie la liste des logiciels et leurs versions associées,
-        /// avec leur dernier N° de release
-        /// La liste est triée par nom de logiciel et N° de version 
-        /// </summary>
-        /// <returns></returns>
-        public static List<Logiciel> GetLogicielsVersions()
+		/// Obtient et renvoie la liste des logiciels et leurs versions associées,
+		/// avec leur dernier N° de release
+		/// La liste est triée par nom de logiciel et N° de version 
+		/// </summary>
+		/// <returns></returns>
+		public static List<Logiciel> GetLogicielsVersions()
         {
             var listLogiciels = new List<Logiciel>();
 
@@ -46,8 +40,6 @@ namespace JobOverview.Model
 				v.Millesime, v.NumeroVersion
 				order by l.CodeLogiciel desc";
 
-
-
             using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
                 var command = new SqlCommand(req, connect);
@@ -58,55 +50,12 @@ namespace JobOverview.Model
                     while (reader.Read())
                     {
                         GetLogicielsFromDataReader(listLogiciels, reader);
-
                     }
-
                 }
             }
-
-
 
             return listLogiciels;
         }
-
-
-        public static List<Module> GetModules(List<Logiciel> ListeLogi)
-        {
-            var listModules = new List<Module>();
-
-            string req = @" select m.CodeModule, m.Libelle, m.CodeLogicielParent,tp.NumeroVersion, (COUNT(tr.Heures))/8 as NombreJoursTotalModule
-                            from jo.Module m
-                            left outer join jo.TacheProd tp on tp.CodeModule = m.CodeModule
-                            left outer join jo.Tache t on t.IdTache = tp.IdTache
-                            left outer join jo.Travail tr on tr.IdTache = tp.IdTache
-                            GROUP BY m.CodeModule, m.Libelle, m.CodeLogicielParent, tp.NumeroVersion
-                            order by m.CodeLogicielParent desc";
-
-
-
-            using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
-            {
-                var command = new SqlCommand(req, connect);
-                connect.Open();
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-
-                        GetModuleFromDataReader(ListeLogi, reader);
-                    }
-                }
-            }
-
-            return listModules;
-        }
-
-        #endregion
-
-
-        #region Méthodes privées
-
 
         /// <summary>
         /// Charge la liste de logiciels passée en paramètre à partir du datareader
@@ -130,8 +79,8 @@ namespace JobOverview.Model
 
                 listLogiciels.Add(logi);
 
-                if (listLogiciels.Count == 0 || listLogiciels[listLogiciels.Count - 1].Nom == reader["Nom"].ToString())
-                    DALLogiciels.GetModules(listLogiciels);
+                if(listLogiciels.Count == 0 || listLogiciels[listLogiciels.Count - 1].Nom == reader["Nom"].ToString())
+                DALLogiciels.GetModules(listLogiciels);
 
             }
             else logi = listLogiciels[listLogiciels.Count - 1];
@@ -156,23 +105,46 @@ namespace JobOverview.Model
                 if (reader["NombrePersonnes"] != DBNull.Value)
                     v.NombrePersonnes = (int)reader["NombrePersonnes"];
                 logi.Versions.Add(v);
-
-
             }
+        }
 
+        public static List<Module> GetModules(List<Logiciel> ListeLogi)
+        {
+            var listModules = new List<Module>();
+
+            string req = @" select m.CodeModule, m.Libelle, m.CodeLogicielParent,tp.NumeroVersion, (COUNT(tr.Heures))/8 as NombreJoursTotalModule
+                            from jo.Module m
+                            left outer join jo.TacheProd tp on tp.CodeModule = m.CodeModule
+                            left outer join jo.Tache t on t.IdTache = tp.IdTache
+                            left outer join jo.Travail tr on tr.IdTache = tp.IdTache
+                            GROUP BY m.CodeModule, m.Libelle, m.CodeLogicielParent, tp.NumeroVersion
+                            order by m.CodeLogicielParent desc";
+
+            using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
+            {
+                var command = new SqlCommand(req, connect);
+                connect.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        GetModuleFromDataReader(ListeLogi, reader);
+                    }
+                }
+            }
+            return listModules;
         }
 
         private static void GetModuleFromDataReader(List<Logiciel> listlogi, SqlDataReader reader)
         {
-
-
             // Si le code du Module courant est != de celui du dernier Module de la liste, on crée un nouvel objet Module.
 
             Module Mod = null;
 
             if (reader["CodelogicielParent"] != null)
             {
-
                 string codeModule = (string)reader["CodeModule"];
                 Mod = new Module();
                 Mod.Code = (string)reader["CodeModule"];
@@ -185,24 +157,11 @@ namespace JobOverview.Model
 
                 if (reader["CodelogicielParent"] != null && reader["CodelogicielParent"].ToString() == listlogi.Last().Code)
                 {
-
                     listlogi.Last().Modules.Add(Mod);
                 }
-
-
-
 
             }
 
         }
-
-
-
-        #endregion
-
-
-
-
-
     }
 }
