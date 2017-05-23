@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using JobOverview.Entity;
 using JobOverview.Model;
 using System.ComponentModel;
+using JobOverview.View;
 
 namespace JobOverview.View
 {
@@ -32,14 +33,25 @@ namespace JobOverview.View
             _vmTacheProd = new VMTachesProd();
             DataContext = _vmTacheProd;
 
+            ckbTachesTerm.Unchecked += CkbTachesTerm_Unchecked;
             cbxLogiciels.SelectionChanged += Filtrer_Click;
             cbxVersions.SelectionChanged += Filtrer_Click;
-            cbxPersonnes.SelectionChanged += Filtrer_Click;
+            cbxPersonnes.SelectionChanged += Filtrer_Click; 
+        }
+
+        private void CkbTachesTerm_Unchecked(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
         {
-            ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProds);
+            var list = _vmTacheProd.TachesProds;
+            if (!(bool)ckbTachesTerm.IsChecked)
+            {
+                list = new ObservableCollection<TacheProd>(_vmTacheProd.TachesProds.Where(t => t.DureeRestante != 0).ToList());
+            }
+                ICollectionView view = CollectionViewSource.GetDefaultView(list);
 
             if (cbxVersions.SelectedValue != null && cbxLogiciels.SelectedValue != null && cbxPersonnes.SelectedValue != null)
             {
