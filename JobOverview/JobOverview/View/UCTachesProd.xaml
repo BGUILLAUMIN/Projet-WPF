@@ -21,113 +21,123 @@
 
     <DockPanel Margin="5" Background="White">
         <!--#region Expander Ajout de Taches de production-->
-        <Expander ExpandDirection="Left" Width="Auto" DockPanel.Dock="Right" IsExpanded="True">
+        <Expander ExpandDirection="Left" MaxWidth="400" Width="Auto" DockPanel.Dock="Right" IsExpanded="True" >
+                    
             <Expander.ToolTip>
                 <ToolTip>
-                    <StackPanel Orientation="Horizontal">
-                        <fa:IconBlock Icon="LightbulbO" Margin="3"/>
-                        <TextBlock>Déplier la fiche de détails.</TextBlock>
-                    </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconBlock Icon="LightbulbO" Margin="3"/>
+                            <TextBlock>Déplier la fiche de détails.</TextBlock>
+                        </StackPanel>
+                
                 </ToolTip>
             </Expander.ToolTip>
-            <StackPanel>
-                <!--#region Barre de boutons-->
-                <StackPanel Orientation="Horizontal">
-                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
-                        <fa:IconBlock Icon="PlusCircle" FontSize="25"/>
-                        <Button.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Ajouter une tâche de production.</TextBlock>
-                            </ToolTip>
-                        </Button.ToolTip>
-                    </Button>
-                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdEnregistrer}">
-                        <fa:IconBlock Icon="FloppyO" FontSize="25"/>
-                        <Button.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Enregistrer la tâche.</TextBlock>
-                            </ToolTip>
-                        </Button.ToolTip>
-                    </Button>
-                    <Button Style="{StaticResource ButtonStyle}"  Command="{Binding CmdAnnuler}">
-                        <fa:IconBlock Icon="Undo" FontSize="25"/>
-                        <Button.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Annuler la création de tâche.</TextBlock>
-                            </ToolTip>
-                        </Button.ToolTip>
-                    </Button>
-                </StackPanel>
-                <Separator Height="10" Width="350" Opacity="0" />
-                <!--#endregion-->
+            <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="0,0,0,10">
+          
+                <StackPanel>
+                    <!--#region Barre de boutons-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
+                            <fa:IconBlock Icon="PlusCircle" FontSize="25"/>
+                            <Button.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Ajouter une tâche de production.</TextBlock>
+                                </ToolTip>
+                            </Button.ToolTip>
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdEnregistrer}">
+                            <fa:IconBlock Icon="FloppyO" FontSize="25"/>
+                            <Button.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Enregistrer la tâche.</TextBlock>
+                                </ToolTip>
+                            </Button.ToolTip>
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}"  Command="{Binding CmdAnnuler}">
+                            <fa:IconBlock Icon="Undo" FontSize="25"/>
+                            <Button.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Annuler la création de tâche.</TextBlock>
+                                </ToolTip>
+                            </Button.ToolTip>
+                        </Button>
+                    </StackPanel>
+                    <Separator Height="10" Width="350" Opacity="0" />
+                    <!--#endregion-->
 
-                <!--#region Zones de saisies-->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Label Content="N° :" Grid.Row="1" Grid.Column="0"/>
-                    <Label Content="Libellé :" Grid.Row="2"/>
-                    <Label Content="Durée Prévue :" Grid.Row="3"/>
-                    <Label Content="Durée Restante :" Grid.Row="4"/>
-                    <Label Content="Module :" Grid.Row="5"/>
-                    <Label Content="Activité :" Grid.Row="6"/>
-                    <TextBox  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" 
-                              Margin="0,7,0,7"
+                    <!--#region Zones de saisies-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="N° :" Grid.Row="1" Grid.Column="0"/>
+                        <Label Content="Libellé :" Grid.Row="2"/>
+                        <Label Content="Durée Prévue :" Grid.Row="3"/>
+                        <Label Content="Durée Restante :" Grid.Row="4"/>
+                        <Label Content="Module :" Grid.Row="5"/>
+                        <Label Content="Activité :" Grid.Row="6"/>
+                        <TextBox  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" 
+                              Margin="5"
                               IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
                                   HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"
                               VerticalContentAlignment="Center"/>
-                    <TextBox MinWidth="100" Text="{Binding Path=TachesProds/Libelle}" FontWeight="Bold" 
-                             Margin="0,7,0,7"
+                        <TextBox MinWidth="100" Text="{Binding Path=TachesProds/Libelle}" FontWeight="Bold" 
+                             Margin="5"
                                  IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
                                  HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"
                                  VerticalContentAlignment="Center"/>
-                    <TextBox Width="20"  Text="{Binding Path=TachesProds/DureePrevue}" FontWeight="Bold" 
-                             Margin="0,7,0,7"
+                        <TextBox Width="20"  Text="{Binding Path=TachesProds/DureePrevue}" FontWeight="Bold" 
+                             Margin="5"
                                      IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
                                  HorizontalAlignment="Left" Grid.Row="3" Grid.Column="1"
                                  VerticalContentAlignment="Center"/>
-                    <TextBox Width="20" Text="{Binding Path=TachesProds/DureeRestante}" FontWeight="Bold" 
-                             Margin="0,7,0,7"
+                        <TextBox Width="20" Text="{Binding Path=TachesProds/DureeRestante}" FontWeight="Bold" 
+                             Margin="5"
                                      IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
                                  HorizontalAlignment="Left" Grid.Row="4" Grid.Column="1"
                                  VerticalContentAlignment="Center"/>
 
-                    <TextBlock Width="100" Text="{Binding Path=TachesProds/CodeModule}" 
+                        <TextBlock Width="100" Text="{Binding Path=TachesProds/CodeModule}" 
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" 
                                    Grid.Row="5" Grid.Column="1"/>
-                    <ComboBox Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" 
+                        <ComboBox ItemsSource="{Binding Path=Logiciels/Modules}" DisplayMemberPath="Libelle" SelectedValue="Code"
+                              SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
+                              Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" 
                               Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"/>
 
 
-                    <TextBlock Width="100" Text="{Binding Path= TachesProds/CodeActivite}"
+                        <TextBlock Width="100" Text="{Binding Path= TachesProds/CodeActivite}"
                                    Grid.Row="6" Grid.Column="1"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-                    <ComboBox Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"
+                        <ComboBox ItemsSource="{Binding Path=Activités}" DisplayMemberPath="Libelle" SelectedValue="Code"
+                              SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
+                              Style="{StaticResource Combobox2}"
+                        Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"
                               Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Left"/>
 
-                </Grid>
-                <StackPanel Orientation="Vertical">
-                    <Separator Height="10" Opacity="0"/>
-                    <Label Content="Description (facultatif) :"/>
-                    <TextBox MinHeight="100" TextWrapping="Wrap" Width="350" Text="{Binding Path=TachesProds/Description}" 
+                    </Grid>
+                    <StackPanel Orientation="Vertical">
+                        <Separator Height="10" Opacity="0"/>
+                        <Label Content="Description (facultatif) :"/>
+                        <TextBox MinHeight="100" TextWrapping="Wrap" Width="350" Text="{Binding Path=TachesProds/Description}" 
                          IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"/>
 
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </Border >
             <!--#endregion-->
 
 
@@ -179,9 +189,9 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
                 </StackPanel>
-            <StackPanel>
-            <Label Content="Version"/>
-                <ComboBox Name="cbxVersions"  
+                <StackPanel>
+                    <Label Content="Version"/>
+                    <ComboBox Name="cbxVersions"  
                           ItemsSource="{Binding Path=Logiciels/Versions}"
                           DisplayMemberPath="Numero"
                           SelectedValuePath="Numero" 

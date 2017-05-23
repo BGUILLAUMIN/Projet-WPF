@@ -220,3 +220,4 @@ C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\J
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csproj.GenerateResource.Cache
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
 C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
+D:\Formation GTM ISAGRI\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
