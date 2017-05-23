@@ -16,7 +16,7 @@
         </DockPanel.Resources>
 
         <!--#region Expander Ajout de Taches Annexe-->
-        <Expander ExpandDirection="Left" MaxWidth="250" DockPanel.Dock="Right">
+        <Expander ExpandDirection="Left" MaxWidth="250" DockPanel.Dock="Right" IsExpanded="True" >
             <Expander.ToolTip>
                 <ToolTip>
                     <TextBlock>Déplier la fiche de détails.</TextBlock>
@@ -90,21 +90,18 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,5,10,0">
                 <TextBlock Text="Filtre : " VerticalAlignment="Center" MinWidth="60"/>
-                <ComboBox Margin="0,5,10,0">
+                <ComboBox Margin="0,5,10,0" ItemsSource="{Binding Path=Logiciels/Versions}" 
+                          DisplayMemberPath="Numero"
+                          SelectedValuePath="Numero"
+                          SelectedIndex="0"
+                          IsSynchronizedWithCurrentItem="True">
                     <ComboBox.ToolTip>
                         <ToolTip>
                             <TextBlock>Choix de la version.</TextBlock>
                         </ToolTip>
                     </ComboBox.ToolTip>
                 </ComboBox>
-                <ComboBox Margin="0,5,10,0">
-                    <ComboBox.ToolTip>
-                        <ToolTip>
-                            <TextBlock>Choix du module.</TextBlock>
-                        </ToolTip>
-                    </ComboBox.ToolTip>
-                </ComboBox>
-                <ComboBox Margin="0,5,10,0" Width="50">
+                <ComboBox Margin="0,5,10,0" Width="50" SelectedIndex="0">
                     <ComboBoxItem>
                         <fa:IconBlock Icon="SortAsc"/>
                     </ComboBoxItem>
