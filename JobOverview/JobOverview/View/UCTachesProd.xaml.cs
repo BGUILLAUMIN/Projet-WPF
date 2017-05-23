@@ -16,6 +16,7 @@ using JobOverview.ViewModel;
 using System.Collections.ObjectModel;
 using JobOverview.Entity;
 using JobOverview.Model;
+using System.ComponentModel;
 
 namespace JobOverview.View
 {
@@ -24,12 +25,23 @@ namespace JobOverview.View
     /// </summary>
     public partial class UCTachesProd : UserControl
     {
-        public ObservableCollection<TacheProd> TachesProds { get; set; }
         public UCTachesProd()
         {
             InitializeComponent();
             DataContext = new VMTachesProd();
+            cbxLogiciels.SelectionChanged += FiltrerTachesProds;
+            cbxVersions.SelectionChanged += FiltrerTachesProds;
+            cbxPersonnes.SelectionChanged += FiltrerTachesProds;
+
         }
 
-}
+        private void FiltrerTachesProds(object sender, SelectionChangedEventArgs e)
+        {
+            //ICollectionView view = CollectionViewSource.GetDefaultView(DataContext);
+
+            //view.SortDescriptions.Clear();
+            //view.GroupDescriptions.Clear();
+        }
+
+    }
 }

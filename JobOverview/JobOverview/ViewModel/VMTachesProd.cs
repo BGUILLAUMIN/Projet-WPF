@@ -20,7 +20,6 @@ namespace JobOverview.ViewModel
     public class VMTachesProd : ViewModelBase
     {
         #region Champs privés
-        private TacheProd _nouvelleTache;
         private ModesEdition _mode;
         #endregion
 
@@ -28,7 +27,7 @@ namespace JobOverview.ViewModel
         public List<Logiciel> Logiciels { get; set; }
         public List<Personne> Personnes { get; set; }
         public ObservableCollection<TacheProd> TachesProds { get; }
-        
+
         public TacheProd TacheCourante
         {
             get
@@ -59,18 +58,6 @@ namespace JobOverview.ViewModel
 
 
         #region Définition des commandes
-        private ICommand _cmdFiltreTach;
-        public ICommand CmdFiltreTach
-        {
-            get
-            {
-                if (_cmdFiltreTach == null)
-                    _cmdFiltreTach = new RelayCommand(FiltrerTachesProd);
-                return _cmdFiltreTach;
-            }
-        }
-
-
         //lors du clic sur le bouton Ajouter
         private ICommand _cmdAjouter;
         public ICommand CmdAjouter
@@ -135,13 +122,13 @@ namespace JobOverview.ViewModel
             try
             {
                 DALTaches.ExportTachesXml(TachesProds.ToList());
-               MessageBox.Show("Exportation réalisée avec succès",
-                        "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Exportation réalisée avec succès",
+                         "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
 
-               MessageBox.Show("L'exportation a échoué", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("L'exportation a échoué", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -169,8 +156,8 @@ namespace JobOverview.ViewModel
             {
                 try
                 {
-                //Enregistre dans la base la liste mis à jour de la listview 
-                DALTaches.EnregistrerTachesProd(TacheCourante);
+                    //Enregistre dans la base la liste mis à jour de la listview 
+                    DALTaches.EnregistrerTachesProd(TacheCourante);
                     MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
                        "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 }
@@ -178,7 +165,7 @@ namespace JobOverview.ViewModel
                 {
                     MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-              
+
                 //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                 ModeEdit = ModesEdition.Consultation;
             }

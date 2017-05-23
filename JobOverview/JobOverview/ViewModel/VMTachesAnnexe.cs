@@ -19,7 +19,7 @@ namespace JobOverview.ViewModel
     {
 
         #region champs privés
-        private Tache _nouvelleTache;
+       
         private ModesEdition _mode;
 
         #endregion
@@ -44,20 +44,22 @@ namespace JobOverview.ViewModel
                 SetProperty(ref _mode, value);
             }
         }
-
-
-
+        //*********************************************************************************************************************************
+        #region Constructeur
         public VMTachesAnnexe()
         {
+            // Permet à la comboBox d'afficher la liste des activités annexes disponibles.
             Activites = DALPersonnes.GetActivite();
+            // Permet à la comboBox d'afficher la liste des personnes d'une même équipe (manager compris) en fonction du Login mémorisé.
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
-
+            //Permet à la ListeView d'afficher la liste de taches annexes
             TachesAnnexes = new ObservableCollection<Tache>(DALTaches.GetTachesAnnexe());
             ModeEdit = ModesEdition.Consultation;
         }
-       
+        
+        #endregion
 
-        // ajout des commandes
+        //**************************** Ajout des commandes*********************************************************************************
         #region COMMANDES
         //lors du clic sur le bouton Ajouter
         private ICommand _cmdAjouter;
@@ -77,7 +79,8 @@ namespace JobOverview.ViewModel
             get
             {
                 if (_cmdSupprimer == null)
-                    _cmdSupprimer = new RelayCommand(SupprimerTache,ActiverSupprimer);
+                    _cmdSupprimer = new RelayCommand(SupprimerTache, ActiverSupprimer);
+
                 return _cmdSupprimer;
             }
         }
@@ -133,7 +136,7 @@ namespace JobOverview.ViewModel
             try
             {
                 TachesAnnexes.Remove(TacheCourante);
-                DALTaches.EnregistrerTachesAnnexes(TacheCourante);
+                DALTaches.EnregistrerTachesAnnexes(TacheCourante);//ToDO changer méthode suppression
                 MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
 
             }
@@ -144,6 +147,8 @@ namespace JobOverview.ViewModel
             }
 
         }
+
+
 
         //Appel de la méthode d'enregistrement des tâches de production dans la base
         //et définit le mode d'édition
@@ -186,7 +191,7 @@ namespace JobOverview.ViewModel
         }
         private bool ActiverSupprimer()
         {
-            return ModeEdit == ModesEdition.Consultation; ;
+            return ModeEdit == ModesEdition.Consultation; 
         }
         // dès que l'on clique sur le bouton Enregistrer ou Annuler, cela désactive l'état des boutons
         private bool ActiverAnnEnr()

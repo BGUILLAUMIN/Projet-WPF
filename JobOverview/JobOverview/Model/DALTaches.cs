@@ -104,8 +104,11 @@ namespace JobOverview.Model
         /// <param name="listTaches"></param>
         public static void EnregistrerTachesProd(TacheProd tacheProd)
         {
-            string req = @"Insert jo.Tache(Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
-                        Values  (@Libelle, 0 , @CodeActivite, @Login, @Description);
+
+         var  @IdTache = Guid.NewGuid();
+
+            string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
+                        Values  (@IdTache, @Libelle, 0 , @CodeActivite, @Login, @Description);
 
                         Insert jo.TacheProd (DureePrevue, DureeRestanteEstimee,
 									CodeModule, CodeLogicielModule, NumeroVersion, CodeLogicielVersion)
@@ -175,7 +178,7 @@ namespace JobOverview.Model
         /// <summary>
         /// Enregistre une tâche annexe dans la base
         /// </summary>
-        /// <param name="listTaches"></param>
+      
         public static void EnregistrerTachesAnnexes(Tache TachesAnn)
         {
             // Ecriture de la requête d'insertion 

@@ -164,6 +164,25 @@ namespace JobOverview.Model
 
 
 
+
+            using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
+            {
+                var command = new SqlCommand(req, connect);
+                connect.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        GetModuleFromDataReader(ListeLogi, reader);
+                    }
+                }
+            }
+
+            return listModules;
+        }
+
         private static void GetModuleFromDataReader(List<Logiciel> listlogi, SqlDataReader reader)
         {
 
