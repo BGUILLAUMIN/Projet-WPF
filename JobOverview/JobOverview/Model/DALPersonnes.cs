@@ -159,7 +159,7 @@ namespace JobOverview.Model
             p.LibelleMetier = (string)reader["Libelle"];
 
             listPersonnes.Add(p);
-        } 
+        }
         #endregion
     }
 }

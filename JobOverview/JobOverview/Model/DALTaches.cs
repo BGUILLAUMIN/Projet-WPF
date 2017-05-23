@@ -129,8 +129,6 @@ namespace JobOverview.Model
                 paramCodeActivite.Value = tacheProd.CodeActivite;
                 SqlParameter paramLogin = new SqlParameter("@Login", DbType.String);
                 paramLogin.Value = tacheProd.LoginPersonne;
-
-
                 SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
                 paramDescription.Value = tacheProd.Description;
                 SqlParameter paramDureePrevue = new SqlParameter("@DureePrevue", SqlDbType.Float);
@@ -166,14 +164,14 @@ namespace JobOverview.Model
                     //exécution de la commande
                     command.ExecuteNonQuery();
 
-                    //Validation de la transaction s'il n'y a pas eu d'erreur
-                    tran.Commit();
-                }
-                catch (Exception)
-                {
-                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
-                    throw;   // Remontée de l'erreur à l'appelant
-                }
+                // Validation de la transaction s'il n'y a pas eu d'erreur
+                //   tran.Commit();
+                //  }
+                //  catch (Exception)
+                //  {
+                //     tran.Rollback(); // Annulation de la transaction en cas d'erreur
+                //     throw;   // Remontée de l'erreur à l'appelant
+                //  }
             }
         }
 
@@ -203,7 +201,6 @@ namespace JobOverview.Model
                 paramCodeActivite.Value = TachesAnn.CodeActivite;
                 SqlParameter paramLogin = new SqlParameter("@Login", DbType.String);
                 paramLogin.Value = TachesAnn.LoginPersonne;
-
                 SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
                 paramDescription.Value = TachesAnn.Description;
 
@@ -270,6 +267,39 @@ namespace JobOverview.Model
 
             return listActivitésAnx;
         }
+
+        public static List<Activite> GetActivitésAnnexesFiltrées(string codeActivite)
+        {
+            //Requêtage à la BDD pour récupérer les informations sur les activités
+            List<Activite> listActivitésAnx = new List<Activite>();
+
+            var conx = Settings.Default.ConnectionJobOverview;
+
+            string query = @"select CodeActivite, Libelle, Annexe from jo.Activite
+                            where Annexe = 1
+                            except
+                            select A.CodeActivite, A.Libelle, A.Annexe from jo.Tache T
+                            inner join jo.Activite A on T.CodeActivite = A.CodeActivite
+                            where T.Annexe = 1 and T.Login = @CodeActivite";
+
+            var param = new SqlParameter("@CodeActivite", DbType.String);
+            param.Value = codeActivite;
+
+            using (var connect = new SqlConnection(conx))
+            {
+                var command = new SqlCommand(query, connect);
+                command.Parameters.Add(param);
+                connect.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    GetActivitésFromDataReader(reader, listActivitésAnx);
+                }
+            }
+            return listActivitésAnx;
+        }
+
+
 
 
         /// <summary>

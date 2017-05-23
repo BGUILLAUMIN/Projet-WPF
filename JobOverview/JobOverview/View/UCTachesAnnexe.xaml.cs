@@ -1,4 +1,5 @@
 ﻿using JobOverview.Entity;
+using JobOverview.Model;
 using JobOverview.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,21 @@ namespace JobOverview.View
             _vmTachesAnnexe = new VMTachesAnnexe();
             DataContext = _vmTachesAnnexe;
             cbPersonne.SelectionChanged += Filtrer_Click;
+            btnAjouter.Click += BtnAjouter_Click;
+            cbPersonne2.SelectionChanged += CbPersonne2_SelectionChanged;
+        }
+
+        private void CbPersonne2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbPersonne.SelectedValue != null)
+            {
+                _vmTachesAnnexe.ActivitesAutorisées = DALTaches.GetActivitésAnnexesFiltrées(cbPersonne.SelectedValue.ToString());
+            }
+        }
+
+        private void BtnAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            _vmTachesAnnexe.ActivitesAutorisées = DALTaches.GetActivitésAnnexesFiltrées(cbPersonne.SelectedValue.ToString());
         }
 
         private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
@@ -48,7 +64,7 @@ namespace JobOverview.View
         {
             Tache tp = o as Tache;
             return (cbPersonne.SelectedValue.ToString() == tp.LoginPersonne);
-               
+
         }
     }
 
