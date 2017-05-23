@@ -91,11 +91,10 @@
                         <Label Content="Libellé Module :" Grid.Row="6"/>
                         <Label Content="Code Activité :" Grid.Row="7"/>
                         <Label Content="Libellé Activité :" Grid.Row="8"/>
-                        <TextBox  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" 
+                        <TextBlock  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" 
                               Margin="5"
-                              IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
-                                  HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"
-                              VerticalContentAlignment="Center"/>
+                                  HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"/>
+                             
                         <TextBox MinWidth="200" Text="{Binding Path=TachesProds/Libelle}" FontWeight="Bold" 
                              Margin="5"
                                  IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"

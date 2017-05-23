@@ -138,11 +138,17 @@ namespace JobOverview.ViewModel
         // mode d'édition
         private void AjouterTache()
         {
+            
+           
             //Instancie une nouvelle tâche
             var NouvelleTache = new TacheProd();
             NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte;
-            // Ajoute la nouvelle tache dans la liste TachesProds
-            TachesProds.Add(NouvelleTache);
+
+
+          
+
+                // Ajoute la nouvelle tache dans la liste TachesProds
+                TachesProds.Add(NouvelleTache);
 
             // La nouvelle tâche devient la tâche courante, de façon à ce qu'elle soit automatiquement sélectionnée
             ICollectionView view = CollectionViewSource.GetDefaultView(TachesProds);
