@@ -19,21 +19,21 @@
         </Style>
     </UserControl.Resources>
 
-    <DockPanel Margin="5" Background="White">
+    <DockPanel Margin="5">
         <!--#region Expander Ajout de Taches de production-->
         <Expander ExpandDirection="Left" MaxWidth="400" Width="Auto" DockPanel.Dock="Right" IsExpanded="True" >
-                    
+
             <Expander.ToolTip>
                 <ToolTip>
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconBlock Icon="LightbulbO" Margin="3"/>
-                            <TextBlock>Déplier la fiche de détails.</TextBlock>
-                        </StackPanel>
-                
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconBlock Icon="LightbulbO" Margin="3"/>
+                        <TextBlock>Déplier la fiche de détails.</TextBlock>
+                    </StackPanel>
+
                 </ToolTip>
             </Expander.ToolTip>
-            <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="0,0,0,10">
-          
+            <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="0,20,0,10">
+
                 <StackPanel>
                     <!--#region Barre de boutons-->
                     <StackPanel Orientation="Horizontal">
@@ -135,11 +135,10 @@
                             </ComboBox.ToolTip>
                         </ComboBox>
 
-                        <TextBox  Padding="2" Width="40" Text="{Binding Path= TachesProds/Numero}" 
+                        <TextBlock  Padding="2" Width="40" Text="{Binding Path= TachesProds/Numero}" 
                               Margin="5"
-                              IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
-                                  HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"
-                              VerticalContentAlignment="Center"/>
+                                  HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"/>
+
                         <TextBox MinWidth="200" Text="{Binding Path=TachesProds/Libelle}" FontWeight="Bold" 
                              Margin="5" Grid.ColumnSpan="2"
                                  IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
@@ -160,7 +159,7 @@
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" 
                                    Grid.Row="5" Grid.Column="1"/>
-                        <ComboBox ItemsSource="{Binding Path=Modules}" SelectedValue="{Binding Path=TachesProds/CodeModule}"
+                        <ComboBox Name="cbxModule" ItemsSource="{Binding Path=Logiciels/Modules}" SelectedValue="{Binding Path=TachesProds/CodeModule}"
                                   DisplayMemberPath="Code" SelectedValuePath="Code" Grid.ColumnSpan="2"
                               SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
                                   Style="{StaticResource Combobox2}"
@@ -169,7 +168,7 @@
                         <TextBlock Text="{Binding Path= Modules/Libelle}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"
                                    HorizontalAlignment="Left"
                                        VerticalAlignment="Center"/>
-                        
+
                         <TextBlock Margin="5" Width="100" Text="{Binding Path= TachesProds/CodeActivite}"
                                    Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"
                                        HorizontalAlignment="Left"
@@ -290,12 +289,10 @@
             <!--#region Affichage des temps de travail-->
             <StackPanel Orientation="Vertical" Margin="10" DockPanel.Dock="Top">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Temps de travail restant global :" MinWidth="175"/>
-                    <TextBlock Text="92 h"/>
+                    <TextBlock Name="Txt_Restant"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Temps de travail réalisé global :" MinWidth="175"/>
-                    <TextBlock Text="102 h"/>
+                    <TextBlock Name="Txt_Realise"/>
                 </StackPanel>
             </StackPanel>
             <!--#endregion-->

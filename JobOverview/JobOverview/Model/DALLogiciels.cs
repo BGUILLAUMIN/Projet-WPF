@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JobOverview.Entity;
 using System.Data.SqlClient;
 using JobOverview.Properties;
+using System.Data;
 
 namespace JobOverview.Model
 {
@@ -97,7 +98,7 @@ namespace JobOverview.Model
         {
             var listModules = new List<Module>();
 
-            string req = @"Select CodeModule, Libelle from jo.Module";
+            string req = @"Select CodeModule, Libelle, CodeLogiciel from jo.Module";
 
 
             using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
@@ -107,15 +108,54 @@ namespace JobOverview.Model
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    GetModuleFromDataReader(listModules, reader);
+                    GetModuleLibelléFromDataReader(listModules, reader);
                 }
             }
             return listModules;
-        } 
+        }
+
+
+        //public static List<Module> GetModulesLibellé(string Code)
+        //{
+        //    var listModules = new List<Module>();
+
+        //    var conx = Properties.Settings.Default.ConnectionJobOverview;
+
+        //    string req = @"Select CodeModule, Libelle,  CodeLogiciel from jo.Module 
+        //            where CodeLogiciel=@param";
+        //    var param = new SqlParameter("@param", DbType.String);
+
+        //    param.Value = Code;
+
+        //    // On crée une connexion à partir de la chaîne de connexion
+        //    using (var connect = new SqlConnection(conx))
+        //    {
+        //        // On créé une commande à partir de la requête et en utilisant la connexion définies précédemment
+        //        var command = new SqlCommand(req, connect);
+        //        command.Parameters.Add(param);
+
+        //        // On ouvre la connexion
+        //        connect.Open();
+
+        //        // On exécute la requête en récupérant son résultat dans un objet SqlDataRedader
+        //        using (SqlDataReader reader = command.ExecuteReader())
+        //        {
+        //            // On lit et on affiche les lignes de résultat en boucle
+        //            while (reader.Read())
+        //            {
+        //                GetModuleLibelléFromDataReader(listModules, reader);
+        //            }
+        //        }
+        //    }
+
+        //    return listModules;
+        //}
+
         #endregion
 
+
         #region Méthodes Privées
-        
+
         private static void GetModuleFromDataReader(List<Logiciel> listlogi, SqlDataReader reader)
         {
             // Si le code du Module courant est != de celui du dernier Module de la liste, on crée un nouvel objet Module.
@@ -199,7 +239,7 @@ namespace JobOverview.Model
         /// </summary>
         /// <param name="listmod"></param>
         /// <param name="reader"></param>
-        private static void GetModuleFromDataReader(List<Module> listmod, SqlDataReader reader)
+        private static void GetModuleLibelléFromDataReader(List<Module> listmod, SqlDataReader reader)
         {
             while (reader.Read())
             {
@@ -207,6 +247,7 @@ namespace JobOverview.Model
 
                 mod.Code = reader["CodeModule"].ToString();
                 mod.Libelle = reader["Libelle"].ToString();
+                mod.CodeLogicielParent = reader["CodeLogiciel"].ToString();
 
                 listmod.Add(mod);
             }

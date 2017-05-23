@@ -33,14 +33,20 @@ namespace JobOverview.View
             _vmTacheProd = new VMTachesProd();
             DataContext = _vmTacheProd;
 
+
+            //Branchement des gestionnaires évenements
             ckbTachesTerm.Unchecked += CkbTachesTerm_Unchecked;
-            ckbTachesTerm.Checked += CkbTachesTerm_Checked; 
+            ckbTachesTerm.Checked += CkbTachesTerm_Checked;
 
             cbxLogiciels.SelectionChanged += Filtrer_Click;
             cbxVersions.SelectionChanged += Filtrer_Click;
             cbxPersonnes.SelectionChanged += Filtrer_Click;
+
+
         }
-         
+
+
+
         private void CkbTachesTerm_Checked(object sender, RoutedEventArgs e)
         {
             ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);
@@ -55,6 +61,22 @@ namespace JobOverview.View
 
         private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
         {
+
+            if (cbxPersonnes.SelectedValue != null)
+            {
+
+                var a = (Travail)DALTaches.GetTempsTravailGlobaux(cbxPersonnes.SelectedValue.ToString());
+                Txt_Restant.Text = "Temps de travail global restants : " + a.NbrHeuresTravailGlobalRestantes.ToString();
+                Txt_Realise.Text = "Temps de travail global réalisés  : " + a.NbrHeuresTravailGlobalRealisees.ToString();
+
+            }
+
+            //if (cbxLogiciels.SelectedValue != null)
+            //{
+            //    var n = (List<Module>)DALLogiciels.GetModulesLibellé(cbxLogiciels.SelectedValue.ToString());
+
+
+            //}
 
             ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);
 

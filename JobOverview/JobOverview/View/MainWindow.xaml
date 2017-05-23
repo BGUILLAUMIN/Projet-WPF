@@ -8,16 +8,16 @@
         xmlns:v="clr-namespace:JobOverview.View"
         mc:Ignorable="d"
        Title="Job Overview" Height="700" Width="1000" WindowStartupLocation="CenterScreen" Icon="pack://application:,,,/images/IconeJO.ico">
-    <Window.Resources>
 
+    <!--Définition des ressources-->
+    <Window.Resources>
         <!--Création du style pour les menu-->
         <Style TargetType="MenuItem">
             <Setter Property="FontSize" Value="20"/>
         </Style>
-
-
     </Window.Resources>
 
+    <!--Création de la barre de menu-->
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
@@ -27,6 +27,7 @@
                 <MenuItem Name="SynthèseVersions" Header="Synthèse Versions"  Background="#DDD" Command="{Binding CmdVersion}"/>
                 <MenuItem Name="APropos" Header="A propos" Background="#EEE"  Command="{Binding CmdAPropos}"/>
             </Menu>
+            <!--Affichage de la VMCourante-->
             <UserControl Content="{Binding VMCourante}"/>
         </DockPanel>
     </Grid>

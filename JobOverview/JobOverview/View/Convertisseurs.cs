@@ -14,7 +14,8 @@ using System.Windows;
 
 namespace JobOverview.View
 {
-     public class ConvModeEditActivation : IValueConverter 
+    #region Convertisseurs pour les passages en mode consultation ou edition
+    public class ConvModeEditActivation : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -39,7 +40,9 @@ namespace JobOverview.View
             throw new NotImplementedException();
         }
     }
+    #endregion
 
+    #region Convertisseurs pour les changements de couleur dans Versions
     public class IntToColorBrushConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -60,7 +63,9 @@ namespace JobOverview.View
             throw new NotImplementedException();
         }
     }
+    #endregion
 
+    #region Convertisseurs pour les passages en mode visible invisible, convertisseur non utilisé à l'état actuel
     public class ConvModeEditVisible : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -73,10 +78,11 @@ namespace JobOverview.View
             throw new NotImplementedException();
         }
     }
+    #endregion
 
+    #region Convertisseurs pour bloquer la Saisie dans les expander aux personnes qui ne sont pas manager
     public class ConvModeEditManager : IValueConverter
     {
-       
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();   // TODO bloquer l'accés à toutes modif pour les personnes qui ne sont pas manager
@@ -86,7 +92,8 @@ namespace JobOverview.View
         {
             throw new NotImplementedException();
         }
-    }
+    } 
+    #endregion
 
 
 }
