@@ -142,7 +142,7 @@ namespace JobOverview.ViewModel
             //Instancie une nouvelle tâche
             var NouvelleTache = new TacheProd();
             NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte;
-
+            NouvelleTache.Numero = TachesProds.Max(n => n.Numero) + 1;
 
           
 
@@ -161,17 +161,22 @@ namespace JobOverview.ViewModel
         private void EnregistrerTache()
         {
             {
-            //    try
-            //    {
-                    //Enregistre dans la base la liste mis à jour de la listview 
-                    DALTaches.EnregistrerTachesProd(TacheCourante);
+                try
+                {
                     MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
                        "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-              //  }
-                //catch (Exception)
-                //{
-                //    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
+
+                    //Enregistre dans la base la liste mis à jour de la listview 
+                    DALTaches.EnregistrerTachesProd(TacheCourante);
+
+                    MessageBox.Show("Tâche de production enregistrée ?",
+                     "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
                 //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                 ModeEdit = ModesEdition.Consultation;

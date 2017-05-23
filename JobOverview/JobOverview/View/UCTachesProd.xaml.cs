@@ -33,12 +33,20 @@ namespace JobOverview.View
             _vmTacheProd = new VMTachesProd();
             DataContext = _vmTacheProd;
 
+
+            //Branchement des gestionnaires évenements
             ckbTachesTerm.Unchecked += CkbTachesTerm_Unchecked;
             ckbTachesTerm.Checked += CkbTachesTerm_Checked; 
 
             cbxLogiciels.SelectionChanged += Filtrer_Click;
             cbxVersions.SelectionChanged += Filtrer_Click;
             cbxPersonnes.SelectionChanged += Filtrer_Click;
+            cbxModule.SelectionChanged += CbxModule_SelectionChanged;
+        }
+
+        private void CbxModule_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
 
         private void CkbTachesTerm_Checked(object sender, RoutedEventArgs e)

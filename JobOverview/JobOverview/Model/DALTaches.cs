@@ -141,9 +141,9 @@ namespace JobOverview.Model
                 paramCodeModule.Value = tacheProd.CodeModule;
                 SqlParameter paramCodeLogicielModule = new SqlParameter("@CodeLogicielModule", DbType.String);
                 paramCodeLogicielModule.Value = tacheProd.CodeLogiciel;
-                                SqlParameter paramNumeroVersion = new SqlParameter("@NumeroVersion", SqlDbType.Float);
+                SqlParameter paramNumeroVersion = new SqlParameter("@NumeroVersion", SqlDbType.Float);
                 paramNumeroVersion.Value = tacheProd.Numero;
-                                SqlParameter paramCodeLogicielVersion = new SqlParameter("@CodeLogicielVersion", DbType.String);
+                SqlParameter paramCodeLogicielVersion = new SqlParameter("@CodeLogicielVersion", DbType.String);
                 paramCodeLogicielVersion.Value = tacheProd.CodeLogiciel;
 
                 // Création  de la commande
@@ -164,8 +164,7 @@ namespace JobOverview.Model
                 try
                 {
                     //exécution de la commande
-
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
 
                     //Validation de la transaction s'il n'y a pas eu d'erreur
                     tran.Commit();
@@ -181,14 +180,14 @@ namespace JobOverview.Model
         /// <summary>
         /// Enregistre une tâche annexe dans la base
         /// </summary>
-      
+
         public static void EnregistrerTachesAnnexes(Tache TachesAnn)
         {
             // Ecriture de la requête d'insertion 
             string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
                         Values (@IdTache, @Libelle, 1 , @CodeActivite, @Login, @Description)";
-								
-         
+
+
             using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
                 // Ouverture de la connexion et début de la transaction
@@ -224,15 +223,15 @@ namespace JobOverview.Model
 
                     command.ExecuteNonQuery();
 
-                // Validation de la transaction s'il n'y a pas eu d'erreur
-                tran.Commit();
-            }
+                    // Validation de la transaction s'il n'y a pas eu d'erreur
+                    tran.Commit();
+                }
                 catch (Exception)
-            {
-                tran.Rollback(); // Annulation de la transaction en cas d'erreur
-                throw;   // Remontée de l'erreur à l'appelant
+                {
+                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
+                    throw;   // Remontée de l'erreur à l'appelant
+                }
             }
-        }
         }
 
         /// <summary>
@@ -316,7 +315,7 @@ namespace JobOverview.Model
             return TravailCourant;
         }
 
-   
+
 
         #endregion
 
@@ -343,17 +342,17 @@ namespace JobOverview.Model
 
         private static void GetTempsTravailGlobauxFromDataReader(SqlDataReader reader, Travail Travail)
         {
-            
-               
-                if (reader["NbrHeureTravail"] != DBNull.Value)
+
+
+            if (reader["NbrHeureTravail"] != DBNull.Value)
                 Travail.NbrHeuresTravailGlobalRealisees = (double)reader["NbrHeureTravail"];
 
-                if (reader["NbrHeureRestante"] != DBNull.Value)
+            if (reader["NbrHeureRestante"] != DBNull.Value)
                 Travail.NbrHeuresTravailGlobalRestantes = (double)reader["NbrHeureRestante"];
 
-          
 
-            
+
+
         }
 
         #endregion
