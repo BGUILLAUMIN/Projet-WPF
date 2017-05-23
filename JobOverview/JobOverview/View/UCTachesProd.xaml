@@ -289,12 +289,10 @@
             <!--#region Affichage des temps de travail-->
             <StackPanel Orientation="Vertical" Margin="10" DockPanel.Dock="Top">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Temps de travail restant global :" MinWidth="175"/>
-                    <TextBlock Text="92 h"/>
+                    <TextBlock Name="Txt_Restant"/> 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Temps de travail réalisé global :" MinWidth="175"/>
-                    <TextBlock Text="102 h"/>
+                    <TextBlock Name="Txt_Realise"/>
                 </StackPanel>
             </StackPanel>
             <!--#endregion-->
