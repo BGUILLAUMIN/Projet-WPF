@@ -42,7 +42,7 @@ namespace JobOverview.View {
     public partial class UCLogin : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         
-        #line 12 "..\..\..\View\UCLogin.xaml"
+        #line 14 "..\..\..\View\UCLogin.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox cbxUtilisateur;
         
