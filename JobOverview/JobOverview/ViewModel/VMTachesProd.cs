@@ -116,11 +116,6 @@ namespace JobOverview.ViewModel
         #endregion
 
         #region Code des commandes
-        private void FiltrerTachesProd()
-        {
-
-        }
-
         private void AppelExport()
         {
             try

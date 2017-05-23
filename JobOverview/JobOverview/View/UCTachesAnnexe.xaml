@@ -27,7 +27,7 @@
                                 <TextBlock>Ajouter une tâche annexe.</TextBlock>
                             </ToolTip>
                         </Button.ToolTip>
-                        <fa:IconBlock Icon="PlusCircle"/>
+                            <fa:IconBlock Icon="PlusCircle"  FontSize="25"/>
                     </Button>
                     <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdSupprimer}">
                         <Button.ToolTip>
@@ -35,7 +35,7 @@
                                 <TextBlock>Supprimer tâche.</TextBlock>
                             </ToolTip>
                         </Button.ToolTip>
-                        <fa:IconBlock Icon="Times"/>
+                            <fa:IconBlock Icon="Times"  FontSize="25"/>
                     </Button>
                     <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAnnuler}" >
                         <Button.ToolTip>
@@ -43,7 +43,7 @@
                                 <TextBlock>Annuler.</TextBlock>
                             </ToolTip>
                         </Button.ToolTip>
-                        <fa:IconBlock Icon="Undo"/>
+                            <fa:IconBlock Icon="Undo"  FontSize="25"/>
                     </Button>
                     <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdEnregistrer}">
                         <Button.ToolTip>
@@ -51,7 +51,7 @@
                                 <TextBlock>Enregistrer.</TextBlock>
                             </ToolTip>
                         </Button.ToolTip>
-                            <fa:IconBlock Icon="FloppyO"/>
+                            <fa:IconBlock Icon="FloppyO"  FontSize="25"/>
                     </Button>
                 </StackPanel>
                 <Separator Height="10" Opacity="0"  DockPanel.Dock="Top"/>

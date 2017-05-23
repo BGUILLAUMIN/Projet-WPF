@@ -94,7 +94,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,5,10,0">
                 <TextBlock Text="Filtre : " VerticalAlignment="Center" MinWidth="60"/>
-                <ComboBox Margin="0,5,10,0" ItemsSource="{Binding Path=Logiciels/Versions}" 
+                <ComboBox Name="cbxVersion" Margin="0,5,10,0" ItemsSource="{Binding Path=Logiciels/Versions}" 
                           DisplayMemberPath="Numero"
                           SelectedValuePath="Numero"
                           SelectedIndex="0"
