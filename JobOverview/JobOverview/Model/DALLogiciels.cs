@@ -9,15 +9,16 @@ using JobOverview.Properties;
 
 namespace JobOverview.Model
 {
-    class DALLogiciels
+    public class DALLogiciels
     {
+        #region Méthodes publiques
         /// <summary>
-		/// Obtient et renvoie la liste des logiciels et leurs versions associées,
-		/// avec leur dernier N° de release
-		/// La liste est triée par nom de logiciel et N° de version 
-		/// </summary>
-		/// <returns></returns>
-		public static List<Logiciel> GetLogicielsVersions()
+        /// Obtient et renvoie la liste des logiciels et leurs versions associées,
+        /// avec leur dernier N° de release
+        /// La liste est triée par nom de logiciel et N° de version 
+        /// </summary>
+        /// <returns></returns>
+        public static List<Logiciel> GetLogicielsVersions()
         {
             var listLogiciels = new List<Logiciel>();
 
@@ -58,56 +59,8 @@ namespace JobOverview.Model
         }
 
         /// <summary>
-        /// Charge la liste de logiciels passée en paramètre à partir du datareader
+        /// //TODO: Commentaires
         /// </summary>
-        /// <param name="listLogiciels"></param>
-        /// <param name="reader"></param>
-        private static void GetLogicielsFromDataReader(List<Logiciel> listLogiciels, SqlDataReader reader)
-        {
-            string codeLogi = (string)reader["CodeLogiciel"];
-
-            // Si le code du logiciel courant est != de celui du dernier logiciel de la liste,
-            // on crée un nouvel objet Logiciel,
-            Logiciel logi = null;
-            if (listLogiciels.Count == 0 || listLogiciels[listLogiciels.Count - 1].Code != codeLogi)
-            {
-                logi = new Logiciel();
-                logi.Modules = new List<Module>();
-                logi.Code = (string)reader["CodeLogiciel"];
-                logi.Nom = (string)reader["Nom"];
-                logi.Versions = new List<Entity.Version>();
-
-                listLogiciels.Add(logi);
-
-                if(listLogiciels.Count == 0 || listLogiciels[listLogiciels.Count - 1].Nom == reader["Nom"].ToString())
-                DALLogiciels.GetModules(listLogiciels);
-
-            }
-            else logi = listLogiciels[listLogiciels.Count - 1];
-
-            Entity.Version v = new Entity.Version();
-            // Si le N° de version est null, c'est que le logiciel n'a pas encore
-            // de version. Dans ce cas, on n'ajoute pas de version à la collection
-            if (reader["NumeroVersion"] != DBNull.Value)
-            {
-                v.Numero = (float)reader["NumeroVersion"];
-                v.Millesime = (Int16)reader["Millesime"];
-                v.DateOuverture = (DateTime)reader["DateOuverture"];
-                v.DateSortiePrevue = (DateTime)reader["DateSortiePrevue"];
-                if (reader["DateSortieReelle"] != DBNull.Value)
-                    v.DateSortieReelle = (DateTime)reader["DateSortieReelle"];
-                if (reader["DerniereRelease"] != DBNull.Value)
-                    v.DerniereRelease = (Int16)reader["DerniereRelease"];
-
-                if (reader["NombreJours"] != DBNull.Value)
-                    v.NombreJours = (double)reader["NombreJours"];
-
-                if (reader["NombrePersonnes"] != DBNull.Value)
-                    v.NombrePersonnes = (int)reader["NombrePersonnes"];
-                logi.Versions.Add(v);
-            }
-        }
-
         public static List<Module> GetModules(List<Logiciel> ListeLogi)
         {
             var listModules = new List<Module>();
@@ -137,6 +90,32 @@ namespace JobOverview.Model
             return listModules;
         }
 
+        /// <summary>
+        /// Permet de récupérer les libellés des modules
+        /// </summary>
+        public static List<Module> GetModulesLibellé()
+        {
+            var listModules = new List<Module>();
+
+            string req = @"Select CodeModule, Libelle from jo.Module";
+
+
+            using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
+            {
+                var command = new SqlCommand(req, connect);
+                connect.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    GetModuleFromDataReader(listModules, reader);
+                }
+            }
+            return listModules;
+        } 
+        #endregion
+
+        #region Méthodes Privées
+        
         private static void GetModuleFromDataReader(List<Logiciel> listlogi, SqlDataReader reader)
         {
             // Si le code du Module courant est != de celui du dernier Module de la liste, on crée un nouvel objet Module.
@@ -163,5 +142,76 @@ namespace JobOverview.Model
             }
 
         }
+
+        /// <summary>
+        /// Charge la liste de logiciels passée en paramètre à partir du datareader
+        /// </summary>
+        /// <param name="listLogiciels"></param>
+        /// <param name="reader"></param>
+        private static void GetLogicielsFromDataReader(List<Logiciel> listLogiciels, SqlDataReader reader)
+        {
+            string codeLogi = (string)reader["CodeLogiciel"];
+
+            // Si le code du logiciel courant est != de celui du dernier logiciel de la liste,
+            // on crée un nouvel objet Logiciel,
+            Logiciel logi = null;
+            if (listLogiciels.Count == 0 || listLogiciels[listLogiciels.Count - 1].Code != codeLogi)
+            {
+                logi = new Logiciel();
+                logi.Modules = new List<Module>();
+                logi.Code = (string)reader["CodeLogiciel"];
+                logi.Nom = (string)reader["Nom"];
+                logi.Versions = new List<Entity.Version>();
+
+                listLogiciels.Add(logi);
+
+                if (listLogiciels.Count == 0 || listLogiciels[listLogiciels.Count - 1].Nom == reader["Nom"].ToString())
+                    DALLogiciels.GetModules(listLogiciels);
+
+            }
+            else logi = listLogiciels[listLogiciels.Count - 1];
+
+            Entity.Version v = new Entity.Version();
+            // Si le N° de version est null, c'est que le logiciel n'a pas encore
+            // de version. Dans ce cas, on n'ajoute pas de version à la collection
+            if (reader["NumeroVersion"] != DBNull.Value)
+            {
+                v.Numero = (float)reader["NumeroVersion"];
+                v.Millesime = (Int16)reader["Millesime"];
+                v.DateOuverture = (DateTime)reader["DateOuverture"];
+                v.DateSortiePrevue = (DateTime)reader["DateSortiePrevue"];
+                if (reader["DateSortieReelle"] != DBNull.Value)
+                    v.DateSortieReelle = (DateTime)reader["DateSortieReelle"];
+                if (reader["DerniereRelease"] != DBNull.Value)
+                    v.DerniereRelease = (Int16)reader["DerniereRelease"];
+
+                if (reader["NombreJours"] != DBNull.Value)
+                    v.NombreJours = (double)reader["NombreJours"];
+
+                if (reader["NombrePersonnes"] != DBNull.Value)
+                    v.NombrePersonnes = (int)reader["NombrePersonnes"];
+                logi.Versions.Add(v);
+            }
+        }
+
+        /// <summary>
+        /// Charge la liste de Module passée en paramètre à partir du datareader
+        /// </summary>
+        /// <param name="listmod"></param>
+        /// <param name="reader"></param>
+        private static void GetModuleFromDataReader(List<Module> listmod, SqlDataReader reader)
+        {
+            while (reader.Read())
+            {
+                Module mod = new Module();
+
+                mod.Code = reader["CodeModule"].ToString();
+                mod.Libelle = reader["Libelle"].ToString();
+
+                listmod.Add(mod);
+            }
+
+        } 
+        #endregion
     }
 }

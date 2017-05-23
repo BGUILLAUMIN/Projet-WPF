@@ -11,7 +11,7 @@
                 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="500">
+             d:DesignHeight="600" d:DesignWidth="1000">
     <!--définition des ressources-->
     <UserControl.Resources>
         <Style TargetType="TextBox">
@@ -92,7 +92,7 @@
                               IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
                                   HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"
                               VerticalContentAlignment="Center"/>
-                        <TextBox MinWidth="100" Text="{Binding Path=TachesProds/Libelle}" FontWeight="Bold" 
+                        <TextBox MinWidth="200" Text="{Binding Path=TachesProds/Libelle}" FontWeight="Bold" 
                              Margin="5"
                                  IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
                                  HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"
@@ -108,17 +108,17 @@
                                  HorizontalAlignment="Left" Grid.Row="4" Grid.Column="1"
                                  VerticalContentAlignment="Center"/>
 
-                        <TextBlock Width="100" Text="{Binding Path=TachesProds/CodeModule}" 
+                        <TextBlock Margin="5" Width="100" Text="{Binding Path=TachesProds/CodeModule}" 
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" 
                                    Grid.Row="5" Grid.Column="1"/>
-                        <ComboBox ItemsSource="{Binding Path=Logiciels/Modules}" DisplayMemberPath="Libelle" SelectedValue="Code"
+                        <ComboBox ItemsSource="{Binding Path=Modules}" DisplayMemberPath="Libelle" SelectedValue="Code"
                               SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" 
                               Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"/>
 
 
-                        <TextBlock Width="100" Text="{Binding Path= TachesProds/CodeActivite}"
+                        <TextBlock Margin="5" Width="100" Text="{Binding Path= TachesProds/CodeActivite}"
                                    Grid.Row="6" Grid.Column="1"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" Grid.ColumnSpan="2"/>
@@ -148,14 +148,14 @@
         <DockPanel>
             <!--#region ligne du bas checkbox + bouton exporté-->
             <DockPanel DockPanel.Dock="Bottom">
-                <CheckBox Name="ckbtachesterm" Content="Taches terminées" IsChecked="False" VerticalAlignment="Center" Margin="10,0,0,0">
+                <CheckBox Name="ckbTachesTerm" Content="Taches terminées" IsChecked="False" VerticalAlignment="Center" Margin="10,0,0,0">
                     <CheckBox.ToolTip>
                         <ToolTip>
                             <TextBlock>Filtrer les tâches selon leur degré d'avancement.</TextBlock>
                         </ToolTip>
                     </CheckBox.ToolTip>
                 </CheckBox>
-                <CheckBox Name="ckbtoutespers" Content="Taches toutes les personnes" IsChecked="False"
+                <CheckBox Name="ckbToutesPers" Content="Taches toutes les personnes" IsChecked="False"
                           VerticalAlignment="Center" Margin="10,0,0,0">
                     <CheckBox.ToolTip>
                         <ToolTip>

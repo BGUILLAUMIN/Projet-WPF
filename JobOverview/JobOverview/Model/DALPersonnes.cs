@@ -14,6 +14,7 @@ namespace JobOverview.Model
 {
     public class DALPersonnes
     {
+        #region Méthodes publiques
         /// <summary>
         /// Récupère la liste des personnes depuis la base de
         /// données pour compléter la liste dans la fenêtre d'identification.
@@ -57,6 +58,11 @@ namespace JobOverview.Model
             return listPersonnes;
         }
 
+        /// <summary>
+        /// Récupère la liste des activités depuis la base de
+        /// données .
+        /// </summary>
+        /// <returns></returns>
         public static List<Activite> GetActivite()
         {
             var listActivites = new List<Activite>();
@@ -91,7 +97,11 @@ namespace JobOverview.Model
             return listActivites;
         }
 
-
+        /// <summary>
+        /// Récupère la liste des Personnes depuis la base de
+        /// données .
+        /// </summary>
+        /// <returns></returns>
         public static List<Personne> GetPersonnesFromUser(string login)
         {
             List<Personne> Personnes = new List<Personne>();
@@ -128,7 +138,15 @@ namespace JobOverview.Model
             return Personnes;
 
         }
-        private static void GetPersonnesFromUserFromDataReader(List<Personne> Personnes ,SqlDataReader reader)
+        #endregion
+
+        #region Méthodes Privées
+        /// <summary>
+        /// Charge la liste des Personnes passée en paramètre à partir du datareader
+        /// </summary>
+        /// <param name="listPersonnes"></param>
+        /// <param name="reader"></param>
+        private static void GetPersonnesFromUserFromDataReader(List<Personne> listPersonnes, SqlDataReader reader)
         {
             //Aucun de ses champs n'est nullable
             Personne p = new Personne();
@@ -140,7 +158,8 @@ namespace JobOverview.Model
             p.CodeMetier = (string)reader["CodeMetier"];
             p.LibelleMetier = (string)reader["Libelle"];
 
-            Personnes.Add(p);
-        }
+            listPersonnes.Add(p);
+        } 
+        #endregion
     }
 }
