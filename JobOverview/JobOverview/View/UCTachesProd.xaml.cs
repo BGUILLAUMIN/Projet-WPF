@@ -41,13 +41,11 @@ namespace JobOverview.View
             cbxLogiciels.SelectionChanged += Filtrer_Click;
             cbxVersions.SelectionChanged += Filtrer_Click;
             cbxPersonnes.SelectionChanged += Filtrer_Click;
-            cbxModule.SelectionChanged += CbxModule_SelectionChanged;
+            
+
         }
 
-        private void CbxModule_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
+      
 
         private void CkbTachesTerm_Checked(object sender, RoutedEventArgs e)
         {
@@ -72,6 +70,12 @@ namespace JobOverview.View
                 Txt_Realise.Text = "Temps de travail global réalisés  : " + a.NbrHeuresTravailGlobalRealisees.ToString();
 
             }
+
+            //if(cbxLogiciels.SelectedValue != null)
+            //{
+            //    var n = (List<Module>)DALLogiciels.GetModulesLibellé(cbxLogiciels.SelectedValue.ToString());
+          
+            //}
 
             ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);
 

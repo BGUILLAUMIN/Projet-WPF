@@ -50,6 +50,7 @@ namespace JobOverview.ViewModel
         #region Constructeur
         public VMTachesProd()
         {
+            //Appels des méthodes de DAL pour remplir le visuel au chargement de la fenêtre
             Logiciels = DALLogiciels.GetLogicielsVersions();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
             Activités = DALTaches.GetActivités().Where(a => a.Annexe == false).ToList();
@@ -120,13 +121,17 @@ namespace JobOverview.ViewModel
         {
             try
             {
+                MessageBox.Show("Comfirmez-vous l'export des données? ",
+                         "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //Appel de la méthode d'export des données en passsant en paramêtre la liste de tâche de production
                 DALTaches.ExportTachesXml(TachesProds.ToList());
+
                 MessageBox.Show("Exportation réalisée avec succès",
                          "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
-
                 MessageBox.Show("L'exportation a échoué", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -135,8 +140,6 @@ namespace JobOverview.ViewModel
         // et définit mode d'édition
         private void AjouterTache()
         {
-
-
             //Instancie une nouvelle tâche
             var NouvelleTache = new TacheProd();
             //Initiatialisation des propriétés de la nouvelle tâche
@@ -150,6 +153,7 @@ namespace JobOverview.ViewModel
             ICollectionView view = CollectionViewSource.GetDefaultView(TachesProds);
             view.MoveCurrentToLast();
 
+            //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Edition
             ModeEdit = ModesEdition.Edition;
         }
 
@@ -191,7 +195,7 @@ namespace JobOverview.ViewModel
             ModeEdit = ModesEdition.Consultation;
         }
 
-        //méthodes d'activation du Mode Edition
+        ///Méthodes d'activation du Mode Edition
         // dès que l'on clique sur le bouton ajouter, cela désactive l'état du bouton
         private bool ActiverAjout()
         {
