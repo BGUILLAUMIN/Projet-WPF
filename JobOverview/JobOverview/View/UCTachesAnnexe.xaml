@@ -36,7 +36,7 @@
                         </Button.ToolTip>
                         <fa:IconBlock Icon="Times"/>
                     </Button>
-                    <Button Style="{StaticResource ButtonStyle}" >
+                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAnnuler}" >
                         <Button.ToolTip>
                             <ToolTip>
                                 <TextBlock>Annuler.</TextBlock>
@@ -44,7 +44,7 @@
                         </Button.ToolTip>
                         <fa:IconBlock Icon="Undo"/>
                     </Button>
-                    <Button Style="{StaticResource ButtonStyle}">
+                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdEnregistrer}">
                         <Button.ToolTip>
                             <ToolTip>
                                 <TextBlock>Enregistrer.</TextBlock>
@@ -53,11 +53,12 @@
                         <fa:IconBlock Icon="FloppyO"/>
                     </Button>
                 </StackPanel>
-                <Separator Height="10" Opacity="0" DockPanel.Dock="Top"/>
+                <Separator Height="10" Opacity="0" Width="350" DockPanel.Dock="Top"/>
 
                 <Grid DockPanel.Dock="Top">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="17"/>
+                        <ColumnDefinition Width="143"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
@@ -74,8 +75,9 @@
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
-                          SelectedIndex="0"
-                          IsEnabled="{Binding Source={x:Static properties:Settings.Default}, Path=ManagerConnecte}">
+                          SelectedIndex="{Binding ElementName=cbPersonne, Path=Cursor}"
+                           IsSynchronizedWithCurrentItem="True"
+                          IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Grid.Column="1" Margin="13,5,30,5">
                         <ComboBox.ToolTip>
                             <ToolTip>
                                 <TextBlock>Liste des personnes.</TextBlock>
@@ -83,7 +85,9 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
 
-                    <ComboBox Grid.Row="2" ItemsSource="{Binding Path=Activites}" DisplayMemberPath="Code" SelectedValuePath="Code" SelectedIndex="0" IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" >
+                    <ComboBox Name="cbActivite" Grid.Row="2" ItemsSource="{Binding Path=Activites}" DisplayMemberPath="Code" 
+                              SelectedValuePath="Libelle" SelectedIndex="0" 
+                             IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Grid.Column="1" Margin="13,5,30,5" >
                         <ComboBox.ToolTip>
                             <ToolTip>
                                 <TextBlock>Liste des activités.</TextBlock>
@@ -91,17 +95,19 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
 
-                    <Label  Grid.Row="3" Content="Libellé Tache Annexe:"/>
-                    <TextBox Grid.Row="4" Text="{Binding Path=TachesAnnexes/Libelle}"/>
-                    <Label  Grid.Row="5" Content="Libellé Activité:"/>
-                    <TextBlock Grid.Row="6" Text="{Binding Path=Activites/Libelle}" />
+                    <Label  Grid.Row="3" Content="Libellé Tache Annexe:" Grid.ColumnSpan="2"/>
+                    <TextBox Grid.Row="4" Text="{Binding Path=TachesAnnexes/Libelle}"
+                             IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}" Grid.ColumnSpan="2"/>
+                    <Label  Grid.Row="5" Content="Libellé Activité:" Grid.ColumnSpan="2"/>
+                    <TextBlock Grid.Row="6" Text="{Binding ElementName=cbActivite, Path=SelectedValue}" Grid.ColumnSpan="2"/>
                     <!--<TextBlock Text="Date Travail " Grid.Row="5"/>
                     <TextBlock Text="Heures" Grid.Row="6"/>-->
-                   
+
 
                 </Grid>
 
-                <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap" IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}"/>
+                <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"  MaxWidth="350"
+                         IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}"/>
             </DockPanel>
         </Expander>
         <!--#endregion-->
@@ -116,7 +122,8 @@
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
                           SelectedIndex="0"
-                          IsEnabled="{Binding Source={x:Static properties:Settings.Default}, Path=ManagerConnecte}">
+                          IsSynchronizedWithCurrentItem="True"
+                           IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule} }">
                     <ComboBox.ToolTip>
                         <ToolTip>
                             <TextBlock>Choisir les options de filtrage.</TextBlock>
@@ -132,7 +139,7 @@
                         <GridViewColumn Header="CodeActivité" DisplayMemberBinding="{Binding Path=CodeActivite}"/>
                         <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
                         <GridViewColumn  Header="Description" DisplayMemberBinding="{Binding Path= Description}" />
-                        
+
 
                     </GridView>
                 </ListView.View>

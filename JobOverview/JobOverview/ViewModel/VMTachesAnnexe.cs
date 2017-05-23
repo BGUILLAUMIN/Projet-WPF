@@ -189,7 +189,7 @@ namespace JobOverview.ViewModel
         }
         private bool ActiverSupprimer()
         {
-            return ModeEdit == ModesEdition.Consultation; ;
+            return ModeEdit == ModesEdition.Consultation; 
         }
         // dès que l'on clique sur le bouton Enregistrer ou Annuler, cela désactive l'état des boutons
         private bool ActiverAnnEnr()
