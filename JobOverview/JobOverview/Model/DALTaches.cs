@@ -268,11 +268,58 @@ namespace JobOverview.Model
 
             return listActivitésAnx;
         }
+
+
+        /// <summary>
+        /// Permet de récupérer les Temps de travail global réalisés et restants de chaque employé.
+        /// </summary>
+        public static Travail GetTempsTravailGlobaux(string nom)
+        {
+            //Requêtage à la BDD pour récupérer les informations sur les temps de travail.
+            Travail TravailCourant = new Travail();
+
+            var conx = Properties.Settings.Default.ConnectionJobOverview;
+
+            string query = @"select distinct sum(tp.DureeRestanteEstimee) as NbrHeureRestante, sum(tr.Heures) as NbrHeureTravail
+                            from jo.TacheProd TP
+                            INNER JOIN jo.Tache t on t.IdTache = tp.IdTache
+                            INNER JOIN jo.Travail tr on tr.IdTache = t.IdTache
+                            where t.Login = @parametre";
+
+            var param = new SqlParameter("@parametre", DbType.String);
+            param.Value = nom;
+
+            // On crée une connexion à partir de la chaîne de connexion
+            using (var connect = new SqlConnection(conx))
+            {
+                // On créé une commande à partir de la requête et en utilisant la connexion définies précédemment
+                var command = new SqlCommand(query, connect);
+                command.Parameters.Add(param);
+
+                // On ouvre la connexion
+                connect.Open();
+
+                // On exécute la requête en récupérant son résultat dans un objet SqlDataRedader
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    // On lit et on affiche les lignes de résultat en boucle
+                    while (reader.Read())
+                    {
+                        GetTempsTravailGlobauxFromDataReader(reader, TravailCourant);
+                    }
+                }
+            }
+
+            return TravailCourant;
+        }
+
+   
+
         #endregion
 
         #region Méthodes Privées
 
-      
+
         /// <summary>
         /// Obtient et renvoie la liste des activités 
         /// </summary>
@@ -290,6 +337,22 @@ namespace JobOverview.Model
                 listActivitésAnx.Add(act);
             }
         }
+
+        private static void GetTempsTravailGlobauxFromDataReader(SqlDataReader reader, Travail Travail)
+        {
+            
+               
+                if (reader["NbrHeureTravail"] != DBNull.Value)
+                Travail.NbrHeuresTravailGlobalRealisees = (double)reader["NbrHeureTravail"];
+
+                if (reader["NbrHeureRestante"] != DBNull.Value)
+                Travail.NbrHeuresTravailGlobalRestantes = (double)reader["NbrHeureRestante"];
+
+          
+
+            
+        }
+
         #endregion
     }
 
