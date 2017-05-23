@@ -34,26 +34,31 @@ namespace JobOverview.View
             DataContext = _vmTacheProd;
 
             ckbTachesTerm.Unchecked += CkbTachesTerm_Unchecked;
+            ckbTachesTerm.Checked += CkbTachesTerm_Checked; 
+
             cbxLogiciels.SelectionChanged += Filtrer_Click;
             cbxVersions.SelectionChanged += Filtrer_Click;
-            cbxPersonnes.SelectionChanged += Filtrer_Click; 
+            cbxPersonnes.SelectionChanged += Filtrer_Click;
+        }
+
+        private void CkbTachesTerm_Checked(object sender, RoutedEventArgs e)
+        {
+            ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);
         }
 
         private void CkbTachesTerm_Unchecked(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            VMTachesProd list = new VMTachesProd();
+            list.TachesProdsListView.Where(t => t.DureeRestante == 0);
+            ICollectionView view = CollectionViewSource.GetDefaultView(list);
         }
 
         private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
         {
-            var list = _vmTacheProd.TachesProds;
-            if (!(bool)ckbTachesTerm.IsChecked)
-            {
-                list = new ObservableCollection<TacheProd>(_vmTacheProd.TachesProds.Where(t => t.DureeRestante != 0).ToList());
-            }
-                ICollectionView view = CollectionViewSource.GetDefaultView(list);
 
-            if (cbxVersions.SelectedValue != null && cbxLogiciels.SelectedValue != null && cbxPersonnes.SelectedValue != null)
+            ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);
+
+            if (cbxVersions.SelectedValue != null && cbxPersonnes.SelectedValue != null && cbxLogiciels.SelectedValue != null)
             {
                 view.Filter = FiltrerTachesProds;
             }
