@@ -138,8 +138,8 @@ namespace JobOverview.ViewModel
             try
             {
                 TachesAnnexes.Remove(TacheCourante);
-                DALTaches.EnregistrerTachesAnnexes(TacheCourante);//ToDO changer méthode suppression
                 MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
+                DALTaches.EnregistrerTachesAnnexes(TacheCourante);//ToDO changer méthode suppression
 
             }
             catch (Exception)

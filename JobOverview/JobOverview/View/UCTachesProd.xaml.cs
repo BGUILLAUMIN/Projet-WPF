@@ -16,6 +16,7 @@ using JobOverview.ViewModel;
 using System.Collections.ObjectModel;
 using JobOverview.Entity;
 using JobOverview.Model;
+using System.ComponentModel;
 
 namespace JobOverview.View
 {
@@ -24,30 +25,34 @@ namespace JobOverview.View
     /// </summary>
     public partial class UCTachesProd : UserControl
     {
-        public ObservableCollection<TacheProd> TachesProds { get; set; }
+        private VMTachesProd _vmTacheProd;
         public UCTachesProd()
         {
             InitializeComponent();
-            DataContext = new VMTachesProd();
-            cbxLogiciels.SelectionChanged += CbxLogiciels_SelectionChanged;
-            cbxVersions.SelectionChanged += CbxVersions_SelectionChanged;
-            cbxPersonnes.SelectionChanged += CbxPersonnes_SelectionChanged;
+            _vmTacheProd = new VMTachesProd();
+            DataContext = _vmTacheProd;
 
+            cbxLogiciels.SelectionChanged += Filtrer_Click;
+            cbxVersions.SelectionChanged += Filtrer_Click;
+            cbxPersonnes.SelectionChanged += Filtrer_Click;
         }
 
-        private void CbxPersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
         {
-            
+            ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProds);
+
+            if (cbxVersions.SelectedValue != null && cbxLogiciels.SelectedValue != null && cbxPersonnes.SelectedValue != null)
+            {
+                view.Filter = FiltrerTachesProds;
+            }
         }
 
-        private void CbxVersions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private bool FiltrerTachesProds(object o)
         {
-           
-        }
-
-        private void CbxLogiciels_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
+            TacheProd tp = o as TacheProd;
+            return ((cbxLogiciels.SelectedValue.ToString() == tp.CodeLogiciel) &&
+                (cbxVersions.SelectedValue.ToString() == tp.Version.ToString()) &&
+                (cbxPersonnes.SelectedValue.ToString() == tp.LoginPersonne));
         }
     }
 }
