@@ -79,14 +79,18 @@
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Label Content="N° :" Grid.Row="1" Grid.Column="0"/>
                         <Label Content="Libellé :" Grid.Row="2"/>
                         <Label Content="Durée Prévue :" Grid.Row="3"/>
                         <Label Content="Durée Restante :" Grid.Row="4"/>
-                        <Label Content="Module :" Grid.Row="5"/>
-                        <Label Content="Activité :" Grid.Row="6"/>
+                        <Label Content="Code Module :" Grid.Row="5"/>
+                        <Label Content="Libellé Module :" Grid.Row="6"/>
+                        <Label Content="Code Activité :" Grid.Row="7"/>
+                        <Label Content="Libellé Activité :" Grid.Row="8"/>
                         <TextBox  Padding="2" Width="20" Text="{Binding Path= TachesProds/Numero}" 
                               Margin="5"
                               IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
@@ -112,21 +116,29 @@
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" 
                                    Grid.Row="5" Grid.Column="1"/>
-                        <ComboBox ItemsSource="{Binding Path=Modules}" DisplayMemberPath="Libelle" SelectedValue="Code"
+                        <ComboBox ItemsSource="{Binding Path=Modules}" SelectedValue="{Binding Path=TachesProds/CodeModule}"
+                                  DisplayMemberPath="Code" SelectedValuePath="Code"
                               SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
+                                  Style="{StaticResource Combobox2}"
                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" 
                               Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"/>
-
-
+                        <TextBlock Text="{Binding Path= Modules/Libelle}" Grid.Row="6" Grid.Column="1"
+                                   HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"/>
+                        
                         <TextBlock Margin="5" Width="100" Text="{Binding Path= TachesProds/CodeActivite}"
-                                   Grid.Row="6" Grid.Column="1"
+                                   Grid.Row="7" Grid.Column="1"
                                        HorizontalAlignment="Left"
-                                       VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-                        <ComboBox ItemsSource="{Binding Path=Activités}" DisplayMemberPath="Libelle" SelectedValue="Code"
+                                       VerticalAlignment="Center" />
+                        <ComboBox ItemsSource="{Binding Path=Activités}" SelectedValue="{Binding Path= TachesProds/CodeActivite}"
+                                  DisplayMemberPath="Code" SelectedValuePath="Code"
                               SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
                               Style="{StaticResource Combobox2}"
                         Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"
-                              Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Left"/>
+                              Grid.Column="1" Grid.Row="7"  HorizontalAlignment="Left"/>
+                        <TextBlock Text="{Binding Path= Activités/Libelle}"  Grid.Row="8" Grid.Column="1"
+                                   HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"/>
 
                     </Grid>
                     <StackPanel Orientation="Vertical">
@@ -187,6 +199,7 @@
                     <Label Content="Logiciel"/>
                     <ComboBox Name="cbxLogiciels"
                           ItemsSource="{Binding Path=Logiciels}"
+                              SelectedValue="{Binding Path= TachesProds/CodeLogiciel}"
                           DisplayMemberPath="Nom"
                           SelectedValuePath="Code"
                           SelectedIndex="0" IsSynchronizedWithCurrentItem="True">
@@ -201,6 +214,7 @@
                     <Label Content="Version"/>
                     <ComboBox Name="cbxVersions"  
                           ItemsSource="{Binding Path=Logiciels/Versions}"
+                              SelectedValue="{Binding Path= TachesProds/Version }"
                           DisplayMemberPath="Numero"
                           SelectedValuePath="Numero" 
                           IsSynchronizedWithCurrentItem="True">
@@ -215,6 +229,7 @@
                     <Label Content="Personnes"/>
                     <ComboBox Name="cbxPersonnes" Style="{StaticResource Combobox2}"
                           ItemsSource="{Binding Path=Personnes}"
+                              SelectedValue="{Binding Path= TachesProds/LoginPersonne}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
                           SelectedIndex="0"

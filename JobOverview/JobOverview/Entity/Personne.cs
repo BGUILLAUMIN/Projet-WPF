@@ -29,5 +29,6 @@ namespace JobOverview.Entity
     {
         public string Code { get; set; }
         public string Libelle { get; set; }
+        public bool Annexe { get; set; }
     }
 }

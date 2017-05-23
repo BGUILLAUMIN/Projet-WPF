@@ -63,39 +63,39 @@ namespace JobOverview.Model
         /// données .
         /// </summary>
         /// <returns></returns>
-        public static List<Activite> GetActivite()
-        {
-            var listActivites = new List<Activite>();
+        //public static List<Activite> GetActiviteProd()
+        //{
+        //    var listActivites = new List<Activite>();
 
-            string req = @"select CodeActivite,Libelle,Annexe from jo.activite where Annexe=1";
-            string connectString = Properties.Settings.Default.ConnectionJobOverview;
+        //    string req = @"select CodeActivite,Libelle,Annexe from jo.activite where Annexe=0";
+        //    string connectString = Properties.Settings.Default.ConnectionJobOverview;
 
-            using (var connect = new SqlConnection(connectString))
-            {
-                var command = new SqlCommand(req, connect);
-                connect.Open();
+        //    using (var connect = new SqlConnection(connectString))
+        //    {
+        //        var command = new SqlCommand(req, connect);
+        //        connect.Open();
 
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
+        //        using (SqlDataReader reader = command.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
 
-                        Activite activite = null;
-                        {
-                            activite = new Activite();
-                            activite.Code = (string)reader["CodeActivite"];
-                            activite.Libelle = (string)reader["Libelle"];
+        //                Activite activite = null;
+        //                {
+        //                    activite = new Activite();
+        //                    activite.Code = (string)reader["CodeActivite"];
+        //                    activite.Libelle = (string)reader["Libelle"];
 
 
 
-                            //TODO enlever méthode dans le diagramme de classe
-                            listActivites.Add(activite);
-                        }
-                    }
-                }
-            }
-            return listActivites;
-        }
+        //                    //TODO enlever méthode dans le diagramme de classe
+        //                    listActivites.Add(activite);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return listActivites;
+        //}
 
         /// <summary>
         /// Récupère la liste des Personnes depuis la base de
