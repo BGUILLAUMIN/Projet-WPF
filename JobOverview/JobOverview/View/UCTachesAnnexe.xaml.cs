@@ -1,6 +1,8 @@
-﻿using JobOverview.ViewModel;
+﻿using JobOverview.Entity;
+using JobOverview.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +23,33 @@ namespace JobOverview.View
     /// </summary>
     public partial class UCTachesAnnexe : UserControl
     {
+        #region Propriété privée
+        private VMTachesAnnexe _vmTachesAnnexe;
+        #endregion
         public UCTachesAnnexe()
         {
             InitializeComponent();
-            DataContext = new VMTachesAnnexe();
+            _vmTachesAnnexe = new VMTachesAnnexe();
+            DataContext = _vmTachesAnnexe;
+            cbPersonne.SelectionChanged += Filtrer_Click;
+        }
+
+        private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
+        {
+            ICollectionView view = CollectionViewSource.GetDefaultView(_vmTachesAnnexe.TachesAnnexes);
+
+            if (cbPersonne.SelectedValue != null)
+            {
+                view.Filter = FiltrerTachesAnnexes;
+            }
+        }
+
+        private bool FiltrerTachesAnnexes(object o)
+        {
+            Tache tp = o as Tache;
+            return (cbPersonne.SelectedValue.ToString() == tp.LoginPersonne);
+               
         }
     }
+
 }
