@@ -105,9 +105,6 @@ namespace JobOverview.Model
         /// <param name="listTaches"></param>
         public static void EnregistrerTachesProd(TacheProd tacheProd)
         {
-
-         var  @IdTache = Guid.NewGuid();
-
             string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
                         Values  (@IdTache, @Libelle, 0 , @CodeActivite, @Login, @Description);
 
@@ -162,20 +159,20 @@ namespace JobOverview.Model
                 command.Parameters.Add(paramCodeLogicielVersion);
 
                 #endregion
-                try
-                {
+             //   try
+               // {
                     //  exécution de la commande
              
                     command.ExecuteNonQuery();
 
                     // Validation de la transaction s'il n'y a pas eu d'erreur
-                    tran.Commit();
-                }
-                catch (Exception)
-                {
-                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
-                    throw;   // Remontée de l'erreur à l'appelant
-                }
+                 //   tran.Commit();
+              //  }
+              //  catch (Exception)
+              //  {
+               //     tran.Rollback(); // Annulation de la transaction en cas d'erreur
+               //     throw;   // Remontée de l'erreur à l'appelant
+              //  }
             }
         }
 
@@ -252,14 +249,14 @@ namespace JobOverview.Model
         /// <summary>
         /// Permet de récupérer les activités annexes
         /// </summary>
-        public static List<Activite> GetActivitésAnnexes()
+        public static List<Activite> GetActivités()
         {
             //Requêtage à la BDD pour récupérer les informations sur les activités
             List<Activite> listActivitésAnx = new List<Activite>();
 
             var conx = new SqlConnection(Settings.Default.ConnectionJobOverview);
 
-            string query = @"select CodeActivite, Libelle from jo.Activite where Annexe = 1";
+            string query = @"select CodeActivite, Libelle, Annexe from jo.Activite";
 
             var com = new SqlCommand(query, conx);
             conx.Open();
@@ -333,8 +330,9 @@ namespace JobOverview.Model
             {
                 Activite act = new Activite();
 
-                act.Code = reader["CodeActivite"].ToString();
-                act.Libelle = reader["Libelle"].ToString();
+                act.Code = (string)reader["CodeActivite"];
+                act.Libelle = (string)reader["Libelle"];
+                act.Annexe = (bool)reader["Annexe"];
 
                 listActivitésAnx.Add(act);
             }

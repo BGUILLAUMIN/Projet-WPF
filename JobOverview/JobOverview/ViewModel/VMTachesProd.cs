@@ -27,6 +27,7 @@ namespace JobOverview.ViewModel
         public List<Logiciel> Logiciels { get; set; }
         public List<Personne> Personnes { get; set; }
         public List<Activite> Activités { get; set; }
+        public List<Module> Modules { get; set; }
         public ObservableCollection<TacheProd> TachesProds { get; }
       
         
@@ -54,7 +55,8 @@ namespace JobOverview.ViewModel
         {
             Logiciels = DALLogiciels.GetLogicielsVersions();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
-            Activités = DALPersonnes.GetActivite();
+            Activités = DALTaches.GetActivités().Where(a => a.Annexe == false).ToList();
+            Modules = DALLogiciels.GetModulesLibellé();
             TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
 
             ModeEdit = ModesEdition.Consultation;
@@ -154,17 +156,17 @@ namespace JobOverview.ViewModel
         private void EnregistrerTache()
         {
             {
-                try
-                {
+            //    try
+            //    {
                     //Enregistre dans la base la liste mis à jour de la listview 
                     DALTaches.EnregistrerTachesProd(TacheCourante);
                     MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
                        "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+              //  }
+                //catch (Exception)
+                //{
+                //    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
 
                 //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                 ModeEdit = ModesEdition.Consultation;

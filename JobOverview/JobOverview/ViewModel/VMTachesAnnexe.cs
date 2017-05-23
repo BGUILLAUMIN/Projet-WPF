@@ -49,7 +49,7 @@ namespace JobOverview.ViewModel
         public VMTachesAnnexe()
         {
             // Permet à la comboBox d'afficher la liste des activités annexes disponibles.
-            Activites = DALPersonnes.GetActivite();
+            Activites = DALTaches.GetActivités().Where(a => a.Annexe == true).ToList();
             // Permet à la comboBox d'afficher la liste des personnes d'une même équipe (manager compris) en fonction du Login mémorisé.
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
             //Permet à la ListeView d'afficher la liste de taches annexes
