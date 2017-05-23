@@ -116,7 +116,7 @@
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" 
                                    Grid.Row="5" Grid.Column="1"/>
-                        <ComboBox Name="cbxModule"  ItemsSource="{Binding Path=Modules}" SelectedValue="{Binding Path=TachesProds/CodeModule}"
+                        <ComboBox ItemsSource="{Binding Path=Modules}" SelectedValue="{Binding Path=TachesProds/CodeModule}"
                                   DisplayMemberPath="Code" SelectedValuePath="Code"
                               SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
                                   Style="{StaticResource Combobox2}"

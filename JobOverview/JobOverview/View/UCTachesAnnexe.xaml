@@ -21,7 +21,7 @@
             <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="0,0,0,10">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
+                        <Button Name="btnAjouter" Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
                             <Button.ToolTip>
                                 <ToolTip>
                                     <TextBlock>Ajouter une tâche annexe.</TextBlock>
@@ -97,7 +97,7 @@
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"/>
                         <ComboBox Grid.Row="3"  Grid.Column="1" DockPanel.Dock="Right" Name="cbActivite"  
-                              ItemsSource="{Binding Path=Activites}" SelectedValue="{Binding Path=TachesAnnexes/CodeActivite }" DisplayMemberPath="Code" 
+                              ItemsSource="{Binding Path=ActivitesAutorisées}" SelectedValue="{Binding Path=TachesAnnexes/CodeActivite }" DisplayMemberPath="Code" 
                               SelectedValuePath="Code" SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
                               Style="{StaticResource Combobox2}" 
                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" Height="Auto" Width="Auto">
@@ -109,7 +109,7 @@
                             </ComboBox.ToolTip>
                         </ComboBox>
                         <Label  Grid.Row="4" Content="Libellé Activité:" />
-                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=Activites/Libelle}" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=Activites/Libelle}" VerticalAlignment="Center" TextWrapping="Wrap"/>
 
                         <Label  Grid.Row="0" Content="Libellé Tache Annexe:" Grid.ColumnSpan="2" />
                         <TextBox Grid.Row="1" Text="{Binding Path=TachesAnnexes/Libelle}"

@@ -33,17 +33,12 @@ namespace JobOverview.View
             _vmTacheProd = new VMTachesProd();
             DataContext = _vmTacheProd;
 
-            ckbTachesTerm.Unchecked += CkbTachesTerm_Unchecked;
             cbxLogiciels.SelectionChanged += Filtrer_Click;
             cbxVersions.SelectionChanged += Filtrer_Click;
             cbxPersonnes.SelectionChanged += Filtrer_Click;
-            cbxModule.SelectionChanged += Filtrer_Click;
+            //cbxModule.SelectionChanged += Filtrer_Click;
         }
 
-        private void CkbTachesTerm_Unchecked(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
         {
