@@ -54,14 +54,17 @@ namespace JobOverview.View
 
         private void CkbTachesTerm_Unchecked(object sender, RoutedEventArgs e)
         {
+            //On instancie une nouvelle Vue Modèle TachesProd
             VMTachesProd list = new VMTachesProd();
+
+            //Si la Durée restante est égale à zéro, la tâche est terminée, donc on filtre sur ce critère
             list.TachesProdsListView.Where(t => t.DureeRestante == 0);
             ICollectionView view = CollectionViewSource.GetDefaultView(list);
         }
 
         private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
         {
-
+            //s'il y a une personne dans la combobox Personne 
             if (cbxPersonnes.SelectedValue != null)
             {
 
@@ -80,8 +83,10 @@ namespace JobOverview.View
 
             ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);
 
+            //s'il y a un logiciel, une version et une personne dans les combobox
             if (cbxVersions.SelectedValue != null && cbxPersonnes.SelectedValue != null && cbxLogiciels.SelectedValue != null)
             {
+                //on applique le filtre
                 view.Filter = FiltrerTachesProds;
             }
         }

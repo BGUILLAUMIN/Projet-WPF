@@ -24,6 +24,8 @@ namespace JobOverview.View
 		public UCLogin()
 		{
 			InitializeComponent();
+
+            //Branchement du gestinnaire d'évenement pour la combobox Utilisateur
             cbxUtilisateur.SelectionChanged += CbxUtilisateur_SelectionChanged;
 		}
 
