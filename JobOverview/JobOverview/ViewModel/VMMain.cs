@@ -81,10 +81,10 @@ namespace JobOverview.ViewModel
         private void ActionMenuTachesAnnexe()
         {
             VMCourante = new VMTachesAnnexe();
-           
         }
 
 
+        #region Définition des commandes
         private ICommand _cmdAPropos;
         public ICommand CmdAPropos
         {
@@ -114,8 +114,9 @@ namespace JobOverview.ViewModel
                     _CmdSaisieTemps = new RelayCommand(ActionMenuSaisieTemps);
                 return _CmdSaisieTemps;
             }
-          
-        }
+
+        } 
+        #endregion
 
         // On définit une instance de VMSaisieTemps comme vue-modèle courante
         private void ActionMenuSaisieTemps()
