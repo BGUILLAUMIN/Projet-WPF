@@ -40,7 +40,7 @@ namespace JobOverview.View
             cbxVersions.SelectionChanged += Filtrer_Click;
             cbxPersonnes.SelectionChanged += Filtrer_Click;
         }
-
+         
         private void CkbTachesTerm_Checked(object sender, RoutedEventArgs e)
         {
             ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);

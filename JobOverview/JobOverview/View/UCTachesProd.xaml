@@ -272,7 +272,7 @@
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Personnes"/>
-                    <ComboBox Name="cbxPersonnes" 
+                    <ComboBox Name="cbxPersonnes" Width="200"
                           ItemsSource="{Binding Path=Personnes}"
                           SelectedIndex="0"
                           DisplayMemberPath="NomComplet"
