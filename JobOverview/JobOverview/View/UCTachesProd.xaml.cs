@@ -36,7 +36,8 @@ namespace JobOverview.View
             ckbTachesTerm.Unchecked += CkbTachesTerm_Unchecked;
             cbxLogiciels.SelectionChanged += Filtrer_Click;
             cbxVersions.SelectionChanged += Filtrer_Click;
-            cbxPersonnes.SelectionChanged += Filtrer_Click; 
+            cbxPersonnes.SelectionChanged += Filtrer_Click;
+            cbxModule.SelectionChanged += Filtrer_Click;
         }
 
         private void CkbTachesTerm_Unchecked(object sender, RoutedEventArgs e)
@@ -53,6 +54,7 @@ namespace JobOverview.View
             }
                 ICollectionView view = CollectionViewSource.GetDefaultView(list);
 
+            //Si les combobox de Version Logiciel et Personnes sont vides, on ne fait rien
             if (cbxVersions.SelectedValue != null && cbxLogiciels.SelectedValue != null && cbxPersonnes.SelectedValue != null)
             {
                 view.Filter = FiltrerTachesProds;
@@ -64,7 +66,9 @@ namespace JobOverview.View
             TacheProd tp = o as TacheProd;
             return ((cbxLogiciels.SelectedValue.ToString() == tp.CodeLogiciel) &&
                 (cbxVersions.SelectedValue.ToString() == tp.Version.ToString()) &&
-                (cbxPersonnes.SelectedValue.ToString() == tp.LoginPersonne));
+                (cbxPersonnes.SelectedValue.ToString() == tp.LoginPersonne)); /*&&*/
+             //   (cbxModule.SelectedValue.ToString() == tp.LoginPersonne));
+                
         }
     }
 }
