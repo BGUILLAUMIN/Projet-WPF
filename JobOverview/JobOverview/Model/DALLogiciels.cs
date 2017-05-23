@@ -9,15 +9,16 @@ using JobOverview.Properties;
 
 namespace JobOverview.Model
 {
-    class DALLogiciels
+    public class DALLogiciels
     {
+        #region Méthodes publiques
         /// <summary>
-		/// Obtient et renvoie la liste des logiciels et leurs versions associées,
-		/// avec leur dernier N° de release
-		/// La liste est triée par nom de logiciel et N° de version 
-		/// </summary>
-		/// <returns></returns>
-		public static List<Logiciel> GetLogicielsVersions()
+        /// Obtient et renvoie la liste des logiciels et leurs versions associées,
+        /// avec leur dernier N° de release
+        /// La liste est triée par nom de logiciel et N° de version 
+        /// </summary>
+        /// <returns></returns>
+        public static List<Logiciel> GetLogicielsVersions()
         {
             var listLogiciels = new List<Logiciel>();
 
@@ -58,6 +59,91 @@ namespace JobOverview.Model
         }
 
         /// <summary>
+        /// //TODO: Commentaires
+        /// </summary>
+        public static List<Module> GetModules(List<Logiciel> ListeLogi)
+        {
+            var listModules = new List<Module>();
+
+            string req = @" select m.CodeModule, m.Libelle, m.CodeLogicielParent,tp.NumeroVersion, (COUNT(tr.Heures))/8 as NombreJoursTotalModule
+                            from jo.Module m
+                            left outer join jo.TacheProd tp on tp.CodeModule = m.CodeModule
+                            left outer join jo.Tache t on t.IdTache = tp.IdTache
+                            left outer join jo.Travail tr on tr.IdTache = tp.IdTache
+                            GROUP BY m.CodeModule, m.Libelle, m.CodeLogicielParent, tp.NumeroVersion
+                            order by m.CodeLogicielParent desc";
+
+            using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
+            {
+                var command = new SqlCommand(req, connect);
+                connect.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        GetModuleFromDataReader(ListeLogi, reader);
+                    }
+                }
+            }
+            return listModules;
+        }
+
+        /// <summary>
+        /// Permet de récupérer les libellés des modules
+        /// </summary>
+        public static List<Module> GetModulesLibellé()
+        {
+            var listModules = new List<Module>();
+
+            string req = @"Select CodeModule, Libelle from jo.Module";
+
+
+            using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
+            {
+                var command = new SqlCommand(req, connect);
+                connect.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    GetModuleFromDataReader(listModules, reader);
+                }
+            }
+            return listModules;
+        } 
+        #endregion
+
+        #region Méthodes Privées
+        
+        private static void GetModuleFromDataReader(List<Logiciel> listlogi, SqlDataReader reader)
+        {
+            // Si le code du Module courant est != de celui du dernier Module de la liste, on crée un nouvel objet Module.
+
+            Module Mod = null;
+
+            if (reader["CodelogicielParent"] != null)
+            {
+                string codeModule = (string)reader["CodeModule"];
+                Mod = new Module();
+                Mod.Code = (string)reader["CodeModule"];
+                Mod.CodeLogicielParent = reader["CodeLogicielParent"].ToString();
+                Mod.Libelle = (string)reader["Libelle"];
+                Mod.NombreJoursTotalModule = (int)reader["NombreJoursTotalModule"];
+
+                if (reader["NumeroVersion"] != DBNull.Value)
+                    Mod.NumeroVersion = (float)reader["NumeroVersion"];
+
+                if (reader["CodelogicielParent"] != null && reader["CodelogicielParent"].ToString() == listlogi.Last().Code)
+                {
+                    listlogi.Last().Modules.Add(Mod);
+                }
+
+            }
+
+        }
+
+        /// <summary>
         /// Charge la liste de logiciels passée en paramètre à partir du datareader
         /// </summary>
         /// <param name="listLogiciels"></param>
@@ -79,8 +165,8 @@ namespace JobOverview.Model
 
                 listLogiciels.Add(logi);
 
-                if(listLogiciels.Count == 0 || listLogiciels[listLogiciels.Count - 1].Nom == reader["Nom"].ToString())
-                DALLogiciels.GetModules(listLogiciels);
+                if (listLogiciels.Count == 0 || listLogiciels[listLogiciels.Count - 1].Nom == reader["Nom"].ToString())
+                    DALLogiciels.GetModules(listLogiciels);
 
             }
             else logi = listLogiciels[listLogiciels.Count - 1];
@@ -108,26 +194,11 @@ namespace JobOverview.Model
             }
         }
 
-        public static List<Module> GetModules()
-        {
-            var listModules = new List<Module>();
-
-            string req = @" CodeModule, Libelle from jo.Module"; 
-                            
-
-            using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
-            {
-                var command = new SqlCommand(req, connect);
-                connect.Open();
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                        GetModuleFromDataReader(listModules, reader);
-                }
-            }
-            return listModules;
-        }
-
+        /// <summary>
+        /// Charge la liste de Module passée en paramètre à partir du datareader
+        /// </summary>
+        /// <param name="listmod"></param>
+        /// <param name="reader"></param>
         private static void GetModuleFromDataReader(List<Module> listmod, SqlDataReader reader)
         {
             while (reader.Read())
@@ -140,6 +211,7 @@ namespace JobOverview.Model
                 listmod.Add(mod);
             }
 
-        }
+        } 
+        #endregion
     }
 }

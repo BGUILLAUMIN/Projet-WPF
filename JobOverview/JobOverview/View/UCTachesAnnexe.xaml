@@ -12,7 +12,7 @@
     <DockPanel Margin="0,20,0,0">
 
         <!--#region Expander Ajout de Taches Annexe-->
-        <Expander ExpandDirection="Left" MaxWidth="280" DockPanel.Dock="Right" IsExpanded="True">
+        <Expander ExpandDirection="Left" MaxWidth="400" DockPanel.Dock="Right" IsExpanded="True">
             <Expander.ToolTip>
                 <ToolTip>
                     <TextBlock>Déplier la fiche de détails.</TextBlock>
@@ -77,6 +77,7 @@
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
                           SelectedIndex="{Binding ElementName=cbPersonne, Path=Cursor}"
+                              Style="{StaticResource Combobox2}"
                            IsSynchronizedWithCurrentItem="True"
                           IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Grid.Column="1" Height="Auto" Width="Auto">
                         <ComboBox.ToolTip>
@@ -86,8 +87,10 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
                     <Label Grid.Row="3" Grid.Column="0"  DockPanel.Dock="Left" Content="Activité"/>
-                    <ComboBox Grid.Row="3"  Grid.Column="1" DockPanel.Dock="Right" Name="cbActivite"  ItemsSource="{Binding Path=Activites}" DisplayMemberPath="Code" 
+                    <ComboBox Grid.Row="3"  Grid.Column="1" DockPanel.Dock="Right" Name="cbActivite"  
+                              ItemsSource="{Binding Path=Activites}" DisplayMemberPath="Code" 
                               SelectedValuePath="Libelle" SelectedIndex="0" 
+                              Style="{StaticResource Combobox2}"
                              IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Height="Auto" Width="Auto">
                         <ComboBox.ToolTip>
                             <ToolTip>
@@ -122,6 +125,7 @@
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
                           SelectedIndex="0"
+                          Style="{StaticResource Combobox2}"
                           IsSynchronizedWithCurrentItem="True"
                            IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule} }">
                     <ComboBox.ToolTip>

@@ -54,7 +54,7 @@ namespace JobOverview.ViewModel
             Logiciels = DALLogiciels.GetLogicielsVersions();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
             Activités = DALPersonnes.GetActivite();
-            Modules = DALLogiciels.GetModules();
+            Modules = DALLogiciels.GetModulesLibellé();
             TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
             ModeEdit = ModesEdition.Consultation;
         }
