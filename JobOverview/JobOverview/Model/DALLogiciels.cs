@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JobOverview.Entity;
 using System.Data.SqlClient;
 using JobOverview.Properties;
+using System.Data;
 
 namespace JobOverview.Model
 {
@@ -97,7 +98,7 @@ namespace JobOverview.Model
         {
             var listModules = new List<Module>();
 
-            string req = @"Select CodeModule, Libelle from jo.Module";
+            string req = @"Select CodeModule, Libelle, CodeLogiciel from jo.Module";
 
 
             using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
@@ -111,18 +112,18 @@ namespace JobOverview.Model
                 }
             }
             return listModules;
-        } 
-        #endregion
+        }
 
-        // public static List<Module> GetModulesLibellé(string Code)
+
+        //public static List<Module> GetModulesLibellé(string Code)
         //{
         //    var listModules = new List<Module>();
 
         //    var conx = Properties.Settings.Default.ConnectionJobOverview;
 
-        //    string req = @"Select CodeModule, Libelle  CodeLogiciel from jo.Module 
+        //    string req = @"Select CodeModule, Libelle,  CodeLogiciel from jo.Module 
         //            where CodeLogiciel=@param";
-        //    var param = new SqlParameter("@parametre", DbType.String);
+        //    var param = new SqlParameter("@param", DbType.String);
 
         //    param.Value = Code;
 
@@ -150,8 +151,11 @@ namespace JobOverview.Model
         //    return listModules;
         //}
 
+        #endregion
+
+
         #region Méthodes Privées
-        
+
         private static void GetModuleFromDataReader(List<Logiciel> listlogi, SqlDataReader reader)
         {
             // Si le code du Module courant est != de celui du dernier Module de la liste, on crée un nouvel objet Module.
@@ -243,6 +247,7 @@ namespace JobOverview.Model
 
                 mod.Code = reader["CodeModule"].ToString();
                 mod.Libelle = reader["Libelle"].ToString();
+                mod.CodeLogicielParent = reader["CodeLogiciel"].ToString();
 
                 listmod.Add(mod);
             }
