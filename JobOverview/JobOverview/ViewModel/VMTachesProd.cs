@@ -29,8 +29,7 @@ namespace JobOverview.ViewModel
         public List<Activite> Activités { get; set; }
         public List<Module> Modules { get; set; }
         public ObservableCollection<TacheProd> TachesProds { get; }
-      
-        
+        public ObservableCollection<TacheProd> TachesProdsListView { get; }
 
         public TacheProd TacheCourante
         {
@@ -58,7 +57,7 @@ namespace JobOverview.ViewModel
             Activités = DALTaches.GetActivités().Where(a => a.Annexe == false).ToList();
             Modules = DALLogiciels.GetModulesLibellé();
             TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
-
+            TachesProdsListView = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
             ModeEdit = ModesEdition.Consultation;
         }
         #endregion
@@ -162,21 +161,17 @@ namespace JobOverview.ViewModel
         private void EnregistrerTache()
         {
             {
-                try
-                {
+            //    try
+            //    {
                     //Enregistre dans la base la liste mis à jour de la listview 
+                    DALTaches.EnregistrerTachesProd(TacheCourante);
                     MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
                        "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-
-                    DALTaches.EnregistrerTachesProd(TacheCourante);
-
-                    MessageBox.Show(" Tâche de production enregistrée",
-                          "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+              //  }
+                //catch (Exception)
+                //{
+                //    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
 
                 //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                 ModeEdit = ModesEdition.Consultation;

@@ -34,39 +34,31 @@ namespace JobOverview.View
             DataContext = _vmTacheProd;
 
             ckbTachesTerm.Unchecked += CkbTachesTerm_Unchecked;
+            ckbTachesTerm.Checked += CkbTachesTerm_Checked; 
+
             cbxLogiciels.SelectionChanged += Filtrer_Click;
             cbxVersions.SelectionChanged += Filtrer_Click;
             cbxPersonnes.SelectionChanged += Filtrer_Click;
-            cbxModule.SelectionChanged += Filtrer_Click;
+        }
+
+        private void CkbTachesTerm_Checked(object sender, RoutedEventArgs e)
+        {
+            ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);
         }
 
         private void CkbTachesTerm_Unchecked(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            VMTachesProd list = new VMTachesProd();
+            list.TachesProdsListView.Where(t => t.DureeRestante == 0);
+            ICollectionView view = CollectionViewSource.GetDefaultView(list);
         }
 
         private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
         {
-            var list = _vmTacheProd.TachesProds;
 
-            if(cbxPersonnes.SelectedValue != null)
-            {
+            ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);
 
-            var a = (Travail)DALTaches.GetTempsTravailGlobaux(cbxPersonnes.SelectedValue.ToString());
-            Txt_Restant.Text = "Temps de travail global restants : " + a.NbrHeuresTravailGlobalRestantes.ToString();
-            Txt_Realise.Text = "Temps de travail global réalisés :   " + a.NbrHeuresTravailGlobalRealisees.ToString();
-
-            }
-
-
-            if (!(bool)ckbTachesTerm.IsChecked)
-            {
-                list = new ObservableCollection<TacheProd>(_vmTacheProd.TachesProds.Where(t => t.DureeRestante != 0).ToList());
-            }
-                ICollectionView view = CollectionViewSource.GetDefaultView(list);
-
-            //Si les combobox de Version Logiciel et Personnes sont vides, on ne fait rien
-            if (cbxVersions.SelectedValue != null && cbxLogiciels.SelectedValue != null && cbxPersonnes.SelectedValue != null)
+            if (cbxVersions.SelectedValue != null && cbxPersonnes.SelectedValue != null && cbxLogiciels.SelectedValue != null)
             {
                 view.Filter = FiltrerTachesProds;
             }
@@ -77,9 +69,7 @@ namespace JobOverview.View
             TacheProd tp = o as TacheProd;
             return ((cbxLogiciels.SelectedValue.ToString() == tp.CodeLogiciel) &&
                 (cbxVersions.SelectedValue.ToString() == tp.Version.ToString()) &&
-                (cbxPersonnes.SelectedValue.ToString() == tp.LoginPersonne)); /*&&*/
-             //   (cbxModule.SelectedValue.ToString() == tp.LoginPersonne));
-                
+                (cbxPersonnes.SelectedValue.ToString() == tp.LoginPersonne));
         }
     }
 }
