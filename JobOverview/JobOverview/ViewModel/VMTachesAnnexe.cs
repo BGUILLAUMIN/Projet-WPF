@@ -19,7 +19,7 @@ namespace JobOverview.ViewModel
     {
 
         #region champs privés
-        private Tache _nouvelleTache;
+       
         private ModesEdition _mode;
 
         #endregion
@@ -44,20 +44,22 @@ namespace JobOverview.ViewModel
                 SetProperty(ref _mode, value);
             }
         }
-
-
-
+        //*********************************************************************************************************************************
+        #region Constructeur
         public VMTachesAnnexe()
         {
+            // Permet à la comboBox d'afficher la liste des activités annexes disponibles.
             Activites = DALPersonnes.GetActivite();
+            // Permet à la comboBox d'afficher la liste des personnes d'une même équipe (manager compris) en fonction du Login mémorisé.
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
-
+            //Permet à la ListeView d'afficher la liste de taches annexes
             TachesAnnexes = new ObservableCollection<Tache>(DALTaches.GetTachesAnnexe());
             ModeEdit = ModesEdition.Consultation;
         }
-       
+        
+        #endregion
 
-        // ajout des commandes
+        //**************************** Ajout des commandes*********************************************************************************
         #region COMMANDES
         //lors du clic sur le bouton Ajouter
         private ICommand _cmdAjouter;
@@ -78,6 +80,7 @@ namespace JobOverview.ViewModel
             {
                 if (_cmdSupprimer == null)
                     _cmdSupprimer = new RelayCommand(SupprimerTache, ActiverSupprimer);
+
                 return _cmdSupprimer;
             }
         }

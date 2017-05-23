@@ -163,7 +163,7 @@
 
             <!--#region zone de sélection-->
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                <StackPanel>
+                <StackPanel >
                     <Label Content="Logiciel"/>
                     <ComboBox Name="cbxLogiciels"
                           ItemsSource="{Binding Path=Logiciels}"
@@ -177,9 +177,9 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
                 </StackPanel>
-                <StackPanel>
-                    <Label Content="Version"/>
-                    <ComboBox Name="cbxVersions" Margin="5" 
+            <StackPanel>
+            <Label Content="Version"/>
+                <ComboBox Name="cbxVersions"  
                           ItemsSource="{Binding Path=Logiciels/Versions}"
                           DisplayMemberPath="Numero"
                           SelectedValuePath="Numero" 
@@ -192,8 +192,8 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel>
-                    <Label Content="Personne"/>
-                    <ComboBox Name="cbxPersonnes" Width="200"
+                    <Label Content="Personnes"/>
+                    <ComboBox Name="cbxPersonnes" Style="{StaticResource Combobox2}"
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
