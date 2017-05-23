@@ -52,6 +52,7 @@ namespace JobOverview.Model
                         tp.LoginPersonne = (string)reader["Login"];
                         tp.DureePrevue = (float)reader["DureePrevue"];
                         tp.DureeRestante = (float)reader["DureeRestanteEstimee"];
+                        tp.CodeLogiciel = (string)reader["CodeLogicielVersion"];
 
                         listTaches.Add(tp);
                     }

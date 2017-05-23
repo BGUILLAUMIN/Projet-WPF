@@ -25,23 +25,34 @@ namespace JobOverview.View
     /// </summary>
     public partial class UCTachesProd : UserControl
     {
+        private VMTachesProd _vmTacheProd;
         public UCTachesProd()
         {
             InitializeComponent();
-            DataContext = new VMTachesProd();
-            cbxLogiciels.SelectionChanged += FiltrerTachesProds;
-            cbxVersions.SelectionChanged += FiltrerTachesProds;
-            cbxPersonnes.SelectionChanged += FiltrerTachesProds;
+            _vmTacheProd = new VMTachesProd();
+            DataContext = _vmTacheProd;
 
+            cbxLogiciels.SelectionChanged += Filtrer_Click;
+            cbxVersions.SelectionChanged += Filtrer_Click;
+            cbxPersonnes.SelectionChanged += Filtrer_Click;
         }
 
-        private void FiltrerTachesProds(object sender, SelectionChangedEventArgs e)
+        private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
         {
-            //ICollectionView view = CollectionViewSource.GetDefaultView(DataContext);
+            ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProds);
 
-            //view.SortDescriptions.Clear();
-            //view.GroupDescriptions.Clear();
+            if (cbxVersions.SelectedValue != null && cbxLogiciels.SelectedValue != null && cbxPersonnes.SelectedValue != null)
+            {
+                view.Filter = FiltrerTachesProds;
+            }
         }
 
+        private bool FiltrerTachesProds(object o)
+        {
+            TacheProd tp = o as TacheProd;
+            return ((cbxLogiciels.SelectedValue.ToString() == tp.CodeLogiciel) &&
+                (cbxVersions.SelectedValue.ToString() == tp.Version.ToString()) &&
+                (cbxPersonnes.SelectedValue.ToString() == tp.LoginPersonne));
+        }
     }
 }
