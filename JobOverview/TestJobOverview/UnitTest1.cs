@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JobOverview.Model;
 using JobOverview.Entity;
+using System.Security.Cryptography;
 
 namespace TestJobOverview
 {
@@ -21,7 +22,8 @@ namespace TestJobOverview
                 Id = Guid.NewGuid(),
                 Libelle = "Courrier",
                 CodeActivite = "DP",
-                LoginPersonne = "AFERRAND"
+                LoginPersonne = "AFERRAND",
+                Description="hfhjfhfhjfhfyhfj"
             };
 
             DALTaches.EnregistrerTachesAnnexes(t);
