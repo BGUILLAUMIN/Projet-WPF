@@ -180,8 +180,6 @@ namespace JobOverview.Model
                             GROUP BY m.CodeModule, m.Libelle, m.CodeLogicielParent, tp.NumeroVersion
                             order by m.CodeLogicielParent desc";
 
-
-
             using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
                 var command = new SqlCommand(req, connect);
