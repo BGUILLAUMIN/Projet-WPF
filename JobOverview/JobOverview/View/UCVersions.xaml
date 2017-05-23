@@ -10,10 +10,14 @@
              d:DesignHeight="400" d:DesignWidth="500">
 
     <DockPanel Margin="0,20,0,0">
+        <!--#region DockPanel Resources-->
         <DockPanel.Resources>
+            
             <local:IntToColorBrushConverter x:Key="IntToColorBrushConverter"/>
             <sys:Double x:Key="ValeurEcartJour">0</sys:Double>
+
         </DockPanel.Resources>
+        <!--#endregion-->
 
         <!--#region Expander Ajout de Taches Annexe-->
         <Expander ExpandDirection="Left" MaxWidth="250" DockPanel.Dock="Right" IsExpanded="True" >
@@ -24,50 +28,50 @@
             </Expander.ToolTip>
             <Border BorderThickness="1" BorderBrush="Black" Padding="10"
                     Margin="0,0,0,10">
-            <DockPanel>
+                <DockPanel>
 
-                <Separator Height="10" Opacity="0" DockPanel.Dock="Top"/>
+                    <Separator Height="10" Opacity="0" DockPanel.Dock="Top"/>
 
-                <Grid DockPanel.Dock="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="30"/>
-                    </Grid.RowDefinitions>
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
 
 
-                    <TextBlock Text="Millesime de la version :" 
+                        <TextBlock Text="Millesime de la version :" 
                                Grid.Row="0"/>
-                    <TextBlock Text="{Binding Path=Logiciels/Versions/Millesime}" 
+                        <TextBlock Text="{Binding Path=Logiciels/Versions/Millesime}" 
                                Grid.Row="1"
                                FontWeight="Bold"/>
-                    <TextBlock Text="Nombre de releases :" 
+                        <TextBlock Text="Nombre de releases :" 
                                Grid.Row="2"/>
-                    <TextBlock Text="{Binding Path=Logiciels/Versions/DerniereRelease}" 
+                        <TextBlock Text="{Binding Path=Logiciels/Versions/DerniereRelease}" 
                                Grid.Row="3" 
                                FontWeight="Bold"/>
-                    <TextBlock Text="Date d'ouverture de la version :" Grid.Row="4"/>
-                    <TextBlock Text="{Binding Path=Logiciels/Versions/DateOuverture, StringFormat='\{0:dd/MM/yyy}'}" 
+                        <TextBlock Text="Date d'ouverture de la version :" Grid.Row="4"/>
+                        <TextBlock Text="{Binding Path=Logiciels/Versions/DateOuverture, StringFormat='\{0:dd/MM/yyy}'}" 
                                FontWeight="Bold"
                                Grid.Row="5"/>
-                    <TextBlock Text="Date de sortie prévue de la version :" Grid.Row="6"/>
-                    <TextBlock Text="{Binding Path=Logiciels/Versions/DateSortiePrevue, StringFormat='\{0:dd/MM/yyy}'}"
+                        <TextBlock Text="Date de sortie prévue de la version :" Grid.Row="6"/>
+                        <TextBlock Text="{Binding Path=Logiciels/Versions/DateSortiePrevue, StringFormat='\{0:dd/MM/yyy}'}"
                                FontWeight="Bold"
                                Grid.Row="7"/>
 
 
-                </Grid>
+                    </Grid>
 
 
-            </DockPanel>
+                </DockPanel>
             </Border>
         </Expander>
         <!--#endregion-->
@@ -139,16 +143,20 @@
                       ItemsSource="{Binding Path=Logiciels/Versions}"
                       IsSynchronizedWithCurrentItem="True"
                       HorizontalAlignment="Stretch">
+
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="Background" Value="{Binding Path=EcartJour,
                             Converter={StaticResource IntToColorBrushConverter}, ConverterParameter={StaticResource ValeurEcartJour}}"/>
                     </Style>
                 </ListView.ItemContainerStyle>
+
+
                 <ListView.View>
 
                     <!--TODO Mettre les infos-bulle au dessus de chaque colonne.-->
                     <GridView AllowsColumnReorder="true">
+
                         <GridViewColumn Header="Version" 
                   DisplayMemberBinding="{Binding Path=Numero}"/>
 
