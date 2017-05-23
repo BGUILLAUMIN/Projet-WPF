@@ -184,7 +184,7 @@ namespace JobOverview.Model
         {
             // Ecriture de la requête d'insertion 
             string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
-                        Values (@IdTache, @Libelle, 1 , @CodeActivite, @Login, @Description";
+                        Values (@IdTache, @Libelle, 1 , @CodeActivite, @Login, @Description)";
 								
          
             using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
@@ -218,18 +218,18 @@ namespace JobOverview.Model
                 try
                 {
                     // exécution de la commande
-                   
+
                     command.ExecuteNonQuery();
 
-                    // Validation de la transaction s'il n'y a pas eu d'erreur
-                    tran.Commit();
-                }
-                catch (Exception)
-                {
-                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
-                    throw;   // Remontée de l'erreur à l'appelant
-                }
+                // Validation de la transaction s'il n'y a pas eu d'erreur
+                tran.Commit();
             }
+                catch (Exception)
+            {
+                tran.Rollback(); // Annulation de la transaction en cas d'erreur
+                throw;   // Remontée de l'erreur à l'appelant
+            }
+        }
         }
 
         /// <summary>

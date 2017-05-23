@@ -19,7 +19,7 @@ namespace JobOverview.ViewModel
     {
 
         #region champs privés
-       
+
         private ModesEdition _mode;
 
         #endregion
@@ -28,7 +28,7 @@ namespace JobOverview.ViewModel
         public List<Personne> Personnes { get; set; }
         public ObservableCollection<Tache> TachesAnnexes { get; set; }
 
-    
+
         public Tache TacheCourante
         {
             get
@@ -56,7 +56,7 @@ namespace JobOverview.ViewModel
             TachesAnnexes = new ObservableCollection<Tache>(DALTaches.GetTachesAnnexe());
             ModeEdit = ModesEdition.Consultation;
         }
-        
+
         #endregion
 
         //**************************** Ajout des commandes*********************************************************************************
@@ -107,7 +107,7 @@ namespace JobOverview.ViewModel
                     _cmdAnnuler = new RelayCommand(AnnulerTache, ActiverAnnEnr);
                 return _cmdAnnuler;
             }
-        } 
+        }
         #endregion
 
 
@@ -119,9 +119,8 @@ namespace JobOverview.ViewModel
         {
             //Instancie une nouvelle tâche
 
-           
             var NouvelleTache = new Tache();
-
+            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte;
             // Ajoute la nouvelle tache dans la liste TachesAnnexes
             TachesAnnexes.Add(NouvelleTache);
 
@@ -141,14 +140,14 @@ namespace JobOverview.ViewModel
                 MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
                 DALTaches.EnregistrerTachesAnnexes(TacheCourante);//ToDO changer méthode suppression
 
-            }
+        }
             catch (Exception)
             {
 
                 MessageBox.Show("Tâche non supprimée", "Attention", MessageBoxButton.OK);
             }
 
-        }
+}
 
 
 
@@ -162,15 +161,15 @@ namespace JobOverview.ViewModel
                     //Enregistre dans la base la liste mis à jour de la listview 
                     MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
                     DALTaches.EnregistrerTachesAnnexes(TacheCourante);
-                }
+            }
                 catch (Exception)
-                {
+            {
 
-                    MessageBox.Show("Tâche non enregistrée", "Attention", MessageBoxButton.OK);
-                }
+                MessageBox.Show("Tâche non enregistrée", "Attention", MessageBoxButton.OK);
+            }
 
-                //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
-                ModeEdit = ModesEdition.Consultation;
+            //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
+            ModeEdit = ModesEdition.Consultation;
             }
         }
 
@@ -193,7 +192,7 @@ namespace JobOverview.ViewModel
         }
         private bool ActiverSupprimer()
         {
-            return ModeEdit == ModesEdition.Consultation; 
+            return ModeEdit == ModesEdition.Consultation;
         }
         // dès que l'on clique sur le bouton Enregistrer ou Annuler, cela désactive l'état des boutons
         private bool ActiverAnnEnr()
