@@ -8,15 +8,18 @@ namespace TestJobOverview
     [TestClass]
     public class TestDAL
     {
+        public static Tache ta { get; set; }
+
         [TestMethod]
 
         public void TestEnregistrementTacheAnnexe()
         {
-            var listTachesann = DALTaches.GetTachesAnnexe();
+         
+        var listTachesann = DALTaches.GetTachesAnnexe();
 
            int nbTachesintial  = listTachesann.Count;
-
-            var t = new Tache
+             
+        var t = new Tache
             {
                 Id = Guid.NewGuid(),
                 Libelle = "Courrier",
@@ -25,13 +28,35 @@ namespace TestJobOverview
                 Description = "aller le chercher"
             };
 
-            DALTaches.EnregistrerTachesAnnexes(t);
+            ta = t;
+        DALTaches.EnregistrerTachesAnnexes(t);
 
             listTachesann = DALTaches.GetTachesAnnexe();
             int nbTachesFinal = listTachesann.Count;
 
             Assert.AreEqual(nbTachesFinal-nbTachesintial, 1);
         }
+
+        [TestMethod]
+
+        public void TestSupprimerTachesAnnexes()
+        {
+            var listTachesann = DALTaches.GetTachesAnnexe();
+
+            int nbTachesintial = listTachesann.Count;
+
+
+            DALTaches.SupprimerTachesAnnexes(ta.Id);
+
+            listTachesann = DALTaches.GetTachesAnnexe();
+            int nbTachesFinal = listTachesann.Count;
+
+            Assert.AreEqual(nbTachesFinal - nbTachesintial, -1);
+        }
+
+
+
+
 
         [TestMethod]
         public void TestEnregistrementTacheProd()
