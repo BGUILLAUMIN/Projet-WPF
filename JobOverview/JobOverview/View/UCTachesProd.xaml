@@ -21,8 +21,14 @@
 
     <DockPanel Margin="5">
         <!--#region Expander Ajout de Taches de production-->
-        <Expander ExpandDirection="Left" MaxWidth="400" Width="Auto" DockPanel.Dock="Right" IsExpanded="True" >
-
+        <Expander ExpandDirection="Left" MaxWidth="400" Width="Auto" DockPanel.Dock="Right" IsExpanded="True">
+            <Expander.Header>
+                <TextBlock Text="Détails de la tâche de production sélectionnée">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90"/>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
             <Expander.ToolTip>
                 <ToolTip>
                     <StackPanel Orientation="Horizontal">
@@ -32,8 +38,7 @@
 
                 </ToolTip>
             </Expander.ToolTip>
-            <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="0,20,0,10">
-
+            <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="0,10,0,10">
                 <StackPanel>
                     <!--#region Barre de boutons-->
                     <StackPanel Orientation="Horizontal">
@@ -62,132 +67,140 @@
                             </Button.ToolTip>
                         </Button>
                     </StackPanel>
-                    <Separator Height="10" Width="350" Opacity="0" />
+                    <Separator Height="10" Width="380" Opacity="0" />
                     <!--#endregion-->
 
                     <!--#region Zones de saisies-->
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Label Content="N° :" Grid.Row="1" Grid.Column="0"/>
-                        <Label Content="Libellé :" Grid.Row="2"/>
-                        <Label Content="Durée Prévue :" Grid.Row="3"/>
-                        <Label Content="Durée Restante :" Grid.Row="4"/>
-                        <Label Content="Code Module :" Grid.Row="5"/>
-                        <Label Content="Libellé Module :" Grid.Row="6"/>
-                        <Label Content="Code Activité :" Grid.Row="7"/>
-                        <Label Content="Libellé Activité :" Grid.Row="8"/>
+                        <Label Content="N° :" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                        <Label Content="Libellé :" Grid.Row="2" Grid.ColumnSpan="2"/>
+                        <Label Content="Durée Prévue :" Grid.Row="3" Grid.ColumnSpan="2"/>
+                        <Label Content="Durée Restante :" Grid.Row="4" Grid.ColumnSpan="2"/>
+                        <Label Content="Code Module :" Grid.Row="5" Grid.ColumnSpan="2"/>
+                        <Label Content="Libellé Module :" Grid.Row="6" Grid.ColumnSpan="2"/>
+                        <Label Content="Code Activité :" Grid.Row="7" Grid.ColumnSpan="2"/>
+                        <Label Content="Libellé Activité :" Grid.Row="8" Grid.ColumnSpan="2"/>
+                        <StackPanel  Grid.Row="1" Grid.Column="3">
+                            <TextBlock Text="Personne" Margin="5,0"
+                                       Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"/>
+                            <ComboBox Name="cbxPersonnes2" HorizontalAlignment="Left"
+                              ItemsSource="{Binding Path=Personnes}"
+                              SelectedValue="{Binding Path= TachesProdsListView/LoginPersonne}"
+                              DisplayMemberPath="NomComplet"
+                              SelectedValuePath="Login"
+                              IsSynchronizedWithCurrentItem="True"
+                              Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}">
+                                <ComboBox.ToolTip>
+                                    <ToolTip>
+                                        <TextBlock>Selection de l'employé.</TextBlock>
+                                    </ToolTip>
+                                </ComboBox.ToolTip>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel  Grid.Row="4" Grid.Column="3">
+                            <TextBlock Text="Version" Margin="5,0"
+                                       Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"/>
+                            <ComboBox Name="cbxVersions" HorizontalAlignment="Left"
+                                      ItemsSource="{Binding Path=Logiciels/Versions}"
+                                      SelectedValue="{Binding Path= TachesProdsListView/Version }"
+                                      DisplayMemberPath="Numero"
+                                      SelectedValuePath="Numero" 
+                                      IsSynchronizedWithCurrentItem="True"
+                                      Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}">
+                                <ComboBox.ToolTip>
+                                    <ToolTip>
+                                        <TextBlock>Selection de la version.</TextBlock>
+                                    </ToolTip>
+                                </ComboBox.ToolTip>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Grid.Column="3">
+                            <TextBlock Text="Logiciel" Margin="5,0"
+                                       Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"/>
+                            <ComboBox Name="cbxLogiciels2" HorizontalAlignment="Left"
+                              ItemsSource="{Binding Path=Logiciels}"
+                              SelectedValue="{Binding Path= TachesProdsListView/CodeLogiciel}"
+                              DisplayMemberPath="Nom"
+                              SelectedValuePath="Code"
+                              SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
+                              Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}">
+                                <ComboBox.ToolTip>
+                                    <ToolTip>
+                                        <TextBlock>Selection du logiciel.</TextBlock>
+                                    </ToolTip>
+                                </ComboBox.ToolTip>
+                            </ComboBox>
+                        </StackPanel>
 
-                        <ComboBox Name="cbxPersonnes2" Grid.Row="1" Grid.Column="2"
-                          ItemsSource="{Binding Path=Personnes}"
-                          SelectedValue="{Binding Path= TachesProds/LoginPersonne}"
-                          DisplayMemberPath="NomComplet"
-                          SelectedValuePath="Login"
-                          IsSynchronizedWithCurrentItem="True"
-                          Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}">
-                            <ComboBox.ToolTip>
-                                <ToolTip>
-                                    <TextBlock>Selection de l'employé.</TextBlock>
-                                </ToolTip>
-                            </ComboBox.ToolTip>
-                        </ComboBox>
+                        <TextBlock  Padding="2" Width="40" Text="{Binding Path= TachesProdsListView/Numero}" 
+                              Margin="5,5,0,5"
+                                  HorizontalAlignment="Left" Grid.Row="1" Grid.Column="2"/>
 
-                        <ComboBox Name="cbxVersions" Grid.Row="4" Grid.Column="2"
-                                  ItemsSource="{Binding Path=Logiciels/Versions}"
-                                  SelectedValue="{Binding Path= TachesProds/Version }"
-                                  DisplayMemberPath="Numero"
-                                  SelectedValuePath="Numero" 
-                                  IsSynchronizedWithCurrentItem="True"
-                                  Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}">
-                            <ComboBox.ToolTip>
-                                <ToolTip>
-                                    <TextBlock>Selection de la version.</TextBlock>
-                                </ToolTip>
-                            </ComboBox.ToolTip>
-                        </ComboBox>
-
-                        <ComboBox Name="cbxLogiciels2" Grid.Row="3" Grid.Column="2"
-                          ItemsSource="{Binding Path=Logiciels}"
-                          SelectedValue="{Binding Path= TachesProds/CodeLogiciel}"
-                          DisplayMemberPath="Nom"
-                          SelectedValuePath="Code"
-                          SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
-                          Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}">
-                            <ComboBox.ToolTip>
-                                <ToolTip>
-                                    <TextBlock>Selection du logiciel.</TextBlock>
-                                </ToolTip>
-                            </ComboBox.ToolTip>
-                        </ComboBox>
-
-                        <TextBlock  Padding="2" Width="40" Text="{Binding Path= TachesProds/Numero}" 
-                              Margin="5"
-                                  HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"/>
-
-                        <TextBox MinWidth="200" Text="{Binding Path=TachesProds/Libelle}" FontWeight="Bold" 
-                             Margin="5" Grid.ColumnSpan="2"
+                        <TextBox MinWidth="200" Height="30" Text="{Binding Path=TachesProdsListView/Libelle}" FontWeight="Bold" 
+                             Margin="5,5,0,5" Grid.ColumnSpan="2"
                                  IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
-                                 HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"
+                                 HorizontalAlignment="Left" Grid.Row="2" Grid.Column="2"
                                  VerticalContentAlignment="Center"/>
-                        <TextBox Width="40"  Text="{Binding Path=TachesProds/DureePrevue}" FontWeight="Bold" 
-                             Margin="5"
+                        <TextBox Width="40" Height="30"  Text="{Binding Path=TachesProdsListView/DureePrevue}" FontWeight="Bold" 
+                             Margin="5,13,0,13"
                                      IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
-                                 HorizontalAlignment="Left" Grid.Row="3" Grid.Column="1"
+                                 HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2"
                                  VerticalContentAlignment="Center"/>
-                        <TextBox Width="40" Text="{Binding Path=TachesProds/DureeRestante}" FontWeight="Bold" 
-                             Margin="5"
+                        <TextBox Width="40" Height="30" Text="{Binding Path=TachesProdsListView/DureeRestante}" FontWeight="Bold" 
+                             Margin="5,13,0,13"
                                      IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
-                                 HorizontalAlignment="Left" Grid.Row="4" Grid.Column="1"
+                                 HorizontalAlignment="Left" Grid.Row="4" Grid.Column="2"
                                  VerticalContentAlignment="Center"/>
 
-                        <TextBlock Margin="5" Width="100" Text="{Binding Path=TachesProds/CodeModule}" 
+                        <TextBlock Margin="5,12,0,12" Width="100" Text="{Binding Path=TachesProdsListView/CodeModule}" 
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" 
-                                   Grid.Row="5" Grid.Column="1"/>
-                        <ComboBox Name="cbxModule" ItemsSource="{Binding Path=Logiciels/Modules}" SelectedValue="{Binding Path=TachesProds/CodeModule}"
+                                   Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2"/>
+                        <ComboBox Name="cbxModule" ItemsSource="{Binding Path=Logiciels/Modules}" SelectedValue="{Binding Path=TachesProdsListView/CodeModule}"
                                   DisplayMemberPath="Code" SelectedValuePath="Code" Grid.ColumnSpan="2"
                               SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
-                                  Style="{StaticResource Combobox2}"
                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" 
-                              Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"/>
-                        <TextBlock Text="{Binding Path= Modules/Libelle}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"
+                              Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5,0,5"/>
+                        <TextBlock Text="{Binding Path= TachesProdsListView/LibelleModule}" Grid.Row="6" Grid.Column="2"
                                    HorizontalAlignment="Left"
-                                       VerticalAlignment="Center"/>
+                                       VerticalAlignment="Center" Margin="0,8,0,7"/>
 
-                        <TextBlock Margin="5" Width="100" Text="{Binding Path= TachesProds/CodeActivite}"
-                                   Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"
+                        <TextBlock Margin="5,12,0,12" Width="100" Text="{Binding Path= TachesProdsListView/CodeActivite}"
+                                   Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" />
-                        <ComboBox ItemsSource="{Binding Path=Activités}" SelectedValue="{Binding Path= TachesProds/CodeActivite}"
+                        <ComboBox ItemsSource="{Binding Path=Activités}" SelectedValue="{Binding Path= TachesProdsListView/CodeActivite}"
                                   DisplayMemberPath="Code" SelectedValuePath="Code" Grid.ColumnSpan="2"
                               SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
-                              Style="{StaticResource Combobox2}"
                         Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"
-                              Grid.Column="1" Grid.Row="7"  HorizontalAlignment="Left"/>
-                        <TextBlock Text="{Binding Path= Activités/Libelle}"  Grid.Row="8" Grid.Column="1"
-                                   HorizontalAlignment="Left" Grid.ColumnSpan="2"
-                                       VerticalAlignment="Center"/>
+                              Grid.Column="2" Grid.Row="7"  HorizontalAlignment="Left" Margin="5,5,0,5"/>
+                        <TextBlock Text="{Binding Path= Activités/Libelle}"  Grid.Row="8" Grid.Column="2"
+                                   HorizontalAlignment="Left"
+                                       VerticalAlignment="Center" Margin="0,8,0,7"/>
 
                     </Grid>
                     <StackPanel Orientation="Vertical">
                         <Separator Height="10" Opacity="0"/>
                         <Label Content="Description (facultatif) :"/>
-                        <TextBox MinHeight="100" TextWrapping="Wrap" Width="350" Text="{Binding Path=TachesProds/Description}" 
+                        <TextBox MinHeight="100" TextWrapping="Wrap" Width="350" Text="{Binding Path=TachesProdsListView/Description}" 
                          IsReadOnly="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"/>
 
                     </StackPanel>
@@ -237,7 +250,7 @@
             <!--#endregion-->
 
             <!--#region zone de sélection-->
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="LightBlue" Margin="10,10,10,-1">
                 <StackPanel >
                     <Label Content="Logiciel"/>
                     <ComboBox Name="cbxLogiciels"
@@ -271,12 +284,13 @@
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Personnes"/>
-                    <ComboBox Name="cbxPersonnes" Width="200"
+                    <ComboBox Name="cbxPersonnes" Width="160"
                           ItemsSource="{Binding Path=Personnes}"
                           SelectedIndex="0"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
-                          IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}">
+                          IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
+                              SelectionChanged="cbxPersonnes_SelectionChanged">
                         <ComboBox.ToolTip>
                             <ToolTip>
                                 <TextBlock>Selection de l'employé.</TextBlock>
@@ -287,13 +301,15 @@
             </StackPanel>
             <!--#endregion-->
             <!--#region Affichage des temps de travail-->
-            <StackPanel Orientation="Vertical" Margin="10" DockPanel.Dock="Top">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Name="Txt_Restant"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Name="Txt_Realise"/>
-                </StackPanel>
+            <StackPanel DockPanel.Dock="Top">
+                <Expander ExpandDirection="Down" Width="auto" Margin="12,0" 
+                          Background="AliceBlue" Header="Temps de travail globaux"
+                          Padding="5">
+                    <StackPanel Orientation="Horizontal" Margin="10" DockPanel.Dock="Top">
+                        <TextBlock Name="Txt_Restant"/>
+                        <TextBlock Name="Txt_Realise"/>
+                    </StackPanel>
+                </Expander>
             </StackPanel>
             <!--#endregion-->
 
