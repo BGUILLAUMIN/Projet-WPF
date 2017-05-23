@@ -19,7 +19,7 @@
         </Style>
     </UserControl.Resources>
 
-    <DockPanel Margin="5" Background="White">
+    <DockPanel Margin="5">
         <!--#region Expander Ajout de Taches de production-->
         <Expander ExpandDirection="Left" MaxWidth="400" Width="Auto" DockPanel.Dock="Right" IsExpanded="True" >
                     
@@ -32,7 +32,7 @@
                 
                 </ToolTip>
             </Expander.ToolTip>
-            <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="0,0,0,10">
+            <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="0,20,0,10">
           
                 <StackPanel>
                     <!--#region Barre de boutons-->
@@ -289,12 +289,10 @@
             <!--#region Affichage des temps de travail-->
             <StackPanel Orientation="Vertical" Margin="10" DockPanel.Dock="Top">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Temps de travail restant global :" MinWidth="175"/>
-                    <TextBlock Text="92 h"/>
+                    <TextBlock Name="Txt_Restant"/> 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Temps de travail réalisé global :" MinWidth="175"/>
-                    <TextBlock Text="102 h"/>
+                    <TextBlock Name="Txt_Realise"/>
                 </StackPanel>
             </StackPanel>
             <!--#endregion-->
