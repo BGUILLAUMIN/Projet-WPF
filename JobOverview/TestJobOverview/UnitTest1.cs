@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JobOverview.Model;
 using JobOverview.Entity;
-using System.Security.Cryptography;
 
 namespace TestJobOverview
 {
@@ -23,7 +22,7 @@ namespace TestJobOverview
                 Libelle = "Courrier",
                 CodeActivite = "DP",
                 LoginPersonne = "AFERRAND",
-                Description="hfhjfhfhjfhfyhfj"
+                Description = "aller le chercher"
             };
 
             DALTaches.EnregistrerTachesAnnexes(t);
@@ -34,6 +33,7 @@ namespace TestJobOverview
             Assert.AreEqual(nbTachesFinal-nbTachesintial, 1);
         }
 
+        [TestMethod]
         public void TestEnregistrementTacheProd()
         {
             var listTachesProd = DALTaches.GetTachesProd();
@@ -46,6 +46,7 @@ namespace TestJobOverview
                 Libelle = "CE",
                 CodeActivite = "DP",
                 LoginPersonne = "AFERRAND",
+                Description = "aller le chercher",
                 Numero = 99,
                 DureePrevue =8,
                 DureeRestante =1,
