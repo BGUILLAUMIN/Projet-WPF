@@ -29,6 +29,8 @@ namespace JobOverview.ViewModel
         public List<Activite> Activités { get; set; }
         public List<Module> Modules { get; set; }
         public ObservableCollection<TacheProd> TachesProds { get; }
+      
+        
 
         public TacheProd TacheCourante
         {
@@ -56,6 +58,7 @@ namespace JobOverview.ViewModel
             Activités = DALTaches.GetActivités().Where(a => a.Annexe == false).ToList();
             Modules = DALLogiciels.GetModulesLibellé();
             TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
+
             ModeEdit = ModesEdition.Consultation;
         }
         #endregion
@@ -137,7 +140,7 @@ namespace JobOverview.ViewModel
         {
             //Instancie une nouvelle tâche
             var NouvelleTache = new TacheProd();
-
+            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte;
             // Ajoute la nouvelle tache dans la liste TachesProds
             TachesProds.Add(NouvelleTache);
 

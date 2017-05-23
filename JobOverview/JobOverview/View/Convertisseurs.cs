@@ -74,6 +74,20 @@ namespace JobOverview.View
         }
     }
 
+    public class ConvModeEditManager : IValueConverter
+    {
+       
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();   // TODO bloquer l'accés à toutes modif pour les personnes qui ne sont pas manager
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 
 }
 

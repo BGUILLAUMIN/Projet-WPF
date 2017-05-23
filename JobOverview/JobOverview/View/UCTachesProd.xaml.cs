@@ -48,6 +48,17 @@ namespace JobOverview.View
         private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
         {
             var list = _vmTacheProd.TachesProds;
+
+            if(cbxPersonnes.SelectedValue != null)
+            {
+
+            var a = (Travail)DALTaches.GetTempsTravailGlobaux(cbxPersonnes.SelectedValue.ToString());
+            Txt_Restant.Text = "Temps de travail global restants : " + a.NbrHeuresTravailGlobalRestantes.ToString();
+            Txt_Realise.Text = "Temps de travail global réalisés :   " + a.NbrHeuresTravailGlobalRealisees.ToString();
+
+            }
+
+
             if (!(bool)ckbTachesTerm.IsChecked)
             {
                 list = new ObservableCollection<TacheProd>(_vmTacheProd.TachesProds.Where(t => t.DureeRestante != 0).ToList());
