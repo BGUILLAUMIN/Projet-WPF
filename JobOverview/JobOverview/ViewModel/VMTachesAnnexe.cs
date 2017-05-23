@@ -56,7 +56,7 @@ namespace JobOverview.ViewModel
             TachesAnnexes = new ObservableCollection<Tache>(DALTaches.GetTachesAnnexe());
             ModeEdit = ModesEdition.Consultation;
         }
-       
+        #endregion
 
         // ajout des commandes
         #region COMMANDES
@@ -134,7 +134,7 @@ namespace JobOverview.ViewModel
             try
             {
                 TachesAnnexes.Remove(TacheCourante);
-                DALTaches.EnregistrerTachesAnnexes(TacheCourante);
+                DALTaches.EnregistrerTachesAnnexes(TacheCourante);//ToDO changer méthode suppression
                 MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
 
             }
@@ -145,6 +145,8 @@ namespace JobOverview.ViewModel
             }
 
         }
+
+
 
         //Appel de la méthode d'enregistrement des tâches de production dans la base
         //et définit le mode d'édition
