@@ -51,7 +51,7 @@
                                 <TextBlock>Enregistrer.</TextBlock>
                             </ToolTip>
                         </Button.ToolTip>
-                        <fa:IconBlock Icon="FloppyO"/>
+                            <fa:IconBlock Icon="FloppyO"/>
                     </Button>
                 </StackPanel>
                 <Separator Height="10" Opacity="0" Width="350" DockPanel.Dock="Top"/>

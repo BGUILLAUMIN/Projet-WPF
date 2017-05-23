@@ -110,9 +110,9 @@ namespace JobOverview.Model
             string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
                         Values  (@IdTache, @Libelle, 0 , @CodeActivite, @Login, @Description);
 
-                        Insert jo.TacheProd (DureePrevue, DureeRestanteEstimee,
+                        Insert jo.TacheProd (IdTache, DureePrevue, DureeRestanteEstimee,
 									CodeModule, CodeLogicielModule, NumeroVersion, CodeLogicielVersion)
-                        values  (@DureePrevue, @DureeRestanteEstimee,
+                        values  (@IdTache, @DureePrevue, @DureeRestanteEstimee,
 								@CodeModule, @CodeLogicielModule, @NumeroVersion, @CodeLogicielVersion)";
 
 
@@ -123,6 +123,8 @@ namespace JobOverview.Model
                 SqlTransaction tran = cnx.BeginTransaction();
 
                 #region Paramètres
+                SqlParameter paramIdTache = new SqlParameter("@IdTache", SqlDbType.UniqueIdentifier);
+                paramIdTache.Value = Guid.NewGuid();
                 SqlParameter paramLibellé = new SqlParameter("@Libelle", DbType.String);
                 paramLibellé.Value = tacheProd.Libelle;
                 SqlParameter paramCodeActivite = new SqlParameter("@CodeActivite", DbType.String);
@@ -146,6 +148,7 @@ namespace JobOverview.Model
 
                 // Création  de la commande
                 var command = new SqlCommand(req, cnx, tran);
+                command.Parameters.Add(paramIdTache);
                 command.Parameters.Add(paramLibellé);
                 command.Parameters.Add(paramCodeActivite);
                 command.Parameters.Add(paramLogin);
@@ -182,8 +185,8 @@ namespace JobOverview.Model
         public static void EnregistrerTachesAnnexes(Tache TachesAnn)
         {
             // Ecriture de la requête d'insertion 
-            string req = @"Insert jo.Tache(Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
-                        Values (@Libelle, 1 , @CodeActivite, @Login, @Description";
+            string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
+                        Values (@IdTache, @Libelle, 1 , @CodeActivite, @Login, @Description";
 								
          
             using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
@@ -193,6 +196,8 @@ namespace JobOverview.Model
                 SqlTransaction tran = cnx.BeginTransaction();
 
                 #region Paramètres
+                SqlParameter paramIdTache = new SqlParameter("@IdTache", SqlDbType.UniqueIdentifier);
+                paramIdTache.Value = Guid.NewGuid();
                 SqlParameter paramLibellé = new SqlParameter("@Libelle", DbType.String);
                 paramLibellé.Value = TachesAnn.Libelle;
                 SqlParameter paramCodeActivite = new SqlParameter("@CodeActivite", DbType.String);
@@ -204,6 +209,7 @@ namespace JobOverview.Model
 
                 // Création  de la commande
                 var command = new SqlCommand(req, cnx, tran);
+                command.Parameters.Add(paramIdTache);
                 command.Parameters.Add(paramLibellé);
                 command.Parameters.Add(paramCodeActivite);
                 command.Parameters.Add(paramLogin);
