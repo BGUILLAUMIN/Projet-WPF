@@ -137,6 +137,8 @@ namespace JobOverview.Model
             return listModules;
         }
 
+
+
         private static void GetModuleFromDataReader(List<Logiciel> listlogi, SqlDataReader reader)
         {
             // Si le code du Module courant est != de celui du dernier Module de la liste, on crée un nouvel objet Module.

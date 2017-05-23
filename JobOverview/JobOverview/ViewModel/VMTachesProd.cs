@@ -28,6 +28,8 @@ namespace JobOverview.ViewModel
         public List<Personne> Personnes { get; set; }
         public List<Activite> Activités { get; set; }
         public ObservableCollection<TacheProd> TachesProds { get; }
+      
+        
 
         public TacheProd TacheCourante
         {
@@ -54,6 +56,7 @@ namespace JobOverview.ViewModel
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
             Activités = DALPersonnes.GetActivite();
             TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
+
             ModeEdit = ModesEdition.Consultation;
         }
         #endregion

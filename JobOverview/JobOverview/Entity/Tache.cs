@@ -47,6 +47,8 @@ namespace JobOverview.Entity
         public float Heures { get; set; }
         [XmlAttribute("TauxProduct")]
         public float TauxProductivite { get; set; }
+        public double NbrHeuresTravailGlobalRealisees { get; set; }
+        public double NbrHeuresTravailGlobalRestantes { get; set; }
     }
   
 
