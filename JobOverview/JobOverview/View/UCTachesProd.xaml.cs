@@ -67,10 +67,10 @@ namespace JobOverview.View
             //s'il y a une personne dans la combobox Personne 
             if (cbxPersonnes.SelectedValue != null)
             {
-                //On affiche leurs Temps de travail Restants et réalisés respectifs
-               var a = (Travail)DALTaches.GetTempsTravailGlobaux(cbxPersonnes.SelectedValue.ToString());
-                Txt_Restant.Text = "Temps de travail global restants : " + a.NbrHeuresTravailGlobalRestantes.ToString();
-                Txt_Realise.Text = "Temps de travail global réalisés  : " + a.NbrHeuresTravailGlobalRealisees.ToString();
+
+                var a = (Travail)DALTaches.GetTempsTravailGlobaux(cbxPersonnes.SelectedValue.ToString());
+                Txt_Restant.Text = "Temps de travail global restants : " + a.NbrHeuresTravailGlobalRestantes.ToString() + " h    /     ";
+                Txt_Realise.Text = "Temps de travail global réalisés  : " + a.NbrHeuresTravailGlobalRealisees.ToString() + " h";
 
             }
 
@@ -97,6 +97,11 @@ namespace JobOverview.View
             return ((cbxLogiciels.SelectedValue.ToString() == tp.CodeLogiciel) &&
                 (cbxVersions.SelectedValue.ToString() == tp.Version.ToString()) &&
                 (cbxPersonnes.SelectedValue.ToString() == tp.LoginPersonne));
+        }
+
+        private void cbxPersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
