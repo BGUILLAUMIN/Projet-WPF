@@ -155,7 +155,7 @@
                                  HorizontalAlignment="Left" Grid.Row="4" Grid.Column="1"
                                  VerticalContentAlignment="Center"/>
 
-                        <TextBlock Margin="5" Width="100" Text="{Binding Path=TachesProds/CodeModule}" 
+                        <TextBlock Margin="5" Width="200" Text="{Binding Path=TachesProds/CodeModule}" 
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" 
                                    Grid.Row="5" Grid.Column="1"/>
@@ -169,7 +169,7 @@
                                    HorizontalAlignment="Left"
                                        VerticalAlignment="Center"/>
 
-                        <TextBlock Margin="5" Width="100" Text="{Binding Path= TachesProds/CodeActivite}"
+                        <TextBlock Margin="5" Width="200" Text="{Binding Path= TachesProds/CodeActivite}"
                                    Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" />
@@ -271,7 +271,7 @@
                 </StackPanel>
                 <StackPanel>
                     <Label Content="Personnes"/>
-                    <ComboBox Name="cbxPersonnes" 
+                    <ComboBox Name="cbxPersonnes" Width="200"
                           ItemsSource="{Binding Path=Personnes}"
                           SelectedIndex="0"
                           DisplayMemberPath="NomComplet"

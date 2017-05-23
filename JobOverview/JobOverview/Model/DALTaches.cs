@@ -361,7 +361,7 @@ namespace JobOverview.Model
 
 
         /// <summary>
-        /// Permet de récupérer les Temps de travail global réalisés et restants de chaque employé.
+        /// Permet de récupérer les temps de travail globaux réalisés et restants de chaque employé.
         /// </summary>
         public static Travail GetTempsTravailGlobaux(string nom)
         {
