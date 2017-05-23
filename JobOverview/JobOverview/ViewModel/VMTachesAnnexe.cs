@@ -146,9 +146,13 @@ namespace JobOverview.ViewModel
             {
                 TachesAnnexes.Remove(TacheCourante);
                 MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
+
+
                 DALTaches.EnregistrerTachesAnnexes(TacheCourante); //ToDO changer méthode suppression
 
-        }
+                MessageBox.Show("Suppression réussie", "Suppression", MessageBoxButton.OK);
+
+            }
             catch (Exception)
             {
 
@@ -169,7 +173,8 @@ namespace JobOverview.ViewModel
                     //Enregistre dans la base la liste mis à jour de la listview 
                     MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
                     DALTaches.EnregistrerTachesAnnexes(TacheCourante);
-            }
+                    MessageBox.Show("Enregistrement réussi", "Enregistrement", MessageBoxButton.OK);
+                }
                 catch (Exception)
             {
 
