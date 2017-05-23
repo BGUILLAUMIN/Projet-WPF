@@ -141,6 +141,7 @@ namespace JobOverview.ViewModel
             //Instancie une nouvelle tâche
             var NouvelleTache = new TacheProd();
             NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte;
+            NouvelleTache.Numero = TachesProds.Max(n => n.Numero)+1;
             // Ajoute la nouvelle tache dans la liste TachesProds
             TachesProds.Add(NouvelleTache);
 
