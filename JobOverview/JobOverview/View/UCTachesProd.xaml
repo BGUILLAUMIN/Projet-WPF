@@ -224,7 +224,7 @@
             <!--#endregion-->
 
             <!--#region Liste d'affichage-->
-            <ListView Margin="10" ItemsSource="{Binding TachesProds}" IsSynchronizedWithCurrentItem="True" 
+            <ListView Name="lvTachesProd" Margin="10" ItemsSource="{Binding TachesProds}" IsSynchronizedWithCurrentItem="True" 
                       IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}">
                 <ListView.View>
                     <GridView>

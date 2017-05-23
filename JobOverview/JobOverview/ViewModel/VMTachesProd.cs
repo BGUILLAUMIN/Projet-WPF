@@ -58,18 +58,6 @@ namespace JobOverview.ViewModel
 
 
         #region Définition des commandes
-        private ICommand _cmdFiltreTach;
-        public ICommand CmdFiltreTach
-        {
-            get
-            {
-                if (_cmdFiltreTach == null)
-                    _cmdFiltreTach = new RelayCommand(FiltrerTachesProd);
-                return _cmdFiltreTach;
-            }
-        }
-
-
         //lors du clic sur le bouton Ajouter
         private ICommand _cmdAjouter;
         public ICommand CmdAjouter
