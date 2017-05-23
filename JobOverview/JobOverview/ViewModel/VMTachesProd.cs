@@ -30,7 +30,6 @@ namespace JobOverview.ViewModel
         public List<Module> Modules { get; set; }
         public ObservableCollection<TacheProd> TachesProds { get; }
         public ObservableCollection<TacheProd> TachesProdsListView { get; }
-
         public TacheProd TacheCourante
         {
             get
@@ -46,7 +45,6 @@ namespace JobOverview.ViewModel
                 SetProperty(ref _mode, value);
             }
         }
-
         #endregion
 
         #region Constructeur
@@ -134,20 +132,19 @@ namespace JobOverview.ViewModel
         }
 
         // Crée une nouvelle tâche et l'ajoute à la collection
-        // mode d'édition
+        // et définit mode d'édition
         private void AjouterTache()
         {
-            
-           
+
+
             //Instancie une nouvelle tâche
             var NouvelleTache = new TacheProd();
-            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte;
-            NouvelleTache.Numero = TachesProds.Max(n => n.Numero) + 1;
+            //Initiatialisation des propriétés de la nouvelle tâche
+            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte; //Récupère la personne connectée
+            NouvelleTache.Numero = TachesProds.Max(n => n.Numero) + 1; //Incrémente le nouveau numéro de tâche de production en se basant sur le dernier
 
-          
-
-                // Ajoute la nouvelle tache dans la liste TachesProds
-                TachesProds.Add(NouvelleTache);
+            // Ajoute la nouvelle tache dans la liste TachesProds
+            TachesProds.Add(NouvelleTache);
 
             // La nouvelle tâche devient la tâche courante, de façon à ce qu'elle soit automatiquement sélectionnée
             ICollectionView view = CollectionViewSource.GetDefaultView(TachesProds);
