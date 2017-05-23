@@ -122,7 +122,7 @@ namespace JobOverview.Model
 
                 #region Paramètres
                 SqlParameter paramIdTache = new SqlParameter("@IdTache", SqlDbType.UniqueIdentifier);
-                paramIdTache.Value = Guid.NewGuid();
+                paramIdTache.Value = tacheProd.Id;
                 SqlParameter paramLibellé = new SqlParameter("@Libelle", DbType.String);
                 paramLibellé.Value = tacheProd.Libelle;
                 SqlParameter paramCodeActivite = new SqlParameter("@CodeActivite", DbType.String);
@@ -194,7 +194,7 @@ namespace JobOverview.Model
 
                 #region Paramètres
                 SqlParameter paramIdTache = new SqlParameter("@IdTache", SqlDbType.UniqueIdentifier);
-                paramIdTache.Value = Guid.NewGuid();
+                paramIdTache.Value = TachesAnn.Id;
                 SqlParameter paramLibellé = new SqlParameter("@Libelle", DbType.String);
                 paramLibellé.Value = TachesAnn.Libelle;
                 SqlParameter paramCodeActivite = new SqlParameter("@CodeActivite", DbType.String);
@@ -230,6 +230,64 @@ namespace JobOverview.Model
                 }
             }
         }
+
+        
+        /// <summary>
+        /// Suppression d'une tache Annexe de la base
+        /// </summary>
+        /// <param name="supProd"></param>
+        /// <returns></returns>
+
+        public static void SupprimerTachesAnnexes(Guid Id)
+        {
+            // Préparation des requêtes et paramètres
+            // Ecriture de la requête d'insertion 
+            string req = @"delete from jo.Tache where IdTache= @Id";
+
+
+
+
+            using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
+            {
+                // Ouverture de la connexion et début de la transaction
+                cnx.Open();
+                SqlTransaction tran = cnx.BeginTransaction();
+                var command = new SqlCommand(req, cnx, tran);
+                SqlParameter param = new SqlParameter("@Id", SqlDbType.UniqueIdentifier);
+                param.Value = Id;
+                command.Parameters.Add(param);
+                try
+                {
+                    // exécution de la commande
+
+                    command.ExecuteNonQuery();
+
+                    // Validation de la transaction s'il n'y a pas eu d'erreur
+                    tran.Commit();
+                }
+                catch (Exception)
+                {
+                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
+                    throw;   // Remontée de l'erreur à l'appelant
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /// <summary>
         /// Sérialisation des tâches. Permet d'exporter les données tâches en données xml

@@ -127,7 +127,7 @@ namespace JobOverview.ViewModel
         {
             //Instancie une nouvelle tâche
 
-            var NouvelleTache = new Tache();
+            var NouvelleTache = new Tache() { Id = Guid.NewGuid() };
             NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte;
             // Ajoute la nouvelle tache dans la liste TachesAnnexes
             TachesAnnexes.Add(NouvelleTache);
@@ -144,9 +144,9 @@ namespace JobOverview.ViewModel
         {
             try
             {
-                TachesAnnexes.Remove(TacheCourante);
                 MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
-                DALTaches.EnregistrerTachesAnnexes(TacheCourante); //ToDO changer méthode suppression
+                DALTaches.SupprimerTachesAnnexes(TacheCourante.Id);
+                TachesAnnexes.Remove(TacheCourante);
 
         }
             catch (Exception)
