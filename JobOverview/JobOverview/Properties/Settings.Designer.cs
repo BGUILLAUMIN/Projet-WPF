@@ -49,7 +49,7 @@ namespace JobOverview.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=RBLAVEC17-DE\\IP08R2;Initial Catalog=\"JobOverview\";Integrated Security" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=YCAPPELLE17-DE\\IP08R2;Initial Catalog=JobOverview;Integrated Security" +
             "=True")]
         public string ConnectionJobOverview {
             get {
