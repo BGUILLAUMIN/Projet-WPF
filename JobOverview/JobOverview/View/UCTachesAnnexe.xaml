@@ -82,7 +82,6 @@
                           SelectedValuePath="Login"
                               SelectedValue="{Binding Path=TachesAnnexes/LoginPersonne}"
                           SelectedIndex="{Binding ElementName=cbPersonne, Path=Cursor}"
-                              Style="{StaticResource Combobox2}"
                            IsSynchronizedWithCurrentItem="True"
                                Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"  Grid.Column="1" Height="Auto" Width="Auto">
                             <!--IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Grid.Column="1" Height="Auto" Width="Auto">-->
@@ -99,7 +98,6 @@
                         <ComboBox Grid.Row="3"  Grid.Column="1" DockPanel.Dock="Right" Name="cbActivite"  
                               ItemsSource="{Binding Path=ActivitesAutorisées}" SelectedValue="{Binding Path=TachesAnnexes/CodeActivite }" DisplayMemberPath="Code" 
                               SelectedValuePath="Code" SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
-                              Style="{StaticResource Combobox2}" 
                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" Height="Auto" Width="Auto">
                             <!--IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Height="Auto" Width="Auto">-->
                             <ComboBox.ToolTip>
@@ -135,7 +133,6 @@
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
                           SelectedIndex="0"
-                          Style="{StaticResource Combobox2}"
                           IsSynchronizedWithCurrentItem="True"
                            IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule} }">
                     <ComboBox.ToolTip>
