@@ -58,12 +58,12 @@ namespace JobOverview.ViewModel
         #region Constructeur
         public VMTachesAnnexe()
         {
-            //Appels des méthodes de DAL pour remplir le visuel au chargement de la fenêtre
+            // Appels des méthodes de DAL pour remplir le visuel au chargement de la fenêtre
             // Permet à la comboBox d'afficher la liste des activités annexes disponibles.
             Activites = DALTaches.GetActivités().Where(a => a.Annexe == true).ToList();
             // Permet à la comboBox d'afficher la liste des personnes d'une même équipe (manager compris) en fonction du Login mémorisé.
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
-            //Permet à la ListeView d'afficher la liste de taches annexes
+            // Permet à la ListeView d'afficher la liste de taches annexes
             TachesAnnexes = new ObservableCollection<Tache>(DALTaches.GetTachesAnnexe());
             ActivitesAutorisées = new List<Activite>();
             ModeEdit = ModesEdition.Consultation;
