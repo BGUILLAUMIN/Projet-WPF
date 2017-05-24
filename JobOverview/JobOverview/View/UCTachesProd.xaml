@@ -52,19 +52,19 @@
                                 </ToolTip>
                             </Button.ToolTip>
                         </Button>
-                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdEnregistrer}">
-                            <fa:IconBlock Icon="FloppyO" FontSize="25"/>
-                            <Button.ToolTip>
-                                <ToolTip>
-                                    <TextBlock>Enregistrer la tâche.</TextBlock>
-                                </ToolTip>
-                            </Button.ToolTip>
-                        </Button>
                         <Button Style="{StaticResource ButtonStyle}"  Command="{Binding CmdAnnuler}">
                             <fa:IconBlock Icon="Undo" FontSize="25"/>
                             <Button.ToolTip>
                                 <ToolTip>
                                     <TextBlock>Annuler la création de tâche.</TextBlock>
+                                </ToolTip>
+                            </Button.ToolTip>
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdEnregistrer}">
+                            <fa:IconBlock Icon="FloppyO" FontSize="25"/>
+                            <Button.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Enregistrer la tâche.</TextBlock>
                                 </ToolTip>
                             </Button.ToolTip>
                         </Button>
@@ -93,12 +93,12 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Label Content="N° :" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
-                        <Label Content="Libellé :" Grid.Row="2" Grid.ColumnSpan="2"/>
-                        <Label Content="Durée Prévue :" Grid.Row="3" Grid.ColumnSpan="2"/>
-                        <Label Content="Durée Restante :" Grid.Row="4" Grid.ColumnSpan="2"/>
-                        <Label Content="Code Module :" Grid.Row="5" Grid.ColumnSpan="2"/>
+                        <Label Content="Libellé :" Grid.Row="2" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
+                        <Label Content="Durée Prévue :" Grid.Row="3" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
+                        <Label Content="Durée Restante :" Grid.Row="4" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
+                        <Label Content="Code Module :" Grid.Row="5" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
                         <Separator Height="5" Opacity="0" Grid.Row="6"/>
-                        <Label Content="Code Activité :" Grid.Row="7" Grid.ColumnSpan="2"/>
+                        <Label Content="Code Activité :" Grid.Row="7" Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
                         <StackPanel  Grid.Row="1" Grid.Column="3">
                             <TextBlock Text="Personne" Margin="5,0"
                                        Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"/>
@@ -184,7 +184,7 @@
                                    Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center" />
-                        <ComboBox ItemsSource="{Binding Path=Activités}" SelectedValue="{Binding Path= TachesProdsListView/CodeActivite}"
+                        <ComboBox ItemsSource="{Binding Path=Activités}" SelectedValue="{Binding Path= TachesProds/CodeActivite}"
                                   DisplayMemberPath="Code" SelectedValuePath="Code" Grid.ColumnSpan="2"
                               SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
                         Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"
@@ -209,13 +209,6 @@
         <DockPanel>
             <!--#region Ligne du bas checkbox + bouton exporté.-->
             <DockPanel DockPanel.Dock="Bottom">
-                <CheckBox Name="ckbTachesTerm" Content="Taches terminées" IsChecked="False" VerticalAlignment="Center" Margin="10,0,0,0" Visibility="Hidden">
-                    <CheckBox.ToolTip>
-                        <ToolTip>
-                            <TextBlock>Filtrer les tâches selon leur degré d'avancement.</TextBlock>
-                        </ToolTip>
-                    </CheckBox.ToolTip>
-                </CheckBox>
                 <CheckBox Name="ckbToutesPers" Content="Taches toutes les personnes" IsChecked="False"
                           VerticalAlignment="Center" Margin="10,0,0,0" Visibility="Hidden">
                     <CheckBox.ToolTip>
@@ -249,54 +242,64 @@
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="LightBlue" Margin="10,10,10,-1">
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <StackPanel>
-                    <Label Content="Logiciel :"/>
-                    <ComboBox Name="cbxLogiciels"
+                    <StackPanel>
+                        <Label Content="Logiciel :"/>
+                        <ComboBox Name="cbxLogiciels"
                           ItemsSource="{Binding Path=Logiciels}"
                           DisplayMemberPath="Nom"
                           SelectedValuePath="Code"
                           SelectedIndex="0"
-                              IsSynchronizedWithCurrentItem="True"
+                          IsSynchronizedWithCurrentItem="True"
                           IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}">
-                        <ComboBox.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Selection du logiciel.</TextBlock>
-                            </ToolTip>
-                        </ComboBox.ToolTip>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel>
-                    <Label Content="Version :"/>
-                    <ComboBox Name="cbxVersions2" SelectedIndex="0"
+                            <ComboBox.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Selection du logiciel.</TextBlock>
+                                </ToolTip>
+                            </ComboBox.ToolTip>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Version :"/>
+                        <ComboBox Name="cbxVersions2" SelectedIndex="0"
                           ItemsSource="{Binding Path=Logiciels/Versions}"
                           DisplayMemberPath="Numero"
                           SelectedValuePath="Numero" 
                           IsSynchronizedWithCurrentItem="True"
                           IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}">
-                        <ComboBox.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Selection de la version.</TextBlock>
-                            </ToolTip>
-                        </ComboBox.ToolTip>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel>
-                    <Label Content="Personne :"/>
-                    <ComboBox Name="cbxPersonnes" Width="160"
+                            <ComboBox.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Selection de la version.</TextBlock>
+                                </ToolTip>
+                            </ComboBox.ToolTip>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Personne :"/>
+                        <ComboBox Name="cbxPersonnes" Width="160"
                           ItemsSource="{Binding Path=Personnes}"
                           SelectedIndex="0"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
                           IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}"
                               SelectionChanged="cbxPersonnes_SelectionChanged">
-                        <ComboBox.ToolTip>
+                            <ComboBox.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Selection de l'employé.</TextBlock>
+                                </ToolTip>
+                            </ComboBox.ToolTip>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                    <CheckBox Name="ckbTachesTerm" Content="Avec taches terminées" IsChecked="False" VerticalAlignment="Bottom" Margin="5,15,0,0">
+                        <CheckBox.ToolTip>
                             <ToolTip>
-                                <TextBlock>Selection de l'employé.</TextBlock>
+                                <TextBlock>Filtrer les tâches selon leur degré d'avancement.</TextBlock>
                             </ToolTip>
-                        </ComboBox.ToolTip>
-                    </ComboBox>
+                        </CheckBox.ToolTip>
+                    </CheckBox>
+                    <Button Name="BtnFiltre" Content="Appliquer filtre" Height="30" VerticalAlignment="Bottom" Margin="5"/>
                 </StackPanel>
-            </StackPanel>
+                </StackPanel>
             </StackPanel>
             <!--#endregion-->
             <!--#region Affichage des temps de travail.-->
@@ -316,20 +319,20 @@
             <!--#region Liste d'affichage-->
             <ListView Name="lvTachesProd" Margin="10" ItemsSource="{Binding TachesProds}" IsSynchronizedWithCurrentItem="True" 
                       IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Logiciel" DisplayMemberBinding="{Binding Path=CodeLogiciel}"/>
-                                <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Path=Version}"/>
-                                <GridViewColumn Header="Login" DisplayMemberBinding="{Binding Path=LoginPersonne}"/>
-                                <GridViewColumn Header="Numéro" DisplayMemberBinding="{Binding Path=Numero}"/>
-                                <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
-                                <GridViewColumn Header="Code Module" DisplayMemberBinding="{Binding Path= CodeModule}" />
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <!--#endregion-->
-            </DockPanel>
-
-
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Logiciel" DisplayMemberBinding="{Binding Path=CodeLogiciel}"/>
+                        <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Path=Version}"/>
+                        <GridViewColumn Header="Login" DisplayMemberBinding="{Binding Path=LoginPersonne}"/>
+                        <GridViewColumn Header="Numéro" DisplayMemberBinding="{Binding Path=Numero}"/>
+                        <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
+                        <GridViewColumn Header="Code Module" DisplayMemberBinding="{Binding Path= CodeModule}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <!--#endregion-->
         </DockPanel>
+
+
+    </DockPanel>
 </UserControl>

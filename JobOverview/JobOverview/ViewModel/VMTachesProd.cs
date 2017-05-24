@@ -175,7 +175,7 @@ namespace JobOverview.ViewModel
                         //Enregistre dans la base la liste mis à jour de la listview 
                         DALTaches.EnregistrerTachesProd(TacheCourante);
 
-                        MessageBox.Show("Tâche de production enregistrée ?",
+                        MessageBox.Show("Tâche de production enregistrée",
                          "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                         ModeEdit = ModesEdition.Consultation;
@@ -185,7 +185,7 @@ namespace JobOverview.ViewModel
                 {
                     //Enlève de l'affichage de la Listviw la tache qui est sélectionnée
                     TachesProds.Remove(TacheCourante);
-                    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Veuillez saisir tous les champs!", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
