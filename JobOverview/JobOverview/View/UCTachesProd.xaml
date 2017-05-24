@@ -252,6 +252,7 @@
             <!--#endregion-->
 
             <!--#region Zone de sélection.-->
+
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="LightBlue" Margin="10,10,10,-1">
                 <StackPanel >
                     <Label Content="Logiciel"/>
@@ -319,20 +320,20 @@
             <!--#region Liste d'affichage-->
             <ListView Name="lvTachesProd" Margin="10" ItemsSource="{Binding TachesProds}" IsSynchronizedWithCurrentItem="True" 
                       IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Logiciel" DisplayMemberBinding="{Binding Path=CodeLogiciel}"/>
-                        <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Path=Version}"/>
-                        <GridViewColumn Header="Login" DisplayMemberBinding="{Binding Path=LoginPersonne}"/>
-                        <GridViewColumn Header="Numéro" DisplayMemberBinding="{Binding Path=Numero}"/>
-                        <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
-                        <GridViewColumn Header="Code Module" DisplayMemberBinding="{Binding Path= CodeModule}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <!--#endregion-->
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Logiciel" DisplayMemberBinding="{Binding Path=CodeLogiciel}"/>
+                                <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Path=Version}"/>
+                                <GridViewColumn Header="Login" DisplayMemberBinding="{Binding Path=LoginPersonne}"/>
+                                <GridViewColumn Header="Numéro" DisplayMemberBinding="{Binding Path=Numero}"/>
+                                <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
+                                <GridViewColumn Header="Code Module" DisplayMemberBinding="{Binding Path= CodeModule}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <!--#endregion-->
+            </DockPanel>
+
+
         </DockPanel>
-
-
-    </DockPanel>
 </UserControl>
