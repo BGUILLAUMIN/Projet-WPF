@@ -35,15 +35,16 @@ namespace JobOverview.View
             DataContext = _vmTacheProd;
 
             //Branchement des gestionnaires évenements
-            cbxLogiciels.SelectionChanged += Filtrer_Click;
-            cbxVersions.SelectionChanged += Filtrer_Click;
-            cbxPersonnes.SelectionChanged += Filtrer_Click;
-            cbxPersonnes2.SelectionChanged += CbxPersonnes2_SelectionChanged;
+            //cbxLogiciels.SelectionChanged += Filtrer_Click;
+            //cbxVersions.SelectionChanged += Filtrer_Click;
+            //cbxPersonnes.SelectionChanged += Filtrer_Click;
+            //cbxPersonnes2.SelectionChanged += CbxPersonnes2_SelectionChanged;
         }
 
         private void CbxPersonnes2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Properties.Settings.Default.PersonneCourante = cbxPersonnes2.SelectedValue.ToString();
+            if (cbxPersonnes2.SelectedValue != null)
+                Properties.Settings.Default.PersonneCourante = cbxPersonnes2.SelectedValue.ToString(); 
         }
 
         private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
