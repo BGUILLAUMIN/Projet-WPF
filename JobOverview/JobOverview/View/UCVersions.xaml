@@ -10,7 +10,7 @@
              d:DesignHeight="400" d:DesignWidth="500">
 
     <DockPanel Margin="0,20,0,0">
-        <!--#region Definition des resources-->
+        <!--#region Definition des resources.-->
         <DockPanel.Resources>
 
             <local:IntToColorBrushConverter x:Key="IntToColorBrushConverter"/>
@@ -19,7 +19,7 @@
         </DockPanel.Resources>
         <!--#endregion-->
 
-        <!--#region Expander Ajout de Taches Annexe-->
+        <!--#region Expander Ajout de Taches Annexe.-->
         <Expander ExpandDirection="Left" MaxWidth="250" DockPanel.Dock="Right" IsExpanded="True" >
             <Expander.ToolTip>
                 <ToolTip>
@@ -72,9 +72,9 @@
         </Expander>
         <!--#endregion-->
 
-        <!--#region Consultation des Taches Annexes-->
+        <!--#region Consultation des Taches Annexes.-->
         <DockPanel>
-            <!--#region Partie des ComboBox-->
+            <!--#region Partie des ComboBox.-->
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,5,10,0">
                 <TextBlock Text="Logiciel : " VerticalAlignment="Center" MinWidth="55"/>
                 <ComboBox ItemsSource="{Binding Path=Logiciels}"
@@ -88,36 +88,9 @@
                     </ComboBox.ToolTip>
                 </ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,5,10,0">
-                <TextBlock Text="Filtre : " VerticalAlignment="Center" MinWidth="60"/>
-                <ComboBox Name="cbxVersion" Margin="0,5,10,0" ItemsSource="{Binding Path=Logiciels/Versions}" 
-                          DisplayMemberPath="Numero"
-                          SelectedValuePath="Numero"
-                          SelectedIndex="0"
-                          IsSynchronizedWithCurrentItem="True">
-                    <ComboBox.ToolTip>
-                        <ToolTip>
-                            <TextBlock>Choix de la version.</TextBlock>
-                        </ToolTip>
-                    </ComboBox.ToolTip>
-                </ComboBox>
-                <ComboBox Margin="0,5,10,0" Width="50" SelectedIndex="0">
-                    <ComboBoxItem>
-                        <fa:IconBlock Icon="SortAsc"/>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <fa:IconBlock Icon="SortDesc"/>
-                    </ComboBoxItem>
-                    <ComboBox.ToolTip>
-                        <ToolTip>
-                            <TextBlock>Choisir le type de Tri : Ascendant ou Descendant.</TextBlock>
-                        </ToolTip>
-                    </ComboBox.ToolTip>
-                </ComboBox>
-            </StackPanel>
             <!--#endregion -->
 
-            <!--#region Affichage du détail des versions-->
+            <!--#region Affichage du détail des versions.-->
             <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
                 <TextBlock Text="Modules :" Margin="10,0,0,10"
                            FontWeight="Bold"/>
@@ -136,7 +109,7 @@
             </StackPanel>
             <!--#endregion -->
 
-            <!--#region Affichage des données-->
+            <!--#region Affichage des données.-->
             <ListView Margin="10"
                       ItemsSource="{Binding Path=Logiciels/Versions}"
                       IsSynchronizedWithCurrentItem="True"
@@ -150,7 +123,6 @@
                 </ListView.ItemContainerStyle>
                 <ListView.View>
 
-                    <!--TODO Mettre les infos-bulle au dessus de chaque colonne.-->
                     <GridView AllowsColumnReorder="true">
 
                         <GridViewColumn Header="Version" 

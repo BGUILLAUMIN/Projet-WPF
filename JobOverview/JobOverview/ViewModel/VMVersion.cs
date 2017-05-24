@@ -17,7 +17,7 @@ namespace JobOverview.ViewModel
 
         public VMVersion()
         {
-            // Permet à la comboBox d'afficher la liste des logiciels disponibles au chargement de la fenêtre
+            // Permet à la comboBox d'afficher la liste des logiciels disponibles au chargement de la fenêtre.
             Logiciels = DALLogiciels.GetLogicielsVersions();
 
         

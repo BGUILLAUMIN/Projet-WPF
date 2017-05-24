@@ -29,31 +29,40 @@ namespace JobOverview.View
             InitializeComponent();
             scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden; // Cache la scrollbar vertical
 
-            //Initialisation du timer
+            // Initialisation du timer.
             System.Windows.Threading.DispatcherTimer Timer1 = new System.Windows.Threading.DispatcherTimer();
             Timer1.Tick += new EventHandler(dispatcherTimer_Tick);
-            Timer1.Interval = new TimeSpan(0, 0, 0, 0, 1);  //définition d'un interval de temps de 1ms.
-            Timer1.Start(); // on lance le timer
+            // Définition d'un interval de temps de 1ms.
+            Timer1.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            // Lancement du timer.
+            Timer1.Start(); 
         }
 
 
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            sb_max_height = scrollViewer.ScrollableHeight; //on recupère la position maximum de la scrollbar
-            actual_pos = scrollViewer.VerticalOffset; // on recupère la position actuel de la scrollbar
+            // On recupère la position maximum de la scrollbar.
+            sb_max_height = scrollViewer.ScrollableHeight;
+            // On recupère la position actuel de la scrollbar.
+            actual_pos = scrollViewer.VerticalOffset; 
 
             if (actual_pos == sb_max_height)
             {
-                scrollViewer.ScrollToVerticalOffset(0); // on revient au debut
+                // On revient à la position initiale du scrolling.
+                scrollViewer.ScrollToVerticalOffset(0); 
                 actual_pos = 0;
             }
             else
             {
-                calcul = actual_pos + 1; // on augmente la position (c'est le pas du scrolling qui défini la rapidité)
-                if (calcul > sb_max_height) //si la nouvelle position dépasse la taille max on modifie la nouvelle position qui sera égale a la taille max (on évite les dépassements)
+                // On augmente la position (c'est le pas du scrolling qui défini la rapidité).
+                calcul = actual_pos + 1;
+                // Si la nouvelle position dépasse la taille max on modifie la nouvelle position 
+                // qui sera égale à la taille max (on évite les dépassements).
+                if (calcul > sb_max_height)
                     calcul = sb_max_height;
-                scrollViewer.ScrollToVerticalOffset(calcul); // on ajoute la nouvelle position
+                // On ajoute la nouvelle position.
+                scrollViewer.ScrollToVerticalOffset(calcul); 
             }
         }
     }

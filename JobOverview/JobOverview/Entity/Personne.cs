@@ -18,10 +18,10 @@ namespace JobOverview.Entity
         public string CodeEquipe { get; set; }
         public string NomEquipe { get; set; }
 
-        // Activités liées au métier de la personne
+        // Activités liées au métier de la personne.
         public List<Activite> Activites { get; set; }
 
-        // Propriété utilisée pour affichage uniquement
+        // Propriété utilisée pour l'affichage uniquement.
         public string NomComplet { get { return Nom + " " + Prenom; } }
     }
 

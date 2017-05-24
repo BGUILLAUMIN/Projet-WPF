@@ -21,6 +21,7 @@ using JobOverview.View;
 
 namespace JobOverview.View
 {
+
     /// <summary>
     /// Interaction logic for UCTachesProd.xaml
     /// </summary>
@@ -37,11 +38,18 @@ namespace JobOverview.View
             //cbxLogiciels.SelectionChanged += Filtrer_Click;
             //cbxVersions.SelectionChanged += Filtrer_Click;
             //cbxPersonnes.SelectionChanged += Filtrer_Click;
+            cbxPersonnes2.SelectionChanged += CbxPersonnes2_SelectionChanged;
+        }
+
+        private void CbxPersonnes2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Properties.Settings.Default.PersonneCourante = cbxPersonnes2.SelectedValue.ToString();
         }
 
         private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
         {
-            //s'il y a une personne dans la combobox Personne 
+            // S'il y a une personne selectionnées dans la combobox Personne, on affecte aux texblocks les 
+            // valeurs de temps global restants et réalisées pour cette personne. 
             if (cbxPersonnes.SelectedValue != null)
             {
                 var a = (Travail)DALTaches.GetTempsTravailGlobaux(cbxPersonnes.SelectedValue.ToString());
@@ -56,7 +64,8 @@ namespace JobOverview.View
 
             ICollectionView View = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProds);
 
-            //s'il y a un logiciel, une version et une personne dans les combobox
+            // S'il y a un logiciel, une version et une personne dans les combobox, on applique un filtre sur les tâches de production
+            // en appelant la méthode FiltrerTachesProds et en lui passant en paramètre l'objet view.
             if (cbxVersions.SelectedValue != null && cbxPersonnes.SelectedValue != null && cbxLogiciels.SelectedValue != null)
             {
                 //on applique le filtre
@@ -64,6 +73,9 @@ namespace JobOverview.View
             }
         }
 
+
+        // Méthode permettant de filtrer les tâches de production en fonction du logiciel, de la version 
+        // et de la personne dans les combobox.
         private bool FiltrerTachesProds(object o)
         {
             TacheProd tp = o as TacheProd;

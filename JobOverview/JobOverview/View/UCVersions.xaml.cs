@@ -20,7 +20,7 @@ using JobOverview.ViewModel;
 namespace JobOverview.View
 {
     /// <summary>
-    /// Logique d'interaction pour UCVersions.xaml
+    /// Logique d'interaction pour UCVersions.xaml.
     /// </summary>
     public partial class UCVersions : UserControl
     {
@@ -28,31 +28,11 @@ namespace JobOverview.View
 
         public UCVersions()
         {
+
             InitializeComponent();
             _vmVersions = new VMVersion();
             DataContext = _vmVersions;
 
-           // cbxVersion.SelectionChanged += Filtrer_Click;
-
-
         }
-
-        // Todo réaliser un filtrage sur la listview de UCVersion par rapport au numéro de version selectionné dans la ComboBox cbxVersion.
-
-        //private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
-        //{
-
-        //        ICollectionView view = CollectionViewSource.GetDefaultView(_vmVersions.Logiciels);
-        //    if (cbxVersion.SelectedValue != null)
-        //    {
-        //        view.Filter = FiltrerVersions;
-        //    }
-        //}
-
-        //private bool FiltrerVersions(object o)
-        //{
-        //    Logiciel lo = o as Logiciel;
-        //    return ((cbxVersion.SelectedValue.ToString() == lo.Versions.ToString()));
-        //}
     }
 }

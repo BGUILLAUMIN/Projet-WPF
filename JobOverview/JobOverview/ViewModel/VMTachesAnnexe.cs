@@ -23,6 +23,8 @@ namespace JobOverview.ViewModel
         private List<Activite> _activitesAutorisées;
 
         #endregion
+
+        #region Propriétés
         public List<Activite> ActivitesAutorisées
         {
             get { return _activitesAutorisées; }
@@ -50,17 +52,18 @@ namespace JobOverview.ViewModel
             {
                 SetProperty(ref _mode, value);
             }
-        }
+        } 
+        #endregion
         //*********************************************************************************************************************************
         #region Constructeur
         public VMTachesAnnexe()
         {
-            //Appels des méthodes de DAL pour remplir le visuel au chargement de la fenêtre
+            // Appels des méthodes de DAL pour remplir le visuel au chargement de la fenêtre
             // Permet à la comboBox d'afficher la liste des activités annexes disponibles.
             Activites = DALTaches.GetActivités().Where(a => a.Annexe == true).ToList();
             // Permet à la comboBox d'afficher la liste des personnes d'une même équipe (manager compris) en fonction du Login mémorisé.
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
-            //Permet à la ListeView d'afficher la liste de taches annexes
+            // Permet à la ListeView d'afficher la liste de taches annexes
             TachesAnnexes = new ObservableCollection<Tache>(DALTaches.GetTachesAnnexe());
             ActivitesAutorisées = new List<Activite>();
             ModeEdit = ModesEdition.Consultation;
@@ -68,8 +71,8 @@ namespace JobOverview.ViewModel
 
         #endregion
 
-        //**************************** Ajout des commandes*********************************************************************************
-        #region COMMANDES
+        //**************************** Ajout des définitions  des commandes*********************************************************************************
+        #region Définition des commandes
         //lors du clic sur le bouton Ajouter
         private ICommand _cmdAjouter;
         public ICommand CmdAjouter
@@ -129,7 +132,8 @@ namespace JobOverview.ViewModel
             //Instancie une nouvelle tâche
 
             var NouvelleTache = new Tache() { Id = Guid.NewGuid() };
-            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte;
+
+            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneCourante;
             // Ajoute la nouvelle tache dans la liste TachesAnnexes
             TachesAnnexes.Add(NouvelleTache);
 
@@ -180,15 +184,18 @@ namespace JobOverview.ViewModel
                         DALTaches.EnregistrerTachesAnnexes(TacheCourante);
                         MessageBox.Show("Enregistrement réussi", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+
+                    //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
+                    ModeEdit = ModesEdition.Consultation;
                 }
                 catch (Exception)
                 {
-
+                    TachesAnnexes.Remove(TacheCourante);
                     MessageBox.Show("Tâche non enregistrée", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
-                ModeEdit = ModesEdition.Consultation;
+                
+                
             }
         }
 

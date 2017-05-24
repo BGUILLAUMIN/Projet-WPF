@@ -8,7 +8,7 @@ namespace TestJobOverview
     [TestClass]
     public class TestDAL
     {
-        public static Tache ta { get; set; }
+        private static Tache ta { get; set; }
 
         [TestMethod]
 
@@ -39,12 +39,13 @@ namespace TestJobOverview
 
         [TestMethod]
 
+        // Test utilisant la variable crée dans le test d'ajout
+        // de tache annexe.
         public void TestSupprimerTachesAnnexes()
         {
             var listTachesann = DALTaches.GetTachesAnnexe();
 
             int nbTachesintial = listTachesann.Count;
-
 
             DALTaches.SupprimerTachesAnnexes(ta.Id);
 
@@ -72,7 +73,7 @@ namespace TestJobOverview
                 CodeActivite = "DP",
                 LoginPersonne = "AFERRAND",
                 Description = "aller le chercher",
-                Numero = 99,
+                Version = 1,
                 DureePrevue =8,
                 DureeRestante =1,
                 CodeLogiciel= "GENOMICA",
@@ -80,7 +81,7 @@ namespace TestJobOverview
 
             };
 
-            DALTaches.EnregistrerTachesAnnexes(t);
+            DALTaches.EnregistrerTachesProd(t);
 
             listTachesProd = DALTaches.GetTachesProd();
             int nbTachesFinal = listTachesProd.Count;

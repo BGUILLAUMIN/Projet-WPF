@@ -13,10 +13,11 @@ namespace JobOverview.Model
     public class DALLogiciels
     {
         #region Méthodes publiques
+
         /// <summary>
-        /// Obtient et renvoie la liste des logiciels et leurs versions associées,
-        /// avec leur dernier N° de release
-        /// La liste est triée par nom de logiciel et N° de version 
+        /// On obtient et on renvoie la liste des logiciels et leurs versions associées,
+        /// avec leur dernier N° de release.
+        /// La liste est triée en fonction du code des logiciels.
         /// </summary>
         /// <returns></returns>
         public static List<Logiciel> GetLogicielsVersions()
@@ -60,7 +61,9 @@ namespace JobOverview.Model
         }
 
         /// <summary>
-        /// //TODO: Commentaires
+        /// Récupération des informations des modules ainsi que du temps de travail total en jour passé sur chaque module.
+        /// On considère qu'une journée équivaut à 8 heures de travail donc on divise le temps de travail exprimé en heure par 8
+        /// pour obtenir l'équivalent en jours.
         /// </summary>
         public static List<Module> GetModules(List<Logiciel> ListeLogi)
         {
@@ -91,7 +94,7 @@ namespace JobOverview.Model
         }
 
         /// <summary>
-        /// Permet de récupérer les libellés des modules
+        /// Permet de récupérer les libellés des modules.
         /// </summary>
         public static List<Module> GetModulesLibellé()
         {
@@ -111,50 +114,18 @@ namespace JobOverview.Model
                 }
             }
             return listModules;
-        }
-
-
-        //public static List<Module> GetModulesLibellé(string Code)
-        //{
-        //    var listModules = new List<Module>();
-
-        //    var conx = Properties.Settings.Default.ConnectionJobOverview;
-
-        //    string req = @"Select CodeModule, Libelle,  CodeLogiciel from jo.Module 
-        //            where CodeLogiciel=@param";
-        //    var param = new SqlParameter("@param", DbType.String);
-
-        //    param.Value = Code;
-
-        //    // On crée une connexion à partir de la chaîne de connexion
-        //    using (var connect = new SqlConnection(conx))
-        //    {
-        //        // On créé une commande à partir de la requête et en utilisant la connexion définies précédemment
-        //        var command = new SqlCommand(req, connect);
-        //        command.Parameters.Add(param);
-
-        //        // On ouvre la connexion
-        //        connect.Open();
-
-        //        // On exécute la requête en récupérant son résultat dans un objet SqlDataRedader
-        //        using (SqlDataReader reader = command.ExecuteReader())
-        //        {
-        //            // On lit et on affiche les lignes de résultat en boucle
-        //            while (reader.Read())
-        //            {
-        //                GetModuleLibelléFromDataReader(listModules, reader);
-        //            }
-        //        }
-        //    }
-
-        //    return listModules;
-        //}
+        }      
 
         #endregion
 
 
         #region Méthodes Privées
-
+        
+        /// <summary>
+        /// On charge la liste des modules.
+        /// </summary>
+        /// <param name="listlogi"></param>
+        /// <param name="reader"></param>
         private static void GetModuleFromDataReader(List<Logiciel> listlogi, SqlDataReader reader)
         {
             // Si le code du Module courant est != de celui du dernier Module de la liste, on crée un nouvel objet Module.
@@ -192,7 +163,7 @@ namespace JobOverview.Model
             string codeLogi = (string)reader["CodeLogiciel"];
 
             // Si le code du logiciel courant est != de celui du dernier logiciel de la liste,
-            // on crée un nouvel objet Logiciel,
+            // on crée un nouvel objet Logiciel.
             Logiciel logi = null;
             if (listLogiciels.Count == 0 || listLogiciels[listLogiciels.Count - 1].Code != codeLogi)
             {
@@ -211,8 +182,9 @@ namespace JobOverview.Model
             else logi = listLogiciels[listLogiciels.Count - 1];
 
             Entity.Version v = new Entity.Version();
-            // Si le N° de version est null, c'est que le logiciel n'a pas encore
-            // de version. Dans ce cas, on n'ajoute pas de version à la collection
+
+            // Si le N° de version est null, c'est que le logiciel n'a pas encore de version. 
+            // Dans ce cas, on n'ajoute pas de version à la collection.
             if (reader["NumeroVersion"] != DBNull.Value)
             {
                 v.Numero = (float)reader["NumeroVersion"];
@@ -234,7 +206,7 @@ namespace JobOverview.Model
         }
 
         /// <summary>
-        /// Charge la liste de Module passée en paramètre à partir du datareader
+        /// Chargement de la liste de Modules passée en paramètre à partir du Datareader.
         /// </summary>
         /// <param name="listmod"></param>
         /// <param name="reader"></param>
@@ -252,6 +224,7 @@ namespace JobOverview.Model
             }
 
         } 
+
         #endregion
     }
 }

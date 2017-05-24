@@ -11,7 +11,7 @@
 
     <DockPanel Margin="0,20,0,0">
 
-        <!--#region Expander Ajout de Taches Annexe-->
+        <!--#region Expander Ajout de Taches Annexe.-->
         <Expander ExpandDirection="Left" MaxWidth="400" DockPanel.Dock="Right" IsExpanded="True">
             <Expander.ToolTip>
                 <ToolTip>
@@ -20,7 +20,9 @@
             </Expander.ToolTip>
             <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="0,0,0,10">
                 <DockPanel>
-                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" 
+                                Visibility="{Binding Source={x:Static properties:Settings.Default},
+                                Path=ManagerConnecte, Converter={StaticResource ConvManagerVisible}}">
                         <Button Name="btnAjouter" Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
                             <Button.ToolTip>
                                 <ToolTip>
@@ -68,9 +70,10 @@
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
-
-
                         </Grid.RowDefinitions>
+                        <Label  Grid.Row="0" Content="Libellé Tâche Annexe:" Grid.ColumnSpan="2" />
+                        <TextBox Grid.Row="1" Text="{Binding Path=TachesAnnexes/Libelle}"
+                             IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}" Grid.ColumnSpan="2"/>
                         <Label Grid.Row="2" Content="Personne"/>
                         <TextBlock Grid.Row="2" Grid.Column="1" Margin="5" Width="150" Text="{Binding Path=TachesAnnexes/LoginPersonne}" 
                                        HorizontalAlignment="Left"
@@ -84,7 +87,6 @@
                           SelectedIndex="{Binding ElementName=cbPersonne, Path=Cursor}"
                            IsSynchronizedWithCurrentItem="True"
                                Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"  Grid.Column="1" Height="Auto" Width="Auto">
-                            <!--IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Grid.Column="1" Height="Auto" Width="Auto">-->
                             <ComboBox.ToolTip>
                                 <ToolTip>
                                     <TextBlock>Liste des personnes.</TextBlock>
@@ -97,9 +99,8 @@
                                        VerticalAlignment="Center"/>
                         <ComboBox Grid.Row="3"  Grid.Column="1" DockPanel.Dock="Right" Name="cbActivite"  
                               ItemsSource="{Binding Path=ActivitesAutorisées}" SelectedValue="{Binding Path=TachesAnnexes/CodeActivite }" DisplayMemberPath="Code" 
-                              SelectedValuePath="Code" SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
+                              SelectedValuePath="Code" SelectedIndex="0" IsSynchronizedWithCurrentItem="True" 
                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" Height="Auto" Width="Auto">
-                            <!--IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Height="Auto" Width="Auto">-->
                             <ComboBox.ToolTip>
                                 <ToolTip>
                                     <TextBlock>Liste des activités.</TextBlock>
@@ -108,12 +109,6 @@
                         </ComboBox>
                         <Label  Grid.Row="4" Content="Libellé Activité:" />
                         <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=Activites/Libelle}" VerticalAlignment="Center" TextWrapping="Wrap"/>
-
-                        <Label  Grid.Row="0" Content="Libellé Tache Annexe:" Grid.ColumnSpan="2" />
-                        <TextBox Grid.Row="1" Text="{Binding Path=TachesAnnexes/Libelle}"
-                             IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}" Grid.ColumnSpan="2"/>
-                        <!--<TextBlock Text="Date Travail " Grid.Row="5"/>
-                    <TextBlock Text="Heures" Grid.Row="6"/>-->
                     </Grid>
 
                     <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"  Width="350"
@@ -125,24 +120,24 @@
 
         <!--#region DockPanel Consultation des Taches Annexe-->
         <DockPanel>
-
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right">
-                <TextBlock Text="Filtre : " VerticalAlignment="Center"/>
-                <ComboBox Name="cbPersonne" 
+            <StackPanel Background="LightBlue" DockPanel.Dock="Top">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <TextBlock Text="Filtre : " VerticalAlignment="Center"/>
+                    <ComboBox Name="cbPersonne" 
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
                           SelectedIndex="0"
                           IsSynchronizedWithCurrentItem="True"
                            IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule} }">
-                    <ComboBox.ToolTip>
-                        <ToolTip>
-                            <TextBlock>Choisir les options de filtrage.</TextBlock>
-                        </ToolTip>
-                    </ComboBox.ToolTip>
-                </ComboBox>
+                        <ComboBox.ToolTip>
+                            <ToolTip>
+                                <TextBlock>Choisir les options de filtrage.</TextBlock>
+                            </ToolTip>
+                        </ComboBox.ToolTip>
+                    </ComboBox>
+                </StackPanel>
             </StackPanel>
-
             <ListView Margin="10" ItemsSource="{Binding TachesAnnexes}" IsSynchronizedWithCurrentItem="True" IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule} }">
                 <ListView.View>
                     <GridView>
@@ -150,8 +145,6 @@
                         <GridViewColumn Header="CodeActivité" DisplayMemberBinding="{Binding Path=CodeActivite}"/>
                         <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
                         <GridViewColumn  Header="Description" DisplayMemberBinding="{Binding Path= Description}" />
-
-
                     </GridView>
                 </ListView.View>
             </ListView>

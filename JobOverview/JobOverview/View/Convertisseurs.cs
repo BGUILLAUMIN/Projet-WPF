@@ -14,7 +14,7 @@ using System.Windows;
 
 namespace JobOverview.View
 {
-    #region Convertisseurs pour les passages en mode consultation ou edition
+    #region Convertisseurs pour les passages en mode consultation ou edition.
     public class ConvModeEditActivation : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -42,7 +42,7 @@ namespace JobOverview.View
     }
     #endregion
 
-    #region Convertisseurs pour les changements de couleur dans Versions
+    #region Convertisseurs pour les changements de couleur dans Versions.
     public class IntToColorBrushConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -65,7 +65,7 @@ namespace JobOverview.View
     }
     #endregion
 
-    #region Convertisseurs pour les passages en mode visible invisible, convertisseur non utilisé à l'état actuel
+    #region Convertisseurs pour les passages en mode visible invisible, convertisseur non utilisé à l'état actuel.
     public class ConvModeEditVisible : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -78,9 +78,22 @@ namespace JobOverview.View
             throw new NotImplementedException();
         }
     }
+
+    public class ConvManagerVisible : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (bool)value == false ? Visibility.Hidden : Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     #endregion
 
-    #region Convertisseurs pour bloquer la Saisie dans les expander aux personnes qui ne sont pas manager
+    #region Convertisseurs pour bloquer la Saisie dans les expander aux personnes qui ne sont pas manager.
     public class ConvModeEditManager : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
