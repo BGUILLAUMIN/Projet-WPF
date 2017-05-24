@@ -17,5 +17,7 @@
 - Sauvegarde de la base:
 	- JobOverview (.bak)
 
-* Bug non résolu :
+* Bug non résolus :
   - L'ajout de tache de production se substitue à la derniere tache, la nouvelle tache n'est pas créé dans la liste. Pour tester l'ajout, ouvrir la fenêtre et ajouter une tache sans passer par le mode édition.
+  
+  - Le .exe ne répond pas sur les fenêtres de taches de production et de tache annexes.
