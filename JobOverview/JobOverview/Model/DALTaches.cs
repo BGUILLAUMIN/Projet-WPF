@@ -131,6 +131,7 @@ namespace JobOverview.Model
                 paramCodeActivite.Value = tacheProd.CodeActivite;
                 SqlParameter paramLogin = new SqlParameter("@Login", DbType.String);
                 paramLogin.Value = tacheProd.LoginPersonne;
+
                 SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
                 paramDescription.Value = (object)tacheProd.Description ?? DBNull.Value;
                 SqlParameter paramDureePrevue = new SqlParameter("@DureePrevue", SqlDbType.Float);
@@ -154,7 +155,7 @@ namespace JobOverview.Model
                 command.Parameters.Add(paramLibellé);
                 command.Parameters.Add(paramCodeActivite);
                 command.Parameters.Add(paramLogin);
-                command.Parameters.Add(paramDescription);
+                command.Parameters.Add(paramDescription); 
                 command.Parameters.Add(paramDureePrevue);
                 command.Parameters.Add(paramDureeRestanteEstimee);
                 command.Parameters.Add(paramCodeModule);

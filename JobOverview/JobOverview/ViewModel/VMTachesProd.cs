@@ -29,7 +29,7 @@ namespace JobOverview.ViewModel
         public List<Activite> Activités { get; set; }
         public List<Module> Modules { get; set; }
         public ObservableCollection<TacheProd> TachesProds { get; }
-        public ObservableCollection<TacheProd> TachesProdsListView { get; }
+
         public TacheProd TacheCourante
         {
             get
@@ -56,7 +56,7 @@ namespace JobOverview.ViewModel
             Activités = DALTaches.GetActivités().Where(a => a.Annexe == false).ToList();
             Modules = DALLogiciels.GetModulesLibellé();
             TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
-            TachesProdsListView = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
+            //TachesProdsListView = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
             ModeEdit = ModesEdition.Consultation;
         }
         #endregion
@@ -205,7 +205,7 @@ namespace JobOverview.ViewModel
         // dès que l'on clique sur le bouton ajouter, cela désactive l'état du bouton
         private bool ActiverAjout()
         {
-            return ModeEdit == ModesEdition.Consultation; ;
+            return ModeEdit == ModesEdition.Consultation;
         }
 
         // dès que l'on clique sur le bouton Enregistrer ou Annuler, cela désactive l'état des boutons
