@@ -68,9 +68,10 @@
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
-
-
                         </Grid.RowDefinitions>
+                        <Label  Grid.Row="0" Content="Libellé Tache Annexe:" Grid.ColumnSpan="2" />
+                        <TextBox Grid.Row="1" Text="{Binding Path=TachesAnnexes/Libelle}"
+                             IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}" Grid.ColumnSpan="2"/>
                         <Label Grid.Row="2" Content="Personne"/>
                         <TextBlock Grid.Row="2" Grid.Column="1" Margin="5" Width="150" Text="{Binding Path=TachesAnnexes/LoginPersonne}" 
                                        HorizontalAlignment="Left"
@@ -84,7 +85,6 @@
                           SelectedIndex="{Binding ElementName=cbPersonne, Path=Cursor}"
                            IsSynchronizedWithCurrentItem="True"
                                Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"  Grid.Column="1" Height="Auto" Width="Auto">
-                            <!--IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Grid.Column="1" Height="Auto" Width="Auto">-->
                             <ComboBox.ToolTip>
                                 <ToolTip>
                                     <TextBlock>Liste des personnes.</TextBlock>
@@ -99,7 +99,6 @@
                               ItemsSource="{Binding Path=ActivitesAutorisées}" SelectedValue="{Binding Path=TachesAnnexes/CodeActivite }" DisplayMemberPath="Code" 
                               SelectedValuePath="Code" SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" Height="Auto" Width="Auto">
-                            <!--IsEnabled="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditActivation}}" Height="Auto" Width="Auto">-->
                             <ComboBox.ToolTip>
                                 <ToolTip>
                                     <TextBlock>Liste des activités.</TextBlock>
@@ -108,12 +107,6 @@
                         </ComboBox>
                         <Label  Grid.Row="4" Content="Libellé Activité:" />
                         <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=Activites/Libelle}" VerticalAlignment="Center" TextWrapping="Wrap"/>
-
-                        <Label  Grid.Row="0" Content="Libellé Tache Annexe:" Grid.ColumnSpan="2" />
-                        <TextBox Grid.Row="1" Text="{Binding Path=TachesAnnexes/Libelle}"
-                             IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}" Grid.ColumnSpan="2"/>
-                        <!--<TextBlock Text="Date Travail " Grid.Row="5"/>
-                    <TextBlock Text="Heures" Grid.Row="6"/>-->
                     </Grid>
 
                     <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"  Width="350"
@@ -150,8 +143,6 @@
                         <GridViewColumn Header="CodeActivité" DisplayMemberBinding="{Binding Path=CodeActivite}"/>
                         <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
                         <GridViewColumn  Header="Description" DisplayMemberBinding="{Binding Path= Description}" />
-
-
                     </GridView>
                 </ListView.View>
             </ListView>
