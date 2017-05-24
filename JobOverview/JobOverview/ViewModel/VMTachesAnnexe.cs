@@ -22,6 +22,8 @@ namespace JobOverview.ViewModel
         private List<Activite> _activitesAutorisées;
 
         #endregion
+
+        #region Propriétés
         public List<Activite> ActivitesAutorisées
         {
             get { return _activitesAutorisées; }
@@ -49,7 +51,8 @@ namespace JobOverview.ViewModel
             {
                 SetProperty(ref _mode, value);
             }
-        }
+        } 
+        #endregion
         //*********************************************************************************************************************************
         #region Constructeur
         public VMTachesAnnexe()
@@ -67,8 +70,8 @@ namespace JobOverview.ViewModel
 
         #endregion
 
-        //**************************** Ajout des commandes*********************************************************************************
-        #region COMMANDES
+        //**************************** Ajout des définitions  des commandes*********************************************************************************
+        #region Définition des commandes
         //lors du clic sur le bouton Ajouter
         private ICommand _cmdAjouter;
         public ICommand CmdAjouter

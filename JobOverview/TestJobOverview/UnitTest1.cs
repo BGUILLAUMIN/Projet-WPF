@@ -8,7 +8,7 @@ namespace TestJobOverview
     [TestClass]
     public class TestDAL
     {
-        public static Tache ta { get; set; }
+        private static Tache ta { get; set; }
 
         [TestMethod]
 

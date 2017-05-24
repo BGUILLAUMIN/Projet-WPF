@@ -13,32 +13,7 @@ namespace JobOverview.ViewModel
     {
         // Vue-modèle courante sur laquelle est liées le ContentControl
         // de la zone principale
-        //private ViewModelBase _VMCourante;
-        //public ViewModelBase VMCourante
-        //{
-        //	get { return _VMCourante; }
-        //	private set
-        //	{
-        //		SetProperty(ref _VMCourante, value);
-        //	}
-        //}
-
-        //#region Commandes
-        //private ICommand _cmdLogin;
-        //public ICommand CmdLogin
-        //{
-        //	get
-        //	{
-        //		if (_cmdLogin == null)
-        //			_cmdLogin = new RelayCommand(() => VMCourante = new VMLogin());
-        //		return _cmdLogin;
-        //	}
-        //}
-
-        //#endregion
-
-
-        #region Champs privés
+         #region Champs privés
         private ViewModelBase _vmCourante;
         #endregion
 
