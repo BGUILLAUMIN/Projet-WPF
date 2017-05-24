@@ -48,6 +48,7 @@ namespace JobOverview.View
 
         private void CbPersonne_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (cbPersonne.SelectedValue != null)
             Properties.Settings.Default.PersonneCourante = cbPersonne.SelectedValue.ToString();
         }
 

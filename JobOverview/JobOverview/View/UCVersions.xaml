@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:JobOverview.View"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"            
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
 
-    <DockPanel Margin="0,20,0,0">
+    <DockPanel Margin="5">
         <!--#region Definition des resources.-->
         <DockPanel.Resources>
 
@@ -20,7 +20,14 @@
         <!--#endregion-->
 
         <!--#region Expander Ajout de Taches Annexe.-->
-        <Expander ExpandDirection="Left" MaxWidth="250" DockPanel.Dock="Right" IsExpanded="True" >
+        <Expander ExpandDirection="Left" DockPanel.Dock="Right" IsExpanded="True">
+            <Expander.Header>
+                <TextBlock Text="Détails de la Version sélectionnée">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90"/>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
             <Expander.ToolTip>
                 <ToolTip>
                     <TextBlock>Déplier la fiche de détails.</TextBlock>
@@ -34,38 +41,40 @@
 
                     <Grid DockPanel.Dock="Top">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
                             <RowDefinition Height="30"/>
-                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="40"/>
                             <RowDefinition Height="30"/>
-                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="40"/>
                             <RowDefinition Height="30"/>
-                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="40"/>
                             <RowDefinition Height="30"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
 
 
-                        <TextBlock Text="Millesime de la version :" 
-                               Grid.Row="0"/>
-                        <TextBlock Text="{Binding Path=Logiciels/Versions/Millesime}" 
-                               Grid.Row="1"
+                        <Label Content="Millesime de la version :" 
+                               Grid.Row="1"/>
+                        <Label Content="{Binding Path=Logiciels/Versions/Millesime}" 
+                               Grid.Row="2"
                                FontWeight="Bold"/>
-                        <TextBlock Text="Nombre de releases :" 
-                               Grid.Row="2"/>
-                        <TextBlock Text="{Binding Path=Logiciels/Versions/DerniereRelease}" 
-                               Grid.Row="3" 
+                        <Label Content="Nombre de releases :" 
+                               Grid.Row="3"/>
+                        <Label Content="{Binding Path=Logiciels/Versions/DerniereRelease}" 
+                               Grid.Row="4" 
                                FontWeight="Bold"/>
-                        <TextBlock Text="Date d'ouverture de la version :" Grid.Row="4"/>
-                        <TextBlock Text="{Binding Path=Logiciels/Versions/DateOuverture, StringFormat='\{0:dd/MM/yyy}'}" 
+                        <Label Content="Date d'ouverture de la version :" Grid.Row="5"/>
+                        <Label Content="{Binding Path=Logiciels/Versions/DateOuverture, StringFormat='\{0:dd/MM/yyy}'}" 
                                FontWeight="Bold"
-                               Grid.Row="5"/>
-                        <TextBlock Text="Date de sortie prévue de la version :" Grid.Row="6"/>
-                        <TextBlock Text="{Binding Path=Logiciels/Versions/DateSortiePrevue, StringFormat='\{0:dd/MM/yyy}'}"
+                               Grid.Row="6"/>
+                        <Label Content="Date de sortie prévue de la version :" Grid.Row="7"/>
+                        <Label Content="{Binding Path=Logiciels/Versions/DateSortiePrevue, StringFormat='\{0:dd/MM/yyy}'}"
                                FontWeight="Bold"
-                               Grid.Row="7"/>
+                               Grid.Row="8"/>
                     </Grid>
                 </DockPanel>
             </Border>
@@ -75,9 +84,14 @@
         <!--#region Consultation des Taches Annexes.-->
         <DockPanel>
             <!--#region Partie des ComboBox.-->
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,5,10,0">
-                <TextBlock Text="Logiciel : " VerticalAlignment="Center" MinWidth="55"/>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Top" 
+                        Background="LightBlue"
+                        Margin="10,10,10,-1">
+                <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                <TextBlock Text="Logiciel : " VerticalAlignment="Center"
+                           FontSize="18" Margin="5,0"/>
                 <ComboBox ItemsSource="{Binding Path=Logiciels}"
+                          HorizontalAlignment="Left"
                           DisplayMemberPath="Nom"
                           SelectedValuePath="Code"
                           SelectedIndex="0" IsSynchronizedWithCurrentItem="True">
@@ -87,6 +101,7 @@
                         </ToolTip>
                     </ComboBox.ToolTip>
                 </ComboBox>
+                </StackPanel>
             </StackPanel>
             <!--#endregion -->
 
