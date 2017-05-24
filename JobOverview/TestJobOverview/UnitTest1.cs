@@ -12,6 +12,8 @@ namespace TestJobOverview
 
         [TestMethod]
 
+
+        // Test d'enregistrement de tâche annexe.
         public void TestEnregistrementTacheAnnexe()
         {
          
@@ -39,7 +41,7 @@ namespace TestJobOverview
 
         [TestMethod]
 
-        // Test utilisant la variable crée dans le test d'ajout
+        // Test de supression de tâche annexe utilisant la variable crée dans le test d'ajout
         // de tache annexe.
         public void TestSupprimerTachesAnnexes()
         {
@@ -58,7 +60,7 @@ namespace TestJobOverview
 
 
 
-
+        // Test d'enregistrement de tâche de production.
         [TestMethod]
         public void TestEnregistrementTacheProd()
         {

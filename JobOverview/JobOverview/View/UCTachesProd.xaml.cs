@@ -34,16 +34,17 @@ namespace JobOverview.View
             _vmTacheProd = new VMTachesProd();
             DataContext = _vmTacheProd;
 
-            //Branchement des gestionnaires évenements
+            // Branchement des gestionnaires évènements.
+            // Filtrage des tâches de production lors d'un click sur le bouton Appliquer filtre.
             BtnFiltre.Click += BtnFiltre_Click;
-            cbxPersonnes2.SelectionChanged += CbxPersonnes2_SelectionChanged;
+            // Mise à jour des temps globaux en fonction de la personne selectionnée dans la comboBox cbxPersonnes.
             cbxPersonnes.SelectionChanged += cbxPersonnes_SelectionChanged;
         }
 
         private void BtnFiltre_Click(object sender, RoutedEventArgs e)
         {
 
-            // S'il y a une personne selectionnées dans la combobox Personne, on affecte aux texblocks les 
+            // S'il y a une personne selectionnée dans la combobox Personne, on affecte aux texblocks les 
             // valeurs de temps global restants et réalisées pour cette personne. 
 
             ICollectionView View = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProds);
@@ -52,7 +53,7 @@ namespace JobOverview.View
             // en appelant la méthode FiltrerTachesProds et en lui passant en paramètre l'objet view.
             if (cbxVersions.SelectedValue != null && cbxPersonnes.SelectedValue != null && cbxLogiciels.SelectedValue != null)
             {
-                //on applique le filtre
+                // On applique le filtre.
                 View.Filter = FiltrerTachesProds;
 
                 if (_vmTacheProd.TacheCourante != null)
@@ -67,13 +68,6 @@ namespace JobOverview.View
             }
 
         }
-
-        private void CbxPersonnes2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cbxPersonnes2.SelectedValue != null)
-                Properties.Settings.Default.PersonneCourante = cbxPersonnes2.SelectedValue.ToString();
-        }
-
 
         // Méthode permettant de filtrer les tâches de production en fonction du logiciel, de la version 
         // et de la personne dans les combobox.
@@ -99,6 +93,9 @@ namespace JobOverview.View
 
         private void cbxPersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (cbxPersonnes.SelectedValue != null)
+                Properties.Settings.Default.PersonneCourante = cbxPersonnes.SelectedValue.ToString();
+
             if (cbxPersonnes.SelectedValue != null)
             {
                 var a = (Travail)DALTaches.GetTempsTravailGlobaux(cbxPersonnes.SelectedValue.ToString());

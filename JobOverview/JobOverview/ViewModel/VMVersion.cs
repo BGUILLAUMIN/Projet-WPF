@@ -12,15 +12,20 @@ namespace JobOverview.ViewModel
 
     class VMVersion : ViewModelBase
     {
-        public List<Logiciel> Logiciels { get; set; }
-        public List<Module> Modules { get; set; }
+        #region Propriétés
+        public List<Logiciel> Logiciels { get; }
+        public List<Module> Modules { get; }
 
+        #endregion
+
+        #region Constructeurs
         public VMVersion()
         {
             // Permet à la comboBox d'afficher la liste des logiciels disponibles au chargement de la fenêtre.
             Logiciels = DALLogiciels.GetLogicielsVersions();
-
         
         }
+
+        #endregion
     }
 }

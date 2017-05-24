@@ -11,9 +11,8 @@ namespace JobOverview.ViewModel
 {
     public class VMMain : ViewModelBase
     {
-        // Vue-modèle courante sur laquelle est liées le ContentControl
-        // de la zone principale
-         #region Champs privés
+        // Vue-modèle courante sur laquelle est liées le ContentControl de la zone principale
+        #region Champs privés
         private ViewModelBase _vmCourante;
         #endregion
 
@@ -29,7 +28,7 @@ namespace JobOverview.ViewModel
             {
                 SetProperty(ref _vmCourante, value);
             }
-        } 
+        }
 
         #endregion
 
@@ -100,7 +99,6 @@ namespace JobOverview.ViewModel
 
         #endregion
 
-
         #region Méthodes privées des commandes
 
         // On définit une instance de VMTachesProd comme vue-modèle courante.
@@ -131,7 +129,7 @@ namespace JobOverview.ViewModel
         private void ActionMenuVersion()
         {
             VMCourante = new VMVersion();
-        } 
+        }
         #endregion
 
     }

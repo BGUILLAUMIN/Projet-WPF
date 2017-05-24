@@ -83,7 +83,7 @@
 
         <!--#region Consultation des Taches Annexes.-->
         <DockPanel>
-            <!--#region Partie des ComboBox.-->
+            <!--#region superieure, partie des ComboBox.-->
             <StackPanel Orientation="Vertical" DockPanel.Dock="Top" 
                         Background="LightBlue"
                         Margin="10,10,10,-1">

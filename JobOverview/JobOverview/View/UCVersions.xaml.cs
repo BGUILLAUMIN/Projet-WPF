@@ -24,15 +24,10 @@ namespace JobOverview.View
     /// </summary>
     public partial class UCVersions : UserControl
     {
-        private VMVersion _vmVersions;
-
         public UCVersions()
         {
-
             InitializeComponent();
-            _vmVersions = new VMVersion();
-            DataContext = _vmVersions;
-
+            DataContext = new VMVersion(); 
         }
     }
 }

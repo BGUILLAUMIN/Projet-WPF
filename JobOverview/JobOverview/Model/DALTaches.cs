@@ -74,8 +74,6 @@ namespace JobOverview.Model
                         from jo.Tache
                         where Annexe = 1";
 
-
-
             using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
                 var command = new SqlCommand(req, connect);
@@ -97,7 +95,6 @@ namespace JobOverview.Model
                     }
                 }
             }
-
             return listTachesAnnexe;
         }
 
@@ -134,7 +131,7 @@ namespace JobOverview.Model
 
                 SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
                 if (tacheProd.Description != null)
-                    paramDescription.Value = tacheProd.Description; 
+                    paramDescription.Value = tacheProd.Description;
                 else
                     paramDescription.Value = DBNull.Value;
 
@@ -151,15 +148,15 @@ namespace JobOverview.Model
                 SqlParameter paramCodeLogicielVersion = new SqlParameter("@CodeLogicielVersion", DbType.String);
                 paramCodeLogicielVersion.Value = tacheProd.CodeLogiciel;
 
-                
 
-                // Création  de la commande
+
+                // Création  de la commande.
                 var command = new SqlCommand(req, cnx, tran);
                 command.Parameters.Add(paramIdTache);
                 command.Parameters.Add(paramLibellé);
                 command.Parameters.Add(paramCodeActivite);
                 command.Parameters.Add(paramLogin);
-                command.Parameters.Add(paramDescription); 
+                command.Parameters.Add(paramDescription);
                 command.Parameters.Add(paramDureePrevue);
                 command.Parameters.Add(paramDureeRestanteEstimee);
                 command.Parameters.Add(paramCodeModule);
@@ -174,23 +171,25 @@ namespace JobOverview.Model
                     command.ExecuteNonQuery();
 
                     // Validation de la transaction s'il n'y a pas eu d'erreur.
-                   tran.Commit();
+                    tran.Commit();
                 }
                 catch (Exception)
                 {
-                    tran.Rollback(); // Annulation de la transaction en cas d'erreur.
-                    throw;   // Remontée de l'erreur à l'appelant.
+                    // Annulation de la transaction en cas d'erreur.
+                    tran.Rollback();
+                    // Remontée de l'erreur à l'appelant.
+                    throw;
                 }
             }
         }
 
         /// <summary>
-        /// Enregistre une tâche annexe dans la base.
+        /// Enregistrement d'une tâche annexe dans la base.
         /// </summary>
 
         public static void EnregistrerTachesAnnexes(Tache tachesAnn)
         {
-            // Ecriture de la requête d'insertion. 
+            // Écriture de la requête d'insertion. 
             string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
                         Values (@IdTache, @Libelle, 1 , @CodeActivite, @Login, @Description)";
 
@@ -234,12 +233,14 @@ namespace JobOverview.Model
                 }
                 catch (Exception)
                 {
-                    tran.Rollback(); // Annulation de la transaction en cas d'erreur.
-                    throw;   // Remontée de l'erreur à l'appelant.
+                    // Annulation de la transaction en cas d'erreur.
+                    tran.Rollback();
+                    // Remontée de l'erreur à l'appelant.
+                    throw;
                 }
             }
         }
-               
+
         /// <summary>
         /// Suppression d'une tache Annexe dans la base
         /// </summary>
@@ -247,8 +248,8 @@ namespace JobOverview.Model
         /// <returns></returns>
         public static void SupprimerTachesAnnexes(Guid Id)
         {
-            // Préparation des requêtes et paramètres
-            // Ecriture de la requête d'insertion 
+            // Préparation des requêtes et paramètres.
+            // Ecriture de la requête d'insertion.
             string req = @"delete from jo.Tache where IdTache= @Id";
 
 
@@ -256,7 +257,7 @@ namespace JobOverview.Model
 
             using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
-                // Ouverture de la connexion et début de la transaction
+                // Ouverture de la connexion et début de la transaction.
                 cnx.Open();
                 SqlTransaction tran = cnx.BeginTransaction();
                 var command = new SqlCommand(req, cnx, tran);
@@ -265,23 +266,24 @@ namespace JobOverview.Model
                 command.Parameters.Add(param);
                 try
                 {
-                    // exécution de la commande
-
+                    // Exécution de la commande.
                     command.ExecuteNonQuery();
 
-                    // Validation de la transaction s'il n'y a pas eu d'erreur
+                    // Validation de la transaction s'il n'y a pas eu d'erreur.
                     tran.Commit();
                 }
                 catch (Exception)
                 {
-                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
-                    throw;   // Remontée de l'erreur à l'appelant
+                    // Annulation de la transaction en cas d'erreur.
+                    tran.Rollback();
+                    // Remontée de l'erreur à l'appelant.
+                    throw;
                 }
             }
         }
 
         /// <summary>
-        /// Sérialisation des tâches. Permet d'exporter les données tâches en données xml.
+        /// Sérialisation des tâches. Permet d'exporter les données des tâches de production en données au format XML.
         /// </summary>
         /// <param name="taches"></param>
         public static void ExportTachesXml(List<TacheProd> taches)
@@ -295,7 +297,7 @@ namespace JobOverview.Model
         }
 
         /// <summary>
-        /// Permet de récupérer les activités annexes.
+        /// Permet de récupérer les activités.
         /// </summary>
         public static List<Activite> GetActivités()
         {
@@ -319,7 +321,7 @@ namespace JobOverview.Model
 
         public static List<Activite> GetActivitésAnnexesFiltrées(string codeActivite)
         {
-            // Requêtage à la BDD pour récupérer les informations sur les activités.
+            // Requêtage à la BDD pour récupérer les informations sur les activités annexes.
             List<Activite> listActivitésAnx = new List<Activite>();
 
             var conx = Settings.Default.ConnectionJobOverview;
@@ -349,7 +351,7 @@ namespace JobOverview.Model
         }
 
         /// <summary>
-        /// Permet de récupérer les temps de travail globaux réalisés et restants de chaque employé.
+        /// Permet de récupérer les temps de travail globaux réalisés et restants de chaque personne.
         /// </summary>
         public static Travail GetTempsTravailGlobaux(string nom)
         {
@@ -413,19 +415,17 @@ namespace JobOverview.Model
             }
         }
 
+        /// <summary>
+        /// Obtient et renvoie les temps de travail globaux et restants. 
+        /// </summary>
+        /// <returns></returns>
         private static void GetTempsTravailGlobauxFromDataReader(SqlDataReader reader, Travail Travail)
         {
-
-
             if (reader["NbrHeureTravail"] != DBNull.Value)
                 Travail.NbrHeuresTravailGlobalRealisees = (double)reader["NbrHeureTravail"];
 
             if (reader["NbrHeureRestante"] != DBNull.Value)
                 Travail.NbrHeuresTravailGlobalRestantes = (double)reader["NbrHeureRestante"];
-
-
-
-
         }
 
         #endregion

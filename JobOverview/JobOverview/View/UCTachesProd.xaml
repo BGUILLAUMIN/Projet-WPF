@@ -12,12 +12,13 @@
                
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
-    <!--Définition des ressources.-->
+    <!--#region Définition des ressources.-->
     <UserControl.Resources>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="2"/>
         </Style>
     </UserControl.Resources>
+    <!--#endregion-->
 
     <DockPanel Margin="5">
         <!--#region Expander Ajout de Taches de production.-->
@@ -290,15 +291,15 @@
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                    <CheckBox Name="ckbTachesTerm" Content="Avec taches terminées" IsChecked="False" VerticalAlignment="Bottom" Margin="5,15,0,0">
-                        <CheckBox.ToolTip>
-                            <ToolTip>
-                                <TextBlock>Filtrer les tâches selon leur degré d'avancement.</TextBlock>
-                            </ToolTip>
-                        </CheckBox.ToolTip>
-                    </CheckBox>
-                    <Button Name="BtnFiltre" Content="Appliquer filtre" Height="30" VerticalAlignment="Bottom" Margin="5"/>
-                </StackPanel>
+                        <CheckBox Name="ckbTachesTerm" Content="Avec taches terminées" IsChecked="False" VerticalAlignment="Bottom" Margin="5,15,0,0">
+                            <CheckBox.ToolTip>
+                                <ToolTip>
+                                    <TextBlock>Filtrer les tâches selon leur degré d'avancement.</TextBlock>
+                                </ToolTip>
+                            </CheckBox.ToolTip>
+                        </CheckBox>
+                        <Button Name="BtnFiltre" Content="Appliquer filtre" Height="30" VerticalAlignment="Bottom" Margin="5"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
             <!--#endregion-->
@@ -316,7 +317,6 @@
             <!--#endregion-->
 
             <!--#region Liste d'affichage.-->
-            <!--#region Liste d'affichage-->
             <ListView Name="lvTachesProd" Margin="10" ItemsSource="{Binding TachesProds}" IsSynchronizedWithCurrentItem="True" 
                       IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}">
                 <ListView.View>

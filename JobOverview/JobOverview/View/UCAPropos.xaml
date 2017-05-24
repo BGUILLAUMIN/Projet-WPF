@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:JobOverview.View"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
-    
+
     <UserControl.Resources>
         <!-- Création d'un style pour les images.-->
         <Style TargetType="Image">
@@ -33,13 +33,11 @@
                 <TextBlock Text="Virginie PORTEMER"  DockPanel.Dock="Top" HorizontalAlignment="Center" FontSize="20"/>
                 <TextBlock Text="Benoît GUILLAUMIN"  DockPanel.Dock="Top" HorizontalAlignment="Center" FontSize="20"/>
                 <TextBlock Text="Remi BLAVEC"  DockPanel.Dock="Top" HorizontalAlignment="Center" FontSize="20"/>
-                <StackPanel Orientation="Horizontal"  DockPanel.Dock="Top" HorizontalAlignment="Center">
-                    <TextBlock Text="Yannick CAPPELLE"  DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,0,20,0" 
-                               VerticalAlignment="Center"  FontSize="20"/>
-                    <Image Source="pack://application:,,,/images/yannick.png"/>
-                </StackPanel>
+                <TextBlock Text="Yannick CAPPELLE"  DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="20"/>
+
+
                 <Separator Height="600" Opacity="0"/>
-              
+
             </StackPanel>
         </ScrollViewer>
 

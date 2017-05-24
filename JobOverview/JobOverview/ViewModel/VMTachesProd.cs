@@ -24,11 +24,10 @@ namespace JobOverview.ViewModel
         #endregion
 
         #region Propriétés
-        public List<Logiciel> Logiciels { get; set; }
-        public List<Personne> Personnes { get; set; }
-        public List<Activite> Activités { get; set; }
-        public List<Module> Modules { get; set; }
-        public ObservableCollection<TacheProd> TachesProds { get; }
+        public List<Logiciel> Logiciels { get;}
+        public List<Personne> Personnes { get;}
+        public List<Activite> Activités { get;}
+        public ObservableCollection<TacheProd> TachesProds { get;}
 
         public TacheProd TacheCourante
         {
@@ -47,21 +46,18 @@ namespace JobOverview.ViewModel
         }
         #endregion
 
-        #region Constructeur
+        #region Constructeurs
         public VMTachesProd()
         {
             // Appels des méthodes de DAL pour remplir le visuel au chargement de la fenêtre.
             Logiciels = DALLogiciels.GetLogicielsVersions();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
             Activités = DALTaches.GetActivités().Where(a => a.Annexe == false).ToList();
-            Modules = DALLogiciels.GetModulesLibellé();
             TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
-            //TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
             ModeEdit = ModesEdition.Consultation;
         }
         #endregion
-
-
+        
         #region Définition des commandes
         // Lors du clic sur le bouton Ajouter.
         private ICommand _cmdAjouter;
@@ -87,13 +83,12 @@ namespace JobOverview.ViewModel
             }
         }
 
-        // Llors du clic sur le bouton Annuler.
+        // Lors du clic sur le bouton Annuler.
         private ICommand _cmdAnnuler;
         public ICommand CmdAnnuler
         {
             get
             {
-
                 if (_cmdAnnuler == null)
                     _cmdAnnuler = new RelayCommand(AnnulerTache, ActiverAnnEnr);
                 return _cmdAnnuler;
@@ -106,7 +101,6 @@ namespace JobOverview.ViewModel
         {
             get
             {
-
                 if (_cmdExport == null)
                     _cmdExport = new RelayCommand(AppelExport);
                 return _cmdExport;
@@ -116,7 +110,7 @@ namespace JobOverview.ViewModel
 
         #endregion
 
-        #region Code des commandes
+        #region Méthodes des commandes
         private void AppelExport()
         {
             try
@@ -126,7 +120,7 @@ namespace JobOverview.ViewModel
 
                 if (res == DialogResult.OK)
                 {
-                    //Appel de la méthode d'export des données en passsant en paramêtre la liste de tâche de production
+                    // Appel de la méthode d'export des données en passsant en paramêtre la liste de tâche de production.
                     DALTaches.ExportTachesXml(TachesProds.ToList());
 
                     MessageBox.Show("Exportation réalisée avec succès",
@@ -143,15 +137,17 @@ namespace JobOverview.ViewModel
         // puis, on passe en mode édition.
         private void AjouterTache()
         {
-            //Instancie une nouvelle tâche
+            // Instanciation d'une nouvelle tâche de production.
             var NouvelleTache = new TacheProd() { Id = Guid.NewGuid() };
-            //Initiatialisation des propriétés de la nouvelle tâche
-            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneCourante; //Récupère la personne connectée
-            NouvelleTache.Numero = TachesProds.Max(n => n.Numero) + 1; //Incrémente le nouveau numéro de tâche de production en se basant sur le dernier
-
+            // Initiatialisation des propriétés de la nouvelle tâche.
+            // On récupère la personne selectionnée.
+            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneCourante;
+            // On incrémente le nouveau numéro de tâche de production en se basant sur le dernier de la liste.
+            // Le numero est en auto-incrément, cette information ne sert que pendant l'ajout de Tâche. 
+            NouvelleTache.Numero = TachesProds.Max(n => n.Numero) + 1;
             // Ajoute la nouvelle tache dans la liste TachesProds.
             TachesProds.Add(NouvelleTache);
-
+            
             // La nouvelle tâche devient la tâche courante, de façon à ce qu'elle soit automatiquement sélectionnée.
             ICollectionView view = CollectionViewSource.GetDefaultView(TachesProds);
             view.MoveCurrentToLast();
@@ -165,36 +161,36 @@ namespace JobOverview.ViewModel
         private void EnregistrerTache()
         {
             {
-                try
-                {
+                //try
+                //{
                     DialogResult res = MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
                          "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                     if (res == DialogResult.OK)
                     {
-                        //Enregistre dans la base la liste mis à jour de la listview 
+                        // Enregistre dans la base la liste mis à jour de la listview. 
                         DALTaches.EnregistrerTachesProd(TacheCourante);
 
                         MessageBox.Show("Tâche de production enregistrée",
                          "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
+                        // Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation.
                         ModeEdit = ModesEdition.Consultation;
                     }
-                }
-                catch (Exception)
-                {
-                    //Enlève de l'affichage de la Listviw la tache qui est sélectionnée
-                    TachesProds.Remove(TacheCourante);
-                    MessageBox.Show("Veuillez saisir tous les champs!", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                //}
+                //catch (Exception)
+                //{
+                //    // Supprime de la Listview la tache en cours d'enregistrement.
+                //    TachesProds.Remove(TacheCourante);
+                //    MessageBox.Show("Veuillez saisir tous les champs!", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
             }
         }
 
-        // Appel de la méthode d'enregistrement des tâches de production dans la base
+        // Appel de la méthode d'annulation de la création d'une tâches de production
         // puis pasage en mode édition.
         private void AnnulerTache()
         {
-            // Enlève de l'affichage de la Listview la tache qui est sélectionnée.
+            // Enlève de l'affichage de la Listview la tâche qui est sélectionnée.
             TachesProds.Remove(TacheCourante);
 
             // Lorsque l'on clique sur le bouton annuler, on passe la fenêtre en mode Consultation.

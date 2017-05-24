@@ -24,7 +24,6 @@ namespace JobOverview.Model
         {
             var listLogiciels = new List<Logiciel>();
 
-
             string req = @"select l.CodeLogiciel, l.Nom, 
 				v.DateOuverture, v.DateSortiePrevue, v.DateSortieReelle, 
 				v.Millesime, v.NumeroVersion, 
@@ -93,31 +92,7 @@ namespace JobOverview.Model
             return listModules;
         }
 
-        /// <summary>
-        /// Permet de récupérer les libellés des modules.
-        /// </summary>
-        public static List<Module> GetModulesLibellé()
-        {
-            var listModules = new List<Module>();
-
-            string req = @"Select CodeModule, Libelle, CodeLogiciel from jo.Module";
-
-
-            using (var connect = new SqlConnection(Settings.Default.ConnectionJobOverview))
-            {
-                var command = new SqlCommand(req, connect);
-                connect.Open();
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    GetModuleLibelléFromDataReader(listModules, reader);
-                }
-            }
-            return listModules;
-        }      
-
         #endregion
-
 
         #region Méthodes Privées
         
@@ -128,7 +103,7 @@ namespace JobOverview.Model
         /// <param name="reader"></param>
         private static void GetModuleFromDataReader(List<Logiciel> listlogi, SqlDataReader reader)
         {
-            // Si le code du Module courant est != de celui du dernier Module de la liste, on crée un nouvel objet Module.
+            // Si le code du Module courant est différent de celui du dernier Module de la liste, on crée un nouvel objet Module.
 
             Module Mod = null;
 
@@ -148,9 +123,7 @@ namespace JobOverview.Model
                 {
                     listlogi.Last().Modules.Add(Mod);
                 }
-
             }
-
         }
 
         /// <summary>
@@ -162,7 +135,7 @@ namespace JobOverview.Model
         {
             string codeLogi = (string)reader["CodeLogiciel"];
 
-            // Si le code du logiciel courant est != de celui du dernier logiciel de la liste,
+            // Si le code du logiciel courant est différent de celui du dernier logiciel de la liste,
             // on crée un nouvel objet Logiciel.
             Logiciel logi = null;
             if (listLogiciels.Count == 0 || listLogiciels[listLogiciels.Count - 1].Code != codeLogi)
@@ -183,7 +156,7 @@ namespace JobOverview.Model
 
             Entity.Version v = new Entity.Version();
 
-            // Si le N° de version est null, c'est que le logiciel n'a pas encore de version. 
+            // Si le numéro de version est null, c'est que le logiciel n'a pas encore de version. 
             // Dans ce cas, on n'ajoute pas de version à la collection.
             if (reader["NumeroVersion"] != DBNull.Value)
             {
@@ -204,26 +177,6 @@ namespace JobOverview.Model
                 logi.Versions.Add(v);
             }
         }
-
-        /// <summary>
-        /// Chargement de la liste de Modules passée en paramètre à partir du Datareader.
-        /// </summary>
-        /// <param name="listmod"></param>
-        /// <param name="reader"></param>
-        private static void GetModuleLibelléFromDataReader(List<Module> listmod, SqlDataReader reader)
-        {
-            while (reader.Read())
-            {
-                Module mod = new Module();
-
-                mod.Code = reader["CodeModule"].ToString();
-                mod.Libelle = reader["Libelle"].ToString();
-                mod.CodeLogicielParent = reader["CodeLogiciel"].ToString();
-
-                listmod.Add(mod);
-            }
-
-        } 
 
         #endregion
     }

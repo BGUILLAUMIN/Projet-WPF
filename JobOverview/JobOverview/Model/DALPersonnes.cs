@@ -50,7 +50,6 @@ namespace JobOverview.Model
                             else
                                 pers.Manager = true;
 
-                            //TODO enlever méthode dans le diagramme de classe
                             listPersonnes.Add(pers);
                         }
                     }
@@ -61,7 +60,7 @@ namespace JobOverview.Model
 
 
         /// <summary>
-        /// Récupère la liste des Personnes depuis la base de données .
+        /// Récupère la liste des Personnes depuis la base de données.
         /// </summary>
         /// <returns></returns>
         public static List<Personne> GetPersonnesFromUser(string login)
@@ -111,7 +110,7 @@ namespace JobOverview.Model
         /// <param name="reader"></param>
         private static void GetPersonnesFromUserFromDataReader(List<Personne> listPersonnes, SqlDataReader reader)
         {
-            //Aucun de ses champs n'est nullable
+            // Aucun de ces champs n'est nullable.
             Personne p = new Personne();
             p.Login = (string)reader["Login"];
             p.Nom = (string)reader["Nom"];
@@ -124,6 +123,5 @@ namespace JobOverview.Model
             listPersonnes.Add(p);
         }
         #endregion
-
     }
 }

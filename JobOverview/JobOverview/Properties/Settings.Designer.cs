@@ -68,17 +68,5 @@ namespace JobOverview.Properties {
                 this["PersonneCourante"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string PersonneCourante1 {
-            get {
-                return ((string)(this["PersonneCourante1"]));
-            }
-            set {
-                this["PersonneCourante1"] = value;
-            }
-        }
     }
 }

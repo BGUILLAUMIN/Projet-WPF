@@ -79,6 +79,9 @@ namespace JobOverview.View
         }
     }
 
+    #endregion
+    
+    #region Convertisseurs pour bloquer la Saisie dans les expanders aux personnes qui ne sont pas manager.
     public class ConvManagerVisible : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -90,24 +93,7 @@ namespace JobOverview.View
         {
             throw new NotImplementedException();
         }
-    }
-    #endregion
-
-    #region Convertisseurs pour bloquer la Saisie dans les expander aux personnes qui ne sont pas manager.
-    public class ConvModeEditManager : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();   // TODO bloquer l'accés à toutes modif pour les personnes qui ne sont pas manager
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
     } 
     #endregion
-
-
 }
 
