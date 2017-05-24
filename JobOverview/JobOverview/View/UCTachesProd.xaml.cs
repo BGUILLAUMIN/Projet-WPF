@@ -37,34 +37,16 @@ namespace JobOverview.View
             //Branchement des gestionnaires évenements
             BtnFiltre.Click += BtnFiltre_Click;
             cbxPersonnes2.SelectionChanged += CbxPersonnes2_SelectionChanged;
+            cbxPersonnes.SelectionChanged += cbxPersonnes_SelectionChanged;
         }
 
         private void BtnFiltre_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
-        }
-
-        private void CbxPersonnes2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(cbxPersonnes2.SelectedValue != null)
             Properties.Settings.Default.PersonneCourante = cbxPersonnes2.SelectedValue.ToString();
         }
 
-        private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
-        {
             // S'il y a une personne selectionnées dans la combobox Personne, on affecte aux texblocks les 
             // valeurs de temps global restants et réalisées pour cette personne. 
-            if (cbxPersonnes.SelectedValue != null)
-            {
-                var a = (Travail)DALTaches.GetTempsTravailGlobaux(cbxPersonnes.SelectedValue.ToString());
-                Txt_Restant.Text = "Temps de travail global restants : " + a.NbrHeuresTravailGlobalRestantes.ToString() + " h    /     ";
-                Txt_Realise.Text = "Temps de travail global réalisés  : " + a.NbrHeuresTravailGlobalRealisees.ToString() + " h";
-            }
-            else
-            {
-                cbxLogiciels.SelectedIndex = 0;
-                cbxVersions.SelectedIndex = 0;
-            }
 
             ICollectionView View = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProds);
 
@@ -74,7 +56,24 @@ namespace JobOverview.View
             {
                 //on applique le filtre
                 View.Filter = FiltrerTachesProds;
+
+                if (_vmTacheProd.TacheCourante != null)
+                    cbxLogiciels.SelectedValue = _vmTacheProd.TacheCourante.CodeLogiciel;
+                else
+                    cbxLogiciels.SelectedIndex = 0;
+
+                if (_vmTacheProd.TacheCourante != null)
+                    cbxVersions.SelectedValue = _vmTacheProd.TacheCourante.Version;
+                else
+                    cbxVersions.SelectedIndex = 0;
             }
+
+        }
+
+        private void CbxPersonnes2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbxPersonnes2.SelectedValue != null)
+                Properties.Settings.Default.PersonneCourante = cbxPersonnes2.SelectedValue.ToString();
         }
 
 
@@ -83,14 +82,31 @@ namespace JobOverview.View
         private bool FiltrerTachesProds(object o)
         {
             TacheProd tp = o as TacheProd;
-            return ((cbxLogiciels.SelectedValue.ToString() == tp.CodeLogiciel) &&
+            bool a = true;
+            if (ckbTachesTerm.IsChecked == false && tp.DureeRestante == 0)
+            {
+                a = false;
+            }
+
+            return (a && (cbxLogiciels.SelectedValue.ToString() == tp.CodeLogiciel) &&
                 (cbxVersions.SelectedValue.ToString() == tp.Version.ToString()) &&
                 (cbxPersonnes.SelectedValue.ToString() == tp.LoginPersonne));
         }
 
+        private bool FiltrerTacheTerminées(object o)
+        {
+            TacheProd tp = o as TacheProd;
+            return (tp.DureeRestante == 0);
+        }
+
         private void cbxPersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (cbxPersonnes.SelectedValue != null)
+            {
+                var a = (Travail)DALTaches.GetTempsTravailGlobaux(cbxPersonnes.SelectedValue.ToString());
+                Txt_Restant.Text = "Temps de travail global restants : " + a.NbrHeuresTravailGlobalRestantes.ToString() + " h    /     ";
+                Txt_Realise.Text = "Temps de travail global réalisés  : " + a.NbrHeuresTravailGlobalRealisees.ToString() + " h";
+            }
         }
     }
 }
