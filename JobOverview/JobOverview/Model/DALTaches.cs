@@ -133,7 +133,11 @@ namespace JobOverview.Model
                 paramLogin.Value = tacheProd.LoginPersonne;
 
                 SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
-                paramDescription.Value = (object)tacheProd.Description ?? DBNull.Value;
+                if (tacheProd.Description != null)
+                    paramDescription.Value = tacheProd.Description; 
+                else
+                    paramDescription.Value = DBNull.Value;
+
                 SqlParameter paramDureePrevue = new SqlParameter("@DureePrevue", SqlDbType.Float);
                 paramDureePrevue.Value = tacheProd.DureePrevue;
                 SqlParameter paramDureeRestanteEstimee = new SqlParameter("@DureeRestanteEstimee", SqlDbType.Float);
@@ -143,7 +147,7 @@ namespace JobOverview.Model
                 SqlParameter paramCodeLogicielModule = new SqlParameter("@CodeLogicielModule", DbType.String);
                 paramCodeLogicielModule.Value = tacheProd.CodeLogiciel;
                 SqlParameter paramNumeroVersion = new SqlParameter("@NumeroVersion", SqlDbType.Float);
-                paramNumeroVersion.Value = tacheProd.Numero;
+                paramNumeroVersion.Value = tacheProd.Version;
                 SqlParameter paramCodeLogicielVersion = new SqlParameter("@CodeLogicielVersion", DbType.String);
                 paramCodeLogicielVersion.Value = tacheProd.CodeLogiciel;
 
