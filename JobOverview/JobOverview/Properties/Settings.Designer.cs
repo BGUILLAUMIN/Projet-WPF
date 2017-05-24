@@ -49,8 +49,8 @@ namespace JobOverview.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=BGUILLAUMI17-DE\\IP08R2;Initial Catalog=JobOverview;Integrated Securit" +
-            "y=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=VPORTEMER17-DE\\IP08R2;Initial Catalog=JobOverview;Integrated Security" +
+            "=True")]
         public string ConnectionJobOverview {
             get {
                 return ((string)(this["ConnectionJobOverview"]));
@@ -66,6 +66,18 @@ namespace JobOverview.Properties {
             }
             set {
                 this["PersonneCourante"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PersonneCourante1 {
+            get {
+                return ((string)(this["PersonneCourante1"]));
+            }
+            set {
+                this["PersonneCourante1"] = value;
             }
         }
     }
