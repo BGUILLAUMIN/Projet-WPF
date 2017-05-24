@@ -11,11 +11,10 @@ namespace JobOverview.ViewModel
 {
     public class VMMain : ViewModelBase
     {
-
-        #region Champs privés
-
+        // Vue-modèle courante sur laquelle est liées le ContentControl
+        // de la zone principale
+         #region Champs privés
         private ViewModelBase _vmCourante;
-
         #endregion
 
         #region Propriétés 
