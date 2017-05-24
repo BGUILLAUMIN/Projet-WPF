@@ -152,8 +152,9 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn  Header="Login" DisplayMemberBinding="{Binding Path= LoginPersonne}" />
-                        <GridViewColumn Header="Code Activité" DisplayMemberBinding="{Binding Path=CodeActivite}"/>
-                        <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
+                        <GridViewColumn Header="CodeActivité" DisplayMemberBinding="{Binding CodeActivite}"/>
+                        <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Libelle}" />
+                        <GridViewColumn                    DisplayMemberBinding="{Binding Description}" Header="Description"/>
                     </GridView>
                 </ListView.View>
             </ListView>
