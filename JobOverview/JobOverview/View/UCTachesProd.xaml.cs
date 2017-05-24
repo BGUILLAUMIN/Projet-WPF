@@ -54,20 +54,23 @@ namespace JobOverview.View
 
         private void CkbTachesTerm_Unchecked(object sender, RoutedEventArgs e)
         {
+            //On instancie une nouvelle Vue Modèle TachesProd
             VMTachesProd list = new VMTachesProd();
+
+            //Si la Durée restante est égale à zéro, la tâche est terminée, donc on filtre sur ce critère
             list.TachesProdsListView.Where(t => t.DureeRestante == 0);
             ICollectionView view = CollectionViewSource.GetDefaultView(list);
         }
 
         private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
         {
-
+            //s'il y a une personne dans la combobox Personne 
             if (cbxPersonnes.SelectedValue != null)
             {
 
                 var a = (Travail)DALTaches.GetTempsTravailGlobaux(cbxPersonnes.SelectedValue.ToString());
-                Txt_Restant.Text = "Temps de travail global restants : " + a.NbrHeuresTravailGlobalRestantes.ToString();
-                Txt_Realise.Text = "Temps de travail global réalisés  : " + a.NbrHeuresTravailGlobalRealisees.ToString();
+                Txt_Restant.Text = "Temps de travail global restants : " + a.NbrHeuresTravailGlobalRestantes.ToString() + " h    /     ";
+                Txt_Realise.Text = "Temps de travail global réalisés  : " + a.NbrHeuresTravailGlobalRealisees.ToString() + " h";
 
             }
 
@@ -80,8 +83,10 @@ namespace JobOverview.View
 
             ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);
 
+            //s'il y a un logiciel, une version et une personne dans les combobox
             if (cbxVersions.SelectedValue != null && cbxPersonnes.SelectedValue != null && cbxLogiciels.SelectedValue != null)
             {
+                //on applique le filtre
                 view.Filter = FiltrerTachesProds;
             }
         }
@@ -92,6 +97,11 @@ namespace JobOverview.View
             return ((cbxLogiciels.SelectedValue.ToString() == tp.CodeLogiciel) &&
                 (cbxVersions.SelectedValue.ToString() == tp.Version.ToString()) &&
                 (cbxPersonnes.SelectedValue.ToString() == tp.LoginPersonne));
+        }
+
+        private void cbxPersonnes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

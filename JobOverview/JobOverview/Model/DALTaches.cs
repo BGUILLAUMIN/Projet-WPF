@@ -25,9 +25,10 @@ namespace JobOverview.Model
 
             string req = @"select t.IdTache, t.Libelle, t.Description, t.CodeActivite, t.Login,
 						tp.Numero, tp.DureePrevue, tp.DureeRestanteEstimee,
-						tp.CodeLogicielVersion, tp.NumeroVersion, tp.CodeModule
+						tp.CodeLogicielVersion, tp.NumeroVersion, tp.CodeModule, m.Libelle as LibelleModule
 					    from jo.Tache t
 					    inner join jo.TacheProd tp on t.IdTache = tp.IdTache
+					    inner join jo.Module m on m.CodeModule = tp.CodeModule
 					    where Annexe = 0
 					    order by Numero";
 
@@ -48,6 +49,7 @@ namespace JobOverview.Model
                             tp.Description = (string)reader["Description"];
                         tp.CodeActivite = (string)reader["CodeActivite"];
                         tp.CodeModule = (string)reader["CodeModule"];
+                        tp.LibelleModule = (string)reader["LibelleModule"];
                         tp.Version = (float)reader["NumeroVersion"];
                         tp.LoginPersonne = (string)reader["Login"];
                         tp.DureePrevue = (float)reader["DureePrevue"];
@@ -164,8 +166,8 @@ namespace JobOverview.Model
                     //exécution de la commande
                     command.ExecuteNonQuery();
 
-                    // Validation de la transaction s'il n'y a pas eu d'erreur
-                    tran.Commit();
+                    //Validation de la transaction s'il n'y a pas eu d'erreur
+                   tran.Commit();
                 }
                 catch (Exception)
                 {
@@ -303,7 +305,7 @@ namespace JobOverview.Model
 
 
         /// <summary>
-        /// Permet de récupérer les Temps de travail global réalisés et restants de chaque employé.
+        /// Permet de récupérer les temps de travail globaux réalisés et restants de chaque employé.
         /// </summary>
         public static Travail GetTempsTravailGlobaux(string nom)
         {

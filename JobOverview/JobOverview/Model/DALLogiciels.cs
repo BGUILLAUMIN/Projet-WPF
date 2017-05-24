@@ -83,7 +83,6 @@ namespace JobOverview.Model
                 {
                     while (reader.Read())
                     {
-
                         GetModuleFromDataReader(ListeLogi, reader);
                     }
                 }
