@@ -9,10 +9,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
 
-    <DockPanel Margin="0,20,0,0">
+    <DockPanel Margin="5">
 
         <!--#region Expander Ajout de Taches Annexe.-->
         <Expander ExpandDirection="Left" MaxWidth="400" DockPanel.Dock="Right" IsExpanded="True">
+            <Expander.Header>
+                <TextBlock Text="Détails de la tâche annexe sélectionnée">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90"/>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
             <Expander.ToolTip>
                 <ToolTip>
                     <TextBlock>Déplier la fiche de détails.</TextBlock>
@@ -60,33 +67,36 @@
 
                     <Grid DockPanel.Dock="Top">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="40"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Label  Grid.Row="0" Content="Libellé Tâche Annexe:" Grid.ColumnSpan="2" />
-                        <TextBox Grid.Row="1" Text="{Binding Path=TachesAnnexes/Libelle}"
+                        <Label  Grid.Row="2" Content="Libellé Tâche Annexe:" Grid.ColumnSpan="2" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=TachesAnnexes/Libelle}"
+                                 Margin="5"
                              IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}" Grid.ColumnSpan="2"/>
-                        <Label Grid.Row="2" Content="Personne"/>
-                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="5" Width="150" Text="{Binding Path=TachesAnnexes/LoginPersonne}" 
+                        <Label Content="Personne selectionnée" Grid.Row="1" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Width="150" Text="{Binding Path=TachesAnnexes/LoginPersonne}" 
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"/>
-
-                        <ComboBox Grid.Row="2" Name="cbPersonne2" 
+                        <Label Content="Selection de la Personne :"
+                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" />
+                        <ComboBox Name="cbPersonne2" 
+                          Grid.Column="1"
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"
                               SelectedValue="{Binding Path=TachesAnnexes/LoginPersonne}"
                           SelectedIndex="{Binding ElementName=cbPersonne, Path=Cursor}"
                            IsSynchronizedWithCurrentItem="True"
-                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"  Grid.Column="1" Height="Auto" Width="Auto">
+                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" Height="Auto" Width="Auto">
                             <ComboBox.ToolTip>
                                 <ToolTip>
                                     <TextBlock>Liste des personnes.</TextBlock>
@@ -107,12 +117,12 @@
                                 </ToolTip>
                             </ComboBox.ToolTip>
                         </ComboBox>
-                        <Label  Grid.Row="4" Content="Libellé Activité:" />
-                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=Activites/Libelle}" VerticalAlignment="Center" TextWrapping="Wrap"/>
                     </Grid>
-
-                    <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"  Width="350"
+                    <DockPanel>
+                        <Label Content="Description (facultatif) :" DockPanel.Dock="Top"/>
+                        <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"  Width="350"
                          IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}"/>
+                    </DockPanel>
                 </DockPanel>
             </Border>
         </Expander>
@@ -120,10 +130,11 @@
 
         <!--#region DockPanel Consultation des Taches Annexe-->
         <DockPanel>
-            <StackPanel Background="LightBlue" DockPanel.Dock="Top">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                    <TextBlock Text="Filtre : " VerticalAlignment="Center"/>
+            <StackPanel Background="LightBlue" DockPanel.Dock="Top" Margin="10,10,10,-1" >
+                <StackPanel HorizontalAlignment="Left" Margin="0,10,0,0">
+                    <Label Content="Filtre : " VerticalAlignment="Center" Margin="5,0"/>
                     <ComboBox Name="cbPersonne" 
+                              Width="160"
                           ItemsSource="{Binding Path=Personnes}"
                           DisplayMemberPath="NomComplet"
                           SelectedValuePath="Login"

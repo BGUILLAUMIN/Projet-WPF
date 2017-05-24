@@ -49,11 +49,23 @@ namespace JobOverview.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=VPORTEMER17-DE\\IP08R2;Initial Catalog=JobOverview;Integrated Security" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=RBLAVEC17-DE\\IP08R2;Initial Catalog=\"JobOverview\";Integrated Security" +
             "=True")]
         public string ConnectionJobOverview {
             get {
                 return ((string)(this["ConnectionJobOverview"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PersonneCourante {
+            get {
+                return ((string)(this["PersonneCourante"]));
+            }
+            set {
+                this["PersonneCourante"] = value;
             }
         }
     }
