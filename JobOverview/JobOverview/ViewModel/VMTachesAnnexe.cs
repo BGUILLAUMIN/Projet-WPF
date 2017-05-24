@@ -145,7 +145,7 @@ namespace JobOverview.ViewModel
         {
             try
             {
-              DialogResult res=  MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                DialogResult res = MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (res == DialogResult.OK)
                 {
@@ -161,7 +161,7 @@ namespace JobOverview.ViewModel
                 MessageBox.Show("Tâche non supprimée", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-}
+        }
 
 
 
@@ -182,13 +182,13 @@ namespace JobOverview.ViewModel
                     }
                 }
                 catch (Exception)
-            {
+                {
 
-                MessageBox.Show("Tâche non enregistrée", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                    MessageBox.Show("Tâche non enregistrée", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-            //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
-            ModeEdit = ModesEdition.Consultation;
+                //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
+                ModeEdit = ModesEdition.Consultation;
             }
         }
 

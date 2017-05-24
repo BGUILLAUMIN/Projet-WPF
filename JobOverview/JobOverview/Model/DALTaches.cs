@@ -151,6 +151,8 @@ namespace JobOverview.Model
                 SqlParameter paramCodeLogicielVersion = new SqlParameter("@CodeLogicielVersion", DbType.String);
                 paramCodeLogicielVersion.Value = tacheProd.CodeLogiciel;
 
+                
+
                 // Création  de la commande
                 var command = new SqlCommand(req, cnx, tran);
                 command.Parameters.Add(paramIdTache);
@@ -186,7 +188,7 @@ namespace JobOverview.Model
         /// Enregistre une tâche annexe dans la base
         /// </summary>
 
-        public static void EnregistrerTachesAnnexes(Tache TachesAnn)
+        public static void EnregistrerTachesAnnexes(Tache tachesAnn)
         {
             // Ecriture de la requête d'insertion 
             string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
@@ -201,15 +203,15 @@ namespace JobOverview.Model
 
                 #region Paramètres
                 SqlParameter paramIdTache = new SqlParameter("@IdTache", SqlDbType.UniqueIdentifier);
-                paramIdTache.Value = TachesAnn.Id;
+                paramIdTache.Value = tachesAnn.Id;
                 SqlParameter paramLibellé = new SqlParameter("@Libelle", DbType.String);
-                paramLibellé.Value = TachesAnn.Libelle;
+                paramLibellé.Value = tachesAnn.Libelle;
                 SqlParameter paramCodeActivite = new SqlParameter("@CodeActivite", DbType.String);
-                paramCodeActivite.Value = TachesAnn.CodeActivite;
+                paramCodeActivite.Value = tachesAnn.CodeActivite;
                 SqlParameter paramLogin = new SqlParameter("@Login", DbType.String);
-                paramLogin.Value = TachesAnn.LoginPersonne;
+                paramLogin.Value = tachesAnn.LoginPersonne;
                 SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
-                paramDescription.Value = TachesAnn.Description;
+                paramDescription.Value = (object)tachesAnn.Description ?? DBNull.Value;
 
                 // Création  de la commande
                 var command = new SqlCommand(req, cnx, tran);
@@ -237,14 +239,12 @@ namespace JobOverview.Model
                 }
             }
         }
-
-        
+               
         /// <summary>
-        /// Suppression d'une tache Annexe de la base
+        /// Suppression d'une tache Annexe dans la base
         /// </summary>
         /// <param name="supProd"></param>
         /// <returns></returns>
-
         public static void SupprimerTachesAnnexes(Guid Id)
         {
             // Préparation des requêtes et paramètres
@@ -279,22 +279,6 @@ namespace JobOverview.Model
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         /// <summary>
         /// Sérialisation des tâches. Permet d'exporter les données tâches en données xml
@@ -364,9 +348,6 @@ namespace JobOverview.Model
             return listActivitésAnx;
         }
 
-
-
-
         /// <summary>
         /// Permet de récupérer les temps de travail globaux réalisés et restants de chaque employé.
         /// </summary>
@@ -409,9 +390,6 @@ namespace JobOverview.Model
 
             return TravailCourant;
         }
-
-
-
         #endregion
 
         #region Méthodes Privées
