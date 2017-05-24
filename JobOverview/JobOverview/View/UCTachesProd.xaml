@@ -95,9 +95,8 @@
                         <Label Content="Durée Prévue :" Grid.Row="3" Grid.ColumnSpan="2"/>
                         <Label Content="Durée Restante :" Grid.Row="4" Grid.ColumnSpan="2"/>
                         <Label Content="Code Module :" Grid.Row="5" Grid.ColumnSpan="2"/>
-                        <Label Content="Libellé Module :" Grid.Row="6" Grid.ColumnSpan="2"/>
+                        <Separator Height="5" Opacity="0" Grid.Row="6"/>
                         <Label Content="Code Activité :" Grid.Row="7" Grid.ColumnSpan="2"/>
-                        <Label Content="Libellé Activité :" Grid.Row="8" Grid.ColumnSpan="2"/>
                         <StackPanel  Grid.Row="1" Grid.Column="3">
                             <TextBlock Text="Personne" Margin="5,0"
                                        Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"/>
@@ -179,10 +178,6 @@
                               SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" 
                               Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5,0,5"/>
-                        <TextBlock Text="{Binding Path= TachesProds/LibelleModule}" Grid.Row="6" Grid.Column="2"
-                                   HorizontalAlignment="Left"
-                                       VerticalAlignment="Center" Margin="0,8,0,7"/>
-
                         <TextBlock Margin="5,12,0,12" Width="100" Text="{Binding Path= TachesProds/CodeActivite}"
                                    Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2"
                                        HorizontalAlignment="Left"
@@ -192,10 +187,6 @@
                               SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
                         Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}"
                               Grid.Column="2" Grid.Row="7"  HorizontalAlignment="Left" Margin="5,5,0,5"/>
-                        <TextBlock Text="{Binding Path= Activités/Libelle}"  Grid.Row="8" Grid.Column="2"
-                                   HorizontalAlignment="Left"
-                                       VerticalAlignment="Center" Margin="0,8,0,7"/>
-
                     </Grid>
                     <StackPanel Orientation="Vertical">
                         <Separator Height="10" Opacity="0"/>
@@ -216,7 +207,7 @@
         <DockPanel>
             <!--#region Ligne du bas checkbox + bouton exporté.-->
             <DockPanel DockPanel.Dock="Bottom">
-                <CheckBox Name="ckbTachesTerm" Content="Taches terminées" IsChecked="False" VerticalAlignment="Center" Margin="10,0,0,0">
+                <CheckBox Name="ckbTachesTerm" Content="Taches terminées" IsChecked="False" VerticalAlignment="Center" Margin="10,0,0,0" Visibility="Hidden">
                     <CheckBox.ToolTip>
                         <ToolTip>
                             <TextBlock>Filtrer les tâches selon leur degré d'avancement.</TextBlock>
@@ -224,7 +215,7 @@
                     </CheckBox.ToolTip>
                 </CheckBox>
                 <CheckBox Name="ckbToutesPers" Content="Taches toutes les personnes" IsChecked="False"
-                          VerticalAlignment="Center" Margin="10,0,0,0">
+                          VerticalAlignment="Center" Margin="10,0,0,0" Visibility="Hidden">
                     <CheckBox.ToolTip>
                         <ToolTip>
                             <TextBlock>Afficher les taches de toutes les personnes.</TextBlock>

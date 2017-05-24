@@ -43,6 +43,12 @@ namespace JobOverview.View
             cbPersonne.SelectionChanged += Filtrer_Click;
             btnAjouter.Click += BtnAjouter_Click;
             cbPersonne2.SelectionChanged += CbPersonne2_SelectionChanged;
+            cbPersonne.SelectionChanged += CbPersonne_SelectionChanged;
+        }
+
+        private void CbPersonne_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Properties.Settings.Default.PersonneCourante = cbPersonne.SelectedValue.ToString();
         }
 
         private void CbPersonne2_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -146,7 +146,7 @@ namespace JobOverview.ViewModel
             //Instancie une nouvelle tâche
             var NouvelleTache = new TacheProd() { Id = Guid.NewGuid() };
             //Initiatialisation des propriétés de la nouvelle tâche
-            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte; //Récupère la personne connectée
+            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneCourante; //Récupère la personne connectée
             NouvelleTache.Numero = TachesProds.Max(n => n.Numero) + 1; //Incrémente le nouveau numéro de tâche de production en se basant sur le dernier
 
             // Ajoute la nouvelle tache dans la liste TachesProds.

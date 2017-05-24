@@ -224,3 +224,4 @@ D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.Properties
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csproj.GenerateResource.Cache
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
+D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache

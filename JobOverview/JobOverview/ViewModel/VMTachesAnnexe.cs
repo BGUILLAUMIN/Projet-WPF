@@ -132,7 +132,8 @@ namespace JobOverview.ViewModel
             //Instancie une nouvelle tâche
 
             var NouvelleTache = new Tache() { Id = Guid.NewGuid() };
-            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte;
+
+            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneCourante;
             // Ajoute la nouvelle tache dans la liste TachesAnnexes
             TachesAnnexes.Add(NouvelleTache);
 

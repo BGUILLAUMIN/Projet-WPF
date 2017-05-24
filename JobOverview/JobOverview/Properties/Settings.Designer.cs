@@ -56,5 +56,17 @@ namespace JobOverview.Properties {
                 return ((string)(this["ConnectionJobOverview"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PersonneCourante {
+            get {
+                return ((string)(this["PersonneCourante"]));
+            }
+            set {
+                this["PersonneCourante"] = value;
+            }
+        }
     }
 }
