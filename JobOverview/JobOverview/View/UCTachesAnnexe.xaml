@@ -70,6 +70,7 @@
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
+                           
                         </Grid.RowDefinitions>
                         <Label  Grid.Row="0" Content="Libellé Tâche Annexe:" Grid.ColumnSpan="2" />
                         <TextBox Grid.Row="1" Text="{Binding Path=TachesAnnexes/Libelle}"
@@ -109,6 +110,7 @@
                         </ComboBox>
                         <Label  Grid.Row="4" Content="Libellé Activité:" />
                         <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=Activites/Libelle}" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                        <Label Grid.Row="5" Content="Description (facultative):"/>
                     </Grid>
 
                     <TextBox Text="{Binding Path=TachesAnnexes/Description}" TextWrapping="Wrap"  Width="350"
@@ -144,7 +146,7 @@
                         <GridViewColumn  Header="Login" DisplayMemberBinding="{Binding Path= LoginPersonne}" />
                         <GridViewColumn Header="CodeActivité" DisplayMemberBinding="{Binding Path=CodeActivite}"/>
                         <GridViewColumn Header="Libellé" DisplayMemberBinding="{Binding Path=Libelle}" />
-                        <GridViewColumn  Header="Description" DisplayMemberBinding="{Binding Path= Description}" />
+                        <GridViewColumn  Width="500" Header="Description" DisplayMemberBinding="{Binding Path= Description}" />
                     </GridView>
                 </ListView.View>
             </ListView>
