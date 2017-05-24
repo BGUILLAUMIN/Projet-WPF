@@ -82,10 +82,9 @@
                         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=TachesAnnexes/Libelle}"
                                  Margin="5"
                              IsReadOnly="{Binding Path=ModeEdit,Converter={StaticResource ConvModeEditLectureSeule}}" Grid.ColumnSpan="2"/>
-                        <Label Content="Personne selectionnée" Grid.Row="1" />
-                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Width="150" Text="{Binding Path=TachesAnnexes/LoginPersonne}" 
-                                       HorizontalAlignment="Left"
-                                       VerticalAlignment="Center"/>
+                        <Label Content="Personne selectionnée :" Grid.Row="1" HorizontalAlignment="Left" Width="190" />
+                        <Label Grid.Row="1" Grid.Column="1" Content="{Binding Path=TachesAnnexes/LoginPersonne}" 
+                               VerticalContentAlignment="Center"/>
                         <Label Content="Selection de la Personne :"
                                Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" />
                         <ComboBox Name="cbPersonne2" 
@@ -103,7 +102,7 @@
                                 </ToolTip>
                             </ComboBox.ToolTip>
                         </ComboBox>
-                        <Label Grid.Row="3" Grid.Column="0"  DockPanel.Dock="Left" Content="Activité"/>
+                        <Label Grid.Row="3" Grid.Column="0"  DockPanel.Dock="Left" Content="Activité" VerticalContentAlignment="Center"/>
                         <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" Width="150" Text="{Binding Path=TachesAnnexes/CodeActivite}" 
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"/>
