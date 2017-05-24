@@ -183,15 +183,18 @@ namespace JobOverview.ViewModel
                         DALTaches.EnregistrerTachesAnnexes(TacheCourante);
                         MessageBox.Show("Enregistrement réussi", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+
+                    //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
+                    ModeEdit = ModesEdition.Consultation;
                 }
                 catch (Exception)
                 {
-
+                    TachesAnnexes.Remove(TacheCourante);
                     MessageBox.Show("Tâche non enregistrée", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
-                ModeEdit = ModesEdition.Consultation;
+                
+                
             }
         }
 
