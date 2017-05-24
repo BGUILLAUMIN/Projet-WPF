@@ -10,7 +10,7 @@ namespace JobOverview.View
 	{
 		public MainWindow()
 		{
-            //Definition du language pour l'affichage des dates
+            // Définition du language pour l'affichage des dates.
             Language = System.Windows.Markup.XmlLanguage.GetLanguage(System.Threading.Thread.CurrentThread.CurrentCulture.Name);
             InitializeComponent();
 			DataContext = new VMMain();
@@ -18,15 +18,15 @@ namespace JobOverview.View
 			Loaded += MainWindow_Loaded;
 		}
 
-		// Après chargement de la fenêtre
+		// Après chargement de la fenêtre.
 		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
-			// Affichage d'une fenêtre modale d'identification
+			// Affichage d'une fenêtre modale d'identification.
 			var dlg = new ModalWindow(new VMLogin());
 			dlg.Title = "Identification";
 			bool? res = dlg.ShowDialog();
 
-			// Si l'utilisateur annule, on ferme l'application
+			// Si l'utilisateur annule, on ferme l'application.
 			if (!res.Value) Close();
 		}
 	}

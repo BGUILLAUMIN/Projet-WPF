@@ -11,7 +11,7 @@
 
     <DockPanel Margin="0,20,0,0">
 
-        <!--#region Expander Ajout de Taches Annexe-->
+        <!--#region Expander Ajout de Taches Annexe.-->
         <Expander ExpandDirection="Left" MaxWidth="400" DockPanel.Dock="Right" IsExpanded="True">
             <Expander.ToolTip>
                 <ToolTip>
@@ -97,7 +97,7 @@
                                        VerticalAlignment="Center"/>
                         <ComboBox Grid.Row="3"  Grid.Column="1" DockPanel.Dock="Right" Name="cbActivite"  
                               ItemsSource="{Binding Path=ActivitesAutorisées}" SelectedValue="{Binding Path=TachesAnnexes/CodeActivite }" DisplayMemberPath="Code" 
-                              SelectedValuePath="Code" SelectedIndex="0" IsSynchronizedWithCurrentItem="True"
+                              SelectedValuePath="Code" SelectedIndex="0" IsSynchronizedWithCurrentItem="True" 
                               Visibility="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditVisible}}" Height="Auto" Width="Auto">
                             <ComboBox.ToolTip>
                                 <ToolTip>
