@@ -35,9 +35,9 @@ namespace JobOverview.View
             DataContext = _vmTacheProd;
 
             //Branchement des gestionnaires évenements
-            //cbxLogiciels.SelectionChanged += Filtrer_Click;
-            //cbxVersions.SelectionChanged += Filtrer_Click;
-            //cbxPersonnes.SelectionChanged += Filtrer_Click;
+            cbxLogiciels.SelectionChanged += Filtrer_Click;
+            cbxVersions.SelectionChanged += Filtrer_Click;
+            cbxPersonnes.SelectionChanged += Filtrer_Click;
             cbxPersonnes2.SelectionChanged += CbxPersonnes2_SelectionChanged;
         }
 
