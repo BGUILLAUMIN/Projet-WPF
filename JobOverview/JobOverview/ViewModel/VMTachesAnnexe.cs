@@ -162,7 +162,7 @@ namespace JobOverview.ViewModel
             catch (Exception)
             {
 
-                MessageBox.Show("Tâche non supprimée", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Tâche non supprimée - il y a déjà du temps de travail saisi sur cette tache!!", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
