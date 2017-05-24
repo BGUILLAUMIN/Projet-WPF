@@ -10,7 +10,7 @@
 
     <DockPanel Margin="0,20,0,0">
 
-        <!--#region Expander Ajout de Taches Annexe-->
+        <!--#region Expander Ajout de Taches Annexe.-->
         <Expander ExpandDirection="Left" MaxWidth="150" DockPanel.Dock="Right" IsExpanded="True">
             <Expander.ToolTip>
                 <ToolTip>
@@ -72,7 +72,7 @@
         </Expander>
         <!--#endregion-->
 
-        <!--#region DockPanel Consultation des Taches Annexe-->
+        <!--#region DockPanel Consultation des Taches Annexe.-->
         <DockPanel>
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right">

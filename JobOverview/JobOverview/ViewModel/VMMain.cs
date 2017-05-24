@@ -11,38 +11,15 @@ namespace JobOverview.ViewModel
 {
     public class VMMain : ViewModelBase
     {
-        // Vue-modèle courante sur laquelle est liées le ContentControl
-        // de la zone principale
-        //private ViewModelBase _VMCourante;
-        //public ViewModelBase VMCourante
-        //{
-        //	get { return _VMCourante; }
-        //	private set
-        //	{
-        //		SetProperty(ref _VMCourante, value);
-        //	}
-        //}
-
-        //#region Commandes
-        //private ICommand _cmdLogin;
-        //public ICommand CmdLogin
-        //{
-        //	get
-        //	{
-        //		if (_cmdLogin == null)
-        //			_cmdLogin = new RelayCommand(() => VMCourante = new VMLogin());
-        //		return _cmdLogin;
-        //	}
-        //}
-
-        //#endregion
-
 
         #region Champs privés
+
         private ViewModelBase _vmCourante;
+
         #endregion
 
         #region Propriétés 
+
         public ViewModelBase VMCourante
         {
             get
@@ -54,10 +31,12 @@ namespace JobOverview.ViewModel
                 SetProperty(ref _vmCourante, value);
             }
         } 
+
         #endregion
 
         #region Définition des commandes
-        //au clic sur le Menu tâches de production
+
+        // Au clic sur le Menu tâches de production, on affiche le user control correspondant dans la fenêtre.
         private ICommand _CmdTachesProd;
         public ICommand CmdTachesProd
         {
@@ -69,7 +48,7 @@ namespace JobOverview.ViewModel
             }
         }
 
-        //au clic sur le Menu tâches annexes
+        // Au clic sur le Menu tâches annexes, on affiche le user control correspondant dans la fenêtre.
         private ICommand _cmdTachesAnnexe;
         public ICommand CmdTachesAnnexe
         {
@@ -81,7 +60,7 @@ namespace JobOverview.ViewModel
             }
         }
 
-        //au clic sur le Menu à propos
+        // Au clic sur le Menu à propos, on affiche le user control correspondant dans la fenêtre.
         private ICommand _cmdAPropos;
         public ICommand CmdAPropos
         {
@@ -93,7 +72,7 @@ namespace JobOverview.ViewModel
             }
         }
 
-        //au clic sur le Menu SaisieTemps
+        // Au clic sur le Menu SaisieTemps, on affiche le user control correspondant dans la fenêtre.
         private ICommand _CmdSaisieTemps;
 
         public ICommand CmdSaisieTemps
@@ -107,7 +86,7 @@ namespace JobOverview.ViewModel
 
         }
 
-        //au clic sur le Menu Version
+        // Au clic sur le Menu Version, on affiche le user control correspondant dans la fenêtre.
         private ICommand _CmdVersion;
 
         public ICommand CmdVersion
@@ -119,40 +98,43 @@ namespace JobOverview.ViewModel
                 return _CmdVersion;
             }
         }
+
         #endregion
 
 
         #region Méthodes privées des commandes
-        // On définit une instance de VMTachesProd comme vue-modèle courante
+
+        // On définit une instance de VMTachesProd comme vue-modèle courante.
         private void ActionMenuTachesProd()
         {
             VMCourante = new VMTachesProd();
         }
 
-        // On définit une instance de VMTachesAnnexe comme vue-modèle courante
+        // On définit une instance de VMTachesAnnexe comme vue-modèle courante.
         private void ActionMenuTachesAnnexe()
         {
             VMCourante = new VMTachesAnnexe();
         }
 
-        // On définit une instance de VMPropos comme vue-modèle courante
+        // On définit une instance de VMPropos comme vue-modèle courante.
         private void ActionMenuAPropos()
         {
             VMCourante = new VMAPropos();
         }
 
-        // On définit une instance de VMSaisieTemps comme vue-modèle courante
+        // On définit une instance de VMSaisieTemps comme vue-modèle courante.
         private void ActionMenuSaisieTemps()
         {
             VMCourante = new VMSaisieTemps();
         }
 
-        // On définit une instance de VMVersion comme vue-modèle courante
+        // On définit une instance de VMVersion comme vue-modèle courante.
         private void ActionMenuVersion()
         {
             VMCourante = new VMVersion();
         } 
         #endregion
+
     }
 
 

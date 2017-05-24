@@ -15,9 +15,10 @@ namespace JobOverview.ViewModel
 
 		public VMLogin()
 		{
-            //On instancie une nouvelle liste de Personnes
+            // On instancie une nouvelle liste de Personnes.
             Personnes = new List<Personne>();
-            // On la remplie avec liste de Personnes de la base
+
+            // On remplie cette liste avec les Personnes de la base.
             Personnes = DALPersonnes.GetPersonnes();
 		}
 	}

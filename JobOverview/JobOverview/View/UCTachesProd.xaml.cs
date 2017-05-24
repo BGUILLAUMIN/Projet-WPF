@@ -21,6 +21,7 @@ using JobOverview.View;
 
 namespace JobOverview.View
 {
+
     /// <summary>
     /// Interaction logic for UCTachesProd.xaml
     /// </summary>
@@ -34,7 +35,7 @@ namespace JobOverview.View
             DataContext = _vmTacheProd;
 
 
-            //Branchement des gestionnaires évenements
+            // Branchement des gestionnaires d'évenements.
             ckbTachesTerm.Unchecked += CkbTachesTerm_Unchecked;
             ckbTachesTerm.Checked += CkbTachesTerm_Checked;
 
@@ -45,8 +46,6 @@ namespace JobOverview.View
 
         }
 
-
-
         private void CkbTachesTerm_Checked(object sender, RoutedEventArgs e)
         {
             ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);
@@ -54,17 +53,19 @@ namespace JobOverview.View
 
         private void CkbTachesTerm_Unchecked(object sender, RoutedEventArgs e)
         {
-            //On instancie une nouvelle Vue Modèle TachesProd
+            // On instancie une nouvelle Vue-Modèle TachesProd.
             VMTachesProd list = new VMTachesProd();
 
-            //Si la Durée restante est égale à zéro, la tâche est terminée, donc on filtre sur ce critère
+            // On filtre sur un critère de durée.
+            // Si la Durée restante est égale à zéro, on considère que la tâche est terminée.
             list.TachesProdsListView.Where(t => t.DureeRestante == 0);
             ICollectionView view = CollectionViewSource.GetDefaultView(list);
         }
 
         private void Filtrer_Click(object sender, SelectionChangedEventArgs e)
         {
-            //s'il y a une personne dans la combobox Personne 
+            // S'il y a une personne selectionnées dans la combobox Personne, on affecte aux texblocks les 
+            // valeurs de temps global restants et réalisées pour cette personne. 
             if (cbxPersonnes.SelectedValue != null)
             {
 
@@ -74,16 +75,10 @@ namespace JobOverview.View
 
             }
 
-            //if (cbxLogiciels.SelectedValue != null)
-            //{
-            //    var n = (List<Module>)DALLogiciels.GetModulesLibellé(cbxLogiciels.SelectedValue.ToString());
-
-
-            //}
-
             ICollectionView view = CollectionViewSource.GetDefaultView(_vmTacheProd.TachesProdsListView);
 
-            //s'il y a un logiciel, une version et une personne dans les combobox
+            // S'il y a un logiciel, une version et une personne dans les combobox, on applique un filtre sur les tâches de production
+            // en appelant la méthode FiltrerTachesProds et en lui passant en paramètre l'objet view.
             if (cbxVersions.SelectedValue != null && cbxPersonnes.SelectedValue != null && cbxLogiciels.SelectedValue != null)
             {
                 //on applique le filtre
@@ -91,6 +86,9 @@ namespace JobOverview.View
             }
         }
 
+
+        // Méthode permettant de filtrer les tâches de production en fonction du logiciel, de la version 
+        // et de la personne dans les combobox.
         private bool FiltrerTachesProds(object o)
         {
             TacheProd tp = o as TacheProd;

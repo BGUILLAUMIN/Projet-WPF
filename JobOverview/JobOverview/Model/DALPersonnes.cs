@@ -15,6 +15,7 @@ namespace JobOverview.Model
     public class DALPersonnes
     {
         #region Méthodes publiques
+
         /// <summary>
         /// Récupère la liste des personnes depuis la base de
         /// données pour compléter la liste dans la fenêtre d'identification.
@@ -58,48 +59,9 @@ namespace JobOverview.Model
             return listPersonnes;
         }
 
-        /// <summary>
-        /// Récupère la liste des activités depuis la base de
-        /// données .
-        /// </summary>
-        /// <returns></returns>
-        //public static List<Activite> GetActiviteProd()
-        //{
-        //    var listActivites = new List<Activite>();
-
-        //    string req = @"select CodeActivite,Libelle,Annexe from jo.activite where Annexe=0";
-        //    string connectString = Properties.Settings.Default.ConnectionJobOverview;
-
-        //    using (var connect = new SqlConnection(connectString))
-        //    {
-        //        var command = new SqlCommand(req, connect);
-        //        connect.Open();
-
-        //        using (SqlDataReader reader = command.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-
-        //                Activite activite = null;
-        //                {
-        //                    activite = new Activite();
-        //                    activite.Code = (string)reader["CodeActivite"];
-        //                    activite.Libelle = (string)reader["Libelle"];
-
-
-
-        //                    //TODO enlever méthode dans le diagramme de classe
-        //                    listActivites.Add(activite);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return listActivites;
-        //}
 
         /// <summary>
-        /// Récupère la liste des Personnes depuis la base de
-        /// données .
+        /// Récupère la liste des Personnes depuis la base de données .
         /// </summary>
         /// <returns></returns>
         public static List<Personne> GetPersonnesFromUser(string login)
@@ -138,11 +100,12 @@ namespace JobOverview.Model
             return Personnes;
 
         }
+
         #endregion
 
         #region Méthodes Privées
         /// <summary>
-        /// Charge la liste des Personnes passée en paramètre à partir du datareader
+        /// Charge la liste des Personnes passée en paramètre à partir du Datareader.
         /// </summary>
         /// <param name="listPersonnes"></param>
         /// <param name="reader"></param>
@@ -161,5 +124,6 @@ namespace JobOverview.Model
             listPersonnes.Add(p);
         }
         #endregion
+
     }
 }

@@ -17,7 +17,7 @@ namespace JobOverview.Model
     {
         #region Méthodes publiques
         /// <summary>
-        /// Permet de récupérer les tâches de production
+        /// Permet de récupérer les tâches de production.
         /// </summary>
         public static List<TacheProd> GetTachesProd()
         {
@@ -64,7 +64,7 @@ namespace JobOverview.Model
         }
 
         /// <summary>
-        /// Permet de récupérer les tâches annexes
+        /// Permet de récupérer les tâches annexes.
         /// </summary>
         public static List<Tache> GetTachesAnnexe()
         {
@@ -102,7 +102,7 @@ namespace JobOverview.Model
         }
 
         /// <summary>
-        /// Enregistre une tâches de production dans la base
+        /// Enregistre une tâches de production dans la base.
         /// </summary>
         /// <param name="listTaches"></param>
         public static void EnregistrerTachesProd(TacheProd tacheProd)
@@ -118,7 +118,7 @@ namespace JobOverview.Model
 
             using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
-                // Ouverture de la connexion et début de la transaction
+                // Ouverture de la connexion et début de la transaction.
                 cnx.Open();
                 SqlTransaction tran = cnx.BeginTransaction();
 
@@ -163,34 +163,34 @@ namespace JobOverview.Model
                 #endregion
                 try
                 {
-                    //exécution de la commande
+                    // Exécution de la commande.
                     command.ExecuteNonQuery();
 
-                    //Validation de la transaction s'il n'y a pas eu d'erreur
+                    // Validation de la transaction s'il n'y a pas eu d'erreur.
                    tran.Commit();
                 }
                 catch (Exception)
                 {
-                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
-                    throw;   // Remontée de l'erreur à l'appelant
+                    tran.Rollback(); // Annulation de la transaction en cas d'erreur.
+                    throw;   // Remontée de l'erreur à l'appelant.
                 }
             }
         }
 
         /// <summary>
-        /// Enregistre une tâche annexe dans la base
+        /// Enregistre une tâche annexe dans la base.
         /// </summary>
 
         public static void EnregistrerTachesAnnexes(Tache TachesAnn)
         {
-            // Ecriture de la requête d'insertion 
+            // Ecriture de la requête d'insertion. 
             string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
                         Values (@IdTache, @Libelle, 1 , @CodeActivite, @Login, @Description)";
 
 
             using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
             {
-                // Ouverture de la connexion et début de la transaction
+                // Ouverture de la connexion et début de la transaction.
                 cnx.Open();
                 SqlTransaction tran = cnx.BeginTransaction();
 
@@ -218,28 +218,28 @@ namespace JobOverview.Model
 
                 try
                 {
-                    // exécution de la commande
+                    // Exécution de la commande.
 
                     command.ExecuteNonQuery();
 
-                    // Validation de la transaction s'il n'y a pas eu d'erreur
+                    // Validation de la transaction s'il n'y a pas eu d'erreur.
                     tran.Commit();
                 }
                 catch (Exception)
                 {
-                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
-                    throw;   // Remontée de l'erreur à l'appelant
+                    tran.Rollback(); // Annulation de la transaction en cas d'erreur.
+                    throw;   // Remontée de l'erreur à l'appelant.
                 }
             }
         }
 
         /// <summary>
-        /// Sérialisation des tâches. Permet d'exporter les données tâches en données xml
+        /// Sérialisation des tâches. Permet d'exporter les données tâches en données xml.
         /// </summary>
         /// <param name="taches"></param>
         public static void ExportTachesXml(List<TacheProd> taches)
         {
-            // Exportation dans le fichier xml
+            // Exportation dans le fichier xml.
             XmlSerializer serializer = new XmlSerializer(typeof(List<TacheProd>),
                                                    new XmlRootAttribute("Taches"));
             using (TextWriter writer = new StreamWriter("TachesProduction.xml"))
@@ -248,11 +248,11 @@ namespace JobOverview.Model
         }
 
         /// <summary>
-        /// Permet de récupérer les activités annexes
+        /// Permet de récupérer les activités annexes.
         /// </summary>
         public static List<Activite> GetActivités()
         {
-            //Requêtage à la BDD pour récupérer les informations sur les activités
+            // Requêtage à la BDD pour récupérer les informations sur les activités.
             List<Activite> listActivitésAnx = new List<Activite>();
 
             var conx = new SqlConnection(Settings.Default.ConnectionJobOverview);
@@ -272,7 +272,7 @@ namespace JobOverview.Model
 
         public static List<Activite> GetActivitésAnnexesFiltrées(string codeActivite)
         {
-            //Requêtage à la BDD pour récupérer les informations sur les activités
+            // Requêtage à la BDD pour récupérer les informations sur les activités.
             List<Activite> listActivitésAnx = new List<Activite>();
 
             var conx = Settings.Default.ConnectionJobOverview;
@@ -309,7 +309,7 @@ namespace JobOverview.Model
         /// </summary>
         public static Travail GetTempsTravailGlobaux(string nom)
         {
-            //Requêtage à la BDD pour récupérer les informations sur les temps de travail.
+            // Requêtage à la BDD pour récupérer les informations sur les temps de travail.
             Travail TravailCourant = new Travail();
 
             var conx = Properties.Settings.Default.ConnectionJobOverview;
@@ -323,20 +323,20 @@ namespace JobOverview.Model
             var param = new SqlParameter("@parametre", DbType.String);
             param.Value = nom;
 
-            // On crée une connexion à partir de la chaîne de connexion
+            // On crée une connexion à partir de la chaîne de connexion.
             using (var connect = new SqlConnection(conx))
             {
-                // On créé une commande à partir de la requête et en utilisant la connexion définies précédemment
+                // On créé une commande à partir de la requête et en utilisant la connexion définies précédemment.
                 var command = new SqlCommand(query, connect);
                 command.Parameters.Add(param);
 
-                // On ouvre la connexion
+                // On ouvre la connexion.
                 connect.Open();
 
-                // On exécute la requête en récupérant son résultat dans un objet SqlDataRedader
+                // On exécute la requête en récupérant son résultat dans un objet SqlDataRedader.
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    // On lit et on affiche les lignes de résultat en boucle
+                    // On lit et on affiche les lignes de résultat en boucle.
                     while (reader.Read())
                     {
                         GetTempsTravailGlobauxFromDataReader(reader, TravailCourant);
@@ -355,7 +355,7 @@ namespace JobOverview.Model
 
 
         /// <summary>
-        /// Obtient et renvoie la liste des activités 
+        /// Obtient et renvoie la liste des activités. 
         /// </summary>
         /// <returns></returns>
         private static void GetActivitésFromDataReader(SqlDataReader reader, List<Activite> listActivitésAnx)

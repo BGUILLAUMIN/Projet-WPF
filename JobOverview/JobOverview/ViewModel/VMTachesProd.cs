@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace JobOverview.ViewModel
 {
-    // enumération les différents types d'édition: mode consultation ou mode edition
+    // Enumération des différents types d'édition : mode consultation ou mode edition.
     public enum ModesEdition { Consultation, Edition }
 
     public class VMTachesProd : ViewModelBase
@@ -50,7 +50,7 @@ namespace JobOverview.ViewModel
         #region Constructeur
         public VMTachesProd()
         {
-            //Appels des méthodes de DAL pour remplir le visuel au chargement de la fenêtre
+            // Appels des méthodes de DAL pour remplir le visuel au chargement de la fenêtre.
             Logiciels = DALLogiciels.GetLogicielsVersions();
             Personnes = DALPersonnes.GetPersonnesFromUser(Properties.Settings.Default.PersonneConnecte);
             Activités = DALTaches.GetActivités().Where(a => a.Annexe == false).ToList();
@@ -63,7 +63,7 @@ namespace JobOverview.ViewModel
 
 
         #region Définition des commandes
-        //lors du clic sur le bouton Ajouter
+        // Lors du clic sur le bouton Ajouter.
         private ICommand _cmdAjouter;
         public ICommand CmdAjouter
         {
@@ -75,7 +75,7 @@ namespace JobOverview.ViewModel
             }
         }
 
-        //lors du clic sur le bouton Enregistrer
+        // Lors du clic sur le bouton Enregistrer.
         private ICommand _cmdEnregistrer;
         public ICommand CmdEnregistrer
         {
@@ -87,7 +87,7 @@ namespace JobOverview.ViewModel
             }
         }
 
-        //lors du clic sur le bouton Annuler
+        // Llors du clic sur le bouton Annuler.
         private ICommand _cmdAnnuler;
         public ICommand CmdAnnuler
         {
@@ -100,7 +100,7 @@ namespace JobOverview.ViewModel
             }
         }
 
-        //lors du clic sur le bouton Export XML
+        // Lors du clic sur le bouton Export XML.
         private ICommand _cmdExport;
         public ICommand CmdExport
         {
@@ -124,7 +124,7 @@ namespace JobOverview.ViewModel
                 MessageBox.Show("Comfirmez-vous l'export des données? ",
                          "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                //Appel de la méthode d'export des données en passsant en paramêtre la liste de tâche de production
+                // Appel de la méthode d'export des données en passsant en paramêtre la liste de tâche de production.
                 DALTaches.ExportTachesXml(TachesProds.ToList());
 
                 MessageBox.Show("Exportation réalisée avec succès",
@@ -136,29 +136,29 @@ namespace JobOverview.ViewModel
             }
         }
 
-        // Crée une nouvelle tâche et l'ajoute à la collection
-        // et définit mode d'édition
+        // On Crée une nouvelle tâche et on l'ajoute à la collection
+        // puis, on passe en mode édition.
         private void AjouterTache()
         {
             //Instancie une nouvelle tâche
             var NouvelleTache = new TacheProd();
-            //Initiatialisation des propriétés de la nouvelle tâche
-            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte; //Récupère la personne connectée
-            NouvelleTache.Numero = TachesProds.Max(n => n.Numero) + 1; //Incrémente le nouveau numéro de tâche de production en se basant sur le dernier
+            // Initiatialisation des propriétés de la nouvelle tâche.
+            NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte; // Récupère la personne connectée.
+            NouvelleTache.Numero = TachesProds.Max(n => n.Numero) + 1; // Incrémente le nouveau numéro de tâche de production en se basant sur le dernier.
 
-            // Ajoute la nouvelle tache dans la liste TachesProds
+            // Ajoute la nouvelle tache dans la liste TachesProds.
             TachesProds.Add(NouvelleTache);
 
-            // La nouvelle tâche devient la tâche courante, de façon à ce qu'elle soit automatiquement sélectionnée
+            // La nouvelle tâche devient la tâche courante, de façon à ce qu'elle soit automatiquement sélectionnée.
             ICollectionView view = CollectionViewSource.GetDefaultView(TachesProds);
             view.MoveCurrentToLast();
 
-            //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Edition
+            // Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Edition.
             ModeEdit = ModesEdition.Edition;
         }
 
-        //Appel de la méthode d'enregistrement des tâches de production dans la base
-        //et définit le mode d'édition
+        // Appel de la méthode d'enregistrement des tâches de production dans la base
+        // puis, passage en mode édition.
         private void EnregistrerTache()
         {
             {
@@ -167,7 +167,7 @@ namespace JobOverview.ViewModel
                     MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
                        "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
-                    //Enregistre dans la base la liste mis à jour de la listview 
+                    // Enregistre dans la base la liste mis à jour de la listview. 
                     DALTaches.EnregistrerTachesProd(TacheCourante);
 
                     MessageBox.Show("Tâche de production enregistrée ?",
@@ -179,30 +179,30 @@ namespace JobOverview.ViewModel
                     MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
+                // Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation.
                 ModeEdit = ModesEdition.Consultation;
             }
         }
 
-        //Appel de la méthode d'enregistrement des tâches de production dans la base
-        //et définit le mode d'édition
+        // Appel de la méthode d'enregistrement des tâches de production dans la base
+        // puis pasage en mode édition.
         private void AnnulerTache()
         {
-            //Enlève de l'affichage de la Listviw la tache qui est sélectionnée
+            // Enlève de l'affichage de la Listview la tache qui est sélectionnée.
             TachesProds.Remove(TacheCourante);
 
-            //Lorsque l'on clique sur le bouton annuler, on passe la fenêtre en mode Consultation
+            // Lorsque l'on clique sur le bouton annuler, on passe la fenêtre en mode Consultation.
             ModeEdit = ModesEdition.Consultation;
         }
 
-        ///Méthodes d'activation du Mode Edition
-        // dès que l'on clique sur le bouton ajouter, cela désactive l'état du bouton
+        // Méthodes d'activation du Mode Edition.
+        // Dès que l'on clique sur le bouton ajouter, cela désactive l'état du bouton.
         private bool ActiverAjout()
         {
             return ModeEdit == ModesEdition.Consultation; ;
         }
 
-        // dès que l'on clique sur le bouton Enregistrer ou Annuler, cela désactive l'état des boutons
+        // Dès que l'on clique sur le bouton Enregistrer ou Annuler, cela désactive l'état des boutons.
         private bool ActiverAnnEnr()
         {
             return ModeEdit == ModesEdition.Edition;

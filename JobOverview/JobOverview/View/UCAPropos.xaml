@@ -8,7 +8,7 @@
              d:DesignHeight="600" d:DesignWidth="800">
     
     <UserControl.Resources>
-        <!-- création d'un style pour les images-->
+        <!-- Création d'un style pour les images.-->
         <Style TargetType="Image">
             <Setter Property="Width" Value="30"/>
         </Style>
@@ -16,8 +16,6 @@
 
     <Grid Margin="0,20,0,0" >
         <ScrollViewer x:Name="scrollViewer" HorizontalAlignment="Center" Height="600"  VerticalAlignment="Top" Width="800">
-            <!--<TextBlock x:Name="textBlock" TextAlignment="Center" TextWrapping="Wrap" FontSize="18">-->
-            <!--<Image Source="Resources/tibkpl.jpg" Width="76" Height="76"/>-->
 
             <StackPanel>
                 <Separator Height="600" Opacity="0"/>
