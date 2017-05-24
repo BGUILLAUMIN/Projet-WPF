@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\
+D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\
 JobOverview
 none
 false
 DEBUG;TRACE
-D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\App.xaml
+D:\Exercices\Projet-WPF\JobOverview\JobOverview\App.xaml
 9-493240162
 
-34318807658
-161738432920
+341886331230
+16-785173115
 View\MainWindow.xaml;View\UCAPropos.xaml;View\UCButtonsBar.xaml;View\UCLogin.xaml;View\ModalWindow.xaml;View\UCSaisieTemps.xaml;View\UCTachesAnnexe.xaml;View\UCTachesProd.xaml;View\UCVersions.xaml;
 
-False
+True
 

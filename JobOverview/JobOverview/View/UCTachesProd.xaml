@@ -248,8 +248,9 @@
             <!--#region Zone de sélection.-->
 
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="LightBlue" Margin="10,10,10,-1">
-                <StackPanel >
-                    <Label Content="Logiciel"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <StackPanel>
+                    <Label Content="Logiciel :"/>
                     <ComboBox Name="cbxLogiciels"
                           ItemsSource="{Binding Path=Logiciels}"
                           DisplayMemberPath="Nom"
@@ -265,7 +266,7 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel>
-                    <Label Content="Version"/>
+                    <Label Content="Version :"/>
                     <ComboBox Name="cbxVersions2" SelectedIndex="0"
                           ItemsSource="{Binding Path=Logiciels/Versions}"
                           DisplayMemberPath="Numero"
@@ -280,7 +281,7 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel>
-                    <Label Content="Personnes"/>
+                    <Label Content="Personne :"/>
                     <ComboBox Name="cbxPersonnes" Width="160"
                           ItemsSource="{Binding Path=Personnes}"
                           SelectedIndex="0"
@@ -295,6 +296,7 @@
                         </ComboBox.ToolTip>
                     </ComboBox>
                 </StackPanel>
+            </StackPanel>
             </StackPanel>
             <!--#endregion-->
             <!--#region Affichage des temps de travail.-->
