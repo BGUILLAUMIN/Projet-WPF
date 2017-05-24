@@ -29,7 +29,7 @@ namespace JobOverview.ViewModel
         public List<Activite> Activités { get; set; }
         public List<Module> Modules { get; set; }
         public ObservableCollection<TacheProd> TachesProds { get; }
-        public ObservableCollection<TacheProd> TachesProdsListView { get; }
+
         public TacheProd TacheCourante
         {
             get
@@ -56,7 +56,7 @@ namespace JobOverview.ViewModel
             Activités = DALTaches.GetActivités().Where(a => a.Annexe == false).ToList();
             Modules = DALLogiciels.GetModulesLibellé();
             TachesProds = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
-            TachesProdsListView = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
+            //TachesProdsListView = new ObservableCollection<TacheProd>(DALTaches.GetTachesProd());
             ModeEdit = ModesEdition.Consultation;
         }
         #endregion
@@ -121,14 +121,17 @@ namespace JobOverview.ViewModel
         {
             try
             {
-                MessageBox.Show("Comfirmez-vous l'export des données? ",
-                         "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               DialogResult res= MessageBox.Show("Confirmez-vous l'export des données? ",
+                         "Exportation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                //Appel de la méthode d'export des données en passsant en paramêtre la liste de tâche de production
-                DALTaches.ExportTachesXml(TachesProds.ToList());
+                if (res == DialogResult.OK)
+                {
+                    //Appel de la méthode d'export des données en passsant en paramêtre la liste de tâche de production
+                    DALTaches.ExportTachesXml(TachesProds.ToList());
 
-                MessageBox.Show("Exportation réalisée avec succès",
-                         "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Exportation réalisée avec succès",
+                             "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception)
             {
@@ -141,7 +144,7 @@ namespace JobOverview.ViewModel
         private void AjouterTache()
         {
             //Instancie une nouvelle tâche
-            var NouvelleTache = new TacheProd();
+            var NouvelleTache = new TacheProd() { Id = Guid.NewGuid() };
             //Initiatialisation des propriétés de la nouvelle tâche
             NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte; //Récupère la personne connectée
             NouvelleTache.Numero = TachesProds.Max(n => n.Numero) + 1; //Incrémente le nouveau numéro de tâche de production en se basant sur le dernier
@@ -162,25 +165,28 @@ namespace JobOverview.ViewModel
         private void EnregistrerTache()
         {
             {
-                try
-                {
-                    MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
-                       "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                //try
+                //{
+                    DialogResult res = MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
+                         "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                    //Enregistre dans la base la liste mis à jour de la listview 
-                    DALTaches.EnregistrerTachesProd(TacheCourante);
+                    if (res == DialogResult.OK)
+                    {
+                        //Enregistre dans la base la liste mis à jour de la listview 
+                        DALTaches.EnregistrerTachesProd(TacheCourante);
 
-                    MessageBox.Show("Tâche de production enregistrée ?",
-                     "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
-                ModeEdit = ModesEdition.Consultation;
+                        MessageBox.Show("Tâche de production enregistrée ?",
+                         "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
+                        ModeEdit = ModesEdition.Consultation;
+                    }
+                //}
+                //catch (Exception)
+                //{
+                //    //Enlève de l'affichage de la Listviw la tache qui est sélectionnée
+                //    TachesProds.Remove(TacheCourante);
+                //    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
             }
         }
 
@@ -199,7 +205,7 @@ namespace JobOverview.ViewModel
         // dès que l'on clique sur le bouton ajouter, cela désactive l'état du bouton
         private bool ActiverAjout()
         {
-            return ModeEdit == ModesEdition.Consultation; ;
+            return ModeEdit == ModesEdition.Consultation;
         }
 
         // dès que l'on clique sur le bouton Enregistrer ou Annuler, cela désactive l'état des boutons
