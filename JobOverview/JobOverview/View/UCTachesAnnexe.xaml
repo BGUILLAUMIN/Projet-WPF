@@ -20,7 +20,9 @@
             </Expander.ToolTip>
             <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="0,0,0,10">
                 <DockPanel>
-                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" 
+                                Visibility="{Binding Source={x:Static properties:Settings.Default},
+                                Path=ManagerConnecte, Converter={StaticResource ConvManagerVisible}}">
                         <Button Name="btnAjouter" Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
                             <Button.ToolTip>
                                 <ToolTip>

@@ -41,7 +41,9 @@
             <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="0,10,0,10">
                 <StackPanel>
                     <!--#region Barre de boutons.-->
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"  
+                                Visibility="{Binding Source={x:Static properties:Settings.Default},
+                        Path=ManagerConnecte, Converter={StaticResource ConvManagerVisible}}">
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding CmdAjouter}">
                             <fa:IconBlock Icon="PlusCircle" FontSize="25"/>
                             <Button.ToolTip>
@@ -306,8 +308,8 @@
             <!--#endregion-->
 
             <!--#region Liste d'affichage.-->
-       
-                    <ListView Name="lvTachesProd" Margin="10" ItemsSource="{Binding TachesProds}" IsSynchronizedWithCurrentItem="True" 
+            <!--#region Liste d'affichage-->
+            <ListView Name="lvTachesProd" Margin="10" ItemsSource="{Binding TachesProds}" IsSynchronizedWithCurrentItem="True" 
                       IsEnabled="{Binding Path=ModeEdit, Converter={StaticResource ConvModeEditLectureSeule}}">
                         <ListView.View>
                             <GridView>
