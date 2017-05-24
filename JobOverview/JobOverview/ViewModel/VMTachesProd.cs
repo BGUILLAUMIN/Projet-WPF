@@ -165,8 +165,8 @@ namespace JobOverview.ViewModel
         private void EnregistrerTache()
         {
             {
-                try
-                {
+                //try
+                //{
                     DialogResult res = MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
                          "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
@@ -180,13 +180,13 @@ namespace JobOverview.ViewModel
                         //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
                         ModeEdit = ModesEdition.Consultation;
                     }
-                }
-                catch (Exception)
-                {
-                    //Enlève de l'affichage de la Listviw la tache qui est sélectionnée
-                    TachesProds.Remove(TacheCourante);
-                    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                //}
+                //catch (Exception)
+                //{
+                //    //Enlève de l'affichage de la Listviw la tache qui est sélectionnée
+                //    TachesProds.Remove(TacheCourante);
+                //    MessageBox.Show("Veuillez saisir tous les champs", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
             }
         }
 
