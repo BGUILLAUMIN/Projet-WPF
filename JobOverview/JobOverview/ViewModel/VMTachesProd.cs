@@ -121,14 +121,17 @@ namespace JobOverview.ViewModel
         {
             try
             {
-                MessageBox.Show("Comfirmez-vous l'export des données? ",
-                         "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               DialogResult res= MessageBox.Show("Confirmez-vous l'export des données? ",
+                         "Exportation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                //Appel de la méthode d'export des données en passsant en paramêtre la liste de tâche de production
-                DALTaches.ExportTachesXml(TachesProds.ToList());
+                if (res == DialogResult.OK)
+                {
+                    //Appel de la méthode d'export des données en passsant en paramêtre la liste de tâche de production
+                    DALTaches.ExportTachesXml(TachesProds.ToList());
 
-                MessageBox.Show("Exportation réalisée avec succès",
-                         "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Exportation réalisée avec succès",
+                             "Exportation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception)
             {
@@ -164,15 +167,18 @@ namespace JobOverview.ViewModel
             {
                 try
                 {
-                    MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
-                       "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
-                    //Enregistre dans la base la liste mis à jour de la listview 
-                    DALTaches.EnregistrerTachesProd(TacheCourante);
+                    DialogResult res = MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?",
+                         "Enregistrement", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                    MessageBox.Show("Tâche de production enregistrée ?",
-                     "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (res == DialogResult.OK)
+                    {
+                        //Enregistre dans la base la liste mis à jour de la listview 
+                        DALTaches.EnregistrerTachesProd(TacheCourante);
 
+                        MessageBox.Show("Tâche de production enregistrée ?",
+                         "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 catch (Exception)
                 {
