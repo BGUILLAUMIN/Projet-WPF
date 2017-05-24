@@ -1,15 +1,16 @@
 ﻿using JobOverview.Entity;
-using JobOverview.Model;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Data;
+using JobOverview.Model;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System.ComponentModel;
+using System.Windows.Data;
+using System.Windows.Forms;
+
 
 namespace JobOverview.ViewModel
 {
@@ -127,7 +128,7 @@ namespace JobOverview.ViewModel
         {
             //Instancie une nouvelle tâche
 
-            var NouvelleTache = new Tache();
+            var NouvelleTache = new Tache() { Id = Guid.NewGuid() };
             NouvelleTache.LoginPersonne = Properties.Settings.Default.PersonneConnecte;
             // Ajoute la nouvelle tache dans la liste TachesAnnexes
             TachesAnnexes.Add(NouvelleTache);
@@ -144,19 +145,20 @@ namespace JobOverview.ViewModel
         {
             try
             {
-                TachesAnnexes.Remove(TacheCourante);
-                MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
+              DialogResult res=  MessageBox.Show("Confirmez-vous la suppression de cette tâche ?", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
+                if (res == DialogResult.OK)
+                {
+                    DALTaches.SupprimerTachesAnnexes(TacheCourante.Id);
+                    TachesAnnexes.Remove(TacheCourante);
 
-                DALTaches.EnregistrerTachesAnnexes(TacheCourante); //ToDO changer méthode suppression
-
-                MessageBox.Show("Suppression réussie", "Suppression", MessageBoxButton.OK);
-
+                    MessageBox.Show("Suppression réussie", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception)
             {
 
-                MessageBox.Show("Tâche non supprimée", "Attention", MessageBoxButton.OK);
+                MessageBox.Show("Tâche non supprimée", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 }
@@ -170,15 +172,19 @@ namespace JobOverview.ViewModel
             {
                 try
                 {
-                    //Enregistre dans la base la liste mis à jour de la listview 
-                    MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?", "Attention", MessageBoxButton.OKCancel);
-                    DALTaches.EnregistrerTachesAnnexes(TacheCourante);
-                    MessageBox.Show("Enregistrement réussi", "Enregistrement", MessageBoxButton.OK);
+                    DialogResult res = MessageBox.Show("Confirmez-vous l'enregistrement de cette tâche ?", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                    if (res == DialogResult.OK)
+                    {
+                        //Enregistre dans la base la liste mis à jour de la listview 
+                        DALTaches.EnregistrerTachesAnnexes(TacheCourante);
+                        MessageBox.Show("Enregistrement réussi", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 catch (Exception)
             {
 
-                MessageBox.Show("Tâche non enregistrée", "Attention", MessageBoxButton.OK);
+                MessageBox.Show("Tâche non enregistrée", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             //Lorsque l'on clique sur le bouton Enregistrer, on passe la fenêtre en mode Consultation
