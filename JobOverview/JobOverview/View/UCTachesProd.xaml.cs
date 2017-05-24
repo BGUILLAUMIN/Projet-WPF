@@ -43,9 +43,7 @@ namespace JobOverview.View
 
         private void BtnFiltre_Click(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.PersonneCourante = cbxPersonnes2.SelectedValue.ToString();
-        }
-
+        
             // S'il y a une personne selectionnée dans la combobox Personne, on affecte aux texblocks les 
             // valeurs de temps global restants et réalisées pour cette personne. 
 
