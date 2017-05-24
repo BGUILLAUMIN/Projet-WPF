@@ -124,15 +124,16 @@ namespace JobOverview.Model
 
                 #region Paramètres
                 SqlParameter paramIdTache = new SqlParameter("@IdTache", SqlDbType.UniqueIdentifier);
-                paramIdTache.Value = Guid.NewGuid();
+                paramIdTache.Value = tacheProd.Id;
                 SqlParameter paramLibellé = new SqlParameter("@Libelle", DbType.String);
                 paramLibellé.Value = tacheProd.Libelle;
                 SqlParameter paramCodeActivite = new SqlParameter("@CodeActivite", DbType.String);
                 paramCodeActivite.Value = tacheProd.CodeActivite;
                 SqlParameter paramLogin = new SqlParameter("@Login", DbType.String);
                 paramLogin.Value = tacheProd.LoginPersonne;
+
                 SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
-                paramDescription.Value = tacheProd.Description;
+                paramDescription.Value = (object)tacheProd.Description ?? DBNull.Value;
                 SqlParameter paramDureePrevue = new SqlParameter("@DureePrevue", SqlDbType.Float);
                 paramDureePrevue.Value = tacheProd.DureePrevue;
                 SqlParameter paramDureeRestanteEstimee = new SqlParameter("@DureeRestanteEstimee", SqlDbType.Float);
@@ -146,13 +147,15 @@ namespace JobOverview.Model
                 SqlParameter paramCodeLogicielVersion = new SqlParameter("@CodeLogicielVersion", DbType.String);
                 paramCodeLogicielVersion.Value = tacheProd.CodeLogiciel;
 
+                
+
                 // Création  de la commande
                 var command = new SqlCommand(req, cnx, tran);
                 command.Parameters.Add(paramIdTache);
                 command.Parameters.Add(paramLibellé);
                 command.Parameters.Add(paramCodeActivite);
                 command.Parameters.Add(paramLogin);
-                command.Parameters.Add(paramDescription);
+                command.Parameters.Add(paramDescription); 
                 command.Parameters.Add(paramDureePrevue);
                 command.Parameters.Add(paramDureeRestanteEstimee);
                 command.Parameters.Add(paramCodeModule);
@@ -181,7 +184,7 @@ namespace JobOverview.Model
         /// Enregistre une tâche annexe dans la base.
         /// </summary>
 
-        public static void EnregistrerTachesAnnexes(Tache TachesAnn)
+        public static void EnregistrerTachesAnnexes(Tache tachesAnn)
         {
             // Ecriture de la requête d'insertion. 
             string req = @"Insert jo.Tache(IdTache, Libelle, Annexe, CodeActivite, Login, Description)                                                                                                 
@@ -196,15 +199,15 @@ namespace JobOverview.Model
 
                 #region Paramètres
                 SqlParameter paramIdTache = new SqlParameter("@IdTache", SqlDbType.UniqueIdentifier);
-                paramIdTache.Value = Guid.NewGuid();
+                paramIdTache.Value = tachesAnn.Id;
                 SqlParameter paramLibellé = new SqlParameter("@Libelle", DbType.String);
-                paramLibellé.Value = TachesAnn.Libelle;
+                paramLibellé.Value = tachesAnn.Libelle;
                 SqlParameter paramCodeActivite = new SqlParameter("@CodeActivite", DbType.String);
-                paramCodeActivite.Value = TachesAnn.CodeActivite;
+                paramCodeActivite.Value = tachesAnn.CodeActivite;
                 SqlParameter paramLogin = new SqlParameter("@Login", DbType.String);
-                paramLogin.Value = TachesAnn.LoginPersonne;
+                paramLogin.Value = tachesAnn.LoginPersonne;
                 SqlParameter paramDescription = new SqlParameter("@Description", DbType.String);
-                paramDescription.Value = TachesAnn.Description;
+                paramDescription.Value = (object)tachesAnn.Description ?? DBNull.Value;
 
                 // Création  de la commande
                 var command = new SqlCommand(req, cnx, tran);
@@ -229,6 +232,46 @@ namespace JobOverview.Model
                 {
                     tran.Rollback(); // Annulation de la transaction en cas d'erreur.
                     throw;   // Remontée de l'erreur à l'appelant.
+                }
+            }
+        }
+               
+        /// <summary>
+        /// Suppression d'une tache Annexe dans la base
+        /// </summary>
+        /// <param name="supProd"></param>
+        /// <returns></returns>
+        public static void SupprimerTachesAnnexes(Guid Id)
+        {
+            // Préparation des requêtes et paramètres
+            // Ecriture de la requête d'insertion 
+            string req = @"delete from jo.Tache where IdTache= @Id";
+
+
+
+
+            using (var cnx = new SqlConnection(Settings.Default.ConnectionJobOverview))
+            {
+                // Ouverture de la connexion et début de la transaction
+                cnx.Open();
+                SqlTransaction tran = cnx.BeginTransaction();
+                var command = new SqlCommand(req, cnx, tran);
+                SqlParameter param = new SqlParameter("@Id", SqlDbType.UniqueIdentifier);
+                param.Value = Id;
+                command.Parameters.Add(param);
+                try
+                {
+                    // exécution de la commande
+
+                    command.ExecuteNonQuery();
+
+                    // Validation de la transaction s'il n'y a pas eu d'erreur
+                    tran.Commit();
+                }
+                catch (Exception)
+                {
+                    tran.Rollback(); // Annulation de la transaction en cas d'erreur
+                    throw;   // Remontée de l'erreur à l'appelant
                 }
             }
         }
@@ -301,9 +344,6 @@ namespace JobOverview.Model
             return listActivitésAnx;
         }
 
-
-
-
         /// <summary>
         /// Permet de récupérer les temps de travail globaux réalisés et restants de chaque employé.
         /// </summary>
@@ -346,9 +386,6 @@ namespace JobOverview.Model
 
             return TravailCourant;
         }
-
-
-
         #endregion
 
         #region Méthodes Privées

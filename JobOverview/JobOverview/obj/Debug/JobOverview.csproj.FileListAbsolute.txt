@@ -224,3 +224,4 @@ D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.exe
 D:\ycappelle\Projet-WPF\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.pdb
 D:\Exercices\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
+C:\Users\bguillaumin\Source\Repos\Projet-WPF\JobOverview\JobOverview\obj\Debug\JobOverview.csprojResolveAssemblyReference.cache
