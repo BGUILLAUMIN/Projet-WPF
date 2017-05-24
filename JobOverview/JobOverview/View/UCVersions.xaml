@@ -88,33 +88,6 @@
                     </ComboBox.ToolTip>
                 </ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,5,10,0">
-                <TextBlock Text="Filtre : " VerticalAlignment="Center" MinWidth="60"/>
-                <ComboBox Name="cbxVersion" Margin="0,5,10,0" ItemsSource="{Binding Path=Logiciels/Versions}" 
-                          DisplayMemberPath="Numero"
-                          SelectedValuePath="Numero"
-                          SelectedIndex="0"
-                          IsSynchronizedWithCurrentItem="True">
-                    <ComboBox.ToolTip>
-                        <ToolTip>
-                            <TextBlock>Choix de la version.</TextBlock>
-                        </ToolTip>
-                    </ComboBox.ToolTip>
-                </ComboBox>
-                <ComboBox Margin="0,5,10,0" Width="50" SelectedIndex="0">
-                    <ComboBoxItem>
-                        <fa:IconBlock Icon="SortAsc"/>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <fa:IconBlock Icon="SortDesc"/>
-                    </ComboBoxItem>
-                    <ComboBox.ToolTip>
-                        <ToolTip>
-                            <TextBlock>Choisir le type de Tri : Ascendant ou Descendant.</TextBlock>
-                        </ToolTip>
-                    </ComboBox.ToolTip>
-                </ComboBox>
-            </StackPanel>
             <!--#endregion -->
 
             <!--#region Affichage du détail des versions.-->
